@@ -1,0 +1,583 @@
+2025-03-12T08:49:40.737+01:00  INFO 10144 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 10144 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T08:49:40.742+01:00  INFO 10144 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T08:49:41.352+01:00  INFO 10144 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T08:49:41.384+01:00  INFO 10144 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 0 JDBC repository interfaces.
+2025-03-12T08:49:41.657+01:00  INFO 10144 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T08:49:41.859+01:00  INFO 10144 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T08:49:41.860+01:00  INFO 10144 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T08:49:42.963+01:00  INFO 10144 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T08:49:43.031+01:00  INFO 10144 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.584 seconds (process running for 3.49)
+2025-03-12T08:49:43.794+01:00  INFO 10144 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T08:49:43.797+01:00  INFO 10144 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T08:50:00.908+01:00  INFO 20192 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 20192 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T08:50:00.910+01:00  INFO 20192 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T08:50:01.503+01:00  INFO 20192 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T08:50:01.530+01:00  INFO 20192 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 0 JDBC repository interfaces.
+2025-03-12T08:50:02.000+01:00  INFO 20192 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T08:50:02.009+01:00  INFO 20192 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T08:50:02.009+01:00  INFO 20192 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T08:50:02.043+01:00  INFO 20192 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T08:50:02.044+01:00  INFO 20192 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1076 ms
+2025-03-12T08:50:02.156+01:00  INFO 20192 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T08:50:02.332+01:00  INFO 20192 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T08:50:02.334+01:00  INFO 20192 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T08:50:03.069+01:00  INFO 20192 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T08:50:03.157+01:00  INFO 20192 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T08:50:03.166+01:00  INFO 20192 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.693 seconds (process running for 2.978)
+2025-03-12T08:50:11.842+01:00  INFO 20192 --- [http-nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T08:50:11.842+01:00  INFO 20192 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T08:50:11.843+01:00  INFO 20192 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T08:55:13.051+01:00  INFO 20192 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T08:55:13.111+01:00  INFO 20192 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T08:55:13.115+01:00  INFO 20192 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T08:55:13.117+01:00  INFO 20192 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T08:55:24.260+01:00  INFO 1560 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 1560 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T08:55:24.262+01:00  INFO 1560 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T08:55:24.829+01:00  INFO 1560 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T08:55:24.854+01:00  INFO 1560 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 JDBC repository interfaces.
+2025-03-12T08:55:25.123+01:00  INFO 1560 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T08:55:25.306+01:00  INFO 1560 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T08:55:25.308+01:00  INFO 1560 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T08:55:26.413+01:00  INFO 1560 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T08:55:26.481+01:00  INFO 1560 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.532 seconds (process running for 3.381)
+2025-03-12T08:55:27.373+01:00  INFO 1560 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T08:55:27.375+01:00  INFO 1560 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T08:55:33.041+01:00  INFO 13412 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 13412 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T08:55:33.044+01:00  INFO 13412 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T08:55:33.622+01:00  INFO 13412 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T08:55:33.646+01:00  INFO 13412 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 JDBC repository interfaces.
+2025-03-12T08:55:34.117+01:00  INFO 13412 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T08:55:34.125+01:00  INFO 13412 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T08:55:34.126+01:00  INFO 13412 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T08:55:34.161+01:00  INFO 13412 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T08:55:34.161+01:00  INFO 13412 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1058 ms
+2025-03-12T08:55:34.265+01:00  INFO 13412 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T08:55:34.436+01:00  INFO 13412 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T08:55:34.438+01:00  INFO 13412 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T08:55:35.151+01:00  INFO 13412 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T08:55:35.225+01:00  INFO 13412 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T08:55:35.232+01:00  INFO 13412 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.621 seconds (process running for 2.918)
+2025-03-12T08:55:42.024+01:00  INFO 13412 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T08:55:42.024+01:00  INFO 13412 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T08:55:42.025+01:00  INFO 13412 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-12T08:58:15.844+01:00  INFO 13412 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T08:58:15.899+01:00  INFO 13412 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T08:58:15.903+01:00  INFO 13412 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T08:58:15.906+01:00  INFO 13412 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T08:58:26.828+01:00  INFO 19468 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 19468 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T08:58:26.830+01:00  INFO 19468 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T08:58:27.375+01:00  INFO 19468 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T08:58:27.401+01:00  INFO 19468 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 0 JDBC repository interfaces.
+2025-03-12T08:58:27.668+01:00  INFO 19468 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T08:58:27.824+01:00  INFO 19468 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T08:58:27.826+01:00  INFO 19468 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T08:58:28.846+01:00  INFO 19468 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T08:58:28.912+01:00  INFO 19468 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.344 seconds (process running for 3.114)
+2025-03-12T08:58:29.695+01:00  INFO 19468 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T08:58:29.698+01:00  INFO 19468 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T08:58:40.876+01:00  INFO 12756 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 12756 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T08:58:40.879+01:00  INFO 12756 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T08:58:41.461+01:00  INFO 12756 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T08:58:41.482+01:00  INFO 12756 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 JDBC repository interfaces.
+2025-03-12T08:58:41.948+01:00  INFO 12756 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T08:58:41.957+01:00  INFO 12756 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T08:58:41.957+01:00  INFO 12756 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T08:58:41.992+01:00  INFO 12756 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T08:58:41.992+01:00  INFO 12756 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1059 ms
+2025-03-12T08:58:42.094+01:00  INFO 12756 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T08:58:42.278+01:00  INFO 12756 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T08:58:42.280+01:00  INFO 12756 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T08:58:43.036+01:00  INFO 12756 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T08:58:43.117+01:00  INFO 12756 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T08:58:43.126+01:00  INFO 12756 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.693 seconds (process running for 2.96)
+2025-03-12T08:58:48.814+01:00  INFO 12756 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T08:58:48.814+01:00  INFO 12756 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T08:58:48.815+01:00  INFO 12756 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T09:04:07.430+01:00  INFO 12756 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T09:04:07.509+01:00  INFO 12756 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T09:04:07.509+01:00  INFO 12756 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:04:07.509+01:00  INFO 12756 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:04:18.368+01:00  INFO 3436 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 3436 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:04:18.370+01:00  INFO 3436 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:04:18.890+01:00  INFO 3436 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:04:18.923+01:00  INFO 3436 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:04:19.184+01:00  INFO 3436 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:04:19.335+01:00  INFO 3436 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:04:19.337+01:00  INFO 3436 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:04:20.325+01:00  INFO 3436 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:04:20.394+01:00  INFO 3436 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.274 seconds (process running for 3.069)
+2025-03-12T09:04:21.280+01:00  INFO 3436 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:04:21.283+01:00  INFO 3436 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:04:40.766+01:00  INFO 13960 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 13960 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:04:40.768+01:00  INFO 13960 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:04:41.354+01:00  INFO 13960 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:04:41.378+01:00  INFO 13960 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:04:41.823+01:00  INFO 13960 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T09:04:41.832+01:00  INFO 13960 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T09:04:41.832+01:00  INFO 13960 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T09:04:41.870+01:00  INFO 13960 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T09:04:41.871+01:00  INFO 13960 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1033 ms
+2025-03-12T09:04:41.983+01:00  INFO 13960 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:04:42.166+01:00  INFO 13960 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:04:42.168+01:00  INFO 13960 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:04:42.879+01:00  INFO 13960 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:04:42.967+01:00  INFO 13960 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T09:04:42.975+01:00  INFO 13960 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.641 seconds (process running for 2.918)
+2025-03-12T09:04:49.041+01:00  INFO 13960 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T09:04:49.042+01:00  INFO 13960 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T09:04:49.043+01:00  INFO 13960 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T09:06:56.662+01:00  INFO 13960 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T09:06:56.719+01:00  INFO 13960 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T09:06:56.722+01:00  INFO 13960 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:06:56.724+01:00  INFO 13960 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:07:07.424+01:00  INFO 13532 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 13532 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:07:07.425+01:00  INFO 13532 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:07:07.927+01:00  INFO 13532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:07:07.961+01:00  INFO 13532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:07:08.247+01:00  INFO 13532 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:07:08.394+01:00  INFO 13532 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:07:08.396+01:00  INFO 13532 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:07:09.406+01:00  INFO 13532 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:07:09.472+01:00  INFO 13532 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.297 seconds (process running for 3.044)
+2025-03-12T09:07:10.364+01:00  INFO 13532 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:07:10.367+01:00  INFO 13532 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:07:16.207+01:00  INFO 9868 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 9868 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:07:16.210+01:00  INFO 9868 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:07:16.768+01:00  INFO 9868 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:07:16.804+01:00  INFO 9868 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:07:17.277+01:00  INFO 9868 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T09:07:17.286+01:00  INFO 9868 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T09:07:17.287+01:00  INFO 9868 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T09:07:17.322+01:00  INFO 9868 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T09:07:17.322+01:00  INFO 9868 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1069 ms
+2025-03-12T09:07:17.437+01:00  INFO 9868 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:07:17.616+01:00  INFO 9868 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:07:17.619+01:00  INFO 9868 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:07:18.341+01:00  INFO 9868 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:07:18.413+01:00  INFO 9868 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T09:07:18.422+01:00  INFO 9868 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.618 seconds (process running for 2.902)
+2025-03-12T09:07:31.682+01:00  INFO 9868 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T09:07:31.683+01:00  INFO 9868 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T09:07:31.684+01:00  INFO 9868 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-12T09:12:07.433+01:00  INFO 9868 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T09:12:07.492+01:00  INFO 9868 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T09:12:07.495+01:00  INFO 9868 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:12:07.497+01:00  INFO 9868 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:19:35.013+01:00  INFO 17720 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 17720 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:19:35.015+01:00  INFO 17720 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:19:35.563+01:00  INFO 17720 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:19:35.595+01:00  INFO 17720 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:19:35.870+01:00  INFO 17720 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:19:36.050+01:00  INFO 17720 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:19:36.052+01:00  INFO 17720 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:19:36.964+01:00  INFO 17720 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:19:37.035+01:00  INFO 17720 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.289 seconds (process running for 3.106)
+2025-03-12T09:19:37.891+01:00  INFO 17720 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:19:37.895+01:00  INFO 17720 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:19:52.169+01:00  INFO 17792 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 17792 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:19:52.171+01:00  INFO 17792 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:19:52.725+01:00  INFO 17792 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:19:52.749+01:00  INFO 17792 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:19:53.225+01:00  INFO 17792 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T09:19:53.234+01:00  INFO 17792 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T09:19:53.234+01:00  INFO 17792 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T09:19:53.269+01:00  INFO 17792 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T09:19:53.270+01:00  INFO 17792 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1035 ms
+2025-03-12T09:19:53.367+01:00  INFO 17792 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:19:53.576+01:00  INFO 17792 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:19:53.579+01:00  INFO 17792 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:19:54.265+01:00  INFO 17792 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:19:54.346+01:00  INFO 17792 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T09:19:54.354+01:00  INFO 17792 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.649 seconds (process running for 2.921)
+2025-03-12T09:20:07.203+01:00  INFO 17792 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T09:20:07.204+01:00  INFO 17792 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T09:20:07.204+01:00  INFO 17792 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-12T09:21:54.843+01:00  INFO 19448 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 19448 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:21:54.844+01:00  INFO 19448 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:21:55.359+01:00  INFO 19448 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:21:55.384+01:00  INFO 19448 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:21:55.651+01:00  INFO 19448 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:21:55.800+01:00  INFO 19448 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:21:55.804+01:00  INFO 19448 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:21:56.689+01:00  INFO 19448 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:21:56.756+01:00  INFO 19448 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.163 seconds (process running for 2.959)
+2025-03-12T09:21:57.674+01:00  INFO 19448 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:21:57.677+01:00  INFO 19448 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:22:04.372+01:00  INFO 17792 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T09:22:04.431+01:00  INFO 17792 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T09:22:04.435+01:00  INFO 17792 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:22:04.438+01:00  INFO 17792 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:22:07.372+01:00  INFO 11580 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 11580 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:22:07.375+01:00  INFO 11580 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:22:07.950+01:00  INFO 11580 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:22:07.971+01:00  INFO 11580 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:22:08.454+01:00  INFO 11580 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T09:22:08.464+01:00  INFO 11580 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T09:22:08.464+01:00  INFO 11580 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T09:22:08.502+01:00  INFO 11580 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T09:22:08.502+01:00  INFO 11580 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1057 ms
+2025-03-12T09:22:08.606+01:00  INFO 11580 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:22:08.780+01:00  INFO 11580 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:22:08.783+01:00  INFO 11580 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:22:09.556+01:00  INFO 11580 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:22:09.653+01:00  INFO 11580 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T09:22:09.663+01:00  INFO 11580 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.706 seconds (process running for 2.989)
+2025-03-12T09:22:11.694+01:00  INFO 11580 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T09:22:11.695+01:00  INFO 11580 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T09:22:11.696+01:00  INFO 11580 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T09:23:08.098+01:00  INFO 11580 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T09:23:08.162+01:00  INFO 11580 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T09:23:08.162+01:00  INFO 11580 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:23:08.177+01:00  INFO 11580 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:25:19.272+01:00  INFO 6716 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 6716 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:25:19.274+01:00  INFO 6716 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:25:19.821+01:00  INFO 6716 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:25:19.850+01:00  INFO 6716 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:25:20.128+01:00  INFO 6716 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:25:20.302+01:00  INFO 6716 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:25:20.304+01:00  INFO 6716 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:25:21.275+01:00  INFO 6716 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:25:21.348+01:00  INFO 6716 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.346 seconds (process running for 3.195)
+2025-03-12T09:25:22.240+01:00  INFO 6716 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:25:22.242+01:00  INFO 6716 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:25:32.729+01:00  INFO 19504 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 19504 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:25:32.733+01:00  INFO 19504 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:25:33.365+01:00  INFO 19504 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:25:33.386+01:00  INFO 19504 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:25:33.902+01:00  INFO 19504 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T09:25:33.910+01:00  INFO 19504 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T09:25:33.911+01:00  INFO 19504 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T09:25:33.952+01:00  INFO 19504 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T09:25:33.952+01:00  INFO 19504 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1170 ms
+2025-03-12T09:25:34.073+01:00  INFO 19504 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:25:34.273+01:00  INFO 19504 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:25:34.277+01:00  INFO 19504 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:25:35.043+01:00  INFO 19504 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:25:35.130+01:00  INFO 19504 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T09:25:35.140+01:00  INFO 19504 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.817 seconds (process running for 3.087)
+2025-03-12T09:25:41.311+01:00  INFO 19504 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T09:25:41.311+01:00  INFO 19504 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T09:25:41.313+01:00  INFO 19504 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-03-12T09:27:11.521+01:00  INFO 19504 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T09:27:11.585+01:00  INFO 19504 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T09:27:11.585+01:00  INFO 19504 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:27:11.585+01:00  INFO 19504 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:46:55.902+01:00  INFO 13544 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 13544 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:46:55.904+01:00  INFO 13544 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:46:56.468+01:00  INFO 13544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:46:56.489+01:00  INFO 13544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:46:56.762+01:00  INFO 13544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:46:56.941+01:00  INFO 13544 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:46:56.943+01:00  INFO 13544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:46:57.912+01:00  INFO 13544 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:46:57.970+01:00  INFO 13544 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.323 seconds (process running for 3.098)
+2025-03-12T09:46:58.830+01:00  INFO 13544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:46:58.833+01:00  INFO 13544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:47:06.295+01:00  INFO 11464 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 11464 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:47:06.298+01:00  INFO 11464 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:47:06.894+01:00  INFO 11464 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:47:06.921+01:00  INFO 11464 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:47:07.370+01:00  INFO 11464 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T09:47:07.380+01:00  INFO 11464 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T09:47:07.380+01:00  INFO 11464 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T09:47:07.413+01:00  INFO 11464 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T09:47:07.414+01:00  INFO 11464 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1053 ms
+2025-03-12T09:47:07.523+01:00  INFO 11464 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:47:07.716+01:00  INFO 11464 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:47:07.720+01:00  INFO 11464 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:47:08.434+01:00  INFO 11464 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:47:08.522+01:00  INFO 11464 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T09:47:08.533+01:00  INFO 11464 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.651 seconds (process running for 2.928)
+2025-03-12T09:47:12.220+01:00  INFO 11464 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T09:47:12.220+01:00  INFO 11464 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T09:47:12.221+01:00  INFO 11464 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T09:47:50.675+01:00  INFO 11464 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T09:47:50.738+01:00  INFO 11464 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T09:47:50.738+01:00  INFO 11464 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:47:50.738+01:00  INFO 11464 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:52:51.374+01:00  INFO 17428 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 17428 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:52:51.375+01:00  INFO 17428 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:52:51.880+01:00  INFO 17428 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:52:51.907+01:00  INFO 17428 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:52:52.186+01:00  INFO 17428 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:52:52.340+01:00  INFO 17428 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:52:52.343+01:00  INFO 17428 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:52:53.234+01:00  INFO 17428 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:52:53.288+01:00  INFO 17428 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.179 seconds (process running for 2.989)
+2025-03-12T09:52:54.113+01:00  INFO 17428 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:52:54.116+01:00  INFO 17428 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:53:08.876+01:00  INFO 13888 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 13888 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:53:08.880+01:00  INFO 13888 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:53:09.434+01:00  INFO 13888 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:53:09.454+01:00  INFO 13888 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:53:09.937+01:00  INFO 13888 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T09:53:09.946+01:00  INFO 13888 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T09:53:09.946+01:00  INFO 13888 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T09:53:09.981+01:00  INFO 13888 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T09:53:09.981+01:00  INFO 13888 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1048 ms
+2025-03-12T09:53:10.088+01:00  INFO 13888 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:53:10.280+01:00  INFO 13888 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:53:10.282+01:00  INFO 13888 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:53:11.044+01:00  INFO 13888 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:53:11.125+01:00  INFO 13888 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T09:53:11.135+01:00  INFO 13888 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.678 seconds (process running for 2.948)
+2025-03-12T09:53:26.035+01:00  INFO 13888 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T09:53:26.035+01:00  INFO 13888 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T09:53:26.037+01:00  INFO 13888 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-12T09:58:01.091+01:00  INFO 13888 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T09:58:01.147+01:00  INFO 13888 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T09:58:01.150+01:00  INFO 13888 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:58:01.152+01:00  INFO 13888 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:58:13.800+01:00  INFO 3644 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 3644 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:58:13.802+01:00  INFO 3644 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:58:14.398+01:00  INFO 3644 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:58:14.423+01:00  INFO 3644 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:58:14.681+01:00  INFO 3644 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:58:14.853+01:00  INFO 3644 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:58:14.856+01:00  INFO 3644 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:58:15.950+01:00  INFO 3644 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:58:16.008+01:00  INFO 3644 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.502 seconds (process running for 3.358)
+2025-03-12T09:58:16.699+01:00  INFO 3644 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T09:58:16.701+01:00  INFO 3644 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T09:58:50.744+01:00  INFO 9076 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 9076 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T09:58:50.747+01:00  INFO 9076 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T09:58:51.297+01:00  INFO 9076 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T09:58:51.315+01:00  INFO 9076 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 JDBC repository interfaces.
+2025-03-12T09:58:51.765+01:00  INFO 9076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T09:58:51.773+01:00  INFO 9076 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T09:58:51.774+01:00  INFO 9076 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T09:58:51.812+01:00  INFO 9076 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T09:58:51.812+01:00  INFO 9076 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1018 ms
+2025-03-12T09:58:51.923+01:00  INFO 9076 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T09:58:52.098+01:00  INFO 9076 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T09:58:52.100+01:00  INFO 9076 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T09:58:52.817+01:00  INFO 9076 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T09:58:52.886+01:00  INFO 9076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T09:58:52.896+01:00  INFO 9076 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.561 seconds (process running for 2.83)
+2025-03-12T09:58:59.398+01:00  INFO 9076 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T09:58:59.398+01:00  INFO 9076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T09:58:59.399+01:00  INFO 9076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T10:04:04.344+01:00  INFO 9076 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T10:04:04.402+01:00  INFO 9076 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T10:04:04.405+01:00  INFO 9076 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:04:04.407+01:00  INFO 9076 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:04:15.279+01:00  INFO 11852 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 11852 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:04:15.280+01:00  INFO 11852 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:04:15.807+01:00  INFO 11852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:04:15.832+01:00  INFO 11852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:04:16.099+01:00  INFO 11852 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:04:16.262+01:00  INFO 11852 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:04:16.266+01:00  INFO 11852 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:04:17.339+01:00  INFO 11852 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:04:17.403+01:00  INFO 11852 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.378 seconds (process running for 3.186)
+2025-03-12T10:04:18.292+01:00  INFO 11852 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:04:18.294+01:00  INFO 11852 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:04:24.179+01:00  INFO 17064 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 17064 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:04:24.182+01:00  INFO 17064 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:04:24.778+01:00  INFO 17064 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:04:24.817+01:00  INFO 17064 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:04:25.265+01:00  INFO 17064 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T10:04:25.274+01:00  INFO 17064 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T10:04:25.275+01:00  INFO 17064 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T10:04:25.310+01:00  INFO 17064 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T10:04:25.310+01:00  INFO 17064 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1071 ms
+2025-03-12T10:04:25.418+01:00  INFO 17064 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:04:25.614+01:00  INFO 17064 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:04:25.617+01:00  INFO 17064 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:04:26.374+01:00  INFO 17064 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:04:26.448+01:00  INFO 17064 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T10:04:26.456+01:00  INFO 17064 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.701 seconds (process running for 2.972)
+2025-03-12T10:04:37.673+01:00  INFO 17064 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T10:04:37.673+01:00  INFO 17064 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T10:04:37.673+01:00  INFO 17064 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-12T10:09:11.648+01:00  INFO 17064 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T10:09:11.704+01:00  INFO 17064 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T10:09:11.707+01:00  INFO 17064 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:09:11.710+01:00  INFO 17064 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:09:21.893+01:00  INFO 3928 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 3928 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:09:21.894+01:00  INFO 3928 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:09:22.448+01:00  INFO 3928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:09:22.474+01:00  INFO 3928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:09:22.744+01:00  INFO 3928 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:09:22.924+01:00  INFO 3928 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:09:22.928+01:00  INFO 3928 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:09:23.886+01:00  INFO 3928 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:09:23.941+01:00  INFO 3928 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.349 seconds (process running for 3.152)
+2025-03-12T10:09:24.789+01:00  INFO 3928 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:09:24.792+01:00  INFO 3928 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:10:19.814+01:00  INFO 9364 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 9364 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:10:19.816+01:00  INFO 9364 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:10:20.410+01:00  INFO 9364 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:10:20.443+01:00  INFO 9364 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:10:20.965+01:00  INFO 9364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T10:10:20.974+01:00  INFO 9364 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T10:10:20.974+01:00  INFO 9364 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T10:10:21.010+01:00  INFO 9364 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T10:10:21.010+01:00  INFO 9364 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1136 ms
+2025-03-12T10:10:21.119+01:00  INFO 9364 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:10:21.328+01:00  INFO 9364 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:10:21.331+01:00  INFO 9364 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:10:22.112+01:00  INFO 9364 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:10:22.196+01:00  INFO 9364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T10:10:22.204+01:00  INFO 9364 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.856 seconds (process running for 3.151)
+2025-03-12T10:13:11.065+01:00  INFO 9364 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T10:13:11.066+01:00  INFO 9364 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T10:13:11.067+01:00  INFO 9364 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T10:32:05.733+01:00  INFO 9364 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T10:32:05.792+01:00  INFO 9364 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T10:32:05.795+01:00  INFO 9364 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:32:05.798+01:00  INFO 9364 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:32:15.959+01:00  INFO 15228 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 15228 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:32:15.961+01:00  INFO 15228 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:32:16.514+01:00  INFO 15228 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:32:16.532+01:00  INFO 15228 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:32:16.814+01:00  INFO 15228 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:32:17.000+01:00  INFO 15228 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:32:17.003+01:00  INFO 15228 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:32:17.923+01:00  INFO 15228 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:32:17.991+01:00  INFO 15228 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.294 seconds (process running for 3.135)
+2025-03-12T10:32:18.878+01:00  INFO 15228 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:32:18.880+01:00  INFO 15228 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:32:38.973+01:00  INFO 8052 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 8052 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:32:38.975+01:00  INFO 8052 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:32:39.518+01:00  INFO 8052 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:32:39.548+01:00  INFO 8052 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:32:39.824+01:00  INFO 8052 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:32:39.978+01:00  INFO 8052 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:32:39.980+01:00  INFO 8052 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:32:41.001+01:00  INFO 8052 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:32:41.067+01:00  INFO 8052 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.369 seconds (process running for 3.146)
+2025-03-12T10:32:41.910+01:00  INFO 8052 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:32:41.914+01:00  INFO 8052 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:32:51.269+01:00  INFO 10884 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 10884 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:32:51.271+01:00  INFO 10884 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:32:51.823+01:00  INFO 10884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:32:51.841+01:00  INFO 10884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:32:52.324+01:00  INFO 10884 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T10:32:52.333+01:00  INFO 10884 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T10:32:52.333+01:00  INFO 10884 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T10:32:52.366+01:00  INFO 10884 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T10:32:52.367+01:00  INFO 10884 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1037 ms
+2025-03-12T10:32:52.467+01:00  INFO 10884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:32:52.642+01:00  INFO 10884 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:32:52.644+01:00  INFO 10884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:32:53.433+01:00  INFO 10884 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:32:53.526+01:00  INFO 10884 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T10:32:53.536+01:00  INFO 10884 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.693 seconds (process running for 2.965)
+2025-03-12T10:33:12.330+01:00  INFO 10884 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T10:33:12.330+01:00  INFO 10884 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T10:33:12.330+01:00  INFO 10884 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-12T10:33:56.616+01:00  INFO 10884 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T10:33:56.671+01:00  INFO 10884 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T10:33:56.675+01:00  INFO 10884 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:33:56.678+01:00  INFO 10884 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:34:07.902+01:00  INFO 1100 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 1100 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:34:07.904+01:00  INFO 1100 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:34:08.457+01:00  INFO 1100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:34:08.479+01:00  INFO 1100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:34:08.761+01:00  INFO 1100 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:34:08.917+01:00  INFO 1100 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:34:08.920+01:00  INFO 1100 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:34:10.069+01:00  INFO 1100 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:34:10.135+01:00  INFO 1100 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.521 seconds (process running for 3.38)
+2025-03-12T10:34:11.048+01:00  INFO 1100 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:34:11.051+01:00  INFO 1100 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:34:18.502+01:00  INFO 2412 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 2412 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:34:18.504+01:00  INFO 2412 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:34:19.080+01:00  INFO 2412 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:34:19.117+01:00  INFO 2412 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:34:19.624+01:00  INFO 2412 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T10:34:19.633+01:00  INFO 2412 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T10:34:19.633+01:00  INFO 2412 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T10:34:19.668+01:00  INFO 2412 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T10:34:19.668+01:00  INFO 2412 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1107 ms
+2025-03-12T10:34:19.788+01:00  INFO 2412 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:34:19.998+01:00  INFO 2412 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:34:20.001+01:00  INFO 2412 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:34:20.841+01:00  INFO 2412 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:34:20.929+01:00  INFO 2412 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T10:34:20.939+01:00  INFO 2412 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.848 seconds (process running for 3.124)
+2025-03-12T10:34:24.091+01:00  INFO 2412 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T10:34:24.091+01:00  INFO 2412 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T10:34:24.092+01:00  INFO 2412 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-12T10:35:13.844+01:00  INFO 2412 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T10:35:13.899+01:00  INFO 2412 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T10:35:13.903+01:00  INFO 2412 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:35:13.906+01:00  INFO 2412 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:35:23.878+01:00  INFO 15536 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 15536 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:35:23.880+01:00  INFO 15536 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:35:24.466+01:00  INFO 15536 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:35:24.493+01:00  INFO 15536 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:35:24.758+01:00  INFO 15536 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:35:24.930+01:00  INFO 15536 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:35:24.933+01:00  INFO 15536 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:35:25.885+01:00  INFO 15536 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:35:25.953+01:00  INFO 15536 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.314 seconds (process running for 3.167)
+2025-03-12T10:35:26.672+01:00  INFO 15536 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:35:26.674+01:00  INFO 15536 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:36:03.235+01:00  INFO 17720 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 17720 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:36:03.238+01:00  INFO 17720 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:36:03.862+01:00  INFO 17720 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:36:03.892+01:00  INFO 17720 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:36:04.370+01:00  INFO 17720 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T10:36:04.380+01:00  INFO 17720 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T10:36:04.381+01:00  INFO 17720 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T10:36:04.420+01:00  INFO 17720 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T10:36:04.420+01:00  INFO 17720 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1129 ms
+2025-03-12T10:36:04.535+01:00  INFO 17720 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:36:04.747+01:00  INFO 17720 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:36:04.751+01:00  INFO 17720 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:36:05.504+01:00  INFO 17720 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:36:05.550+01:00  INFO 17720 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T10:36:05.558+01:00  INFO 17720 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.764 seconds (process running for 3.038)
+2025-03-12T10:36:11.947+01:00  INFO 17720 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T10:36:11.947+01:00  INFO 17720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T10:36:11.948+01:00  INFO 17720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T10:37:11.226+01:00  INFO 17720 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T10:37:11.305+01:00  INFO 17720 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T10:37:11.305+01:00  INFO 17720 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:37:11.305+01:00  INFO 17720 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:37:58.661+01:00  INFO 20316 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 20316 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:37:58.663+01:00  INFO 20316 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:37:59.206+01:00  INFO 20316 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:37:59.230+01:00  INFO 20316 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:37:59.543+01:00  INFO 20316 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:37:59.734+01:00  INFO 20316 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:37:59.737+01:00  INFO 20316 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:38:00.780+01:00  INFO 20316 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:38:00.839+01:00  INFO 20316 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.45 seconds (process running for 3.212)
+2025-03-12T10:38:01.656+01:00  INFO 20316 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:38:01.658+01:00  INFO 20316 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:38:44.483+01:00  INFO 14388 --- [main] c.a.s.SensorprocessorApplication         : Starting SensorprocessorApplication using Java 17.0.11 with PID 14388 (C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor\target\classes started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:38:44.486+01:00  INFO 14388 --- [main] c.a.s.SensorprocessorApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:38:45.075+01:00  INFO 14388 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:38:45.100+01:00  INFO 14388 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:38:45.564+01:00  INFO 14388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-12T10:38:45.573+01:00  INFO 14388 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T10:38:45.574+01:00  INFO 14388 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-12T10:38:45.615+01:00  INFO 14388 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T10:38:45.615+01:00  INFO 14388 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1064 ms
+2025-03-12T10:38:45.725+01:00  INFO 14388 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:38:45.915+01:00  INFO 14388 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:38:45.917+01:00  INFO 14388 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:38:46.702+01:00  INFO 14388 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:38:46.788+01:00  INFO 14388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-12T10:38:46.800+01:00  INFO 14388 --- [main] c.a.s.SensorprocessorApplication         : Started SensorprocessorApplication in 2.774 seconds (process running for 3.077)
+2025-03-12T10:38:54.221+01:00  INFO 14388 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T10:38:54.221+01:00  INFO 14388 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T10:38:54.222+01:00  INFO 14388 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T10:44:05.206+01:00  INFO 14388 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-12T10:44:05.261+01:00  INFO 14388 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-12T10:44:05.265+01:00  INFO 14388 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:44:05.267+01:00  INFO 14388 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:44:16.018+01:00  INFO 13588 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 13588 (started by jorrado in C:\Users\jorrado\Desktop\Projet-Development_Raspberry_Gateway\sensorprocessor)
+2025-03-12T10:44:16.019+01:00  INFO 13588 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:44:16.566+01:00  INFO 13588 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-12T10:44:16.590+01:00  INFO 13588 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 0 JDBC repository interfaces.
+2025-03-12T10:44:16.865+01:00  INFO 13588 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:44:17.009+01:00  INFO 13588 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-03-12T10:44:17.012+01:00  INFO 13588 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:44:17.924+01:00  INFO 13588 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-03-12T10:44:18.001+01:00  INFO 13588 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 2.239 seconds (process running for 3.056)
+2025-03-12T10:44:19.129+01:00  INFO 13588 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:44:19.132+01:00  INFO 13588 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
