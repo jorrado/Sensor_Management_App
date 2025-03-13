@@ -28,29 +28,31 @@ public class UserDao {
     }
 
     /**
-     * Récupère un utilisateur spécifique en fonction de son identifiant.
+     * Recherche un utilisateur par son nom d'utilisateur.
      *
-     * @param id l'identifiant de l'utilisateur à rechercher.
-     * @return un objet {@code User} correspondant à l'ID fourni.
-     * @throws EmptyResultDataAccessException si aucun utilisateur ne correspond à l'ID.
+     * @param username Le nom d'utilisateur.
+     * @return L'objet `User` correspondant à l'utilisateur trouvé.
+     * @throws EmptyResultDataAccessException si résultat vide.
+     * @throws IncorrectResultSizeDataAccessException si plusieurs résultat.
      */
-    public User findByIdOfUser(Integer id) throws EmptyResultDataAccessException {
+    public User findByUsername(String username)
+            throws EmptyResultDataAccessException, IncorrectResultSizeDataAccessException { // RuntimeException
         return jdbcTemplate.queryForObject(
-                "SELECT * FROM USERS WHERE ID_USER=?",
-                new Object[]{id},
+                "SELECT * FROM USERS WHERE USERNAME=?",
+                new Object[]{username},
                 new BeanPropertyRowMapper<User>(User.class));
     }
 
     /**
      * Supprime un utilisateur de la base de données en fonction de son identifiant.
      *
-     * @param id l'identifiant de l'utilisateur à supprimer
+     * @param username l'identifiant de l'utilisateur à supprimer
      * @return le nombre de lignes affectées par la suppression (généralement 0 ou 1)
      */
-    public int deleteByIdOfUser(Integer id) {
+    public int deleteByIdOfUser(String username) {
         return jdbcTemplate.update(
-                "DELETE FROM USERS WHERE ID_USER=?",
-                new Object[]{id});
+                "DELETE FROM USERS WHERE USERNAME=?",
+                new Object[]{username});
     }
 
     /**
@@ -85,22 +87,6 @@ public class UserDao {
                 new Object[]{ user.getUsername(), user.getPassword(), user.getRole(),
                 user.getEmail(), user.getIdUser() }
         );
-    }
-
-    /**
-     * Recherche un utilisateur par son nom d'utilisateur.
-     *
-     * @param username Le nom d'utilisateur.
-     * @return L'objet `User` correspondant à l'utilisateur trouvé.
-     * @throws EmptyResultDataAccessException si résultat vide.
-     * @throws IncorrectResultSizeDataAccessException si plusieurs résultat.
-     */
-    public User findByUsername(String username)
-            throws EmptyResultDataAccessException, IncorrectResultSizeDataAccessException { // RuntimeException
-        return jdbcTemplate.queryForObject(
-                "SELECT * FROM USERS WHERE USERNAME=?",
-                new Object[]{username},
-                new BeanPropertyRowMapper<User>(User.class));
     }
 
 }
