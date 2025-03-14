@@ -17,6 +17,12 @@ public class UserDao {
     JdbcTemplate jdbcTemplate;
 
     /**
+     * A utiliser avec DataSourceUtils.getConnection(dataSource)
+     */
+//    @Autowired
+//    DataSource dataSource;
+
+    /**
      * Récupère la liste de tous les utilisateurs enregistrés dans la base de données.
      *
      * @return une liste d'objets {@code User} représentant tous les utilisateurs.
