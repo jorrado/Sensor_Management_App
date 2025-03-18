@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
-</head>
-<body>
-    <div class="home-container">
-        <div class="home-box">
-            <img src="/image/mantu_logo.jpg" alt="Logo" class="login-logo">
-            <h2>Welcome to the Dashboard</h2>
-            <div class="button-container">
-                <a href="/create-sensor" class="home-btn">Manage Sensor</a>
-                <a href="/manage-sensors" class="home-btn">Manage Gateways</a>
-                <a href="/manage-users" class="home-btn">Manage Users</a>
+    <html lang="en">
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home page</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+    </head>
+    <body>
+        <div class="home-container">
+            <div class="home-box">
+                <img src="/image/mantu_logo.jpg" alt="Logo" class="login-logo">
+                <h2>Welcome to the Dashboard</h2>
+                <div class="button-container">
+                    <a href="/manage-sensor" class="home-btn">Manage Sensors</a>
+                    <a href="/manage-sensors" class="home-btn">Manage Gateways</a>
+                    <a href="/manage-users" class="home-btn">Manage Users</a>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

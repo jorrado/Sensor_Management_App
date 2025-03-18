@@ -5,16 +5,15 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.LocalDateTime;
-
 @Data
 @Table("Sensors")
 public class Sensor {
 
     public Sensor() {}
 
-    public Sensor(String idSensor, String deviceType, LocalDateTime commissioningDate, Boolean status,
-                  String batimentName, Integer etage, String emplacement, String idGateway) {
+    public Sensor(String idSensor, String deviceType, String commissioningDate,
+                  Boolean status, String batimentName, Integer etage,
+                  String emplacement, String idGateway) {
         this.idSensor = idSensor;
         this.deviceType = deviceType;
         this.commissioningDate = commissioningDate;
@@ -33,7 +32,7 @@ public class Sensor {
     private String deviceType;
 
     @Column("commissioning_date")
-    private LocalDateTime commissioningDate;
+    private String commissioningDate;
 
     @Column("status")
     private Boolean status;

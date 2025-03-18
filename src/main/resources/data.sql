@@ -125,8 +125,7 @@ INSERT INTO Signal (id_sensor, timestamp, value_battery, rssi, fport, fcntup, sn
 
 -- Création de la table Users
 CREATE TABLE Users (
-    id_user INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(50) PRIMARY KEY NOT NULL,
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
@@ -136,13 +135,13 @@ CREATE TABLE Users (
 
 -- Insertion des valeurs dans la table Users
 INSERT INTO Users (username, firstname, lastname, password, role, email) VALUES
-('user1', 'John', 'Doe', 'password123', 'admin', 'john.doe@example.com'),
-('user2', 'Jane', 'Smith', 'password123', 'user', 'jane.smith@example.com'),
-('user3', 'Alice', 'Johnson', 'password123', 'office manager', 'alice.johnson@example.com'),
-('user4', 'Bob', 'Brown', 'password123', 'user', 'bob.brown@example.com'),
-('user5', 'Charlie', 'Davis', 'password123', 'admin', 'charlie.davis@example.com'),
-('user6', 'David', 'Wilson', 'password123', 'user', 'david.wilson@example.com'),
-('user7', 'Eva', 'Martinez', 'password123', 'user', 'eva.martinez@example.com'),
-('user8', 'Frank', 'Taylor', 'password123', 'office manager', 'frank.taylor@example.com'),
-('user9', 'Grace', 'Anderson', 'password123', 'user', 'grace.anderson@example.com'),
-('user10', 'Hannah', 'Thomas', 'password123', 'admin', 'hannah.thomas@example.com');
+('user1', 'John', 'Doe', 'password123', 'ADMIN', 'john.doe@example.com'),
+('user2', 'Jane', 'Smith', 'password123', 'USER', 'jane.smith@example.com'),
+('user3', 'Alice', 'Johnson', 'password123', 'SUPERUSER', 'alice.johnson@example.com'),
+('user4', 'Bob', 'Brown', 'password123', 'USER', 'bob.brown@example.com'),
+('user5', 'Charlie', 'Davis', 'password123', 'ADMIN', 'charlie.davis@example.com'),
+('user6', 'David', 'Wilson', 'password123', 'USER', 'david.wilson@example.com'),
+('user7', 'Eva', 'Martinez', 'password123', 'SUPERUSER', 'eva.martinez@example.com'),
+('user8', 'Frank', 'Taylor', 'password123', 'USER', 'frank.taylor@example.com'),
+('user9', 'Grace', 'Anderson', 'password123', 'SUPERUSER', 'grace.anderson@example.com'),
+('user10', 'Hannah', 'Thomas', 'password123', 'ADMIN', 'hannah.thomas@example.com');

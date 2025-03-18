@@ -16,9 +16,7 @@ public class UserDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    /**
-     * A utiliser avec DataSourceUtils.getConnection(dataSource)
-     */
+//     A utiliser avec DataSourceUtils.getConnection(dataSource)
 //    @Autowired
 //    DataSource dataSource;
 
@@ -36,7 +34,7 @@ public class UserDao {
     /**
      * Recherche un utilisateur par son nom d'utilisateur.
      *
-     * @param username Le nom d'utilisateur.
+     * @param username L'id de l'utilisateur.
      * @return L'objet `User` correspondant à l'utilisateur trouvé.
      * @throws EmptyResultDataAccessException si résultat vide.
      * @throws IncorrectResultSizeDataAccessException si plusieurs résultat.
@@ -70,10 +68,10 @@ public class UserDao {
     public int insertUser(User user) {
         return jdbcTemplate.update(
                 "INSERT INTO USERS (" +
-                        "ID_USER, USERNAME, FIRSTNAME, " +
+                        "USERNAME, FIRSTNAME, " +
                         "LASTNAME, PASSWORD, ROLE, EMAIL) " +
-                        "VALUES(?, ?, ?, ?, ?, ?, ?)",
-                new Object[]{ user.getIdUser(), user.getUsername(), user.getFirstname(),
+                        "VALUES(?, ?, ?, ?, ?, ?)",
+                new Object[]{ user.getUsername(), user.getFirstname(),
                 user.getLastname(), user.getPassword(), user.getRole(), user.getEmail() }
         );
     }
@@ -87,11 +85,11 @@ public class UserDao {
     public int updateUser(User user) {
         return jdbcTemplate.update(
                 "UPDATE USERS SET " +
-                        "USERNAME = ?, PASSWORD = ?, ROLE = ?, " +
+                        "PASSWORD = ?, ROLE = ?, " +
                         "EMAIL = ? " +
-                        "WHERE ID_USER = ?",
-                new Object[]{ user.getUsername(), user.getPassword(), user.getRole(),
-                user.getEmail(), user.getIdUser() }
+                        "WHERE USERNAME = ?",
+                new Object[]{ user.getPassword(), user.getRole(),
+                user.getEmail(), user.getUsername() }
         );
     }
 

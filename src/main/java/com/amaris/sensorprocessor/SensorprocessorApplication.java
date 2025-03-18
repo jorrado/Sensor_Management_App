@@ -1,8 +1,5 @@
 package com.amaris.sensorprocessor;
 
-import com.amaris.sensorprocessor.entity.Gateway;
-import com.amaris.sensorprocessor.entity.Sensor;
-import com.amaris.sensorprocessor.entity.User;
 import com.amaris.sensorprocessor.repository.GatewayDao;
 import com.amaris.sensorprocessor.repository.SensorDao;
 //import org.slf4j.Logger;
@@ -12,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.time.LocalDateTime;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class SensorprocessorApplication implements CommandLineRunner {
@@ -55,12 +51,12 @@ public class SensorprocessorApplication implements CommandLineRunner {
 		// TEST USER DAO
 		System.out.println("\u001B[34m" + "all users -> {}" + userDao.findAllUsers() + "\u001B[0m");
 		System.out.println("\u001B[34m" + "user id 1 -> {}" + userDao.findByUsername("user1") + "\u001B[0m");
-//		System.out.println("\u001B[34m" + "delete 9 -> number of row(s) deleted - {}"
-//				+ userDao.deleteByIdOfUser(9) + "\u001B[0m");
-//		System.out.println("\u001B[34m" + "inserting 22 -> {}" + userDao.insertUser(new User(22,
-//				"user22", "Toto", "Dupond", "password123", "user",
+//		System.out.println("\u001B[34m" + "delete user9 -> number of row(s) deleted - {}"
+//				+ userDao.deleteByIdOfUser(user9) + "\u001B[0m");
+//		System.out.println("\u001B[34m" + "inserting 22 -> {}" + userDao.insertUser(new User(
+//				"user22", "Toto", "Dupond", "$2a$10$sS1tlLqD2vrQahfdHBKGKeGNeq7oPUSnWk8bEt/uQt4jt0Cyk3Xi2", "USER",
 //				"toto.dupond@example.com")) + "\u001B[0m");
-//		System.out.println("\u001B[34m" + "update 2 -> {}" + userDao.updateUser(new User(2,
+//		System.out.println("\u001B[34m" + "update 2 -> {}" + userDao.updateUser(new User(
 //				"userJ", "Jannette", "Smith", "password1234", "boss final",
 //				"jannette.smith@example.com")) + "\u001B[0m");
 
@@ -73,5 +69,9 @@ public class SensorprocessorApplication implements CommandLineRunner {
 //				LocalDateTime.now(),true, "Batiment E", 2, "Bureau 505")) + "\u001B[0m");
 //		System.out.println("\u001B[34m" + "update gateway_002 -> {}" + gatewayDao.updateGateway(new Gateway("gateway_002",
 //				LocalDateTime.now(), false, "Batiment Z", 8, "Bureau 725")) + "\u001B[0m");
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String hashedPassword = encoder.encode("password123");
+		System.out.println("\u001B[38;5;214m" + "@@@@@ => " + hashedPassword + "\u001B[0m");
 	}
 }

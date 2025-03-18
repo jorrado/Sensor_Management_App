@@ -14,6 +14,14 @@ public class SqliteConfig {
     @Autowired
     Environment env;
 
+    /**
+     * Crée et retourne une instance de {@link DataSource} configurée à partir des propriétés de l'environnement.
+     * Cette méthode utilise un {@link DriverManagerDataSource} pour se connecter à la base de données
+     * en utilisant les informations (URL, utilisateur, mot de passe) extraites des propriétés de l'environnement,
+     * issues du fichier application.properties
+     *
+     * @return Une instance de {@link DataSource} configurée avec les informations de connexion.
+     */
     @Bean
     public DataSource dataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();

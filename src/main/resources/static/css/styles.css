@@ -1,5 +1,4 @@
 /*** *** general style & login.html *** ***/
-
 .login-container {
     text-align: center;
     margin-top: 50px;
@@ -28,12 +27,14 @@
 
 .error-message {
     color: red;
+    font-weight: bold;
 }
 
 .form-group {
     margin-bottom: 20px;
 }
 
+/*
 .form-group label {
     font-family: Arial, sans-serif;
     color: #333;
@@ -41,6 +42,7 @@
     display: block;
     margin-bottom: 8px;
 }
+*/
 
 .form-group input {
     width: 100%;

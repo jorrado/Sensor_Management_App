@@ -11,9 +11,9 @@ public class User {
 
     public User() {}
 
-    public User(Integer idUser, String username, String firstname,
-                String lastname, String password, String role, String email) {
-        this.idUser = idUser;
+    public User(
+            String username, String firstname, String lastname,
+            String password, String role, String email) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -23,9 +23,6 @@ public class User {
     }
 
     @Id
-    @Column("id_user")
-    private Integer idUser;
-
     @Column("username")
     private String username;
 
