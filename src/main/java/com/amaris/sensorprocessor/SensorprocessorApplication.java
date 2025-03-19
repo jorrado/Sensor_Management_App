@@ -73,5 +73,8 @@ public class SensorprocessorApplication implements CommandLineRunner {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String hashedPassword = encoder.encode("password123");
 		System.out.println("\u001B[38;5;214m" + "@@@@@ => " + hashedPassword + "\u001B[0m");
+
+		String dbPath = System.getenv("DB_PATH");
+		System.out.println("DB_PATH: " + dbPath);
 	}
 }
