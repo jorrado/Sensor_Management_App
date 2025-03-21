@@ -1,0 +1,80 @@
+name: Deploy to Raspberry Pi
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build project
+        run: ./mvnw clean package -DskipTests
+
+      - name: Copy files to Raspberry Pi
+        uses: appleboy/scp-action@v0.1.0
+        with:
+          host: 10.243.129.10 #${{ secrets.RASPBERRY_HOST }}
+          username: user2 #${{ secrets.RASPBERRY_USER }}
+          key: -----BEGIN OPENSSH PRIVATE KEY-----
+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
+-----END OPENSSH PRIVATE KEY-----
+#${{ secrets.RASPBERRY_SSH_KEY }}
+          port: 22
+          source: "target/*.jar"
+          destination: "/opt/app/"
+
+      - name: Restart Spring app
+        # run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "sudo systemctl restart sensorprocessor.service"
+        run: ssh -i 10.243.129.10 -o StrictHostKeyChecking=no user2@10.243.129.10 "sudo systemctl restart sensorprocessor.service"
