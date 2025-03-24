@@ -31,7 +31,7 @@ jobs:
           key: ${{ secrets.RASPBERRY_SSH_KEY }}
           port: 22
           source: "target/*.jar"
-          destination: "/opt/app/"
+          target: "/opt/app/"
 
       - name: Restart Spring app
         run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "sudo systemctl restart sensorprocessor.service"
