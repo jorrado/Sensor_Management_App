@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.RASPBERRY_USER }}
           key: ${{ secrets.RASPBERRY_SSH_KEY }}
           port: 22
-          source: "target/*.jar"
+          source: "target/sensorprocessor-0.0.1-SNAPSHOT.jar"
           target: "/opt/app/"
 
       - name: Restart Spring app
