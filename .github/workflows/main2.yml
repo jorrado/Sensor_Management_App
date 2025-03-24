@@ -23,6 +23,15 @@ jobs:
       - name: Debug message
         run: echo "Debug message" >> logs/info.log
 
+      - name: Install OpenVPN
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openvpn
+
+      - name: Connect to VPN
+        run: |
+          sudo openvpn --config /path/to/your/vpn-config.ovpn --daemon
+
       - name: Copy files to Raspberry Pi
         uses: appleboy/scp-action@v0.1.0
         with:
