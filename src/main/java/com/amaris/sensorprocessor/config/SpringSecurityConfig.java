@@ -15,7 +15,6 @@ public class SpringSecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
 
-
     @Autowired
     public SpringSecurityConfig(CustomUserDetailsService customUserDetailsService) {
         this.customUserDetailsService = customUserDetailsService;
