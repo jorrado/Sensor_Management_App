@@ -28,4 +28,3 @@ jobs:
 
       - name: Restart Spring app
         run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "sudo systemctl restart sensorprocessor.service"
-        # run: ssh -i 10.243.129.10 -o StrictHostKeyChecking=no user2@10.243.129.10 "sudo systemctl restart sensorprocessor.service"
