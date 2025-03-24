@@ -13,8 +13,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SpringSecurityConfig {
 
+    private final CustomUserDetailsService customUserDetailsService;
+
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    public SpringSecurityConfig(CustomUserDetailsService customUserDetailsService) {
+        this.customUserDetailsService = customUserDetailsService;
+    }
+//    private CustomUserDetailsService customUserDetailsService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
