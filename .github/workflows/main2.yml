@@ -34,11 +34,13 @@ jobs:
           sudo make install
           cd ..
           mkdir -p ./tmp
-          echo "${{ secrets.OVPN_CONFIG }}" | sudo tee ./tmp/config > /dev/null
+          echo "${{ secrets.OVPN_CONFIG }}" | base64 --decode | sudo tee ./tmp/config > /dev/null
           sudo chmod 777 ./tmp/config
 
       - name: Debug config file
-        run: echo "${{ secrets.OVPN_CONFIG }}"
+        run: |
+          echo "${{ secrets.OVPN_CONFIG }}"
+          cat ./tmp/config
 
       - name: Connect to VPN
         uses: kota65535/github-openvpn-connect-action@v2
