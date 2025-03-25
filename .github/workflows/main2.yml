@@ -24,7 +24,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get --assume-yes --no-install-recommends install build-essential
-          curl -L -o openvpn-2.5.7.tar.gz https://openvpn.net/community-downloads/openvpn-2.5.7.tar.gz
+          curl -L -o openvpn-2.5.7.tar.gz https://swupdate.openvpn.org/community/releases/openvpn-2.5.7.tar.gz
           tar -xvzf openvpn-2.5.7.tar.gz
           cd openvpn-2.5.7
           ./configure
