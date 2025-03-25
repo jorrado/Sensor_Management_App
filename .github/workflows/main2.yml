@@ -23,8 +23,7 @@ jobs:
       - name: Install OpenVPN
         run: |
           sudo apt-get update
-          wget https://github.com/OpenVPN/openvpn3/releases/download/release-2.5.7/openvpn3-2.5.7-1_amd64.deb
-          sudo dpkg -i openvpn3-2.5.7-1_amd64.deb
+          sudo apt-get --assume-yes --no-install-recommends install openvpn=2.5.7
           mkdir -p ./tmp
           echo "${{ secrets.OVPN_CONFIG }}" | sudo tee ./tmp/config > /dev/null
           sudo chmod 777 ./tmp/config
