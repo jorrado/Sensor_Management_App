@@ -20,17 +20,23 @@ jobs:
       - name: Build project
         run: ./mvnw clean package -DskipTests
 
-      - name: Debug message
-        run: echo "Debug message" >> logs/info.log
-
       - name: Install OpenVPN
         run: |
           sudo apt-get update
-          sudo apt-get install -y openvpn
+          sudo apt-get --assume-yes --no-install-recommends install openvpn
 
       - name: Connect to VPN
-        run: |
-          sudo openvpn --config /path/to/your/vpn-config.ovpn --daemon
+        uses: kota65535/github-openvpn-connect-action@v2
+        with:
+          config_file: ${{ secrets.OVPN_CONFIG }}
+          username: ${{ secrets.OVPN_USERNAME }}
+          password: ${{ secrets.OVPN_PASSWORD }}
+          client_key: ${{ secrets.OVPN_CLIENT_KEY }}
+          tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
+
+      #- name: Connect to VPN
+        #run: |
+          #sudo openvpn --config /path/to/your/vpn-config.ovpn --daemon
 
       - name: Copy files to Raspberry Pi
         uses: appleboy/scp-action@v0.1.0
