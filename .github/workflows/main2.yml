@@ -31,7 +31,7 @@ jobs:
           config_file: ${{ secrets.OVPN_CONFIG }}
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
-          client_key: ${{ secrets.OVPN_CLIENT_KEY }}
+          pkcs12_file: ${{ secrets.OVPN_CLIENT_P12 }}
           tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
 
       #- name: Connect to VPN
