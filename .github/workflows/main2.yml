@@ -32,6 +32,7 @@ jobs:
           ./configure
           make
           sudo make install
+          cd ..
           mkdir -p ./tmp
           echo "${{ secrets.OVPN_CONFIG }}" | sudo tee ./tmp/config > /dev/null
           sudo chmod 777 ./tmp/config
