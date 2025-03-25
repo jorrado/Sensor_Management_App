@@ -20,12 +20,6 @@ jobs:
       - name: Build project
         run: ./mvnw clean package -DskipTests
 
-      #- name: Install OpenVPN
-       # run: |
-         # sudo apt-get update
-        #  sudo apt-get --assume-yes --no-install-recommends install openvpn
-          #sudo echo "${{ secrets.OVPN_CONFIG }}" > ./tmp/config
-
       - name: Install OpenVPN
         run: |
           sudo apt-get update
@@ -42,10 +36,6 @@ jobs:
           password: ${{ secrets.OVPN_PASSWORD }}
           pkcs12_file: ${{ secrets.OVPN_CLIENT_P12 }}
           tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
-
-      #- name: Connect to VPN
-        #run: |
-          #sudo openvpn --config /path/to/your/vpn-config.ovpn --daemon
 
       - name: Copy files to Raspberry Pi
         uses: appleboy/scp-action@v0.1.0
