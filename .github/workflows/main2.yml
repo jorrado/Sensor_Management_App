@@ -20,11 +20,18 @@ jobs:
       - name: Build project
         run: ./mvnw clean package -DskipTests
 
+      #- name: Install OpenVPN
+       # run: |
+         # sudo apt-get update
+        #  sudo apt-get --assume-yes --no-install-recommends install openvpn
+          #sudo echo "${{ secrets.OVPN_CONFIG }}" > ./tmp/config
+
       - name: Install OpenVPN
         run: |
           sudo apt-get update
           sudo apt-get --assume-yes --no-install-recommends install openvpn
-          sudo echo "${{ secrets.OVPN_CONFIG }}" > ./tmp/config
+          mkdir -p ./tmp
+          echo "${{ secrets.OVPN_CONFIG }}" | sudo tee ./tmp/config > /dev/null
 
       - name: Connect to VPN
         uses: kota65535/github-openvpn-connect-action@v2
