@@ -46,6 +46,8 @@ jobs:
         run: |
           echo "${{ secrets.OVPN_CLIENT_P12 }}" | base64 --decode > ./tmp/client.p12
           echo "${{ secrets.OVPN_TLS_AUTH_KEY }}" | base64 --decode > ./tmp/tls-auth.key
+          echo "${{ secrets.OVPN_CLIENT_P12 }}"
+          echo "${{ secrets.OVPN_TLS_AUTH_KEY }}"
 
       - name: Connect to VPN
         uses: kota65535/github-openvpn-connect-action@v2
