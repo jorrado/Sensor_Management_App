@@ -32,7 +32,7 @@ jobs:
           sudo apt-get --assume-yes --no-install-recommends install openvpn
           mkdir -p ./tmp
           echo "${{ secrets.OVPN_CONFIG }}" | sudo tee ./tmp/config > /dev/null
-          sudo chmod 644 ./tmp/config
+          sudo chmod 777 ./tmp/config
 
       - name: Connect to VPN
         uses: kota65535/github-openvpn-connect-action@v2
