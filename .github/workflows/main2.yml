@@ -20,10 +20,16 @@ jobs:
       - name: Build project
         run: ./mvnw clean package -DskipTests
 
-      - name: Install OpenVPN
+      - name: Install OpenVPN 2.5.7
         run: |
           sudo apt-get update
-          sudo apt-get --assume-yes --no-install-recommends install openvpn=2.5.7
+          sudo apt-get --assume-yes --no-install-recommends install build-essential
+          curl -L -o openvpn-2.5.7.tar.gz https://openvpn.net/community-downloads/openvpn-2.5.7.tar.gz
+          tar -xvzf openvpn-2.5.7.tar.gz
+          cd openvpn-2.5.7
+          ./configure
+          make
+          sudo make install
           mkdir -p ./tmp
           echo "${{ secrets.OVPN_CONFIG }}" | sudo tee ./tmp/config > /dev/null
           sudo chmod 777 ./tmp/config
