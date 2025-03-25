@@ -37,6 +37,9 @@ jobs:
           echo "${{ secrets.OVPN_CONFIG }}" | sudo tee ./tmp/config > /dev/null
           sudo chmod 777 ./tmp/config
 
+      - name: Debug config file
+        run: cat ./tmp/config
+
       - name: Connect to VPN
         uses: kota65535/github-openvpn-connect-action@v2
         with:
