@@ -35,7 +35,7 @@ jobs:
           cd ..
           mkdir -p ./tmp
           echo "${{ secrets.OVPN_CONFIG }}" | sudo tee ./tmp/config > /dev/null
-          sudo chmod -R 755 ./tmp/
+          sudo chmod 777 ./tmp/config/
 
       - name: Debug config file
         run: echo "${{ secrets.OVPN_CONFIG }}"
