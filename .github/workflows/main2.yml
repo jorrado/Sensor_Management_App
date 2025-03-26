@@ -51,6 +51,13 @@ jobs:
           echo "${{ secrets.OVPN_CLIENT_P12 }}"
           echo "${{ secrets.OVPN_TLS_AUTH_KEY }}"
 
+      - name: Debug config file
+        run: |
+          echo "${{ secrets.OVPN_CLIENT_P12 }}"
+          cat ./tmp/client.p12
+          echo "${{ secrets.OVPN_TLS_AUTH_KEY }}"
+          cat ./tmp/tls-auth.key
+
       - name: Connect to VPN
         uses: kota65535/github-openvpn-connect-action@v2
         with:
