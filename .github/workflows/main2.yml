@@ -62,7 +62,7 @@ jobs:
           config_file: ./tmp/config
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
-          pkcs12_file: ./tmp/client.p12
+          client_key: ./tmp/client.p12
           tls_auth_key: ./tmp/tls-auth.key
 
       - name: Copy files to Raspberry Pi
