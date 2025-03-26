@@ -49,7 +49,7 @@ jobs:
           sudo chmod 777 ./tmp/client.p12
           sudo chmod 777 ./tmp/tls-auth.key
 
-      - name: Debug config file
+      - name: Debug tls_key and p12 files
         run: |
           echo "${{ secrets.OVPN_CLIENT_P12 }}"
           cat ./tmp/client.p12
