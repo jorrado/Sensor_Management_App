@@ -48,8 +48,6 @@ jobs:
           echo "${{ secrets.OVPN_TLS_AUTH_KEY }}" | base64 --decode | sudo tee ./tmp/tls-auth.key > /dev/null
           sudo chmod 777 ./tmp/client.p12
           sudo chmod 777 ./tmp/tls-auth.key
-          echo "${{ secrets.OVPN_CLIENT_P12 }}"
-          echo "${{ secrets.OVPN_TLS_AUTH_KEY }}"
 
       - name: Debug config file
         run: |
