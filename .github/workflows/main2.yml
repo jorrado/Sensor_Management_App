@@ -36,8 +36,10 @@ jobs:
           mkdir -p ./tmp
           echo "${{ secrets.OVPN_CONFIG }}" | base64 --decode | sudo tee ./tmp/config > /dev/null
           echo "${{ secrets.OVPN_CA_CERT }}" | base64 --decode | sudo tee ./tmp/ca-cert.pem > /dev/null
+          echo "${{ secrets.OVPN_CLIENT_CERT }}" | base64 --decode | sudo tee ./tmp/client-cert.pem > /dev/null
           sudo chmod 777 ./tmp/config
           sudo chmod 777 ./tmp/ca-cert.pem
+          sudo chmod 777 ./tmp/client-cert.pem
 
       - name: Debug config and ca-cert files
         run: |
@@ -45,6 +47,8 @@ jobs:
           cat ./tmp/config
           echo "${{ secrets.OVPN_CA_CERT }}"
           cat ./tmp/ca-cert.pem
+          echo "${{ secrets.OVPN_CLIENT_CERT }}"
+          cat ./tmp/client-cert.pem
 
       - name: Decode client-key AND tls-auth files
         run: |
