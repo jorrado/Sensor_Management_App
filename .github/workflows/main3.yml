@@ -64,7 +64,7 @@ jobs:
         with:
           host: ${{ secrets.RASPBERRY_HOST }}
           username: ${{ secrets.RASPBERRY_USER }}
-          key: ./tmp/id_rsa
+          password: ${{ secrets.RASPBERRY_PASSWORD }}
           port: 22
           source: "target/sensorprocessor-0.0.1-SNAPSHOT.jar"
           target: "/opt/app/"
