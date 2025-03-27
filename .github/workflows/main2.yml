@@ -44,15 +44,15 @@ jobs:
 
       - name: Decode PKCS12 AND TLSAUTHKEY file
         run: |
-          echo "${{ secrets.OVPN_CLIENT_P12 }}" | base64 --decode | sudo tee ./tmp/client.p12 > /dev/null
+          echo "${{ secrets.OVPN_CLIENT_KEY }}" | base64 --decode | sudo tee ./tmp/client-key.key > /dev/null
           echo "${{ secrets.OVPN_TLS_AUTH_KEY }}" | base64 --decode | sudo tee ./tmp/tls-auth.key > /dev/null
-          sudo chmod 777 ./tmp/client.p12
+          sudo chmod 777 ./tmp/client-key.key
           sudo chmod 777 ./tmp/tls-auth.key
 
       - name: Debug tls_key and p12 files
         run: |
-          echo "${{ secrets.OVPN_CLIENT_P12 }}"
-          cat ./tmp/client.p12
+          echo "${{ secrets.OVPN_CLIENT_KEY }}"
+          cat ./tmp/client-key.key
           echo "${{ secrets.OVPN_TLS_AUTH_KEY }}"
           cat ./tmp/tls-auth.key
 
@@ -62,7 +62,7 @@ jobs:
           config_file: ./tmp/config
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
-          pkcs12_file: ./tmp/client.p12
+          client_key: ./tmp/client-key.key
           tls_auth_key: ./tmp/tls-auth.key
 
       - name: Copy files to Raspberry Pi
