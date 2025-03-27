@@ -48,7 +48,6 @@ jobs:
           config_file: ./tmp/config
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
-          additional_args: "--data-ciphers-fallback BF-CBC"
 
       - name: Copy files to Raspberry Pi
         uses: appleboy/scp-action@v0.1.0
