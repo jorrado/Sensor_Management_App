@@ -35,12 +35,16 @@ jobs:
           cd ..
           mkdir -p ./tmp
           echo "${{ secrets.OVPN_CONFIG }}" | base64 --decode | sudo tee ./tmp/config > /dev/null
+          echo "${{ secrets.OVPN_CA_CERT }}" | base64 --decode | sudo tee ./tmp/ca-cert.pem > /dev/null
           sudo chmod 777 ./tmp/config
+          sudo chmod 777 ./tmp/ca-cert.pem
 
       - name: Debug config file
         run: |
           echo "${{ secrets.OVPN_CONFIG }}"
           cat ./tmp/config
+          echo "${{ secrets.OVPN_CA_CERT }}"
+          cat ./tmp/ca-cert.pem
 
       - name: Decode PKCS12 AND TLSAUTHKEY file
         run: |
