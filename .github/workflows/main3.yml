@@ -59,8 +59,11 @@ jobs:
           echo "${{ secrets.RASPBERRY_SSH_KEY }}"
           cat ./tmp/id_rsa
 
-      - name: Delete old jar
-        run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "rm -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar"
+      #- name: Change permissions of the file
+        #run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "sudo chmod 777 /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar"
+      
+      #- name: Delete old jar
+        #run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "rm -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar"
 
       - name: Copy files to Raspberry Pi
         uses: appleboy/scp-action@v0.1.0
