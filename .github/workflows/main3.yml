@@ -67,7 +67,7 @@ jobs:
           password: ${{ secrets.RASPBERRY_PASSWORD }}
           port: 22
           source: "target/sensorprocessor-0.0.1-SNAPSHOT.jar"
-          target: "/opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar"
+          target: "/opt/app/"
           overwrite: true
 
       - name: Restart Spring app
