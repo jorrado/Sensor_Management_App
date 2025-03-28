@@ -37,11 +37,6 @@ jobs:
           echo "${{ secrets.OVPN_CONFIG }}" | base64 --decode | sudo tee ./tmp/config > /dev/null
           sudo chmod 777 ./tmp/config
 
-      - name: Debug config file
-        run: |
-          echo "${{ secrets.OVPN_CONFIG }}"
-          cat ./tmp/config
-
       - name: Connect to VPN
         uses: kota65535/github-openvpn-connect-action@v2
         with:
@@ -54,10 +49,10 @@ jobs:
           echo "${{ secrets.RASPBERRY_SSH_KEY }}" | base64 --decode | sudo tee ./tmp/id_rsa > /dev/null
           sudo chmod 777 ./tmp/id_rsa
 
-      - name: Debug id_rsa file
-        run: |
-          echo "${{ secrets.RASPBERRY_SSH_KEY }}"
-          cat ./tmp/id_rsa
+      #- name: Debug id_rsa file
+        #run: |
+          #echo "${{ secrets.RASPBERRY_SSH_KEY }}"
+          #cat ./tmp/id_rsa
 
       #- name: Change permissions of the file
         #run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "sudo chmod 777 /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar"
