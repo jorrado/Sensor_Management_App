@@ -77,36 +77,4 @@ public class SensorprocessorApplication implements CommandLineRunner {
 		String dbPath = System.getenv("DB_PATH");
 		System.out.println("DB_PATH: " + dbPath);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//		logger.info("delete dev_eui_009 -> number of row(s) deleted - {}", sensorDao.deleteByIdOfSensor("dev_eui_009"));
-//		System.out.println("\u001B[34m" + "delete dev_eui_009 -> number of row(s) deleted - {}" + sensorDao.deleteByIdOfSensor("dev_eui_009") + "\u001B[0m");
-//		logger.info("inserting dev_eui_022 -> {}", sensorDao.insertSensor(new Sensor("dev_eui_022", "device_005",
-//				LocalDateTime.now(), true, "Batiment D", 1, "Bureau 110", "gateway_004")));
-//		System.out.println("\u001B[34m" + "inserting dev_eui_022 -> {}" + sensorDao.insertSensor(new Sensor("dev_eui_022",
-//				"device_005", LocalDateTime.now(), true, "Batiment D",
-//				1, "Bureau 110", "gateway_004")) + "\u001B[0m");
-//		logger.info("update dev_eui_002 -> {}", sensorDao.updateSensor(new Sensor("dev_eui_002",
-//				"device_002", LocalDateTime.now().plusYears(10), false,
-//				"Batiment Z", 10, "Bureau 110 000", "gateway_010")));
-//		System.out.println("\u001B[34m" + "update dev_eui_002 -> {}" + sensorDao.updateSensor(new Sensor("dev_eui_002",
-//				"device_002", LocalDateTime.now().plusYears(10), false,
-//				"Batiment Z", 10, "Bureau 110 000", "gateway_010")) + "\u001B[0m");
 }
