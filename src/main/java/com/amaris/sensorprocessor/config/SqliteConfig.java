@@ -11,8 +11,12 @@ import javax.sql.DataSource;
 @ConfigurationProperties
 public class SqliteConfig {
 
+    private final Environment env;
+
     @Autowired
-    Environment env;
+    public SqliteConfig(Environment env) {
+        this.env = env;
+    }
 
     /**
      * Crée et retourne une instance de {@link DataSource} configurée à partir des propriétés de l'environnement.
