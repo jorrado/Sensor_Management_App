@@ -60,6 +60,35 @@ public class SensorprocessorApplication implements CommandLineRunner {
 //				"userJ", "Jannette", "Smith", "password1234", "boss final",
 //				"jannette.smith@example.com")) + "\u001B[0m");
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//		rerere
+//
+//
+//
+//		rererere
+//
+//		rererere
+
+
+
+
+
 		// TEST GATEWAY DAO
 		System.out.println("\u001B[34m" + "all gateways -> {}" + gatewayDao.findAllGateways() + "\u001B[0m");
 		System.out.println("\u001B[34m" + "gateway id gateway_001 -> {}" + gatewayDao.findByIdOfGateway("gateway_001") + "\u001B[0m");
