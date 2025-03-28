@@ -73,7 +73,4 @@ jobs:
       - name: Restart Spring app with password
         run: |
           sudo apt-get install -y sshpass
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S systemctl restart sensorprocessor.service"
-
-      - name: Disconnect SSH session
-        run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "pkill -u ${{ secrets.RASPBERRY_USER }}"
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S systemctl restart sensorprocessor.service && exit"
