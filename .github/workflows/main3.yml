@@ -70,8 +70,8 @@ jobs:
           source: "target/sensorprocessor-0.0.1-SNAPSHOT.jar"
           target: "/opt/app/"
 
-      - name: Change permissions of the file
-        run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "sudo chmod 777 /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar"
+      #- name: Change permissions of the file
+        #run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "sudo chmod 777 /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar"
 
       - name: Restart Spring app
         run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "sudo systemctl restart sensorprocessor.service"
