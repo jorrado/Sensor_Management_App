@@ -76,7 +76,13 @@ jobs:
       #- name: Restart Spring app
         #run: ssh -i ${{ secrets.RASPBERRY_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "sudo systemctl restart sensorprocessor.service"
 
+      #- name: Restart Spring app with password
+        #run: |
+          #sudo apt-get install -y sshpass
+          #sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S systemctl restart sensorprocessor.service"
+
       - name: Restart Spring app with password
         run: |
           sudo apt-get install -y sshpass
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S systemctl restart sensorprocessor.service"
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "systemctl restart sensorprocessor.service"
+   
