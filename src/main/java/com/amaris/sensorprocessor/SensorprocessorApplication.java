@@ -48,15 +48,6 @@ public class SensorprocessorApplication implements CommandLineRunner {
 //				"device_002", LocalDateTime.now().plusYears(10), false,
 //				"Batiment Z", 10, "Bureau 110 000", "gateway_010")) + "\u001B[0m");
 
-
-
-
-
-
-
-
-
-
 		// TEST USER DAO
 		System.out.println("\u001B[34m" + "all users -> {}" + userDao.findAllUsers() + "\u001B[0m");
 		System.out.println("\u001B[34m" + "user id 1 -> {}" + userDao.findByUsername("user1") + "\u001B[0m");
