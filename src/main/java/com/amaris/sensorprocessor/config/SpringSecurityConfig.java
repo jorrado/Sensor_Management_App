@@ -30,7 +30,7 @@ public class SpringSecurityConfig {
 //            auth.requestMatchers("/admin/**").hasRole("ADMIN");
 //            auth.requestMatchers("/superuser").hasRole("SUPERUSER");
 //            auth.requestMatchers("/user").hasRole("USER");
-            auth.anyRequest().hasRole("ADMIN");
+            auth.anyRequest().hasRole("ADMIN"); // aussi mettre USER et SUPERUSER
         }).formLogin(form -> form.loginPage("/login")
                     .permitAll().defaultSuccessUrl("/home", true))
                     .build();
@@ -40,7 +40,7 @@ public class SpringSecurityConfig {
      * Crée et retourne un {@link BCryptPasswordEncoder}.
      * Cet encodeur est utilisé pour hacher les mots de passe avec l'algorithme BCrypt.
      *
-     * @return Une nouvelle instance de {@link BCryptPasswordEncoder}.
+     * @return une nouvelle instance de {@link BCryptPasswordEncoder}.
      */
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -51,10 +51,10 @@ public class SpringSecurityConfig {
      * Crée et configure un {@link AuthenticationManager} avec un {@link BCryptPasswordEncoder}.
      * Ce manager est utilisé pour l'authentification des utilisateurs en utilisant un service de détails utilisateur personnalisé.
      *
-     * @param http L'objet HttpSecurity utilisé pour configurer la sécurité.
-     * @param bCryptPasswordEncoder Le password encoder utilisé pour encoder les mots de passe.
-     * @return L'instance configurée de {@link AuthenticationManager}.
-     * @throws Exception Si une erreur se produit lors de la configuration.
+     * @param http l'objet HttpSecurity utilisé pour configurer la sécurité.
+     * @param bCryptPasswordEncoder le password encoder utilisé pour encoder les mots de passe.
+     * @return l'instance configurée de {@link AuthenticationManager}.
+     * @throws Exception si une erreur se produit lors de la configuration.
      */
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder) throws Exception {

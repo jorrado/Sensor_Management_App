@@ -2,18 +2,22 @@ package com.amaris.sensorprocessor.repository;
 
 import com.amaris.sensorprocessor.entity.Gateway;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class GatewayDao {
 
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    public GatewayDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     /**
      * Récupère la liste de toutes les passerelles enregistrées dans la base de données.
@@ -31,13 +35,14 @@ public class GatewayDao {
      *
      * @param id l'identifiant de la passerelle à rechercher.
      * @return un objet {@code Gateway} correspondant à l'ID fourni.
-     * @throws EmptyResultDataAccessException si aucune passerelle ne correspond à l'ID.
      */
-    public Gateway findByIdOfGateway(String id) throws EmptyResultDataAccessException {
-        return jdbcTemplate.queryForObject(
+    public Optional<Gateway> findByIdOfGateway(String id) {
+        List<Gateway> gateways = jdbcTemplate.query(
                 "SELECT * FROM GATEWAYS WHERE ID_GATEWAY=?",
-                new Object[]{id},
-                new BeanPropertyRowMapper<Gateway>(Gateway.class));
+                new BeanPropertyRowMapper<>(Gateway.class),
+                id);
+
+        return gateways.isEmpty() ? Optional.empty() : Optional.of(gateways.get(0));
     }
 
     /**
@@ -49,7 +54,7 @@ public class GatewayDao {
     public int deleteByIdOfGateway(String id) {
         return jdbcTemplate.update(
                 "DELETE FROM GATEWAYS WHERE ID_GATEWAY=?",
-                new Object[]{id});
+                id);
     }
 
     /**
@@ -64,16 +69,16 @@ public class GatewayDao {
                         "ID_GATEWAY, COMMISSIONING_DATE, STATUS, " +
                         "BATIMENT_NAME, ETAGE, EMPLACEMENT) " +
                         "VALUES(?, ?, ?, ?, ?, ?)",
-                new Object[]{ gateway.getIdGateway(), gateway.getCommissioningDate(),
-                gateway.getStatus(), gateway.getBatimentName(), gateway.getEtage(), gateway.getEmplacement() }
+                gateway.getIdGateway(), gateway.getCommissioningDate(), gateway.getStatus(),
+                gateway.getBatimentName(), gateway.getEtage(), gateway.getEmplacement()
         );
     }
 
     /**
      * Met à jour les informations d'une passerelle dans la base de données.
      *
-     * @param gateway L'objet {@link Gateway} contenant les nouvelles valeurs à mettre à jour.
-     * @return Le nombre de lignes affectées par la mise à jour (1 si l'ID existe, 0 sinon).
+     * @param gateway l'objet {@link Gateway} contenant les nouvelles valeurs à mettre à jour.
+     * @return le nombre de lignes affectées par la mise à jour (1 si l'id existe, 0 sinon).
      */
     public int updateGateway(Gateway gateway) {
         return jdbcTemplate.update(
@@ -81,8 +86,8 @@ public class GatewayDao {
                         "COMMISSIONING_DATE = ?, STATUS = ?, BATIMENT_NAME = ?, " +
                         "ETAGE = ?, EMPLACEMENT = ? " +
                         "WHERE ID_GATEWAY = ?",
-                new Object[]{ gateway.getCommissioningDate(), gateway.getStatus(), gateway.getBatimentName(),
-                gateway.getEtage(), gateway.getEmplacement(), gateway.getIdGateway() }
+                gateway.getCommissioningDate(), gateway.getStatus(), gateway.getBatimentName(),
+                gateway.getEtage(), gateway.getEmplacement(), gateway.getIdGateway()
         );
     }
 

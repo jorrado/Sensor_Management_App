@@ -2,18 +2,22 @@ package com.amaris.sensorprocessor.repository;
 
 import com.amaris.sensorprocessor.entity.Sensor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class SensorDao {
 
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    public SensorDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     /**
      * Récupère la liste de tous les capteurs enregistrés dans la base de données.
@@ -31,13 +35,14 @@ public class SensorDao {
      *
      * @param id l'identifiant du capteur à rechercher.
      * @return un objet {@code Sensor} correspondant à l'ID fourni.
-     * @throws EmptyResultDataAccessException si aucun capteur ne correspond à l'ID.
      */
-    public Sensor findByIdOfSensor(String id) throws EmptyResultDataAccessException {
-        return jdbcTemplate.queryForObject(
+    public Optional<Sensor> findByIdOfSensor(String id) {
+        List<Sensor> sensors = jdbcTemplate.query(
                 "SELECT * FROM SENSORS WHERE ID_SENSOR=?",
-                new Object[]{id},
-                new BeanPropertyRowMapper<Sensor>(Sensor.class));
+                new BeanPropertyRowMapper<Sensor>(Sensor.class),
+                id);
+
+        return sensors.isEmpty() ? Optional.empty() : Optional.of(sensors.get(0));
     }
 
     /**
@@ -49,7 +54,7 @@ public class SensorDao {
     public int deleteByIdOfSensor(String id) {
         return jdbcTemplate.update(
                 "DELETE FROM SENSORS WHERE ID_SENSOR=?",
-                new Object[]{id});
+                id);
     }
 
     /**
@@ -64,16 +69,16 @@ public class SensorDao {
                         "ID_SENSOR, DEVICE_TYPE, COMMISSIONING_DATE, " +
                         "STATUS, BATIMENT_NAME, ETAGE, EMPLACEMENT, ID_GATEWAY) " +
                         "VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
-                new Object[]{ sensor.getIdSensor(), sensor.getDeviceType(), sensor.getCommissioningDate(),
-                sensor.getStatus(), sensor.getBatimentName(), sensor.getEtage(), sensor.getEmplacement(), sensor.getIdGateway() }
+                sensor.getIdSensor(), sensor.getDeviceType(), sensor.getCommissioningDate(),
+                sensor.getStatus(), sensor.getBatimentName(), sensor.getEtage(), sensor.getEmplacement(), sensor.getIdGateway()
         );
     }
 
     /**
      * Met à jour les informations d'un capteur dans la base de données.
      *
-     * @param sensor L'objet {@link Sensor} contenant les nouvelles valeurs à mettre à jour.
-     * @return Le nombre de lignes affectées par la mise à jour (1 si l'ID existe, 0 sinon).
+     * @param sensor l'objet {@link Sensor} contenant les nouvelles valeurs à mettre à jour.
+     * @return le nombre de lignes affectées par la mise à jour (1 si l'id existe, 0 sinon).
      */
     public int updateSensor(Sensor sensor) {
         return jdbcTemplate.update(
@@ -81,9 +86,9 @@ public class SensorDao {
                         "COMMISSIONING_DATE = ?, STATUS = ?, BATIMENT_NAME = ?, " +
                         "ETAGE = ?, EMPLACEMENT = ?, ID_GATEWAY = ? " +
                         "WHERE ID_SENSOR = ?",
-                new Object[]{ sensor.getCommissioningDate(), sensor.getStatus(), sensor.getBatimentName(),
+                sensor.getCommissioningDate(), sensor.getStatus(), sensor.getBatimentName(),
                         sensor.getEtage(), sensor.getEmplacement(), sensor.getIdGateway(),
-                        sensor.getIdSensor() }
+                        sensor.getIdSensor()
         );
     }
 

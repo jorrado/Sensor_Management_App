@@ -16,8 +16,12 @@ import java.util.List;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+    private final UserDao userDao;
+
     @Autowired
-    private UserDao userDao;
+    public CustomUserDetailsService(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     /**
      * Charge un utilisateur à partir de son nom d'utilisateur et retourne un {@link UserDetails} pour l'authentification.
@@ -27,11 +31,11 @@ public class CustomUserDetailsService implements UserDetailsService {
      *
      * @param username Le nom d'utilisateur de l'utilisateur à charger.
      * @return Un objet {@link UserDetails} contenant les informations de l'utilisateur.
-     * @throws UsernameNotFoundException Si l'utilisateur n'est pas trouvé dans la base de données.
+     * @throws UsernameNotFoundException si l'utilisateur n'est pas trouvé dans la base de données.
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(username);
+        User user = userDao.findByUsername(username).orElseThrow();
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getGrantedAuthorities(user.getRole()));
     }
@@ -40,11 +44,11 @@ public class CustomUserDetailsService implements UserDetailsService {
      * Génère une liste d'autorités (rôles) à partir du rôle d'un utilisateur.
      * Cette méthode convertit un rôle utilisateur en une autorité de sécurité avec le préfixe "ROLE_".
      *
-     * @param role Le rôle de l'utilisateur (par exemple, "ADMIN", "SUPERUSER", "USER").
-     * @return Une liste de {@link GrantedAuthority} représentant les rôles de l'utilisateur.
+     * @param role le rôle de l'utilisateur (par exemple, "ADMIN", "SUPERUSER", "USER").
+     * @return une liste de {@link GrantedAuthority} représentant les rôles de l'utilisateur.
      */
     private List<GrantedAuthority> getGrantedAuthorities(String role) {
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
         return authorities;
     }

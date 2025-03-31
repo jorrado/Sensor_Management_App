@@ -2,23 +2,22 @@ package com.amaris.sensorprocessor.repository;
 
 import com.amaris.sensorprocessor.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserDao {
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
-//     A utiliser avec DataSourceUtils.getConnection(dataSource)
-//    @Autowired
-//    DataSource dataSource;
+    @Autowired
+    public UserDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     /**
      * Récupère la liste de tous les utilisateurs enregistrés dans la base de données.
@@ -34,17 +33,17 @@ public class UserDao {
     /**
      * Recherche un utilisateur par son nom d'utilisateur.
      *
-     * @param username L'id de l'utilisateur.
-     * @return L'objet `User` correspondant à l'utilisateur trouvé.
-     * @throws EmptyResultDataAccessException si résultat vide.
-     * @throws IncorrectResultSizeDataAccessException si plusieurs résultat.
+     * @param username l'id de l'utilisateur.
+     * @return L'objet User correspondant à l'utilisateur trouvé.
      */
-    public User findByUsername(String username)
-            throws EmptyResultDataAccessException, IncorrectResultSizeDataAccessException { // RuntimeException
-        return jdbcTemplate.queryForObject(
+    public Optional<User> findByUsername(String username) {
+        List<User> users = jdbcTemplate.query(
                 "SELECT * FROM USERS WHERE USERNAME=?",
-                new Object[]{username},
-                new BeanPropertyRowMapper<User>(User.class));
+                new BeanPropertyRowMapper<>(User.class),
+                username
+        );
+
+        return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
     }
 
     /**
@@ -56,7 +55,7 @@ public class UserDao {
     public int deleteByIdOfUser(String username) {
         return jdbcTemplate.update(
                 "DELETE FROM USERS WHERE USERNAME=?",
-                new Object[]{username});
+                username);
     }
 
     /**
@@ -68,19 +67,19 @@ public class UserDao {
     public int insertUser(User user) {
         return jdbcTemplate.update(
                 "INSERT INTO USERS (" +
-                        "USERNAME, FIRSTNAME, " +
-                        "LASTNAME, PASSWORD, ROLE, EMAIL) " +
+                        "USERNAME, FIRSTNAME, LASTNAME, " +
+                        "PASSWORD, ROLE, EMAIL) " +
                         "VALUES(?, ?, ?, ?, ?, ?)",
-                new Object[]{ user.getUsername(), user.getFirstname(),
-                user.getLastname(), user.getPassword(), user.getRole(), user.getEmail() }
+                user.getUsername(), user.getFirstname(), user.getLastname(),
+                user.getPassword(), user.getRole(), user.getEmail()
         );
     }
 
     /**
      * Met à jour les informations d'un utilisateur dans la base de données.
      *
-     * @param user L'objet {@link User} contenant les nouvelles valeurs à mettre à jour.
-     * @return Le nombre de lignes affectées par la mise à jour (1 si l'ID existe, 0 sinon).
+     * @param user l'objet {@link User} contenant les nouvelles valeurs à mettre à jour.
+     * @return le nombre de lignes affectées par la mise à jour (1 si l'id existe, 0 sinon).
      */
     public int updateUser(User user) {
         return jdbcTemplate.update(
@@ -88,8 +87,8 @@ public class UserDao {
                         "PASSWORD = ?, ROLE = ?, " +
                         "EMAIL = ? " +
                         "WHERE USERNAME = ?",
-                new Object[]{ user.getPassword(), user.getRole(),
-                user.getEmail(), user.getUsername() }
+                user.getPassword(), user.getRole(),
+                user.getEmail(), user.getUsername()
         );
     }
 
