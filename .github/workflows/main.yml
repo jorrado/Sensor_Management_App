@@ -59,7 +59,14 @@ jobs:
           source: "target/sensorprocessor-0.0.1-SNAPSHOT.jar"
           target: "/opt/app/"
 
-      - name: Set executable permissions
+      - name: Wait for the file to be copied
+        run: |
+          while [ ! -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar ]; do
+          echo "Waiting for file to be copied..."
+          sleep 5
+          done
+
+      - name: Set file permissions
         run: sudo chmod 777 /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar
 
       - name: Restart Spring app with password
