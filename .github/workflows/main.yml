@@ -44,10 +44,10 @@ jobs:
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
 
-      - name: Decode SSH key
-        run: |
-          echo "${{ secrets.RASPBERRY_SSH_KEY }}" | base64 --decode | sudo tee ./tmp/id_rsa > /dev/null
-          sudo chmod 777 ./tmp/id_rsa
+      #- name: Decode SSH key
+        #run: |
+          #echo "${{ secrets.RASPBERRY_SSH_KEY }}" | base64 --decode | sudo tee ./tmp/id_rsa > /dev/null
+          #sudo chmod 777 ./tmp/id_rsa
 
       - name: Copy files to Raspberry Pi
         uses: appleboy/scp-action@v0.1.0
