@@ -61,8 +61,10 @@ jobs:
 
       - name: Wait for the file to be copied
         run: |
+          sudo apt-get install -y sshpass
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "
           while [ ! -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar ]; do
-          echo "Waiting for file to be copied..."
+          echo 'Waiting for file to be copied...'
           sleep 5
           done
 
