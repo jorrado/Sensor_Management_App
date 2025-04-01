@@ -73,6 +73,9 @@ jobs:
         #run: |
           #timeout 60s bash -c 'while [ ! -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar ]; do echo "Waiting..."; sleep 5; done'
 
+      - name: Check file existence
+        run: ls -l /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar
+
       - name: Set file permissions
         run: sudo chmod -f 777 /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar
 
