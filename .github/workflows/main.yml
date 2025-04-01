@@ -58,16 +58,15 @@ jobs:
           port: 22
           source: "target/sensorprocessor-0.0.1-SNAPSHOT.jar"
           target: "/opt/app/"
-          debug: true
 
       - name: Wait for the file to be copied
         run: |
           sudo apt-get install -y sshpass
           sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "
           while [ ! -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar ]; do
-          echo 'Waiting for file to be copied...'
-          sleep 5
-          done
+            echo 'Waiting for file to be copied...'
+            sleep 5
+          done"
 
       - name: Set file permissions
         run: sudo chmod 777 /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar
