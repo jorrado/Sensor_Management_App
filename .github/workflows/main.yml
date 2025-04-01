@@ -74,7 +74,7 @@ jobs:
           #timeout 60s bash -c 'while [ ! -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar ]; do echo "Waiting..."; sleep 5; done'
 
       - name: Set file permissions
-        run: sudo chmod 777 /opt/app/target/sensorprocessor-0.0.1-SNAPSHOT.jar
+        run: chmod 777 /opt/app/target/sensorprocessor-0.0.1-SNAPSHOT.jar
 
       - name: Restart Spring app with password
         run: |
