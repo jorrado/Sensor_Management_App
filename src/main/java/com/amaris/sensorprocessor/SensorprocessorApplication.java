@@ -82,5 +82,4 @@ public class SensorprocessorApplication implements CommandLineRunner {
 //		String dbPath = System.getenv("DB_PATH");
 //		System.out.println("DB_PATH: " + dbPath);
 	}
-
 }
