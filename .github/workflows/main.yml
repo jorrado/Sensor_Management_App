@@ -75,6 +75,11 @@ jobs:
 
       #- name: Set file permissions
         #run: chmod 777 /opt/app/target/sensorprocessor-0.0.1-SNAPSHOT.jar
+      - name: Set file permissions
+        run: |
+          echo "Contenu de /opt/app/target/:"
+          ls -l /opt/app/target/
+          chmod 777 /opt/app/target/sensorprocessor-0.0.1-SNAPSHOT.jar
 
       - name: Restart Spring app with password
         run: |
