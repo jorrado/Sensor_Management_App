@@ -44,15 +44,20 @@ jobs:
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
 
+      #- name: Copy files to Raspberry Pi
+        #uses: appleboy/scp-action@v0.1.7
+        #with:
+          #host: ${{ secrets.RASPBERRY_HOST }}
+          #username: ${{ secrets.RASPBERRY_USER }}
+          #password: ${{ secrets.RASPBERRY_PASSWORD }}
+          #port: 22
+          #source: "target/sensorprocessor-0.0.1-SNAPSHOT.jar"
+          #target: "/opt/app/"
+
       - name: Copy files to Raspberry Pi
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.RASPBERRY_HOST }}
-          username: ${{ secrets.RASPBERRY_USER }}
-          password: ${{ secrets.RASPBERRY_PASSWORD }}
-          port: 22
-          source: "target/sensorprocessor-0.0.1-SNAPSHOT.jar"
-          target: "/opt/app/"
+        run: |
+          scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ./target/sensorprocessor-0.0.1-SNAPSHOT.jar ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }}:/opt/app/
+
 
       - name: Restart Spring app with password
         run: |
