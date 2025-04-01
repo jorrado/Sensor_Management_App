@@ -56,6 +56,7 @@ jobs:
 
       - name: Copy files to Raspberry Pi
         run: |
+          sudo apt-get install -y sshpass
           echo "$RASPBERRY_PASSWORD" | sshpass scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ./target/sensorprocessor-0.0.1-SNAPSHOT.jar ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }}:/opt/app/
         env:
           RASPBERRY_PASSWORD: ${{ secrets.RASPBERRY_PASSWORD }}
