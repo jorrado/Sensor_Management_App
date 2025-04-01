@@ -69,17 +69,12 @@ jobs:
             #sleep 5
           #done"
 
-      - name: Wait for the file to be copied
-        run: |
-          timeout 60s bash -c 'while [ ! -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar ]; do echo "Waiting..."; sleep 5; done'
+      #- name: Wait for the file to be copied
+        #run: |
+          #timeout 60s bash -c 'while [ ! -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar ]; do echo "Waiting..."; sleep 5; done'
 
       - name: Set file permissions
-        run: |
-          cd /opt/app
-          sudo chmod -f 777 sensorprocessor-0.0.1-SNAPSHOT.jar
-
-      #- name: Set file permissions
-        #run: sudo chmod 777 /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar
+        run: sudo chmod -f 777 /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar
 
       - name: Restart Spring app with password
         run: |
