@@ -44,11 +44,6 @@ jobs:
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
 
-      #- name: Decode SSH key
-        #run: |
-          #echo "${{ secrets.RASPBERRY_SSH_KEY }}" | base64 --decode | sudo tee ./tmp/id_rsa > /dev/null
-          #sudo chmod 777 ./tmp/id_rsa
-
       - name: Copy files to Raspberry Pi
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -58,23 +53,6 @@ jobs:
           port: 22
           source: "target/sensorprocessor-0.0.1-SNAPSHOT.jar"
           target: "/opt/app/"
-          #options: "-C"
-
-      #- name: Wait for the file to be copied
-        #run: |
-          #sudo apt-get install -y sshpass
-          #sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "
-          #while [ ! -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar ]; do
-            #echo 'Waiting for file to be copied...'
-            #sleep 5
-          #done"
-
-      #- name: Wait for the file to be copied
-        #run: |
-          #timeout 60s bash -c 'while [ ! -f /opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar ]; do echo "Waiting..."; sleep 5; done'
-          
-      #- name: Set file permissions
-        #run: chmod 777 /opt/app/target/sensorprocessor-0.0.1-SNAPSHOT.jar
 
       - name: Restart Spring app with password
         run: |
