@@ -58,8 +58,9 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
-      - name: Copy files to Raspberry Pi
-        run: |
+      #- name: Copy files to Raspberry Pi
+      - uses: actions/checkout@v4
+      - run: |
           sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "ls -l $GITHUB_WORKSPACE"
           sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S cp $GITHUB_WORKSPACE/target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/"
 
