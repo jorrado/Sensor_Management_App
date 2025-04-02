@@ -54,6 +54,7 @@ jobs:
           source: "target/sensorprocessor-0.0.1-SNAPSHOT.jar"
           target: "/opt/app/"
           options: "-C"
+          args: "-vvv"
 
       - name: Restart Spring app with password
         run: |
