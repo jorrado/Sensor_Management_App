@@ -55,6 +55,9 @@ jobs:
           #target: "/opt/app/"
           #options: "-C"
 
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
       - name: Copy files to Raspberry Pi
         uses: appleboy/ssh-action@v1
         with:
