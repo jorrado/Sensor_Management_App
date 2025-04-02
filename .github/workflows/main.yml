@@ -64,7 +64,7 @@ jobs:
 
       - name: Copy files to Raspberry Pi
         run: |
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} scp -o StrictHostKeyChecking=no $GITHUB_WORKSPACE/target/sensorprocessor-0.0.1-SNAPSHOT.jar ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }}:/opt/app/
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} scp -o StrictHostKeyChecking=no ${{ github.workspace }}/target/sensorprocessor-0.0.1-SNAPSHOT.jar ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }}:/opt/app/
       
       - name: Restart Spring app with password
         run: |
