@@ -64,8 +64,7 @@ jobs:
           port: 22
           script: |
             sudo apt-get install -y sshpass
-            sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S cp target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/"
-
+            sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S cp target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/ && exit"
 
       - name: Restart Spring app with password
         run: |
