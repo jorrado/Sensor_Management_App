@@ -61,9 +61,9 @@ jobs:
       #- name: Copy files to Raspberry Pi
       - uses: actions/checkout@v4
       - run: |
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "ls -l $GITHUB_WORKSPACE"
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S cp $GITHUB_WORKSPACE/target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/"
-
+          sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" scp -o StrictHostKeyChecking=no $GITHUB_WORKSPACE/target/sensorprocessor-0.0.1-SNAPSHOT.jar ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }}:/home/${{ secrets.RASPBERRY_USER }}/
+          sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S mv /home/${{ secrets.RASPBERRY_USER }}/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/"
+      
       - name: Restart Spring app with password
         run: |
           sudo apt-get install -y sshpass
