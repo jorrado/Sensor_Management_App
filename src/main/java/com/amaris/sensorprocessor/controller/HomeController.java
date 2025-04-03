@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     /**
-     * Redirige vers la page de connexion (login.html).
      * @return la vue "login" pour afficher la page de connexion.
      */
     @GetMapping("/login")
@@ -16,7 +15,6 @@ public class HomeController {
     }
 
     /**
-     * Redirige vers la page d'accueil (home.html).
      * @return la vue "home" pour afficher la page d'accueil.
      */
     @GetMapping("/home")

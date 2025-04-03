@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage users</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/manageUsers.css}" />
+</head>
+<body>
+    <div class="manageUsers-container">
+        <img src="/image/mantu_logo.jpg" alt="Logo" class="login-logo">
+        <table>
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>E-mail</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.firstname}"></td>
+                <td th:text="${user.lastname}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role}"></td>
+                <td>
+                    <a th:href="@{/manage-users/edit/{username}(username=${user.username})}">
+                        <img src="/image/edit-icon.png" alt="Modify" width="20">
+                    </a>
+                    <a th:href="@{/manage-users/delete/{username}(username=${user.username})}">
+                        <img src="/image/delete-icon.png" alt="Delete" width="20">
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Bouton pour ouvrir la popup Create -->
+        <button id="openModalBtn">Add User</button>
+
+        <!-- Formulaire pour ajouter un utilisateur -->
+        <div id="userModal" class="modal">
+            <div class="modal-content">
+                <h2>Add User</h2>
+                <form th:action="@{/manage-users/add}" method="post">
+                    <input type="text" name="username" placeholder="Username" required />
+                    <input type="text" name="firstname" placeholder="Firstname" required />
+                    <input type="text" name="lastname" placeholder="Lastname" required />
+                    <input type="password" name="password" placeholder="Password" required />
+                    <input type="email" name="email" placeholder="E-mail" required />
+                    <select name="role" required>
+                        <option value="USER">User</option>
+                        <option value="SUPERUSER">Superuser</option>
+                        <option value="ADMIN">Admin</option>
+                    </select>
+                    <div class="form-buttons">
+                        <button type="submit">Add</button>
+                        <button class="close">Exit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/javascript/manageUsers.js}"></script>
+</body>
+</html>
