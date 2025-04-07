@@ -28,24 +28,52 @@
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.role}"></td>
                 <td>
-                    <a th:href="@{/manage-users/edit/{username}(username=${user.username})}">
-                        <img src="/image/edit-icon.png" alt="Modify" width="20">
+                    <a th:href="@{/manage-users/edit/{username}(username=${user.username})}" class="openEditModalBtn">
+                        <img src="/image/edit-icon.png" alt="Modify" width="20" class="darken-icon">
                     </a>
-                    <a th:href="@{/manage-users/delete/{username}(username=${user.username})}">
-                        <img src="/image/delete-icon.png" alt="Delete" width="20">
-                    </a>
+                    <form th:action="@{/manage-users/delete/{username}(username=${user.username})}" method="post" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit" style="background:none; border:none;">
+                            <img src="/image/delete-icon.png" alt="Delete" width="20">
+                        </button>
+                    </form>
                 </td>
             </tr>
             </tbody>
         </table>
 
+        <!-- Formulaire pour modifier un utilisateur -->
+        <div id="editUserModal" class="modal" th:if="${user != null}">
+            <div class="modal-content">
+                <h2>Edit User</h2>
+                <form th:action="@{/manage-users/edit}" th:object="${user}" method="post">
+                    <input id="username" th:field="*{username}" placeholder="Username" required readonly />
+                    <input id="firstname" th:field="*{firstname}" placeholder="Firstname" required />
+                    <input id="lastname" th:field="*{lastname}" placeholder="Lastname" required />
+                    <input id="email" type="email" th:field="*{email}" placeholder="E-mail" required />
+                    <select id="role" th:field="*{role}" >
+                        <option value="USER" th:selected="${user.role == 'USER'}">User</option>
+                        <option value="SUPERUSER" th:selected="${user.role == 'SUPERUSER'}">Superuser</option>
+                        <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">Admin</option>
+                    </select>
+                    <div class="form-buttons">
+                        <button type="submit">Update</button>
+                        <button type="button" class="closeEdit">Exit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <!-- Bouton pour ouvrir la popup Create -->
         <button id="openModalBtn">Add User</button>
 
         <!-- Formulaire pour ajouter un utilisateur -->
-        <div id="userModal" class="modal">
+        <div id="createUserModal" class="modal modalCreate">
             <div class="modal-content">
                 <h2>Add User</h2>
+                <div th:if="${error}" class="alert alert-danger">
+                    <p th:text="${error}"></p>
+                </div>
                 <form th:action="@{/manage-users/add}" method="post">
                     <input type="text" name="username" placeholder="Username" required />
                     <input type="text" name="firstname" placeholder="Firstname" required />
@@ -59,7 +87,7 @@
                     </select>
                     <div class="form-buttons">
                         <button type="submit">Add</button>
-                        <button class="close">Exit</button>
+                        <button type="button" class="closeCreate">Exit</button>
                     </div>
                 </form>
             </div>

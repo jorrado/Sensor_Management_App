@@ -26,7 +26,7 @@ public class UserDao {
      */
     public List<User> findAllUsers() {
         return jdbcTemplate.query(
-                "SELECT * FROM USERS;",
+                "SELECT * FROM USERS ORDER BY LOWER(lastname) ASC;",
                 new BeanPropertyRowMapper<User>(User.class));
     }
 
@@ -84,11 +84,11 @@ public class UserDao {
     public int updateUser(User user) {
         return jdbcTemplate.update(
                 "UPDATE USERS SET " +
-                        "PASSWORD = ?, ROLE = ?, " +
-                        "EMAIL = ? " +
+                        "FIRSTNAME = ?, LASTNAME = ?, " +
+                        "EMAIL = ?, ROLE = ? " +
                         "WHERE USERNAME = ?",
-                user.getPassword(), user.getRole(),
-                user.getEmail(), user.getUsername()
+                user.getFirstname(), user.getLastname(),
+                user.getEmail(), user.getRole(), user.getUsername()
         );
     }
 

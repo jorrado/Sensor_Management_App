@@ -30,8 +30,9 @@ public class SpringSecurityConfig {
 //            auth.requestMatchers("/admin/**").hasRole("ADMIN");
 //            auth.requestMatchers("/superuser").hasRole("SUPERUSER");
 //            auth.requestMatchers("/user").hasRole("USER");
-            auth.anyRequest().hasRole("ADMIN"); // aussi mettre USER et SUPERUSER
-        }).formLogin(form -> form.loginPage("/login")
+            //auth.anyRequest().hasRole("ADMIN"); // aussi mettre USER et SUPERUSER
+            auth.anyRequest().hasAnyRole("ADMIN", "USER", "SUPERUSER");
+                }).formLogin(form -> form.loginPage("/login")
                     .permitAll().defaultSuccessUrl("/home", true))
                     .build();
     }
