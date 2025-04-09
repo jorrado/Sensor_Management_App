@@ -21,9 +21,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    /**
-     * @return la vue "manageUsers" pour le CRUD User.
-     */
     @GetMapping("/manage-users")
     public String manageUsers(Model model) {
         List<User> users = userService.getAllUsers();

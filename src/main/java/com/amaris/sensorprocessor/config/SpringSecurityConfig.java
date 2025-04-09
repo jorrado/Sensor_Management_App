@@ -22,19 +22,32 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(auth -> {
+//        return http.authorizeHttpRequests(auth -> {
 //            auth.requestMatchers("/login").permitAll();
 //            auth.requestMatchers("/home").authenticated();
-            auth.requestMatchers("/css/**").permitAll();
-            auth.requestMatchers("/image/**").permitAll();
+//            auth.requestMatchers("/css/**").permitAll();
+//            auth.requestMatchers("/image/**").permitAll();
 //            auth.requestMatchers("/admin/**").hasRole("ADMIN");
 //            auth.requestMatchers("/superuser").hasRole("SUPERUSER");
 //            auth.requestMatchers("/user").hasRole("USER");
             //auth.anyRequest().hasRole("ADMIN"); // aussi mettre USER et SUPERUSER
-            auth.anyRequest().hasAnyRole("ADMIN", "USER", "SUPERUSER");
-                }).formLogin(form -> form.loginPage("/login")
-                    .permitAll().defaultSuccessUrl("/home", true))
-                    .build();
+//            auth.anyRequest
+        return http
+//                .csrf(csrf -> csrf.disable()) // Désactive la protection CSRF
+//                .cors(Customizer.withDefaults()) // Active la configuration CORS par défaut
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/css/**", "/image/**").permitAll()
+                        .anyRequest().hasAnyRole("ADMIN", "USER", "SUPERUSER")
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll()
+                        .defaultSuccessUrl("/home", true)
+                )
+//                .sessionManagement(session -> session
+//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                )
+                .build();
     }
 
     /**

@@ -29,21 +29,32 @@
                 <td th:text="${user.role}"></td>
                 <td>
                     <a th:href="@{/manage-users/edit/{username}(username=${user.username})}" class="openEditModalBtn">
-                        <img src="/image/edit-icon.png" alt="Modify" width="20" class="darken-icon">
+                        <img src="/image/edit-icon.svg" alt="Modify" width="20" >
                     </a>
-                    <form th:action="@{/manage-users/delete/{username}(username=${user.username})}" method="post" style="display:inline;">
+                    <form th:action="@{/manage-users/delete/{username}(username=${user.username})}" method="post" class="deleteForm" style="display:inline;">
+<!--                    <form th:action="@{/manage-users/toto}" method="post" class="deleteForm" style="display:inline;">-->
                         <input type="hidden" name="_method" value="DELETE" />
                         <button type="submit" style="background:none; border:none;">
-                            <img src="/image/delete-icon.png" alt="Delete" width="20">
+                            <img src="/image/delete-icon.svg" alt="Delete" width="20">
                         </button>
                     </form>
                 </td>
             </tr>
             </tbody>
         </table>
+        <!-- Popup de confirmation -->
+        <div id="deleteUserPopup" class="modal">
+            <div class="modal-content-delete">
+                <h2>Confirm delete?</h2>
+                <div class="form-buttons-delete">
+                    <button id="confirmDelete" class="formButton">Delete</button>
+                    <button id="cancelDelete" class="formButton">Cancel</button>
+                </div>
+            </div>
+        </div>
 
         <!-- Formulaire pour modifier un utilisateur -->
-        <div id="editUserModal" class="modal" th:if="${user != null}">
+        <div id="editUserPopup" class="modal" th:if="${user != null}">
             <div class="modal-content">
                 <h2>Edit User</h2>
                 <form th:action="@{/manage-users/edit}" th:object="${user}" method="post">
@@ -58,17 +69,17 @@
                     </select>
                     <div class="form-buttons">
                         <button type="submit">Update</button>
-                        <button type="button" class="closeEdit">Exit</button>
+                        <button type="button" id="closeEdit">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
 
         <!-- Bouton pour ouvrir la popup Create -->
-        <button id="openModalBtn">Add User</button>
+        <button id="openCreateBtn">Add User</button>
 
         <!-- Formulaire pour ajouter un utilisateur -->
-        <div id="createUserModal" class="modal modalCreate">
+        <div id="createUserPopup" class="modal modalCreate">
             <div class="modal-content">
                 <h2>Add User</h2>
                 <div th:if="${error}" class="alert alert-danger">
@@ -87,13 +98,14 @@
                     </select>
                     <div class="form-buttons">
                         <button type="submit">Add</button>
-                        <button type="button" class="closeCreate">Exit</button>
+                        <button type="button" id="closeCreate">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <script th:src="@{/javascript/manageUsers.js}"></script>
+    <script th:src="@{/javascript/manageUsers.js}" defer></script>
+<!--    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>-->
 </body>
 </html>

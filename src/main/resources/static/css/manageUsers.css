@@ -49,21 +49,19 @@ td a, td form {
 
 a img, button img {
     margin: 0 10px;
-    width: 20px;
+    filter: invert(1);
+    width: 2.5vw;
     height: auto;
     transition: transform 0.3s ease;
 }
 
-.darken-icon {
-    filter: brightness(0.1) contrast(200%);
-}
-
 a:hover img, button:hover img {
     transform: scale(1.1);
+    filter: invert(95%) sepia(92%) saturate(2891%) hue-rotate(267deg) brightness(90%) contrast(89%);
 }
 
 /* Style du bouton Add */
-#openModalBtn {
+#openCreateBtn {
     display: block;
     margin: 20px auto;
     padding: 12px 20px;
@@ -76,11 +74,11 @@ a:hover img, button:hover img {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#openModalBtn:hover {
+#openCreateBtn:hover {
     background-color: #4b0c68;
 }
 
-/* Style de la modale */
+/* Style de la popup */
 .modal {
     position: fixed;
     z-index: 1;
@@ -89,13 +87,8 @@ a:hover img, button:hover img {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
     padding-top: 60px;
-}
-
-.modalCreate {
-    display: none;
 }
 
 .modal-content {
@@ -105,6 +98,16 @@ a:hover img, button:hover img {
     border: 1px solid #888;
     width: 40%;
     max-width: 600px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.modal-content-delete {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
     border-radius: 8px;
     margin-bottom: 15px;
 }
@@ -131,7 +134,7 @@ form input:focus, form select:focus {
     outline: none;
 }
 
-form button {
+form button, .formButton {
     padding: 12px 20px;
     background-color: #662179;
     color: white;
@@ -148,7 +151,13 @@ form button {
     gap: 15px;
 }
 
-form button:hover {
+.form-buttons-delete {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+form button:hover, .formButton:hover {
     background-color: #4b0c68;
     cursor: pointer;
 }
