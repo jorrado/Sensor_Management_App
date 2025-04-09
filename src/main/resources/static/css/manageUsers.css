@@ -20,6 +20,11 @@ table {
 th, td {
     padding: 12px 15px;
     text-align: center;
+    word-wrap: break-word;
+    max-width: 20px;  /* Ajuste la valeur selon tes besoins */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 th {

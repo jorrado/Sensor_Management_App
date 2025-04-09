@@ -95,3 +95,12 @@ document.getElementById('confirmDelete').addEventListener('click', () => {
 document.getElementById('cancelDelete').addEventListener('click', () => {
     modalDelete.style.display = 'none';
 });
+
+// actualisation des données à chaque fois
+window.addEventListener('pageshow', function(event) {
+  if (event.persisted) {
+    window.location.reload();
+    modalCreate.style.display = "none";
+    modalDelete.style.display = "none";
+  }
+});
