@@ -11,7 +11,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <FileNamePattern>logs/info-%d{yyyy-MM-dd}.log</FileNamePattern>
             <maxFileSize>2MB</maxFileSize>
-            <maxHistory>7</maxHistory>
+            <maxHistory>3</maxHistory>
             <totalSizeCap>5MB</totalSizeCap>
             <cleanHistoryOnStart>true</cleanHistoryOnStart>
         </rollingPolicy>

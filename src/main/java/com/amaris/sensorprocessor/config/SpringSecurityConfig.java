@@ -35,10 +35,15 @@ public class SpringSecurityConfig {
         return http
 //                .csrf(csrf -> csrf.disable()) // Désactive la protection CSRF
 //                .cors(Customizer.withDefaults()) // Active la configuration CORS par défaut
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/css/**", "/image/**").permitAll()
+//                        .anyRequest().hasAnyRole("ADMIN", "USER", "SUPERUSER")
+//                )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/image/**").permitAll()
+                        .requestMatchers("/", "/css/**", "/image/**", "/login").permitAll()
                         .anyRequest().hasAnyRole("ADMIN", "USER", "SUPERUSER")
                 )
+
                 .formLogin(form -> form
                         .loginPage("/login")
                         .permitAll()
