@@ -99,7 +99,9 @@ document.getElementById('cancelDelete').addEventListener('click', () => {
 // actualisation des données à chaque fois
 window.addEventListener('pageshow', function(event) {
   if (event.persisted) {
-    window.location.reload();
+    modalEdit.style.display = "none";
+    window.location.href = "/manage-users";
+    //window.location.reload();
     modalCreate.style.display = "none";
     modalDelete.style.display = "none";
   }

@@ -41,9 +41,9 @@ public class SpringSecurityConfig {
 //                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/css/**", "/image/**", "/login").permitAll()
+                        .requestMatchers("/home").authenticated()
                         .anyRequest().hasAnyRole("ADMIN", "USER", "SUPERUSER")
                 )
-
                 .formLogin(form -> form
                         .loginPage("/login")
                         .permitAll()
