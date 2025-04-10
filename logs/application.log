@@ -2266,3 +2266,18 @@
 2025-04-10 13:11:15 - Closing org.springframework.web.context.support.GenericWebApplicationContext@1dab9dd6, started on Thu Apr 10 13:11:12 CEST 2025
 2025-04-10 13:11:15 - HikariPool-1 - Shutdown initiated...
 2025-04-10 13:11:15 - HikariPool-1 - Shutdown completed.
+2025-04-10T14:52:40.722+02:00  INFO 7676 --- [main] c.a.s.SensorprocessorApplicationTests    : Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 7676 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-10T14:52:40.724+02:00  INFO 7676 --- [main] c.a.s.SensorprocessorApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-04-10T14:52:40.749+02:00 DEBUG 7676 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002
+2025-04-10T14:52:41.891+02:00  INFO 7676 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-10T14:52:42.108+02:00  INFO 7676 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@2ad99cf3
+2025-04-10T14:52:42.110+02:00  INFO 7676 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-10T14:52:42.272+02:00  INFO 7676 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-10T14:52:42.561+02:00 DEBUG 7676 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 9 mappings in 'requestMappingHandlerMapping'
+2025-04-10T14:52:42.767+02:00 DEBUG 7676 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-10T14:52:43.249+02:00 DEBUG 7676 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-10T14:52:43.350+02:00 DEBUG 7676 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-10T14:52:43.691+02:00  INFO 7676 --- [main] c.a.s.SensorprocessorApplicationTests    : Started SensorprocessorApplicationTests in 3.237 seconds (process running for 4.22)
+2025-04-10T14:52:44.590+02:00 DEBUG 7676 --- [SpringApplicationShutdownHook] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Thu Apr 10 14:52:40 CEST 2025
+2025-04-10T14:52:44.593+02:00  INFO 7676 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-10T14:52:44.595+02:00  INFO 7676 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
