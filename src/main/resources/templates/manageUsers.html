@@ -31,10 +31,15 @@
                     <a th:href="@{/manage-users/edit/{username}(username=${user.username})}" class="openEditModalBtn">
                         <img src="/image/edit-icon.svg" alt="Modify" width="20" >
                     </a>
-                    <form th:action="@{/manage-users/delete/{username}(username=${user.username})}" method="post" class="deleteForm" style="display:inline;">
-<!--                    <form th:action="@{/manage-users/toto}" method="post" class="deleteForm" style="display:inline;">-->
+                    <form th:if="${user.username != loggedUsername}" th:action="@{/manage-users/delete/{username}(username=${user.username})}" method="post" class="deleteForm" style="display:inline;">
                         <input type="hidden" name="_method" value="DELETE" />
                         <button type="submit" style="background:none; border:none;">
+                            <img src="/image/delete-icon.svg" alt="Delete" width="20">
+                        </button>
+                    </form>
+                    <!-- Bouton désactivé pour l'utilisateur connecté -->
+                    <form th:if="${user.username == loggedUsername}" class="disabledBtn" style="display:inline;">
+                        <button th:if="${user.username == loggedUsername}" type="button" style="background:none; border:none; pointer-events: none;" disabled>
                             <img src="/image/delete-icon.svg" alt="Delete" width="20">
                         </button>
                     </form>

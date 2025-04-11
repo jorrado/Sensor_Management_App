@@ -167,6 +167,11 @@ form button:hover, .formButton:hover {
     cursor: pointer;
 }
 
+.disabledBtn:hover {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 .alert-danger {
     color: #fff;
     background-color: #d9534f;
