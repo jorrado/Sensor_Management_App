@@ -96,13 +96,15 @@ document.getElementById('cancelDelete').addEventListener('click', () => {
     modalDelete.style.display = 'none';
 });
 
-// actualisation des données à chaque fois
+// retour à la page /home avec le clic retour du navigateur
 window.addEventListener('pageshow', function(event) {
-  if (event.persisted) {
-    modalEdit.style.display = "none";
-    window.location.href = "/manage-users";
-    //window.location.reload();
-    modalCreate.style.display = "none";
-    modalDelete.style.display = "none";
-  }
+    if (event.persisted) {
+        console.log("Page chargée depuis le cache");
+        if (modalEdit) {
+            modalEdit.style.display = "none";
+        }
+        modalCreate.style.display = "none";
+        modalDelete.style.display = "none";
+        window.location.href = "/home?" + new Date().getTime();
+    }
 });

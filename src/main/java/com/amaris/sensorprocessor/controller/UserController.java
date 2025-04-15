@@ -3,6 +3,7 @@ package com.amaris.sensorprocessor.controller;
 import com.amaris.sensorprocessor.entity.User;
 import com.amaris.sensorprocessor.exception.ProblemeUsersException;
 import com.amaris.sensorprocessor.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ public class UserController {
     public String manageUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
+//        model.asMap().remove("user");
         String loggedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         model.addAttribute("loggedUsername", loggedUsername);
         return "manageUsers";
