@@ -1,0 +1,7 @@
+body {
+    background-image: url('/image/mantu-background.jpg');
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    background-repeat: no-repeat;
+}

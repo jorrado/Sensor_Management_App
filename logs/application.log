@@ -5675,3 +5675,1060 @@
 2025-04-15 10:42:41 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Tue Apr 15 10:42:37 CEST 2025
 2025-04-15 10:42:41 - HikariPool-1 - Shutdown initiated...
 2025-04-15 10:42:41 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:00:05 - Starting SensorprocessorApplication using Java 17.0.11 with PID 2120 (C:\Users\jorrado\GitLabProject\Sensor_Management_App\target\classes started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:00:05 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:00:06 - Tomcat initialized with port 8080 (http)
+2025-04-15 11:00:06 - Starting service [Tomcat]
+2025-04-15 11:00:06 - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-15 11:00:06 - Initializing Spring embedded WebApplicationContext
+2025-04-15 11:00:06 - Root WebApplicationContext: initialization completed in 1308 ms
+2025-04-15 11:00:06 - HikariPool-1 - Starting...
+2025-04-15 11:00:06 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@3635099
+2025-04-15 11:00:06 - HikariPool-1 - Start completed.
+2025-04-15 11:00:07 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:00:07 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:00:07 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:00:07 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:00:07 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:00:08 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-15 11:00:08 - Started SensorprocessorApplication in 3.516 seconds (process running for 3.821)
+2025-04-15 11:00:09 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-15 11:00:09 - Initializing Servlet 'dispatcherServlet'
+2025-04-15 11:00:09 - Detected StandardServletMultipartResolver
+2025-04-15 11:00:09 - Detected AcceptHeaderLocaleResolver
+2025-04-15 11:00:09 - Detected FixedThemeResolver
+2025-04-15 11:00:09 - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@345f4018
+2025-04-15 11:00:09 - Detected org.springframework.web.servlet.support.SessionFlashMapManager@76552aa4
+2025-04-15 11:00:09 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-04-15 11:00:09 - Completed initialization in 1 ms
+2025-04-15 11:00:09 - GET "/login", parameters={}
+2025-04-15 11:00:09 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:00:09 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:00:10 - Completed 200 OK
+2025-04-15 11:00:10 - GET "/css/styles.css", parameters={}
+2025-04-15 11:00:10 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:00:10 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:10 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:10 - Completed 200 OK
+2025-04-15 11:00:10 - Completed 200 OK
+2025-04-15 11:00:16 - GET "/home", parameters={}
+2025-04-15 11:00:16 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-04-15 11:00:16 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:00:16 - Completed 200 OK
+2025-04-15 11:00:16 - GET "/css/styles.css", parameters={}
+2025-04-15 11:00:16 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:16 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:00:16 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:16 - Completed 200 OK
+2025-04-15 11:00:16 - Completed 200 OK
+2025-04-15 11:00:17 - GET "/manage-users", parameters={}
+2025-04-15 11:00:17 - Mapped to com.amaris.sensorprocessor.controller.UserController#manageUsers(Model)
+2025-04-15 11:00:17 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:00:17 - Completed 200 OK
+2025-04-15 11:00:18 - GET "/css/styles.css", parameters={}
+2025-04-15 11:00:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:18 - GET "/css/manageUsers.css", parameters={}
+2025-04-15 11:00:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:18 - Completed 200 OK
+2025-04-15 11:00:18 - GET "/image/edit-icon.svg", parameters={}
+2025-04-15 11:00:18 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:00:18 - GET "/image/delete-icon.svg", parameters={}
+2025-04-15 11:00:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:18 - GET "/javascript/manageUsers.js", parameters={}
+2025-04-15 11:00:18 - Completed 200 OK
+2025-04-15 11:00:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:18 - Completed 200 OK
+2025-04-15 11:00:18 - Completed 200 OK
+2025-04-15 11:00:18 - Completed 200 OK
+2025-04-15 11:00:18 - Completed 200 OK
+2025-04-15 11:00:27 - GET "/manage-users/edit/user4444RRRBBBBB", parameters={}
+2025-04-15 11:00:27 - Mapped to com.amaris.sensorprocessor.controller.UserController#editUser(String, Model)
+2025-04-15 11:00:27 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:00:27 - Completed 200 OK
+2025-04-15 11:00:27 - GET "/css/styles.css", parameters={}
+2025-04-15 11:00:27 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:27 - Completed 200 OK
+2025-04-15 11:00:27 - GET "/image/edit-icon.svg", parameters={}
+2025-04-15 11:00:27 - GET "/css/manageUsers.css", parameters={}
+2025-04-15 11:00:27 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:00:27 - GET "/image/delete-icon.svg", parameters={}
+2025-04-15 11:00:27 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:27 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:27 - GET "/javascript/manageUsers.js", parameters={}
+2025-04-15 11:00:27 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:27 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:27 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:00:27 - Completed 200 OK
+2025-04-15 11:00:27 - Completed 200 OK
+2025-04-15 11:00:27 - Completed 200 OK
+2025-04-15 11:00:27 - Completed 200 OK
+2025-04-15 11:00:27 - Completed 200 OK
+2025-04-15 11:05:49 - Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 10720 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:05:49 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:05:49 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002
+2025-04-15 11:05:50 - HikariPool-1 - Starting...
+2025-04-15 11:05:50 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@feb098f
+2025-04-15 11:05:50 - HikariPool-1 - Start completed.
+2025-04-15 11:05:50 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:05:50 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:05:50 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:05:51 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:05:51 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:05:51 - Started SensorprocessorApplicationTests in 2.946 seconds (process running for 3.841)
+2025-04-15 11:05:52 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Tue Apr 15 11:05:49 CEST 2025
+2025-04-15 11:05:52 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:05:52 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:06:25 - Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 12960 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:06:25 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:06:25 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002
+2025-04-15 11:06:26 - HikariPool-1 - Starting...
+2025-04-15 11:06:26 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@44286963
+2025-04-15 11:06:26 - HikariPool-1 - Start completed.
+2025-04-15 11:06:26 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:06:27 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:06:27 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-15 11:06:27 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:06:27 - Graceful shutdown complete
+2025-04-15 11:06:27 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:06:27 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:06:27 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:06:27 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:06:28 - Started SensorprocessorApplicationTests in 2.995 seconds (process running for 3.904)
+2025-04-15 11:06:28 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Tue Apr 15 11:06:25 CEST 2025
+2025-04-15 11:06:28 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:06:28 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:06:42 - Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 11592 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:06:42 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:06:42 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002
+2025-04-15 11:06:42 - HikariPool-1 - Starting...
+2025-04-15 11:06:43 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@5c6a5192
+2025-04-15 11:06:43 - HikariPool-1 - Start completed.
+2025-04-15 11:06:43 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:06:43 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:06:43 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:06:44 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:06:44 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:06:44 - Started SensorprocessorApplicationTests in 2.792 seconds (process running for 3.727)
+2025-04-15 11:06:45 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Tue Apr 15 11:06:42 CEST 2025
+2025-04-15 11:06:45 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:06:45 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:06:50 - Starting SensorprocessorApplication using Java 17.0.11 with PID 23584 (C:\Users\jorrado\GitLabProject\Sensor_Management_App\target\classes started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:06:50 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:06:51 - Tomcat initialized with port 8080 (http)
+2025-04-15 11:06:51 - Starting service [Tomcat]
+2025-04-15 11:06:51 - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-15 11:06:51 - Initializing Spring embedded WebApplicationContext
+2025-04-15 11:06:51 - Root WebApplicationContext: initialization completed in 1365 ms
+2025-04-15 11:06:51 - HikariPool-1 - Starting...
+2025-04-15 11:06:51 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@6adc5b9c
+2025-04-15 11:06:51 - HikariPool-1 - Start completed.
+2025-04-15 11:06:52 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:06:52 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:06:52 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:06:52 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:06:52 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:06:53 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-15 11:06:53 - Started SensorprocessorApplication in 3.541 seconds (process running for 3.857)
+2025-04-15 11:06:56 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-15 11:06:56 - Initializing Servlet 'dispatcherServlet'
+2025-04-15 11:06:56 - Detected StandardServletMultipartResolver
+2025-04-15 11:06:56 - Detected AcceptHeaderLocaleResolver
+2025-04-15 11:06:56 - Detected FixedThemeResolver
+2025-04-15 11:06:56 - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6b393776
+2025-04-15 11:06:56 - Detected org.springframework.web.servlet.support.SessionFlashMapManager@77eeb8d9
+2025-04-15 11:06:56 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-04-15 11:06:56 - Completed initialization in 2 ms
+2025-04-15 11:06:56 - GET "/login", parameters={}
+2025-04-15 11:06:56 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:06:56 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:06:56 - Completed 200 OK
+2025-04-15 11:06:56 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:06:56 - GET "/css/styles.css", parameters={}
+2025-04-15 11:06:56 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:06:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:06:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:06:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:06:56 - Completed 200 OK
+2025-04-15 11:06:56 - Completed 200 OK
+2025-04-15 11:06:56 - Completed 200 OK
+2025-04-15 11:06:56 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:06:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:06:56 - Completed 200 OK
+2025-04-15 11:07:02 - GET "/home", parameters={}
+2025-04-15 11:07:02 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-04-15 11:07:02 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:07:02 - Completed 200 OK
+2025-04-15 11:07:02 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:07:02 - GET "/css/styles.css", parameters={}
+2025-04-15 11:07:02 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:07:02 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:02 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:02 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:02 - Completed 200 OK
+2025-04-15 11:07:02 - Completed 200 OK
+2025-04-15 11:07:02 - Completed 200 OK
+2025-04-15 11:07:02 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:07:02 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:02 - Completed 200 OK
+2025-04-15 11:07:07 - GET "/manage-users", parameters={}
+2025-04-15 11:07:07 - Mapped to com.amaris.sensorprocessor.controller.UserController#manageUsers(Model)
+2025-04-15 11:07:07 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:07:07 - Completed 200 OK
+2025-04-15 11:07:07 - GET "/css/styles.css", parameters={}
+2025-04-15 11:07:07 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:07 - Completed 200 OK
+2025-04-15 11:07:07 - GET "/css/manageUsers.css", parameters={}
+2025-04-15 11:07:07 - GET "/image/edit-icon.svg", parameters={}
+2025-04-15 11:07:07 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:07:07 - GET "/image/delete-icon.svg", parameters={}
+2025-04-15 11:07:07 - GET "/javascript/manageUsers.js", parameters={}
+2025-04-15 11:07:07 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:07 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:07 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:07 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:07 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:07 - Completed 200 OK
+2025-04-15 11:07:07 - Completed 200 OK
+2025-04-15 11:07:07 - Completed 200 OK
+2025-04-15 11:07:07 - Completed 200 OK
+2025-04-15 11:07:07 - Completed 200 OK
+2025-04-15 11:07:10 - GET "/css/styles.css", parameters={}
+2025-04-15 11:07:10 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:07:10 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:10 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:10 - Completed 200 OK
+2025-04-15 11:07:10 - Completed 200 OK
+2025-04-15 11:07:11 - GET "/login", parameters={}
+2025-04-15 11:07:11 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:07:11 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:07:11 - Completed 200 OK
+2025-04-15 11:07:11 - GET "/css/styles.css", parameters={}
+2025-04-15 11:07:11 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:07:11 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:07:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:11 - Completed 200 OK
+2025-04-15 11:07:11 - Completed 200 OK
+2025-04-15 11:07:11 - Completed 200 OK
+2025-04-15 11:07:11 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:07:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:07:11 - Completed 200 OK
+2025-04-15 11:09:41 - Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 10720 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:09:41 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:09:41 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002
+2025-04-15 11:09:42 - HikariPool-1 - Starting...
+2025-04-15 11:09:42 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@552cede7
+2025-04-15 11:09:42 - HikariPool-1 - Start completed.
+2025-04-15 11:09:42 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:09:42 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:09:43 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:09:43 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:09:43 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:09:44 - Started SensorprocessorApplicationTests in 2.887 seconds (process running for 3.726)
+2025-04-15 11:09:44 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Tue Apr 15 11:09:41 CEST 2025
+2025-04-15 11:09:44 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:09:44 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:09:51 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-15 11:09:51 - Graceful shutdown complete
+2025-04-15 11:09:51 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:09:51 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:09:54 - Starting SensorprocessorApplication using Java 17.0.11 with PID 11728 (C:\Users\jorrado\GitLabProject\Sensor_Management_App\target\classes started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:09:54 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:09:56 - Tomcat initialized with port 8080 (http)
+2025-04-15 11:09:56 - Starting service [Tomcat]
+2025-04-15 11:09:56 - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-15 11:09:56 - Initializing Spring embedded WebApplicationContext
+2025-04-15 11:09:56 - Root WebApplicationContext: initialization completed in 1277 ms
+2025-04-15 11:09:56 - HikariPool-1 - Starting...
+2025-04-15 11:09:56 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@2accaec2
+2025-04-15 11:09:56 - HikariPool-1 - Start completed.
+2025-04-15 11:09:56 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:09:56 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:09:57 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:09:57 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:09:57 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:09:57 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-15 11:09:57 - Started SensorprocessorApplication in 3.395 seconds (process running for 3.705)
+2025-04-15 11:09:58 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-15 11:09:58 - Initializing Servlet 'dispatcherServlet'
+2025-04-15 11:09:58 - Detected StandardServletMultipartResolver
+2025-04-15 11:09:58 - Detected AcceptHeaderLocaleResolver
+2025-04-15 11:09:58 - Detected FixedThemeResolver
+2025-04-15 11:09:58 - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6b393776
+2025-04-15 11:09:58 - Detected org.springframework.web.servlet.support.SessionFlashMapManager@77eeb8d9
+2025-04-15 11:09:58 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-04-15 11:09:58 - Completed initialization in 2 ms
+2025-04-15 11:09:58 - GET "/login", parameters={}
+2025-04-15 11:09:58 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:09:58 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:09:59 - Completed 200 OK
+2025-04-15 11:09:59 - GET "/css/styles.css", parameters={}
+2025-04-15 11:09:59 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:09:59 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:09:59 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:09:59 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:09:59 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:09:59 - Completed 200 OK
+2025-04-15 11:09:59 - Completed 200 OK
+2025-04-15 11:09:59 - Completed 200 OK
+2025-04-15 11:09:59 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:09:59 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:09:59 - Completed 200 OK
+2025-04-15 11:10:01 - GET "/login", parameters={}
+2025-04-15 11:10:01 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:10:01 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:10:01 - Completed 200 OK
+2025-04-15 11:10:01 - GET "/css/styles.css", parameters={}
+2025-04-15 11:10:01 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:10:01 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:10:01 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:01 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:01 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:01 - Completed 200 OK
+2025-04-15 11:10:01 - Completed 200 OK
+2025-04-15 11:10:01 - Completed 200 OK
+2025-04-15 11:10:01 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:10:01 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:01 - Completed 200 OK
+2025-04-15 11:10:02 - GET "/login", parameters={}
+2025-04-15 11:10:02 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:10:02 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:10:02 - Completed 200 OK
+2025-04-15 11:10:02 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:10:02 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:10:02 - GET "/css/styles.css", parameters={}
+2025-04-15 11:10:02 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:02 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:02 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:02 - Completed 200 OK
+2025-04-15 11:10:02 - Completed 200 OK
+2025-04-15 11:10:02 - Completed 200 OK
+2025-04-15 11:10:02 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:10:02 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:02 - Completed 200 OK
+2025-04-15 11:10:03 - GET "/login", parameters={}
+2025-04-15 11:10:03 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:10:03 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:10:03 - Completed 200 OK
+2025-04-15 11:10:03 - GET "/css/styles.css", parameters={}
+2025-04-15 11:10:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:03 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:10:03 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:10:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:03 - Completed 200 OK
+2025-04-15 11:10:03 - Completed 200 OK
+2025-04-15 11:10:03 - Completed 200 OK
+2025-04-15 11:10:03 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:10:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:03 - Completed 200 OK
+2025-04-15 11:10:04 - GET "/login", parameters={}
+2025-04-15 11:10:04 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:10:04 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:10:04 - Completed 200 OK
+2025-04-15 11:10:04 - GET "/css/styles.css", parameters={}
+2025-04-15 11:10:04 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:04 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:10:04 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:10:04 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:04 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:04 - Completed 200 OK
+2025-04-15 11:10:04 - Completed 200 OK
+2025-04-15 11:10:04 - Completed 200 OK
+2025-04-15 11:10:04 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:10:04 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:04 - Completed 200 OK
+2025-04-15 11:10:05 - GET "/login", parameters={}
+2025-04-15 11:10:05 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:10:05 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:10:05 - Completed 200 OK
+2025-04-15 11:10:05 - GET "/css/styles.css", parameters={}
+2025-04-15 11:10:05 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:10:05 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:10:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:05 - Completed 200 OK
+2025-04-15 11:10:05 - Completed 200 OK
+2025-04-15 11:10:05 - Completed 200 OK
+2025-04-15 11:10:05 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:10:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:05 - Completed 200 OK
+2025-04-15 11:10:05 - GET "/login", parameters={}
+2025-04-15 11:10:05 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:10:05 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:10:05 - Completed 200 OK
+2025-04-15 11:10:05 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:10:05 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:10:05 - GET "/css/styles.css", parameters={}
+2025-04-15 11:10:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:05 - Completed 200 OK
+2025-04-15 11:10:05 - Completed 200 OK
+2025-04-15 11:10:05 - Completed 200 OK
+2025-04-15 11:10:05 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:10:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:05 - Completed 200 OK
+2025-04-15 11:10:06 - GET "/login", parameters={}
+2025-04-15 11:10:06 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:10:06 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:10:06 - Completed 200 OK
+2025-04-15 11:10:06 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:10:06 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:10:06 - GET "/css/styles.css", parameters={}
+2025-04-15 11:10:06 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:06 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:06 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:06 - Completed 200 OK
+2025-04-15 11:10:06 - Completed 200 OK
+2025-04-15 11:10:06 - Completed 200 OK
+2025-04-15 11:10:06 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:10:06 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:06 - Completed 200 OK
+2025-04-15 11:10:06 - GET "/login", parameters={}
+2025-04-15 11:10:06 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:10:06 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:10:06 - Completed 200 OK
+2025-04-15 11:10:06 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:10:06 - GET "/css/styles.css", parameters={}
+2025-04-15 11:10:06 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:10:06 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:06 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:06 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:06 - Completed 200 OK
+2025-04-15 11:10:06 - Completed 200 OK
+2025-04-15 11:10:06 - Completed 200 OK
+2025-04-15 11:10:06 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:10:06 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:06 - Completed 200 OK
+2025-04-15 11:10:08 - GET "/login", parameters={}
+2025-04-15 11:10:08 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:10:08 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:10:08 - Completed 200 OK
+2025-04-15 11:10:08 - GET "/css/styles.css", parameters={}
+2025-04-15 11:10:08 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:10:08 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:10:08 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:08 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:08 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:08 - Completed 200 OK
+2025-04-15 11:10:08 - Completed 200 OK
+2025-04-15 11:10:08 - Completed 200 OK
+2025-04-15 11:10:08 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:10:08 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:10:08 - Completed 200 OK
+2025-04-15 11:12:33 - GET "/login", parameters={}
+2025-04-15 11:12:33 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:12:33 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:12:33 - Completed 200 OK
+2025-04-15 11:12:33 - GET "/css/styles.css", parameters={}
+2025-04-15 11:12:33 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:33 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:12:33 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:33 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:12:33 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:33 - Completed 200 OK
+2025-04-15 11:12:33 - Completed 200 OK
+2025-04-15 11:12:33 - Completed 200 OK
+2025-04-15 11:12:33 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:12:33 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:33 - Completed 200 OK
+2025-04-15 11:12:34 - GET "/login", parameters={}
+2025-04-15 11:12:34 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:12:34 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:12:34 - Completed 200 OK
+2025-04-15 11:12:34 - GET "/css/styles.css", parameters={}
+2025-04-15 11:12:34 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:12:34 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:12:34 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:34 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:34 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:34 - Completed 200 OK
+2025-04-15 11:12:34 - Completed 200 OK
+2025-04-15 11:12:34 - Completed 200 OK
+2025-04-15 11:12:34 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:12:34 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:34 - Completed 200 OK
+2025-04-15 11:12:34 - GET "/login", parameters={}
+2025-04-15 11:12:34 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:12:34 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:12:34 - Completed 200 OK
+2025-04-15 11:12:34 - GET "/css/styles.css", parameters={}
+2025-04-15 11:12:34 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:12:34 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:12:34 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:34 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:34 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:34 - Completed 200 OK
+2025-04-15 11:12:34 - Completed 200 OK
+2025-04-15 11:12:34 - Completed 200 OK
+2025-04-15 11:12:34 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:12:34 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:34 - Completed 200 OK
+2025-04-15 11:12:35 - GET "/login", parameters={}
+2025-04-15 11:12:35 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:12:35 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:12:35 - Completed 200 OK
+2025-04-15 11:12:35 - GET "/css/styles.css", parameters={}
+2025-04-15 11:12:35 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:12:35 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:12:35 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:35 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:35 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:35 - Completed 200 OK
+2025-04-15 11:12:35 - Completed 200 OK
+2025-04-15 11:12:35 - Completed 200 OK
+2025-04-15 11:12:35 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:12:35 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:35 - Completed 200 OK
+2025-04-15 11:12:36 - GET "/login", parameters={}
+2025-04-15 11:12:36 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:12:36 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:12:36 - Completed 200 OK
+2025-04-15 11:12:36 - GET "/css/styles.css", parameters={}
+2025-04-15 11:12:36 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:36 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:12:36 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:12:36 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:36 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:36 - Completed 200 OK
+2025-04-15 11:12:36 - Completed 200 OK
+2025-04-15 11:12:36 - Completed 200 OK
+2025-04-15 11:12:36 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:12:36 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:12:36 - Completed 200 OK
+2025-04-15 11:25:09 - GET "/login", parameters={}
+2025-04-15 11:25:09 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:25:09 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:25:09 - Completed 200 OK
+2025-04-15 11:25:09 - GET "/css/styles.css", parameters={}
+2025-04-15 11:25:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:09 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:25:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:09 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:25:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:09 - Completed 200 OK
+2025-04-15 11:25:09 - Completed 200 OK
+2025-04-15 11:25:09 - Completed 200 OK
+2025-04-15 11:25:09 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:25:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:09 - Completed 200 OK
+2025-04-15 11:25:11 - GET "/login", parameters={}
+2025-04-15 11:25:11 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:25:11 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:25:11 - Completed 200 OK
+2025-04-15 11:25:11 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:25:11 - GET "/css/styles.css", parameters={}
+2025-04-15 11:25:11 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:25:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:11 - Completed 200 OK
+2025-04-15 11:25:11 - Completed 200 OK
+2025-04-15 11:25:11 - Completed 200 OK
+2025-04-15 11:25:11 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:25:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:11 - Completed 200 OK
+2025-04-15 11:25:39 - Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 13604 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:25:39 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:25:39 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002
+2025-04-15 11:25:40 - HikariPool-1 - Starting...
+2025-04-15 11:25:40 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@552cede7
+2025-04-15 11:25:40 - HikariPool-1 - Start completed.
+2025-04-15 11:25:40 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:25:40 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:25:41 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:25:41 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:25:41 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:25:42 - Started SensorprocessorApplicationTests in 3.183 seconds (process running for 4.266)
+2025-04-15 11:25:43 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Tue Apr 15 11:25:39 CEST 2025
+2025-04-15 11:25:43 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:25:43 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:25:45 - GET "/login", parameters={}
+2025-04-15 11:25:45 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:25:45 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:25:45 - Completed 200 OK
+2025-04-15 11:25:45 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:25:45 - GET "/css/styles.css", parameters={}
+2025-04-15 11:25:45 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:25:45 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:45 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:45 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:45 - Completed 200 OK
+2025-04-15 11:25:45 - Completed 200 OK
+2025-04-15 11:25:45 - Completed 200 OK
+2025-04-15 11:25:45 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:25:45 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:45 - Completed 200 OK
+2025-04-15 11:25:56 - GET "/home", parameters={}
+2025-04-15 11:25:56 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-04-15 11:25:56 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:25:56 - Completed 200 OK
+2025-04-15 11:25:56 - GET "/css/styles.css", parameters={}
+2025-04-15 11:25:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:56 - Completed 200 OK
+2025-04-15 11:25:56 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:25:56 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:25:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:56 - Completed 200 OK
+2025-04-15 11:25:56 - Completed 200 OK
+2025-04-15 11:25:56 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:25:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:56 - Completed 200 OK
+2025-04-15 11:25:58 - GET "/manage-users", parameters={}
+2025-04-15 11:25:58 - Mapped to com.amaris.sensorprocessor.controller.UserController#manageUsers(Model)
+2025-04-15 11:25:58 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:25:58 - Completed 200 OK
+2025-04-15 11:25:58 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:25:58 - GET "/css/manageUsers.css", parameters={}
+2025-04-15 11:25:58 - GET "/css/styles.css", parameters={}
+2025-04-15 11:25:58 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:58 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:58 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:58 - Completed 200 OK
+2025-04-15 11:25:58 - Completed 200 OK
+2025-04-15 11:25:58 - GET "/image/edit-icon.svg", parameters={}
+2025-04-15 11:25:58 - GET "/image/delete-icon.svg", parameters={}
+2025-04-15 11:25:58 - GET "/javascript/manageUsers.js", parameters={}
+2025-04-15 11:25:58 - Completed 200 OK
+2025-04-15 11:25:58 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:58 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:58 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:25:58 - Completed 200 OK
+2025-04-15 11:25:58 - Completed 200 OK
+2025-04-15 11:25:58 - Completed 200 OK
+2025-04-15 11:26:01 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:26:01 - GET "/css/styles.css", parameters={}
+2025-04-15 11:26:01 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:01 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:01 - Completed 200 OK
+2025-04-15 11:26:01 - Completed 200 OK
+2025-04-15 11:26:07 - GET "/login", parameters={}
+2025-04-15 11:26:07 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:26:07 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:26:07 - Completed 200 OK
+2025-04-15 11:26:07 - GET "/css/styles.css", parameters={}
+2025-04-15 11:26:07 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:07 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:26:07 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:26:07 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:07 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:07 - Completed 200 OK
+2025-04-15 11:26:07 - Completed 200 OK
+2025-04-15 11:26:07 - Completed 200 OK
+2025-04-15 11:26:07 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:26:07 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:07 - Completed 200 OK
+2025-04-15 11:26:25 - GET "/login", parameters={}
+2025-04-15 11:26:25 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:26:25 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:26:25 - Completed 200 OK
+2025-04-15 11:26:25 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:26:25 - GET "/css/styles.css", parameters={}
+2025-04-15 11:26:25 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:26:25 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:25 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:25 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:25 - Completed 200 OK
+2025-04-15 11:26:25 - Completed 200 OK
+2025-04-15 11:26:25 - Completed 200 OK
+2025-04-15 11:26:25 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:26:25 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:25 - Completed 200 OK
+2025-04-15 11:26:25 - GET "/login", parameters={}
+2025-04-15 11:26:25 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:26:25 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:26:25 - Completed 200 OK
+2025-04-15 11:26:25 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:26:25 - GET "/css/styles.css", parameters={}
+2025-04-15 11:26:25 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:26:25 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:25 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:25 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:25 - Completed 200 OK
+2025-04-15 11:26:25 - Completed 200 OK
+2025-04-15 11:26:25 - Completed 200 OK
+2025-04-15 11:26:25 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:26:25 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:25 - Completed 200 OK
+2025-04-15 11:26:26 - GET "/login", parameters={}
+2025-04-15 11:26:26 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:26:26 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:26:26 - Completed 200 OK
+2025-04-15 11:26:26 - GET "/css/styles.css", parameters={}
+2025-04-15 11:26:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:26 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:26:26 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:26:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:26 - Completed 200 OK
+2025-04-15 11:26:26 - Completed 200 OK
+2025-04-15 11:26:26 - Completed 200 OK
+2025-04-15 11:26:26 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:26:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:26 - Completed 200 OK
+2025-04-15 11:26:26 - GET "/login", parameters={}
+2025-04-15 11:26:26 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:26:26 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:26:26 - Completed 200 OK
+2025-04-15 11:26:26 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:26:26 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:26:26 - GET "/css/styles.css", parameters={}
+2025-04-15 11:26:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:26 - Completed 200 OK
+2025-04-15 11:26:26 - Completed 200 OK
+2025-04-15 11:26:26 - Completed 200 OK
+2025-04-15 11:26:26 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:26:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:26 - Completed 200 OK
+2025-04-15 11:26:38 - GET "/home", parameters={}
+2025-04-15 11:26:38 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-04-15 11:26:38 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:26:38 - Completed 200 OK
+2025-04-15 11:26:38 - GET "/css/styles.css", parameters={}
+2025-04-15 11:26:38 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:38 - Completed 200 OK
+2025-04-15 11:26:38 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:26:38 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:26:38 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:38 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:38 - Completed 200 OK
+2025-04-15 11:26:38 - Completed 200 OK
+2025-04-15 11:26:38 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:26:38 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:38 - Completed 200 OK
+2025-04-15 11:26:42 - GET "/manage-users", parameters={}
+2025-04-15 11:26:42 - Mapped to com.amaris.sensorprocessor.controller.UserController#manageUsers(Model)
+2025-04-15 11:26:42 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:26:42 - Completed 200 OK
+2025-04-15 11:26:42 - GET "/image/edit-icon.svg", parameters={}
+2025-04-15 11:26:42 - GET "/css/manageUsers.css", parameters={}
+2025-04-15 11:26:42 - GET "/javascript/manageUsers.js", parameters={}
+2025-04-15 11:26:42 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:26:42 - GET "/image/delete-icon.svg", parameters={}
+2025-04-15 11:26:42 - GET "/css/styles.css", parameters={}
+2025-04-15 11:26:42 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:42 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:42 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:42 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:42 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:42 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:42 - Completed 200 OK
+2025-04-15 11:26:42 - Completed 200 OK
+2025-04-15 11:26:42 - Completed 200 OK
+2025-04-15 11:26:42 - Completed 200 OK
+2025-04-15 11:26:42 - Completed 200 OK
+2025-04-15 11:26:42 - Completed 200 OK
+2025-04-15 11:26:49 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:26:49 - GET "/css/styles.css", parameters={}
+2025-04-15 11:26:49 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:49 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:49 - Completed 200 OK
+2025-04-15 11:26:49 - Completed 200 OK
+2025-04-15 11:26:51 - GET "/login", parameters={}
+2025-04-15 11:26:51 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:26:51 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:26:51 - Completed 200 OK
+2025-04-15 11:26:51 - GET "/css/styles.css", parameters={}
+2025-04-15 11:26:51 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:51 - Completed 200 OK
+2025-04-15 11:26:51 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:26:51 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:26:51 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:51 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:51 - Completed 200 OK
+2025-04-15 11:26:51 - Completed 200 OK
+2025-04-15 11:26:51 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:26:51 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:26:51 - Completed 200 OK
+2025-04-15 11:27:10 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-15 11:27:11 - Graceful shutdown complete
+2025-04-15 11:27:11 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:27:11 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:27:22 - Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 8912 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:27:22 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:27:22 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002
+2025-04-15 11:27:23 - HikariPool-1 - Starting...
+2025-04-15 11:27:23 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@5c6a5192
+2025-04-15 11:27:23 - HikariPool-1 - Start completed.
+2025-04-15 11:27:24 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:27:24 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:27:24 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:27:25 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:27:25 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:27:25 - Started SensorprocessorApplicationTests in 3.174 seconds (process running for 4.008)
+2025-04-15 11:27:26 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Tue Apr 15 11:27:22 CEST 2025
+2025-04-15 11:27:26 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:27:26 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:27:31 - Starting SensorprocessorApplication using Java 17.0.11 with PID 25128 (C:\Users\jorrado\GitLabProject\Sensor_Management_App\target\classes started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:27:31 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:27:32 - Tomcat initialized with port 8080 (http)
+2025-04-15 11:27:32 - Starting service [Tomcat]
+2025-04-15 11:27:32 - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-15 11:27:33 - Initializing Spring embedded WebApplicationContext
+2025-04-15 11:27:33 - Root WebApplicationContext: initialization completed in 1344 ms
+2025-04-15 11:27:33 - HikariPool-1 - Starting...
+2025-04-15 11:27:33 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@3332c7a5
+2025-04-15 11:27:33 - HikariPool-1 - Start completed.
+2025-04-15 11:27:33 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:27:33 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:27:33 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:27:34 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:27:34 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:27:34 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-15 11:27:34 - Started SensorprocessorApplication in 3.326 seconds (process running for 3.651)
+2025-04-15 11:27:35 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-15 11:27:35 - Initializing Servlet 'dispatcherServlet'
+2025-04-15 11:27:35 - Detected StandardServletMultipartResolver
+2025-04-15 11:27:35 - Detected AcceptHeaderLocaleResolver
+2025-04-15 11:27:35 - Detected FixedThemeResolver
+2025-04-15 11:27:35 - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@23156949
+2025-04-15 11:27:35 - Detected org.springframework.web.servlet.support.SessionFlashMapManager@7e488e5e
+2025-04-15 11:27:35 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-04-15 11:27:35 - Completed initialization in 2 ms
+2025-04-15 11:27:35 - GET "/login", parameters={}
+2025-04-15 11:27:35 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:27:35 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:27:35 - Completed 200 OK
+2025-04-15 11:27:35 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:27:35 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:27:35 - GET "/css/styles.css", parameters={}
+2025-04-15 11:27:35 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:35 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:35 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:35 - Completed 200 OK
+2025-04-15 11:27:35 - Completed 200 OK
+2025-04-15 11:27:35 - Completed 200 OK
+2025-04-15 11:27:35 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:27:35 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:35 - Completed 200 OK
+2025-04-15 11:27:42 - GET "/home", parameters={}
+2025-04-15 11:27:42 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-04-15 11:27:42 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:27:42 - Completed 200 OK
+2025-04-15 11:27:42 - GET "/css/styles.css", parameters={}
+2025-04-15 11:27:42 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:27:42 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:27:42 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:42 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:42 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:42 - Completed 200 OK
+2025-04-15 11:27:42 - Completed 200 OK
+2025-04-15 11:27:42 - Completed 200 OK
+2025-04-15 11:27:42 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:27:42 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:42 - Completed 200 OK
+2025-04-15 11:27:44 - GET "/manage-users", parameters={}
+2025-04-15 11:27:44 - Mapped to com.amaris.sensorprocessor.controller.UserController#manageUsers(Model)
+2025-04-15 11:27:44 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:27:44 - Completed 200 OK
+2025-04-15 11:27:44 - GET "/css/styles.css", parameters={}
+2025-04-15 11:27:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:44 - GET "/css/manageUsers.css", parameters={}
+2025-04-15 11:27:44 - Completed 200 OK
+2025-04-15 11:27:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:44 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:27:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:44 - GET "/javascript/manageUsers.js", parameters={}
+2025-04-15 11:27:44 - GET "/image/delete-icon.svg", parameters={}
+2025-04-15 11:27:44 - GET "/image/edit-icon.svg", parameters={}
+2025-04-15 11:27:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:44 - Completed 200 OK
+2025-04-15 11:27:44 - Completed 200 OK
+2025-04-15 11:27:44 - Completed 200 OK
+2025-04-15 11:27:44 - Completed 200 OK
+2025-04-15 11:27:44 - Completed 200 OK
+2025-04-15 11:27:46 - GET "/manage-users/edit/user2", parameters={}
+2025-04-15 11:27:46 - Mapped to com.amaris.sensorprocessor.controller.UserController#editUser(String, Model)
+2025-04-15 11:27:46 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:27:46 - Completed 200 OK
+2025-04-15 11:27:46 - GET "/css/styles.css", parameters={}
+2025-04-15 11:27:46 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:46 - GET "/image/edit-icon.svg", parameters={}
+2025-04-15 11:27:46 - GET "/css/manageUsers.css", parameters={}
+2025-04-15 11:27:46 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:27:46 - GET "/image/delete-icon.svg", parameters={}
+2025-04-15 11:27:46 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:46 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:46 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:46 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:46 - Completed 200 OK
+2025-04-15 11:27:46 - Completed 200 OK
+2025-04-15 11:27:46 - Completed 200 OK
+2025-04-15 11:27:46 - Completed 200 OK
+2025-04-15 11:27:46 - Completed 200 OK
+2025-04-15 11:27:46 - GET "/javascript/manageUsers.js", parameters={}
+2025-04-15 11:27:46 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:46 - Completed 200 OK
+2025-04-15 11:27:51 - GET "/home?1744709271889", parameters={masked}
+2025-04-15 11:27:51 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-04-15 11:27:51 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:27:51 - Completed 200 OK
+2025-04-15 11:27:51 - GET "/css/styles.css", parameters={}
+2025-04-15 11:27:51 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:51 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:27:51 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:27:51 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:51 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:51 - Completed 200 OK
+2025-04-15 11:27:51 - Completed 200 OK
+2025-04-15 11:27:51 - Completed 200 OK
+2025-04-15 11:27:51 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:27:51 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:27:51 - Completed 200 OK
+2025-04-15 11:28:00 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:28:00 - GET "/css/styles.css", parameters={}
+2025-04-15 11:28:00 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:28:00 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:28:00 - Completed 200 OK
+2025-04-15 11:28:00 - Completed 200 OK
+2025-04-15 11:28:01 - GET "/login", parameters={}
+2025-04-15 11:28:01 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:28:01 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:28:01 - Completed 200 OK
+2025-04-15 11:28:01 - GET "/css/styles.css", parameters={}
+2025-04-15 11:28:01 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:28:01 - Completed 200 OK
+2025-04-15 11:28:01 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:28:01 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:28:01 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:28:01 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:28:01 - Completed 200 OK
+2025-04-15 11:28:01 - Completed 200 OK
+2025-04-15 11:28:01 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:28:01 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:28:01 - Completed 200 OK
+2025-04-15 11:35:56 - GET "/home", parameters={}
+2025-04-15 11:35:56 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-04-15 11:35:56 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:35:56 - Completed 200 OK
+2025-04-15 11:35:56 - GET "/css/styles.css", parameters={}
+2025-04-15 11:35:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:35:56 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:35:56 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:35:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:35:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:35:56 - Completed 200 OK
+2025-04-15 11:35:56 - Completed 200 OK
+2025-04-15 11:35:56 - Completed 200 OK
+2025-04-15 11:35:56 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:35:56 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:35:56 - Completed 200 OK
+2025-04-15 11:38:32 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-15 11:38:32 - Graceful shutdown complete
+2025-04-15 11:38:32 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:38:32 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:38:45 - Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 13136 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:38:45 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:38:45 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002
+2025-04-15 11:38:46 - HikariPool-1 - Starting...
+2025-04-15 11:38:46 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@1b3ab4f9
+2025-04-15 11:38:46 - HikariPool-1 - Start completed.
+2025-04-15 11:38:46 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:38:46 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:38:47 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:38:47 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:38:47 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:38:48 - Started SensorprocessorApplicationTests in 3.212 seconds (process running for 4.176)
+2025-04-15 11:38:49 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Tue Apr 15 11:38:45 CEST 2025
+2025-04-15 11:38:49 - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:38:49 - HikariPool-1 - Shutdown completed.
+2025-04-15 11:38:57 - Starting SensorprocessorApplication using Java 17.0.11 with PID 22268 (C:\Users\jorrado\GitLabProject\Sensor_Management_App\target\classes started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-15 11:38:57 - No active profile set, falling back to 1 default profile: "default"
+2025-04-15 11:38:59 - Tomcat initialized with port 8080 (http)
+2025-04-15 11:38:59 - Starting service [Tomcat]
+2025-04-15 11:38:59 - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-15 11:38:59 - Initializing Spring embedded WebApplicationContext
+2025-04-15 11:38:59 - Root WebApplicationContext: initialization completed in 1288 ms
+2025-04-15 11:38:59 - HikariPool-1 - Starting...
+2025-04-15 11:38:59 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@574059d5
+2025-04-15 11:38:59 - HikariPool-1 - Start completed.
+2025-04-15 11:38:59 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15 11:39:00 - 9 mappings in 'requestMappingHandlerMapping'
+2025-04-15 11:39:00 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-15 11:39:00 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-15 11:39:00 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-15 11:39:01 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-15 11:39:01 - Started SensorprocessorApplication in 3.525 seconds (process running for 3.858)
+2025-04-15 11:39:02 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-15 11:39:02 - Initializing Servlet 'dispatcherServlet'
+2025-04-15 11:39:02 - Detected StandardServletMultipartResolver
+2025-04-15 11:39:02 - Detected AcceptHeaderLocaleResolver
+2025-04-15 11:39:02 - Detected FixedThemeResolver
+2025-04-15 11:39:02 - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6b393776
+2025-04-15 11:39:02 - Detected org.springframework.web.servlet.support.SessionFlashMapManager@77eeb8d9
+2025-04-15 11:39:02 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-04-15 11:39:02 - Completed initialization in 2 ms
+2025-04-15 11:39:02 - GET "/login", parameters={}
+2025-04-15 11:39:02 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:39:02 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:39:03 - Completed 200 OK
+2025-04-15 11:39:03 - GET "/css/styles.css", parameters={}
+2025-04-15 11:39:03 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:39:03 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:39:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:03 - Completed 200 OK
+2025-04-15 11:39:03 - Completed 200 OK
+2025-04-15 11:39:03 - Completed 200 OK
+2025-04-15 11:39:03 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:39:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:03 - Completed 200 OK
+2025-04-15 11:39:12 - GET "/home", parameters={}
+2025-04-15 11:39:12 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-04-15 11:39:12 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:39:12 - Completed 200 OK
+2025-04-15 11:39:12 - GET "/css/styles.css", parameters={}
+2025-04-15 11:39:12 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:39:12 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:39:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:12 - Completed 200 OK
+2025-04-15 11:39:12 - Completed 200 OK
+2025-04-15 11:39:12 - Completed 200 OK
+2025-04-15 11:39:12 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:39:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:12 - Completed 200 OK
+2025-04-15 11:39:22 - GET "/login", parameters={}
+2025-04-15 11:39:22 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-15 11:39:22 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:39:22 - Completed 200 OK
+2025-04-15 11:39:22 - GET "/css/styles.css", parameters={}
+2025-04-15 11:39:22 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:39:22 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:39:22 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:22 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:22 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:22 - Completed 200 OK
+2025-04-15 11:39:22 - Completed 200 OK
+2025-04-15 11:39:22 - Completed 200 OK
+2025-04-15 11:39:22 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:39:22 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:22 - Completed 200 OK
+2025-04-15 11:39:27 - GET "/home", parameters={}
+2025-04-15 11:39:27 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-04-15 11:39:27 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-15 11:39:27 - Completed 200 OK
+2025-04-15 11:39:27 - GET "/css/styles.css", parameters={}
+2025-04-15 11:39:27 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:27 - Completed 200 OK
+2025-04-15 11:39:27 - GET "/css/login-home.css", parameters={}
+2025-04-15 11:39:27 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-15 11:39:27 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:27 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:27 - Completed 200 OK
+2025-04-15 11:39:27 - Completed 200 OK
+2025-04-15 11:39:27 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-15 11:39:27 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-15 11:39:27 - Completed 200 OK
