@@ -1,9 +1,8 @@
 package com.amaris.sensorprocessor.controller;
 
 import com.amaris.sensorprocessor.entity.User;
-import com.amaris.sensorprocessor.exception.ProblemeUsersException;
+import com.amaris.sensorprocessor.exception.CustomException;
 import com.amaris.sensorprocessor.service.UserService;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -37,7 +36,7 @@ public class UserController {
     public String addUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
         try {
             userService.save(user);
-        } catch (ProblemeUsersException e) {
+        } catch (CustomException e) {
             redirectAttributes.addFlashAttribute("error", "User already exists!");
             return "redirect:/manage-users";
         }

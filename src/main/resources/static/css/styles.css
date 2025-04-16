@@ -22,7 +22,7 @@ body {
     width: 350px;
 }
 
-.login-logo {
+.mantu-logo {
     width: 300px;
     max-width: 100%;
     display: block;
@@ -39,11 +39,11 @@ body {
     font-weight: bold;
 }
 
-.form-group {
+.form-login {
     margin-bottom: 20px;
 }
 
-.form-group input {
+.form-login input {
     width: 100%;
     padding: 12px;
     border-radius: 6px;
@@ -52,10 +52,15 @@ body {
     text-align: center;
 }
 
+.form-login input:focus {
+    border-color: #a64ca6;
+    outline: none;
+}
+
 .submit-btn {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #662179;
     color: white;
     border: none;
     border-radius: 6px;
@@ -65,7 +70,7 @@ body {
 }
 
 .submit-btn:hover {
-    background-color: #0056b3;
+    background-color: #4b0c68;
 }
 
 /*** *** home.html *** ***/
@@ -89,33 +94,33 @@ body {
     color: #662179;
 }
 
-.button-container {
+.icon-button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin: 40px;
+    justify-items: center;
+}
+
+.icon-btn {
+    width: 80px;
+    height: 80px;
+    background-color: #b88ac2;
+    border-radius: 12px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.home-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
     text-decoration: none;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.home-btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px);
+.icon-btn:hover {
+    background-color: #662179;
 }
 
-.home-btn:active {
-    background-color: #004085;
-    transform: translateY(0);
+.icon-btn img {
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
 }

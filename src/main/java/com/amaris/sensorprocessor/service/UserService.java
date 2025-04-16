@@ -1,7 +1,7 @@
 package com.amaris.sensorprocessor.service;
 
 import com.amaris.sensorprocessor.entity.User;
-import com.amaris.sensorprocessor.exception.ProblemeUsersException;
+import com.amaris.sensorprocessor.exception.CustomException;
 import com.amaris.sensorprocessor.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class UserService {
 
     public int save(User user) {
         if (!userDao.findByUsername(user.getUsername()).isEmpty()) {
-            throw new ProblemeUsersException("User already exists");
+            throw new CustomException("User already exists");
         }
         return userDao.insertUser(user);
     }
@@ -37,7 +37,7 @@ public class UserService {
     public User searchUserByUsername(String username) {
         Optional<User> user = userDao.findByUsername(username);
         if (user.isEmpty()) {
-            throw new ProblemeUsersException("User don't exists");
+            throw new CustomException("User don't exists");
         }
         return user.get();
     }

@@ -26,21 +26,21 @@ public class GatewayDao {
      */
     public List<Gateway> findAllGateways() {
         return jdbcTemplate.query(
-                "SELECT * FROM GATEWAYS;",
+                "SELECT * FROM GATEWAYS ORDER BY LOWER(ID_GATEWAY) ASC;",
                 new BeanPropertyRowMapper<Gateway>(Gateway.class));
     }
 
     /**
      * Récupère une passerelle spécifique en fonction de son identifiant.
      *
-     * @param id l'identifiant de la passerelle à rechercher.
+     * @param idGateway l'identifiant de la passerelle à rechercher.
      * @return un objet {@code Gateway} correspondant à l'ID fourni.
      */
-    public Optional<Gateway> findByIdOfGateway(String id) {
+    public Optional<Gateway> findByIdOfGateway(String idGateway) {
         List<Gateway> gateways = jdbcTemplate.query(
                 "SELECT * FROM GATEWAYS WHERE ID_GATEWAY=?",
                 new BeanPropertyRowMapper<>(Gateway.class),
-                id);
+                idGateway);
 
         return gateways.isEmpty() ? Optional.empty() : Optional.of(gateways.get(0));
     }
@@ -48,13 +48,13 @@ public class GatewayDao {
     /**
      * Supprime une passerelle de la base de données en fonction de son identifiant.
      *
-     * @param id l'identifiant de la passerelle à supprimer
+     * @param idGateway l'identifiant de la passerelle à supprimer
      * @return le nombre de lignes affectées par la suppression (généralement 0 ou 1)
      */
-    public int deleteByIdOfGateway(String id) {
+    public int deleteByIdOfGateway(String idGateway) {
         return jdbcTemplate.update(
                 "DELETE FROM GATEWAYS WHERE ID_GATEWAY=?",
-                id);
+                idGateway);
     }
 
     /**

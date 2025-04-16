@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="manageUsers-container">
-        <img src="/image/mantu-logo.jpg" alt="Logo" class="login-logo">
+        <img src="/image/mantu-logo.jpg" alt="Logo" class="mantu-logo">
         <table>
             <thead>
             <tr>
@@ -27,6 +27,7 @@
                 <td th:text="${user.lastname}"></td>
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.role}"></td>
+<!--                <td style="white-space: nowrap; overflow: visible;">-->
                 <td>
                     <a th:href="@{/manage-users/edit/{username}(username=${user.username})}" class="openEditModalBtn">
                         <img src="/image/edit-icon.svg" alt="Modify" width="20" >

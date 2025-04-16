@@ -1,5 +1,5 @@
-/*** *** Manage Users Page Styles *** ***/
-.manageUsers-container {
+/*** *** Manage Gateways Page Styles *** ***/
+.manageGateways-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -166,11 +166,6 @@ form button, .formButton {
 form button:hover, .formButton:hover {
     background-color: #4b0c68;
     cursor: pointer;
-}
-
-.disabledBtn:hover {
-    cursor: not-allowed;
-    opacity: 0.6;
 }
 
 .alert-danger {
