@@ -30,18 +30,20 @@
       <td th:text="${gateway.etage}"></td>
       <td th:text="${gateway.emplacement}"></td>
       <td>
-        <a th:href="@{/manage-gateways/monitoring/{id}(id=${gateway.idGateway})}">
-          <img src="/image/monitoring-data.svg" alt="Modify" width="20">
-        </a>
-        <a th:href="@{/manage-gateways/edit/{id}(id=${gateway.idGateway})}">
-          <img src="/image/edit-icon.svg" alt="Modify" width="20">
-        </a>
-        <form th:action="@{/manage-gateways/delete/{id}(id=${gateway.idGateway})}" method="post" class="deleteForm" style="display:inline;">
-          <input type="hidden" name="_method" value="DELETE" />
-          <button type="submit" style="background:none; border:none;">
-            <img src="/image/delete-icon.svg" alt="Delete" width="20">
-          </button>
-        </form>
+        <div class="button-container">
+          <a th:href="@{/manage-gateways/monitoring/{id}(id=${gateway.idGateway})}">
+            <img src="/image/monitoring-data.svg" alt="Modify" width="20">
+          </a>
+          <a th:href="@{/manage-gateways/edit/{id}(id=${gateway.idGateway})}">
+            <img src="/image/edit-icon.svg" alt="Modify" width="20">
+          </a>
+          <form th:action="@{/manage-gateways/delete/{id}(id=${gateway.idGateway})}" method="post" class="deleteForm" style="display:inline;">
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit" style="background:none; border:none;">
+              <img src="/image/delete-icon.svg" alt="Delete" width="20">
+            </button>
+          </form>
+        </div>
       </td>
     </tr>
     </tbody>

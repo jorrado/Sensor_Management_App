@@ -157,6 +157,18 @@ form button, .formButton {
     gap: 15px;
 }
 
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
+form.deleteForm {
+    width: 0px !important;
+    display: block !important;
+}
+
 .form-buttons-delete {
     display: flex;
     justify-content: center;
