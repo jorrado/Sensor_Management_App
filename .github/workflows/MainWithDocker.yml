@@ -48,6 +48,9 @@ jobs:
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
 
+      - name: Add user to Docker group
+        run: sudo usermod -aG docker $USER
+
       - name: Copy Docker image to Raspberry Pi
         run: |
           docker save sensorprocessor:latest | bzip2 | pv | sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'docker load < /dev/stdin'
