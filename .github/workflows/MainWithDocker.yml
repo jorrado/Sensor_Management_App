@@ -53,7 +53,7 @@ jobs:
 
       - name: Copy Docker image to Raspberry Pi
         run: |
-          docker save sensorprocessor:latest | bzip2 | pv | sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'sudo docker load < /dev/stdin'
+          docker save sensorprocessor:latest | bzip2 | pv | sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker load < /dev/stdin'
 
       - name: Run Docker container on Raspberry Pi
         run: |
