@@ -66,7 +66,7 @@ jobs:
           #sudo apt-get update &&
           #sudo apt-get install -y docker-ce'
 
-      - name: Remove problematic repository and install Docker
+      - name: Install Docker on Raspberry Pi
         run: |
           sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} \
           'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update && \
@@ -74,15 +74,16 @@ jobs:
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
           sudo add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
           echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update && \
-          echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y docker-ce'
+          echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y docker-ce && \
+          echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod -R 777 /var/lib/docker'
 
       ### pv (Pipe Viewer) permet de visualiser le transfert de données dans un pipeline ###
       - name: Install pv
         run: sudo apt-get install pv
 
-      - name: Give write permission to /var/lib/docker
+      #- name: Give write permission to /var/lib/docker
         #run: sudo chmod -R 777 /var/lib/docker
-        run: echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod +x /var/lib/docker
+        #run: echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod +x /var/lib/docker
 
       - name: Copy Docker image to Raspberry Pi
         run: |
