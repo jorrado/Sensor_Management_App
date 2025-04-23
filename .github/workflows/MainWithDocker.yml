@@ -73,7 +73,8 @@ jobs:
 
       - name: Copy Docker image to Raspberry Pi
         run: |
-          docker save sensorprocessor:latest -o image.tar
+          docker images
+          docker save sensorprocessor:latest -o image.tar || { echo 'docker save failed'; exit 1; }
           gzip image.tar
           sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" scp -o StrictHostKeyChecking=no image.tar.gz ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }}:/tmp
           sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S bash -c "gunzip /tmp/image.tar.gz && docker load -i /tmp/image.tar"'
