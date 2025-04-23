@@ -14,14 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-#      - name: Give execute permission to mvnw
-#        run: chmod +x ./mvnw
-#
-#      - name: Build project
-#        run: ./mvnw clean package -DskipTests
-#
-#      - name: Build Docker image
-#        run: docker build -t sensorprocessor:latest .
+      - name: Give execute permission to mvnw
+        run: chmod +x ./mvnw
+
+      - name: Build project
+        run: ./mvnw clean package -DskipTests
+
+      - name: Build Docker image
+        run: docker build -t sensorprocessor:latest .
 
       - name: Install OpenVPN 2.5.7
         run: |
