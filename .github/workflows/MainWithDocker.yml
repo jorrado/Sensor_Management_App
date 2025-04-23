@@ -47,14 +47,25 @@ jobs:
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
 
-      - name: Install Docker on Raspberry Pi
+      #- name: Install Docker on Raspberry Pi
+        #run: |
+          #sudo apt-get update
+          #sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+          #curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          #sudo add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+          #sudo apt-get update
+          #sudo apt-get install docker-ce
+
+      - name: Install Docker on Raspberry Pi via SSH
         run: |
-          sudo apt-get update
-          sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-          sudo add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-          sudo apt-get update
-          sudo apt-get install docker-ce
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} '
+          sudo apt-get update &&
+          sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common &&
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - &&
+          sudo add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" &&
+          sudo apt-get update &&
+          sudo apt-get install -y docker-ce'
+
 
       ### pv (Pipe Viewer) permet de visualiser le transfert de données dans un pipeline ###
       - name: Install pv
