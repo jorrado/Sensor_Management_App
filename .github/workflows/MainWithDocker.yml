@@ -14,14 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Give execute permission to mvnw
-        run: chmod +x ./mvnw
-
-      - name: Build project
-        run: ./mvnw clean package -DskipTests
-
-      - name: Build Docker image
-        run: docker build -t sensorprocessor:latest .
+#      - name: Give execute permission to mvnw
+#        run: chmod +x ./mvnw
+#
+#      - name: Build project
+#        run: ./mvnw clean package -DskipTests
+#
+#      - name: Build Docker image
+#        run: docker build -t sensorprocessor:latest .
 
       - name: Install OpenVPN 2.5.7
         run: |
@@ -53,7 +53,6 @@ jobs:
           'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get clean && \
           echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update --fix-missing && \
           echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
-#          curl -fsSL https://get.docker.com | sudo sh && \
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/trusted.gpg.d/docker.asc
           sudo add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
           echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update && \
