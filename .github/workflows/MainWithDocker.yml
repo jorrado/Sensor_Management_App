@@ -73,7 +73,8 @@ jobs:
 
       - name: Copy Docker image to Raspberry Pi
         run: |
-          docker save sensorprocessor:latest | bzip2 | sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker load < /dev/stdin'
+          docker save sensorprocessor:latest | gzip | sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker load < /dev/stdin'
+#docker save sensorprocessor:latest | bzip2 | sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker load < /dev/stdin'
 
       - name: Stop and remove existing Docker container
         run: |
