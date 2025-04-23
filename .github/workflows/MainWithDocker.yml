@@ -69,6 +69,7 @@ jobs:
           gzip image.tar
           echo "Compression completed"
           echo "Starting SCP transfer"
+          sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'rm -f /tmp/image.tar.gz && exit'
           sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" scp -o StrictHostKeyChecking=no image.tar.gz ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }}:/tmp
           echo "SCP transfer completed"
           echo "Starting SSH to Raspberry Pi"
@@ -81,4 +82,4 @@ jobs:
 
       - name: Run Docker container on Raspberry Pi
         run: |
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 8080:8080 --name sensorprocessor sensorprocessor:latest'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 9090:8080 --name sensorprocessor sensorprocessor:latest'
