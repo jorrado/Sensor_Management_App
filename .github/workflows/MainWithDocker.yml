@@ -52,10 +52,12 @@ jobs:
 
       - name: Install Docker on Raspberry Pi
         run: |
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} '
-            sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common &&
-            curl -fsSL https://get.docker.com -o get-docker.sh &&
-            sudo sh get-docker.sh'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y apt-transport-https ca-certificates curl software-properties-common && curl -fsSL https://get.docker.com -o get-docker.sh && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S sh get-docker.sh"
+
+          #sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} '
+            #sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common &&
+            #curl -fsSL https://get.docker.com -o get-docker.sh &&
+            #sudo sh get-docker.sh'
 
       - name: Copy Docker image to Raspberry Pi
         run: |
