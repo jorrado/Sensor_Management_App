@@ -61,7 +61,8 @@ jobs:
         run: sudo apt-get install pv
 
       - name: Give write permission to /var/lib/docker
-        run: sudo chmod -R 777 /var/lib/docker
+        #run: sudo chmod -R 777 /var/lib/docker
+        run: chmod +x /var/lib/docker
 
       - name: Copy Docker image to Raspberry Pi
         run: |
