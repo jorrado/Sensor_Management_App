@@ -62,10 +62,18 @@ jobs:
 
       - name: Copy Docker image to Raspberry Pi
         run: |
+          echo "Starting Docker save"
           docker save sensorprocessor:latest -o image.tar
+          echo "Docker save completed"
+          echo "Compressing image"
           gzip image.tar
+          echo "Compression completed"
+          echo "Starting SCP transfer"
           sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" scp -o StrictHostKeyChecking=no image.tar.gz ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }}:/tmp
+          echo "SCP transfer completed"
+          echo "Starting SSH to Raspberry Pi"
           sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S bash -c "gunzip -f /tmp/image.tar.gz && docker load -i /tmp/image.tar"'
+          echo "SSH and Docker load completed"
 #docker save sensorprocessor:latest | gzip | sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker load < /dev/stdin'
 #docker save sensorprocessor:latest | bzip2 | sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker load < /dev/stdin'
 
