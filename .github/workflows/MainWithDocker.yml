@@ -62,7 +62,7 @@ jobs:
 
       - name: Give write permission to /var/lib/docker
         #run: sudo chmod -R 777 /var/lib/docker
-        run: chmod +x /var/lib/docker
+        run: echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod +x /var/lib/docker
 
       - name: Copy Docker image to Raspberry Pi
         run: |
