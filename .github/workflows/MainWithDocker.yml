@@ -21,8 +21,7 @@ jobs:
         run: ./mvnw clean package -DskipTests
 
       - name: Build Docker image
-        run: |
-          docker build -t sensorprocessor:latest .
+        run: docker build -t sensorprocessor:latest .
 
       - name: Install OpenVPN 2.5.7
         run: |
@@ -48,21 +47,24 @@ jobs:
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
 
-      - name: Install pv
-        run: sudo apt-get install pv
+#      - name: Install pv
+#        run: sudo apt-get install pv
 
-      - name: Build Docker image
-        run: docker build -t sensorprocessor:latest .
+      - name: Install Docker on Raspberry Pi
+        run: |
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "
+            sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common &&
+            curl -fsSL https://get.docker.com -o get-docker.sh &&
+            sudo sh get-docker.sh
 
       - name: Copy Docker image to Raspberry Pi
         run: |
           docker save sensorprocessor:latest | bzip2 | pv | sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker load < /dev/stdin'
 
+      - name: Stop and remove existing Docker container
+        run: |
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'docker stop sensorprocessor || true && docker rm sensorprocessor || true'
+
       - name: Run Docker container on Raspberry Pi
         run: |
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'docker run -d -p 8080:8080 --name sensorprocessor sensorprocessor:latest'
-
-      - name: Restart Spring app with password (if running outside Docker)
-        run: |
-          sudo apt-get install -y sshpass
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} "echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S systemctl restart sensorprocessor.service && exit"
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 8080:8080 --name sensorprocessor sensorprocessor:latest'

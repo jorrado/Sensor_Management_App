@@ -3,7 +3,10 @@ package com.amaris.sensorprocessor.entity;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.util.List;
 
 @Data
 @Table("Gateways")
@@ -40,5 +43,8 @@ public class Gateway {
 
     @Column("emplacement")
     private String emplacement;
+
+    @MappedCollection(idColumn = "id_gateway")
+    private List<Sensor> sensorList;
 
 }

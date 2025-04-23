@@ -73,6 +73,9 @@
         <input id="batimentName" th:field="*{batimentName}" placeholder="Building" required />
         <input type="number" id="etage" th:field="*{etage}" placeholder="Floor" required />
         <input id="emplacement" th:field="*{emplacement}" placeholder="Location" />
+<!--        <select id="sensor1" th:field="*{sensorList}">-->
+<!--          <option th:each="sensor : ${sensors}" th:value="${sensor.idSensor}" th:text="${sensor.idSensor}">Select Sensor</option>-->
+<!--        </select>-->
         <div class="form-buttons">
           <button type="submit">Update</button>
           <button type="button" id="closeEdit">Cancel</button>
@@ -98,6 +101,9 @@
         <input type="text" name="batimentName" placeholder="Building" required />
         <input type="number" name="etage" placeholder="Floor" required />
         <input type="text" name="emplacement" placeholder="Location" />
+<!--        <select id="sensor2" th:field="*{sensorList}">-->
+<!--          <option th:each="sensor : ${sensors}" th:value="${sensor.idSensor}" th:text="${sensor.idSensor}">Select Sensor</option>-->
+<!--        </select>-->
         <div class="form-buttons">
           <button type="submit">Add</button>
           <button type="button" id="closeCreate">Cancel</button>
