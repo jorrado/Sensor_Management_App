@@ -66,7 +66,7 @@ jobs:
           #chmod -R 777 /var/lib/docker"'
 
           sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} '
-            if ! command -v docker &> /dev/null; then
+            #if ! command -v docker &> /dev/null; then
               echo "Docker non trouvé, installation..."
               echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get clean && \
               echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update --fix-missing && \
@@ -75,10 +75,10 @@ jobs:
               sudo add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
               echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update && \
               echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y docker-ce && \
-              echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod -R 777 /var/lib/docker
-            else
-              echo "Docker est déjà installé."
-            fi'
+              echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod -R 777 /var/lib/docker'
+            #else
+              #echo "Docker est déjà installé."
+            #fi'
 
           #sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} \
           #'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get clean && \
