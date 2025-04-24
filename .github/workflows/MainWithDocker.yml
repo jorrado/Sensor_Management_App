@@ -51,7 +51,9 @@ jobs:
         run: |
           sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} \
           'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S bash -c "
+          echo "test 0"
           apt-get clean && 
+          echo "test 0.5"
           apt-get update --fix-missing && 
           # apt-get install -y apt-transport-https ca-certificates curl software-properties-common && 
           echo "test 1"
