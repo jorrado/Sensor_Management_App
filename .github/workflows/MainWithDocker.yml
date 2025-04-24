@@ -21,7 +21,8 @@ jobs:
         run: ./mvnw clean package -DskipTests
 
       - name: Build Docker image
-        run: docker build -t sensorprocessor .
+        #run: docker build -t sensorprocessor .
+        run: docker build --platform linux/arm64 -t sensorprocessor .
 
       - name: Install OpenVPN 2.5.7
         run: |
