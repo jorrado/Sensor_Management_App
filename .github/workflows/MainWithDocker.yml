@@ -69,7 +69,9 @@ jobs:
           gzip image.tar
           echo "Compression completed"
           echo "Starting SCP transfer"
-          sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'rm -f /tmp/image.tar /tmp/image.tar.gz'
+          # sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'rm -f /tmp/image.tar /tmp/image.tar.gz'
+          sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'if [ -f /tmp/image.tar.gz ]; then rm -f /tmp/image.tar.gz; fi'
+          sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'if [ -f /tmp/image.tar ]; then rm -f /tmp/image.tar; fi'
           sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" scp -o StrictHostKeyChecking=no image.tar.gz ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }}:/tmp
           echo "SCP transfer completed"
           echo "Starting SSH to Raspberry Pi"
