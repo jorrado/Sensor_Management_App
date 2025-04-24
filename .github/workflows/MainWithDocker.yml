@@ -54,8 +54,11 @@ jobs:
           apt-get clean && 
           apt-get update --fix-missing && 
           # apt-get install -y apt-transport-https ca-certificates curl software-properties-common && 
+          echo "test 1"
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | tee /etc/apt/trusted.gpg.d/docker.asc && 
+          echo "test 2"
           add-apt-repository \"deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" && 
+          echo "test 3"
           apt-get update && 
           # apt-get install -y docker-ce && 
           chmod -R 777 /var/lib/docker"'
