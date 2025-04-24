@@ -93,7 +93,9 @@ jobs:
 
       - name: Stop and remove existing Docker container
         run: |
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'sudo docker stop sensorprocessor || true && sudo docker rm sensorprocessor || true'
+          #sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'sudo docker stop sensorprocessor || true && sudo docker rm sensorprocessor || true'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker stop sensorprocessor || true && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rm sensorprocessor || true'
+
 
       - name: Run Docker container on Raspberry Pi
         run: |
