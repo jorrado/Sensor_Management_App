@@ -21,7 +21,7 @@ jobs:
         run: ./mvnw clean package -DskipTests
 
       - name: Build Docker image
-        run: docker build -t sensorprocessor:latest .
+        run: docker build -t sensorprocessor .
 
       - name: Install OpenVPN 2.5.7
         run: |
@@ -74,10 +74,15 @@ jobs:
           #echo "Installing Docker" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y docker-ce && \
           #echo "Changing Docker permissions" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod -R 777 /var/lib/docker'
 
+      - name: Stop and remove existing Docker container and image
+        run: |
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker stop sensorprocessor || true && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rm sensorprocessor || true'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rmi sensorprocessor || true'
+
       - name: Copy Docker image to Raspberry Pi
         run: |
           echo "Starting Docker save"
-          docker save sensorprocessor:latest -o image.tar
+          docker save sensorprocessor -o image.tar
           echo "Docker save completed"
           echo "Compressing image"
           gzip image.tar
@@ -91,14 +96,7 @@ jobs:
           sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S bash -c "gunzip -f /tmp/image.tar.gz && docker load -i /tmp/image.tar"'
           echo "SSH and Docker load completed"
 
-      - name: Stop and remove existing Docker container
-        run: |
-          #sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'sudo docker stop sensorprocessor || true && sudo docker rm sensorprocessor || true'
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker stop sensorprocessor || true && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rm sensorprocessor || true'
-
-
       - name: Run Docker container on Raspberry Pi
         run: |
-          # sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'sudo -S docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 9090:8080 --name sensorprocessor sensorprocessor:latest'
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 9090:8080 --name sensorprocessor sensorprocessor:latest'
-
+          # sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'sudo -S docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 9090:8080 --name sensorprocessor sensorprocessor'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 9090:8080 --name sensorprocessor sensorprocessor'
