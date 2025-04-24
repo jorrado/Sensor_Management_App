@@ -100,4 +100,4 @@ jobs:
       - name: Run Docker container on Raspberry Pi
         run: |
           # sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'sudo -S docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 9090:8080 --name sensorprocessor sensorprocessor'
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 9090:8080 --name sensorprocessor sensorprocessor'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/app/mydatabase.db -p 9090:8080 --name sensorprocessor sensorprocessor'
