@@ -2,7 +2,7 @@
 FROM openjdk:17-jdk-slim
 
 # Définir le répertoire de travail
-WORKDIR /app
+WORKDIR /opt/app
 
 # Copier le fichier JAR dans le conteneur
 COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /app/sensorprocessor.jar
