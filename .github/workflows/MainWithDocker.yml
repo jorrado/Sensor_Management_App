@@ -19,6 +19,9 @@ jobs:
 
       - name: Build project
         run: ./mvnw clean package -DskipTests
+      - name: List files
+        run: ls -l target
+
 
       - name: Build Docker image
         #run: docker build -t sensorprocessor .
