@@ -21,7 +21,8 @@ jobs:
         run: ./mvnw clean package -DskipTests
 
       - name: Build Docker image
-        run: docker build -t sensorprocessor:latest .
+        #run: docker build -t sensorprocessor .
+        run: docker build --platform linux/arm64 -t sensorprocessor .
 
       - name: Install OpenVPN 2.5.7
         run: |
@@ -49,32 +50,54 @@ jobs:
 
       - name: Install Docker on Raspberry Pi
         run: |
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} \
-          'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get clean && \
-          echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update --fix-missing && \
-          echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/trusted.gpg.d/docker.asc
-          sudo add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
-          echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update && \
-          echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y docker-ce && \
-          echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod -R 777 /var/lib/docker'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} '
+            if ! command -v docker &> /dev/null; then
+              echo "Docker non trouvé, installation..."
+              echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get clean && \
+              echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update --fix-missing && \
+              echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
+              curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/trusted.gpg.d/docker.asc && \
+              sudo add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+              echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update && \
+              echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y docker-ce && \
+              echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod -R 777 /var/lib/docker
+            else
+              echo "Docker est déjà installé."
+            fi'
 
-      ### pv (Pipe Viewer) permet de visualiser le transfert de données dans un pipeline ###
-      #- name: Install pv
-        #run: sudo apt-get install pv
+          #sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} \
+          #'echo "Cleaning apt" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get clean && \
+          #echo "Updating apt packages" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update --fix-missing && \
+          #echo "Installing dependencies" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
+          #echo "Adding Docker GPG key" && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/trusted.gpg.d/docker.asc && \
+          #echo "Adding Docker repository" && sudo add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+          #echo "Updating apt again" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update && \
+          #echo "Installing Docker" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y docker-ce && \
+          #echo "Changing Docker permissions" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod -R 777 /var/lib/docker'
 
-      #- name: Give write permission to /var/lib/docker
-        #run: sudo chmod -R 777 /var/lib/docker
-        #run: echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod +x /var/lib/docker
+      - name: Stop and remove existing Docker container and image
+        run: |
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker stop sensorprocessor || true && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rm sensorprocessor || true'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rmi sensorprocessor || true'
 
       - name: Copy Docker image to Raspberry Pi
         run: |
-          docker save sensorprocessor:latest | bzip2 | sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker load < /dev/stdin'
-
-      - name: Stop and remove existing Docker container
-        run: |
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'docker stop sensorprocessor || true && docker rm sensorprocessor || true'
+          echo "Starting Docker save"
+          docker save sensorprocessor -o image.tar
+          echo "Docker save completed"
+          echo "Compressing image"
+          gzip image.tar
+          echo "Compression completed"
+          echo "Starting SCP transfer"
+          sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'if [ -e /tmp/image.tar.gz ]; then echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S rm -f /tmp/image.tar.gz; fi'
+          sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'if [ -e /tmp/image.tar ]; then echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S rm -f /tmp/image.tar; fi'
+          sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" scp -o StrictHostKeyChecking=no image.tar.gz ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }}:/tmp
+          echo "SCP transfer completed"
+          echo "Starting SSH to Raspberry Pi"
+          sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S bash -c "gunzip -f /tmp/image.tar.gz && docker load -i /tmp/image.tar"'
+          echo "SSH and Docker load completed"
 
       - name: Run Docker container on Raspberry Pi
         run: |
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 8080:8080 --name sensorprocessor sensorprocessor:latest'
+          #sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'sudo -S docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 9090:8080 --name sensorprocessor sensorprocessor'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker run -d -e DB_PATH=/opt/app -v /opt/app:/opt/app -p 9090:8080 --name sensorprocessor sensorprocessor'
