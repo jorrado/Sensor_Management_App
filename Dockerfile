@@ -7,6 +7,9 @@ WORKDIR /opt/app
 # Copier le fichier JAR dans le conteneur
 COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/sensorprocessor.jar
 
+# Vérifier la variable d'env
+RUN echo $DB_PATH
+
 # Exposer le port de l'application (si nécessaire)
 EXPOSE 8080
 
