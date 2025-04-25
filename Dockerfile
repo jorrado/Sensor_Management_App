@@ -18,4 +18,4 @@ EXPOSE 8080
 
 # Commande pour démarrer l'application
 #CMD ["java", "-jar", "sensorprocessor.jar"]
-CMD ["java", "-jar", "/opt/app/sensorprocessor-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "sensorprocessor-0.0.1-SNAPSHOT.jar"]
