@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /opt/app
 
 # Copier le fichier JAR dans le conteneur
-COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /app/sensorprocessor.jar
+COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/sensorprocessor.jar
 
 # Exposer le port de l'application (si nécessaire)
 EXPOSE 8080
