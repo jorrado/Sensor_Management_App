@@ -20,6 +20,12 @@ jobs:
       - name: Build project
         run: ./mvnw clean package -DskipTests
 
+      - name: Verify permissions
+        run: |
+          ls -l target/sensorprocessor-0.0.1-SNAPSHOT.jar
+          ls -ld target
+
+
       - name: Build Docker image
         #run: docker build -t sensorprocessor .
         #run: docker build --platform linux/arm64 -t sensorprocessor .
