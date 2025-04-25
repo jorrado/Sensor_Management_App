@@ -20,12 +20,12 @@ jobs:
       - name: Build project
         run: ./mvnw clean package -DskipTests
 
-      - name: Change and verify permissions
-        run: |
-          chmod 777 target/
-          chmod 777 target/sensorprocessor-0.0.1-SNAPSHOT.jar
-          ls -l target/sensorprocessor-0.0.1-SNAPSHOT.jar
-          ls -ld target
+      #- name: Change and verify permissions
+        #run: |
+          #chmod 777 target/
+          #chmod 777 target/sensorprocessor-0.0.1-SNAPSHOT.jar
+          #ls -l target/sensorprocessor-0.0.1-SNAPSHOT.jar
+          #ls -ld target
 
       - name: Build Docker image
         #run: docker build -t sensorprocessor .
