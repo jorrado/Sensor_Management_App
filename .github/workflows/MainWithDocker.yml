@@ -20,16 +20,7 @@ jobs:
       - name: Build project
         run: ./mvnw clean package -DskipTests
 
-      #- name: Change and verify permissions
-        #run: |
-          #chmod 777 target/
-          #chmod 777 target/sensorprocessor-0.0.1-SNAPSHOT.jar
-          #ls -l target/sensorprocessor-0.0.1-SNAPSHOT.jar
-          #ls -ld target
-
       - name: Build Docker image
-        #run: docker build -t sensorprocessor .
-        #run: docker build --platform linux/arm64 -t sensorprocessor .
         run: docker build --platform linux/arm64 --no-cache -t sensorprocessor .
 
       - name: Install OpenVPN 2.5.7
@@ -73,8 +64,6 @@ jobs:
               echo "Docker est déjà installé."
             fi'
 
-          
-
       - name: Stop and remove existing Docker container and image
         run: |
           sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker stop sensorprocessor || true && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rm sensorprocessor || true'
@@ -99,5 +88,4 @@ jobs:
 
       - name: Run Docker container on Raspberry Pi
         run: |
-          #sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'sudo -S docker run -d -e DB_PATH=/opt/app/mydatabase.db -v /opt/app/mydatabase.db:/opt/app/db -p 9090:8080 --name sensorprocessor sensorprocessor'
           sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker run -d -e DB_PATH=/opt/app -v /opt/app:/opt/app -p 9090:8080 --name sensorprocessor sensorprocessor'
