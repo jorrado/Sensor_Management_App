@@ -22,7 +22,8 @@ jobs:
 
       - name: Build Docker image
         #run: docker build -t sensorprocessor .
-        run: docker build --platform linux/arm64 -t sensorprocessor .
+        #run: docker build --platform linux/arm64 -t sensorprocessor .
+        run: docker build --platform linux/arm64 --no-cache -t sensorprocessor .
 
       - name: Install OpenVPN 2.5.7
         run: |

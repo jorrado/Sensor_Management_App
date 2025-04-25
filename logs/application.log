@@ -118,3 +118,18 @@
 2025-04-25 10:15:59 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Fri Apr 25 10:15:55 CEST 2025
 2025-04-25 10:15:59 - HikariPool-1 - Shutdown initiated...
 2025-04-25 10:15:59 - HikariPool-1 - Shutdown completed.
+2025-04-25 10:27:06 - Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 16444 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-25 10:27:06 - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 10:27:06 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002
+2025-04-25 10:27:07 - HikariPool-1 - Starting...
+2025-04-25 10:27:07 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@1b3ab4f9
+2025-04-25 10:27:07 - HikariPool-1 - Start completed.
+2025-04-25 10:27:07 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-25 10:27:07 - 14 mappings in 'requestMappingHandlerMapping'
+2025-04-25 10:27:08 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-25 10:27:08 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-25 10:27:08 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-25 10:27:08 - Started SensorprocessorApplicationTests in 2.863 seconds (process running for 3.694)
+2025-04-25 10:27:09 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Fri Apr 25 10:27:06 CEST 2025
+2025-04-25 10:27:09 - HikariPool-1 - Shutdown initiated...
+2025-04-25 10:27:09 - HikariPool-1 - Shutdown completed.
