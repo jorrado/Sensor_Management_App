@@ -11,11 +11,11 @@ WORKDIR /opt/app
 
 # Copier le fichier JAR dans le conteneur
 #COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/sensorprocessor.jar
-COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar ./
+COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /sensorprocessor.jar
 
 # Exposer le port de l'application (si nécessaire)
 EXPOSE 8080
 
 # Commande pour démarrer l'application
 #CMD ["java", "-jar", "sensorprocessor.jar"]
-CMD ["java", "-jar", "sensorprocessor-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/sensorprocessor.jar"]
