@@ -11,9 +11,7 @@ WORKDIR /opt/app
 
 # Copier le fichier JAR dans le conteneur
 #COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/sensorprocessor.jar
-COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/
-
-RUN ls -l /opt/app
+COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar ./
 
 # Exposer le port de l'application (si nécessaire)
 EXPOSE 8080
