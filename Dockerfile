@@ -11,4 +11,6 @@ COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/sensorprocessor.jar
 EXPOSE 8080
 
 # Commande pour démarrer l'application
-CMD ["java", "-jar", "sensorprocessor.jar"]
+#CMD ["java", "-jar", "sensorprocessor.jar"]
+CMD ["java", "-Ddb.path=${DB_PATH}", "-jar", "sensorprocessor.jar"]
+
