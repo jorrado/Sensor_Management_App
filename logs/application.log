@@ -133,3 +133,88 @@
 2025-04-25 10:27:09 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Fri Apr 25 10:27:06 CEST 2025
 2025-04-25 10:27:09 - HikariPool-1 - Shutdown initiated...
 2025-04-25 10:27:09 - HikariPool-1 - Shutdown completed.
+2025-04-25 12:50:08 - Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 5320 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-25 12:50:08 - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 12:50:08 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002
+2025-04-25 12:50:09 - HikariPool-1 - Starting...
+2025-04-25 12:50:09 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@40ed1802
+2025-04-25 12:50:09 - HikariPool-1 - Start completed.
+2025-04-25 12:50:09 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-25 12:50:10 - 14 mappings in 'requestMappingHandlerMapping'
+2025-04-25 12:50:10 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-25 12:50:10 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-25 12:50:11 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-25 12:50:11 - Started SensorprocessorApplicationTests in 3.291 seconds (process running for 4.21)
+2025-04-25 12:50:12 - Closing org.springframework.web.context.support.GenericWebApplicationContext@63a5d002, started on Fri Apr 25 12:50:08 CEST 2025
+2025-04-25 12:50:12 - HikariPool-1 - Shutdown initiated...
+2025-04-25 12:50:12 - HikariPool-1 - Shutdown completed.
+2025-04-25 12:50:17 - Starting SensorprocessorApplication using Java 17.0.11 with PID 21908 (C:\Users\jorrado\GitLabProject\Sensor_Management_App\target\classes started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-25 12:50:17 - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 12:50:19 - Tomcat initialized with port 8080 (http)
+2025-04-25 12:50:19 - Starting service [Tomcat]
+2025-04-25 12:50:19 - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-25 12:50:19 - Initializing Spring embedded WebApplicationContext
+2025-04-25 12:50:19 - Root WebApplicationContext: initialization completed in 1306 ms
+2025-04-25 12:50:19 - HikariPool-1 - Starting...
+2025-04-25 12:50:19 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@76ff68c5
+2025-04-25 12:50:19 - HikariPool-1 - Start completed.
+2025-04-25 12:50:19 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-25 12:50:19 - 14 mappings in 'requestMappingHandlerMapping'
+2025-04-25 12:50:20 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-25 12:50:20 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-25 12:50:20 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-25 12:50:20 - Tomcat started on port 8080 (http) with context path '/'
+2025-04-25 12:50:20 - Started SensorprocessorApplication in 3.492 seconds (process running for 3.827)
+2025-04-25 12:50:26 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-25 12:50:26 - Initializing Servlet 'dispatcherServlet'
+2025-04-25 12:50:26 - Detected StandardServletMultipartResolver
+2025-04-25 12:50:26 - Detected AcceptHeaderLocaleResolver
+2025-04-25 12:50:26 - Detected FixedThemeResolver
+2025-04-25 12:50:26 - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3fdeb370
+2025-04-25 12:50:26 - Detected org.springframework.web.servlet.support.SessionFlashMapManager@37f0d582
+2025-04-25 12:50:26 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-04-25 12:50:26 - Completed initialization in 1 ms
+2025-04-25 12:50:26 - GET "/", parameters={}
+2025-04-25 12:50:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-25 12:50:26 - Resource not found
+2025-04-25 12:50:26 - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource .]
+2025-04-25 12:50:26 - Completed 404 NOT_FOUND
+2025-04-25 12:50:26 - GET "/login", parameters={}
+2025-04-25 12:50:26 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-25 12:50:26 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-04-25 12:50:26 - Completed 200 OK
+2025-04-25 12:50:26 - GET "/css/login-home.css", parameters={}
+2025-04-25 12:50:26 - GET "/image/mantu-logo.jpg", parameters={}
+2025-04-25 12:50:26 - GET "/css/styles.css", parameters={}
+2025-04-25 12:50:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-25 12:50:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-25 12:50:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-25 12:50:26 - Completed 200 OK
+2025-04-25 12:50:26 - Completed 200 OK
+2025-04-25 12:50:26 - Completed 200 OK
+2025-04-25 12:50:26 - GET "/image/mantu-background.jpg", parameters={}
+2025-04-25 12:50:26 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-04-25 12:50:26 - Completed 200 OK
+2025-04-25 12:50:28 - GET "/login", parameters={}
+2025-04-25 12:50:28 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-04-25 12:50:28 - Selected '*/*' given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8]
+2025-04-25 12:50:28 - Completed 200 OK
+2025-04-25 12:51:20 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25 12:51:20 - Graceful shutdown complete
+2025-04-25 12:51:20 - HikariPool-1 - Shutdown initiated...
+2025-04-25 12:51:20 - HikariPool-1 - Shutdown completed.
+2025-04-25 12:52:24 - Starting SensorprocessorApplicationTests using Java 17.0.11 with PID 22916 (started by jorrado in C:\Users\jorrado\GitLabProject\Sensor_Management_App)
+2025-04-25 12:52:24 - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 12:52:24 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@11ce2e22
+2025-04-25 12:52:25 - HikariPool-1 - Starting...
+2025-04-25 12:52:25 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@5a08b084
+2025-04-25 12:52:25 - HikariPool-1 - Start completed.
+2025-04-25 12:52:26 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-25 12:52:26 - 14 mappings in 'requestMappingHandlerMapping'
+2025-04-25 12:52:26 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-25 12:52:26 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-25 12:52:26 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-25 12:52:27 - Started SensorprocessorApplicationTests in 2.806 seconds (process running for 3.624)
+2025-04-25 12:52:28 - Closing org.springframework.web.context.support.GenericWebApplicationContext@11ce2e22, started on Fri Apr 25 12:52:24 CEST 2025
+2025-04-25 12:52:28 - HikariPool-1 - Shutdown initiated...
+2025-04-25 12:52:28 - HikariPool-1 - Shutdown completed.

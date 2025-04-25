@@ -1,5 +1,6 @@
 # Utiliser une image de base avec OpenJDK
-FROM openjdk:17-jdk-slim
+#FROM openjdk:17-jdk-slim
+FROM openjdk:17-jdk
 
 # Définir le répertoire de travail
 WORKDIR /opt/app
@@ -9,7 +10,6 @@ COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/sensorprocessor.jar
 
 # Vérifier la variable d'env
 ENV DB_PATH=/opt/app
-RUN apt-get update && apt-get install -y bash
 RUN /bin/bash -c 'echo $DB_PATH'
 
 # Exposer le port de l'application (si nécessaire)
