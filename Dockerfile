@@ -9,7 +9,8 @@ COPY target/sensorprocessor-0.0.1-SNAPSHOT.jar /opt/app/sensorprocessor.jar
 
 # Vérifier la variable d'env
 ENV DB_PATH=/opt/app
-RUN /bin/sh -c 'echo $DB_PATH'
+RUN apt-get update && apt-get install -y bash
+RUN /bin/bash -c 'echo $DB_PATH'
 
 # Exposer le port de l'application (si nécessaire)
 EXPOSE 8080
