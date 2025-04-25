@@ -73,15 +73,7 @@ jobs:
               echo "Docker est déjà installé."
             fi'
 
-          #sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} \
-          #'echo "Cleaning apt" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get clean && \
-          #echo "Updating apt packages" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update --fix-missing && \
-          #echo "Installing dependencies" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
-          #echo "Adding Docker GPG key" && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/trusted.gpg.d/docker.asc && \
-          #echo "Adding Docker repository" && sudo add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
-          #echo "Updating apt again" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get update && \
-          #echo "Installing Docker" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S apt-get install -y docker-ce && \
-          #echo "Changing Docker permissions" && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S chmod -R 777 /var/lib/docker'
+          
 
       - name: Stop and remove existing Docker container and image
         run: |
