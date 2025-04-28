@@ -14,20 +14,24 @@ public class Gateway {
 
     public Gateway() {}
 
-    public Gateway(String idGateway, String commissioningDate,
-                   Boolean status, String batimentName, Integer etage,
-                   String emplacement) {
+    public Gateway(String idGateway, String ipAddress, String commissioningDate,
+                   Boolean status, String buildingName, Integer floor,
+                   String location) {
         this.idGateway = idGateway;
+        this.ipAddress = ipAddress;
         this.commissioningDate = commissioningDate;
         this.status = status;
-        this.batimentName = batimentName;
-        this.etage = etage;
-        this.emplacement = emplacement;
+        this.buildingName = buildingName;
+        this.floor = floor;
+        this.location = location;
     }
 
     @Id
     @Column("id_gateway")
     private String idGateway;
+
+    @Column("ip_address")
+    private String ipAddress;
 
     @Column("commissioning_date")
     private String commissioningDate;
@@ -35,14 +39,14 @@ public class Gateway {
     @Column("status")
     private Boolean status;
 
-    @Column("batiment_name")
-    private String batimentName;
+    @Column("building_name")
+    private String buildingName;
 
-    @Column("etage")
-    private Integer etage;
+    @Column("floor")
+    private Integer floor;
 
-    @Column("emplacement")
-    private String emplacement;
+    @Column("location")
+    private String location;
 
     @MappedCollection(idColumn = "id_gateway")
     private List<Sensor> sensorList;

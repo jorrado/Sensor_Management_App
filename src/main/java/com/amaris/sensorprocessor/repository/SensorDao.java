@@ -67,10 +67,10 @@ public class SensorDao {
         return jdbcTemplate.update(
                 "INSERT INTO SENSORS (" +
                         "ID_SENSOR, DEVICE_TYPE, COMMISSIONING_DATE, " +
-                        "STATUS, BATIMENT_NAME, ETAGE, EMPLACEMENT, ID_GATEWAY) " +
+                        "STATUS, BUILDING_NAME, FLOOR, LOCATION, ID_GATEWAY) " +
                         "VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
                 sensor.getIdSensor(), sensor.getDeviceType(), sensor.getCommissioningDate(),
-                sensor.getStatus(), sensor.getBatimentName(), sensor.getEtage(), sensor.getEmplacement(), sensor.getIdGateway()
+                sensor.getStatus(), sensor.getBuildingName(), sensor.getFloor(), sensor.getLocation(), sensor.getIdGateway()
         );
     }
 
@@ -83,11 +83,11 @@ public class SensorDao {
     public int updateSensor(Sensor sensor) {
         return jdbcTemplate.update(
                 "UPDATE SENSORS SET " +
-                        "COMMISSIONING_DATE = ?, STATUS = ?, BATIMENT_NAME = ?, " +
-                        "ETAGE = ?, EMPLACEMENT = ?, ID_GATEWAY = ? " +
+                        "COMMISSIONING_DATE = ?, STATUS = ?, BUILDING_NAME = ?, " +
+                        "FLOOR = ?, LOCATION = ?, ID_GATEWAY = ? " +
                         "WHERE ID_SENSOR = ?",
-                sensor.getCommissioningDate(), sensor.getStatus(), sensor.getBatimentName(),
-                        sensor.getEtage(), sensor.getEmplacement(), sensor.getIdGateway(),
+                sensor.getCommissioningDate(), sensor.getStatus(), sensor.getBuildingName(),
+                        sensor.getFloor(), sensor.getLocation(), sensor.getIdGateway(),
                         sensor.getIdSensor()
         );
     }

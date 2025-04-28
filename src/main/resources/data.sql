@@ -1,25 +1,26 @@
 -- Création de la table Gateways
 CREATE TABLE Gateways (
     id_gateway VARCHAR(50) PRIMARY KEY NOT NULL,
+    ip_address VARCHAR(50) NOT NULL,
     commissioning_date DATE NOT NULL,
     status BOOLEAN NOT NULL,
-    batiment_name VARCHAR(100) NOT NULL,
-    etage INTEGER NOT NULL,
-    emplacement VARCHAR(50) NULL
+    building_name VARCHAR(100) NOT NULL,
+    floor INTEGER NOT NULL,
+    location VARCHAR(50) NULL
 );
 
 -- Insertion des valeurs dans la table Gateways
-INSERT INTO Gateways (id_gateway, commissioning_date, status, batiment_name, etage, emplacement) VALUES
-('gateway_001', '2023-01-01', TRUE, 'Batiment A', 1, 'Bureau 101'),
-('gateway_002', '2023-02-01', TRUE, 'Batiment B', 2, 'Bureau 202'),
-('gateway_003', '2023-03-01', FALSE, 'Batiment A', 3, 'Bureau 303'),
-('gateway_004', '2023-04-01', TRUE, 'Batiment C', 1, 'Bureau 104'),
-('gateway_005', '2023-05-01', TRUE, 'Batiment D', 2, 'Bureau 205'),
-('gateway_006', '2023-06-01', FALSE, 'Batiment A', 1, 'Bureau 103'),
-('gateway_007', '2023-07-01', TRUE, 'Batiment B', 2, 'Bureau 206'),
-('gateway_008', '2023-08-01', FALSE, 'Batiment A', 3, 'Bureau 306'),
-('gateway_009', '2023-09-01', TRUE, 'Batiment C', 1, 'Bureau 104'),
-('gateway_010', '2023-10-01', FALSE, 'Batiment A', 2, 'Bureau 215');
+INSERT INTO Gateways (id_gateway, ip_address, commissioning_date, status, building_name, floor, location) VALUES
+('gateway_001', '192.168.1.10', '2023-01-01', TRUE, 'Batiment A', 1, 'Bureau 101'),
+('gateway_002', '192.168.1.11', '2023-02-01', TRUE, 'Batiment B', 2, 'Bureau 202'),
+('gateway_003', '192.168.1.12', '2023-03-01', FALSE, 'Batiment A', 3, 'Bureau 303'),
+('gateway_004', '192.168.1.13', '2023-04-01', TRUE, 'Batiment C', 1, 'Bureau 104'),
+('gateway_005', '192.168.1.14', '2023-05-01', TRUE, 'Batiment D', 2, 'Bureau 205'),
+('gateway_006', '192.168.1.15', '2023-06-01', FALSE, 'Batiment A', 1, 'Bureau 103'),
+('gateway_007', '192.168.1.16', '2023-07-01', TRUE, 'Batiment B', 2, 'Bureau 206'),
+('gateway_008', '192.168.1.17', '2023-08-01', FALSE, 'Batiment A', 3, 'Bureau 306'),
+('gateway_009', '192.168.1.18', '2023-09-01', TRUE, 'Batiment C', 1, 'Bureau 104'),
+('gateway_010', '192.168.1.19', '2023-10-01', FALSE, 'Batiment A', 2, 'Bureau 215');
 
 -- Création de la table Sensors
 CREATE TABLE Sensors (
@@ -27,15 +28,15 @@ CREATE TABLE Sensors (
     device_type VARCHAR(50) NOT NULL,
     commissioning_date DATE NOT NULL,
     status BOOLEAN NOT NULL,
-    batiment_name VARCHAR(100) NOT NULL,
-    etage INTEGER NOT NULL,
-    emplacement VARCHAR(50) NULL,
+    building_name VARCHAR(100) NOT NULL,
+    floor INTEGER NOT NULL,
+    location VARCHAR(50) NULL,
     id_gateway VARCHAR(50) NULL,
     FOREIGN KEY (id_gateway) REFERENCES Gateways(id_gateway) ON DELETE SET NULL
 );
 
 -- Insertion des valeurs dans la table Sensors
-INSERT INTO Sensors (id_sensor, device_type, commissioning_date, status, batiment_name, etage, emplacement, id_gateway) VALUES
+INSERT INTO Sensors (id_sensor, device_type, commissioning_date, status, building_name, floor, location, id_gateway) VALUES
 ('dev_eui_001', 'device_001', '2023-01-01', TRUE, 'Batiment A', 1, 'Bureau 101', 'gateway_001'),
 ('dev_eui_002', 'device_002', '2023-02-01', TRUE, 'Batiment B', 2, 'Bureau 202', 'gateway_002'),
 ('dev_eui_003', 'device_003', '2023-03-01', FALSE, 'Batiment A', 3, 'Bureau 303', 'gateway_001'),

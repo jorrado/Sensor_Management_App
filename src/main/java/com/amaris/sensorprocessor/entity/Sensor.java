@@ -12,15 +12,15 @@ public class Sensor {
     public Sensor() {}
 
     public Sensor(String idSensor, String deviceType, String commissioningDate,
-                  Boolean status, String batimentName, Integer etage,
-                  String emplacement, String idGateway) {
+                  Boolean status, String buildingName, Integer floor,
+                  String location, String idGateway) {
         this.idSensor = idSensor;
         this.deviceType = deviceType;
         this.commissioningDate = commissioningDate;
         this.status = status;
-        this.batimentName = batimentName;
-        this.etage = etage;
-        this.emplacement = emplacement;
+        this.buildingName = buildingName;
+        this.floor = floor;
+        this.location = location;
         this.idGateway = idGateway;
     }
 
@@ -37,14 +37,14 @@ public class Sensor {
     @Column("status")
     private Boolean status;
 
-    @Column("batiment_name")
-    private String batimentName;
+    @Column("building_name")
+    private String buildingName;
 
-    @Column("etage")
-    private Integer etage;
+    @Column("floor")
+    private Integer floor;
 
-    @Column("emplacement")
-    private String emplacement;
+    @Column("location")
+    private String location;
 
     @Column("id_gateway")
     private String idGateway;
