@@ -52,8 +52,8 @@ public class GatewayService {
 
     public String getMonitoringData(String id) {
         return restClient.get()
-                // .uri("http://localhost:8081/api/monitoring/{id}", id) // à utiliser sans le conteneur
-                .uri("http://appli2:8081/api/monitoring/{id}", id) // à utiliser avec le nom du conteneur ici appli2
+                .uri("http://localhost:8081/api/monitoring/{id}", id) // à utiliser sans le conteneur
+                // .uri("http://appli2:8081/api/monitoring/{id}", id) // à utiliser avec le nom du conteneur ici appli2
                 .retrieve()
                 .body(String.class);
     }
