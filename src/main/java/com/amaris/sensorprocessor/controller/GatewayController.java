@@ -64,4 +64,12 @@ public class GatewayController {
         return "redirect:/manage-gateways";
     }
 
+    @GetMapping("/manage-gateways/monitoring/{id}")
+    public String monitoringReading(@PathVariable String id, Model model) {
+        // MonitoringData monitoringData = gatewayService.getMonitoringData(id);
+        Object monitoringData = gatewayService.getMonitoringData(id);
+        model.addAttribute("monitoringData", monitoringData);
+        return "monitoringGateway";
+    }
+
 }

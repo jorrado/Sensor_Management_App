@@ -37,7 +37,7 @@
             <img src="/image/monitoring-data.svg" alt="Modify" width="20">
           </a>
           <a th:href="@{/manage-gateways/edit/{id}(id=${gateway.idGateway})}">
-            <img src="/image/edit-icon.svg" alt="Modify" width="20">
+            <img src="/image/edit-icon.svg" alt="editModify" width="20">
           </a>
           <form th:action="@{/manage-gateways/delete/{id}(id=${gateway.idGateway})}" method="post" class="deleteForm" style="display:inline;">
             <input type="hidden" name="_method" value="DELETE" />
