@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.3</version>
+		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.amaris.sensorprocessor</groupId>
@@ -30,8 +30,6 @@
 		<java.version>17</java.version>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-		<sonar.login>admin</sonar.login>
-		<sonar.password>admin2</sonar.password>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -88,7 +86,7 @@
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
-			<version>3.36.0.3</version>
+<!--			<version>3.36.0.3</version>-->
 		</dependency>
 
 		<!-- Pour la communication dialect sqlite -->
@@ -102,7 +100,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>6.4.3</version>
+<!--			<version>6.4.3</version>-->
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
 <!--		<dependency>-->
@@ -114,7 +112,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-oauth2-client</artifactId>
-			<version>6.4.3</version>
+<!--			<version>6.4.3</version>-->
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-rsocket -->
 		<dependency>
@@ -122,15 +120,38 @@
 			<artifactId>spring-boot-starter-rsocket</artifactId>
 			<version>3.4.3</version>
 		</dependency>
+
+		<!-- Pour utiliser webClient -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>5.1.0.4751</version>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<properties>
+				<sonar.projectKey>gateway-monitoring-api</sonar.projectKey>
+				<sonar.host.url>http://localhost:9000</sonar.host.url>
+				<sonar.token>sqp_885ec406a4670f84f8c705a0086d7eab862f0e93</sonar.token>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

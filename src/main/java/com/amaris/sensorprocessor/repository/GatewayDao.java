@@ -66,10 +66,12 @@ public class GatewayDao {
     public int insertGateway(Gateway gateway) {
         return jdbcTemplate.update(
                 "INSERT INTO GATEWAYS (" +
-                        "ID_GATEWAY, IP_ADDRESS, COMMISSIONING_DATE, STATUS, " +
+//                        "ID_GATEWAY, IP_ADDRESS, COMMISSIONING_DATE, STATUS, " + // retirer status
+                        "ID_GATEWAY, IP_ADDRESS, COMMISSIONING_DATE, " +
                         "BUILDING_NAME, FLOOR, LOCATION) " +
                         "VALUES(?, ?, ?, ?, ?, ?, ?)",
-                gateway.getIdGateway(), gateway.getIpAddress(), gateway.getCommissioningDate(), gateway.getStatus(),
+                gateway.getIdGateway(), gateway.getIpAddress(), gateway.getCommissioningDate(),
+//                gateway.getStatus(),
                 gateway.getBuildingName(), gateway.getFloor(), gateway.getLocation()
         );
     }
@@ -83,11 +85,12 @@ public class GatewayDao {
     public int updateGateway(Gateway gateway) {
         return jdbcTemplate.update(
                 "UPDATE GATEWAYS SET " +
-                        "IP_ADDRESS = ?, COMMISSIONING_DATE = ?, STATUS = ?, BUILDING_NAME = ?, " +
+//                        "IP_ADDRESS = ?, COMMISSIONING_DATE = ?, STATUS = ?, BUILDING_NAME = ?, " +
+                        "IP_ADDRESS = ?, COMMISSIONING_DATE = ?, BUILDING_NAME = ?, " +
                         "FLOOR = ?, LOCATION = ? " +
                         "WHERE ID_GATEWAY = ?",
-                gateway.getIpAddress(), gateway.getCommissioningDate(), gateway.getStatus(), gateway.getBuildingName(),
-                gateway.getFloor(), gateway.getLocation(), gateway.getIdGateway()
+                gateway.getIpAddress(), gateway.getCommissioningDate(), // gateway.getStatus(), retirer status
+                gateway.getBuildingName(), gateway.getFloor(), gateway.getLocation(), gateway.getIdGateway()
         );
     }
 

@@ -15,7 +15,7 @@
       <th>ID Gateway</th>
       <th>IP Address</th>
       <th>Date Commissioning</th>
-      <th>Status</th>
+<!--      <th>Status</th>-->
       <th>Building</th>
       <th>Floor</th>
       <th>Location</th>
@@ -27,13 +27,16 @@
       <td th:text="${gateway.idGateway}"></td>
       <td th:text="${gateway.ipAddress}"></td>
       <td th:text="${gateway.commissioningDate}"></td>
-      <td th:text="${gateway.status ? 'Active' : 'Inactive'}"></td>
+<!--      <td th:text="${gateway.status ? 'Active' : 'Inactive'}"></td>-->
       <td th:text="${gateway.buildingName}"></td>
       <td th:text="${gateway.floor}"></td>
       <td th:text="${gateway.location}"></td>
       <td>
         <div class="button-container">
-          <a th:href="@{/manage-gateways/monitoring/{id}(id=${gateway.idGateway})}">
+<!--          <a th:href="@{/manage-gateways/monitoring/{id}(id=${gateway.idGateway})}">-->
+<!--            <img src="/image/monitoring-data.svg" alt="Modify" width="20">-->
+<!--          </a>-->
+          <a th:href="@{/manage-gateways/monitoring/{id}(id=${gateway.idGateway}, ip=${gateway.ipAddress})}">
             <img src="/image/monitoring-data.svg" alt="Modify" width="20">
           </a>
           <a th:href="@{/manage-gateways/edit/{id}(id=${gateway.idGateway})}">
@@ -69,10 +72,10 @@
         <input id="idGateway" th:field="*{idGateway}" placeholder="ID Gateway" required readonly />
         <input id="ipAddress" th:field="*{ipAddress}" placeholder="IP Address" required />
         <input id="commissioningDate" th:field="*{commissioningDate}" placeholder="Date Commissioning" required />
-        <select id="status" th:field="*{status}" >
-          <option value="true" th:selected="${gateway.status == 'true'}">Active</option>
-          <option value="false" th:selected="${gateway.status == 'false'}">Inactive</option>
-        </select>
+<!--        <select id="status" th:field="*{status}" >-->
+<!--          <option value="true" th:selected="${gateway.status == 'true'}">Active</option>-->
+<!--          <option value="false" th:selected="${gateway.status == 'false'}">Inactive</option>-->
+<!--        </select>-->
         <input id="batimentName" th:field="*{buildingName}" placeholder="Building" required />
         <input type="number" id="etage" th:field="*{floor}" placeholder="Floor" required />
         <input id="emplacement" th:field="*{location}" placeholder="Location" />
@@ -98,10 +101,10 @@
         <input type="text" name="idGateway" placeholder="ID Gateway" required />
         <input type="text" name="ipAddress" placeholder="IP Address" required />
         <input type="text" name="commissioningDate" placeholder="Commissioning Date" required />
-        <select name="status" required>
-          <option value="true">Active</option>
-          <option value="false">Inactive</option>
-        </select>
+<!--        <select name="status" required>-->
+<!--          <option value="true">Active</option>-->
+<!--          <option value="false">Inactive</option>-->
+<!--        </select>-->
         <input type="text" name="buildingName" placeholder="Building" required />
         <input type="number" name="floor" placeholder="Floor" required />
         <input type="text" name="location" placeholder="Location" />

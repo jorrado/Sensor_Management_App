@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Gateway Monitoring</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" href="/css/monitoringGateway.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+    <header>Gateway Monitoring - ID: GW-001</header>
+
+    <main>
+        <section class="info-grid">
+            <div class="card"><h4>Status</h4><p><span class="badge"><img src="/image/toggle_on.svg" alt="On" />Actif</span></p></div>
+            <div class="card"><h4>Battery</h4><p><span class="badge"><img src="/image/battery.svg" alt="Battery" />95%</span></p></div>
+            <div class="card"><h4>CPU Température</h4><p><span class="badge"><img src="/image/thermostat.svg" alt="Temp" />55 °C</span></p></div>
+            <div class="card"><h4>Number of sensors connected</h4><p><span class="badge"><img src="/image/sensor-icon.svg" alt="Sensors" />17</span></p></div>
+            <div class="card"><h4>Hostname</h4><p>raspberrypi</p></div>
+            <div class="card"><h4>Created at</h4><p>2023-11-15</p></div>
+            <div class="card"><h4>Commissioning Date</h4><p>2023-11-15</p></div>
+            <div class="card"><h4>Uptime Days</h4><p>27 days</p></div>
+            <div class="card"><h4>IP Locale</h4><p>192.168.1.100</p></div>
+            <div class="card"><h4>IP Publique</h4><p>51.75.201.24</p></div>
+            <div class="card"><h4>Location</h4><p>Bât A - Étage 2</p></div>
+        </section>
+
+        <section class="chart-grid">
+            <div class="card">
+                <h4>RAM Usage</h4>
+                <canvas id="ramChart"></canvas>
+            </div>
+            <div class="card">
+                <h4>CPU Usage</h4>
+                <canvas id="cpuChart"></canvas>
+            </div>
+            <div class="card">
+                <h4>Hard drive Usage</h4>
+                <canvas id="harddriveChart"></canvas>
+            </div>
+        </section>
+
+        <section id="dashboard" style="display: flex; gap: 20px;">
+            <div id="sensorsTable" class="card" style="flex: 1; padding: 10px;">
+                <div class="card">
+                    <h4>Connected Sensors</h4>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Exemple de ligne -->
+                            <tr>
+                                <td>sensor001</td>
+                                <td>Temperature</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor002</td>
+                                <td>Humidity</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_off.svg" alt="Off" />Inactive</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor001</td>
+                                <td>Temperature</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor001</td>
+                                <td>Temperature</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor001</td>
+                                <td>Temperature</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor002</td>
+                                <td>Humidity</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_off.svg" alt="Off" />Inactive</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor001</td>
+                                <td>Temperature</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor001</td>
+                                <td>Temperature</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor001</td>
+                                <td>Temperature</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor001</td>
+                                <td>Temperature</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor001</td>
+                                <td>Temperature</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor002</td>
+                                <td>Humidity</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_off.svg" alt="Off" />Inactive</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor001</td>
+                                <td>Temperature</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>sensor002</td>
+                                <td>Humidity</td>
+                                <td><span class="badge badge-small"><img src="/image/toggle_off.svg" alt="Off" />Inactive</span></td>
+                            </tr>
+                            <!-- À remplacer dynamiquement avec tes données -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="mapContainer" style="flex: 1; padding: 10px;">
+                <h4>Gateway Location</h4>
+                <div id="map" style="min-height: 300px; height: 50vh; width: 100%; border-radius: 10px;"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/javascript/monitoringGateway.js"></script>
+</body>
+</html>

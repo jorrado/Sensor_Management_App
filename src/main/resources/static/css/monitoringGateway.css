@@ -1,0 +1,132 @@
+body {
+    background: #f4f6f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background: #662179;
+    color: white;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.card h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.card p {
+    margin: 0.4rem 0 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    background: #28a745;
+    color: white;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.badge img {
+    height: 1.7em;
+    vertical-align: middle;
+    margin-right: 0.6em;
+    margin-bottom: 0.2em;
+    filter: brightness(0) invert(1);
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1rem;
+}
+
+canvas {
+    width: 100% !important;
+    height: 280px !important;
+}
+
+/* Container pour garder taille fixe + scroll si besoin */
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+/* Tableau simple, clair et lisible */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f0f0f0;
+}
+
+th, td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+/* Badge plus petit pour le tableau */
+.badge-small {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    width: 70px;
+}
+
+.badge-small img {
+    height: 1.4em;
+    margin-top: 0.3em;
+}
+
+#dashboard {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#sensorsTable, #mapContainer {
+    margin-top: 20px;
+}
+
+#map {
+    height: 100vh;
+    width: 100vw;
+}
