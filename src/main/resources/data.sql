@@ -3,24 +3,24 @@ CREATE TABLE Gateways (
     id_gateway VARCHAR(50) PRIMARY KEY NOT NULL,
     ip_address VARCHAR(50) NOT NULL,
     commissioning_date DATE NOT NULL,
-    status BOOLEAN NOT NULL,
     building_name VARCHAR(100) NOT NULL,
     floor INTEGER NOT NULL,
     location VARCHAR(50) NULL
 );
 
 -- Insertion des valeurs dans la table Gateways
-INSERT INTO Gateways (id_gateway, ip_address, commissioning_date, status, building_name, floor, location) VALUES
-('gateway_001', '192.168.1.10', '2023-01-01', TRUE, 'Batiment A', 1, 'Bureau 101'),
-('gateway_002', '192.168.1.11', '2023-02-01', TRUE, 'Batiment B', 2, 'Bureau 202'),
-('gateway_003', '192.168.1.12', '2023-03-01', FALSE, 'Batiment A', 3, 'Bureau 303'),
-('gateway_004', '192.168.1.13', '2023-04-01', TRUE, 'Batiment C', 1, 'Bureau 104'),
-('gateway_005', '192.168.1.14', '2023-05-01', TRUE, 'Batiment D', 2, 'Bureau 205'),
-('gateway_006', '192.168.1.15', '2023-06-01', FALSE, 'Batiment A', 1, 'Bureau 103'),
-('gateway_007', '192.168.1.16', '2023-07-01', TRUE, 'Batiment B', 2, 'Bureau 206'),
-('gateway_008', '192.168.1.17', '2023-08-01', FALSE, 'Batiment A', 3, 'Bureau 306'),
-('gateway_009', '192.168.1.18', '2023-09-01', TRUE, 'Batiment C', 1, 'Bureau 104'),
-('gateway_010', '192.168.1.19', '2023-10-01', FALSE, 'Batiment A', 2, 'Bureau 215');
+INSERT INTO Gateways (id_gateway, ip_address, commissioning_date, building_name, floor, location) VALUES
+('gateway_001', '192.168.1.10', '2023-01-01', 'Batiment A', 1, 'Bureau 101'),
+('gateway_002', '192.168.1.11', '2023-02-01', 'Batiment B', 2, 'Bureau 202'),
+('gateway_003', '192.168.1.12', '2023-03-01', 'Batiment A', 3, 'Bureau 303'),
+('gateway_004', '192.168.1.13', '2023-04-01', 'Batiment C', 1, 'Bureau 104'),
+('gateway_005', '192.168.1.14', '2023-05-01', 'Batiment D', 2, 'Bureau 205'),
+('gateway_006', '192.168.1.15', '2023-06-01', 'Batiment A', 1, 'Bureau 103'),
+('gateway_007', '192.168.1.16', '2023-07-01', 'Batiment B', 2, 'Bureau 206'),
+('gateway_008', '192.168.1.17', '2023-08-01', 'Batiment A', 3, 'Bureau 306'),
+('gateway_009', '192.168.1.18', '2023-09-01', 'Batiment C', 1, 'Bureau 104'),
+('gateway_010', '192.168.1.19', '2023-10-01', 'Batiment A', 2, 'Bureau 215'),
+('rpi-mantu', '10.243.129.10', '2023-10-01', 'Batiment Z', 3, 'Bureau 333');
 
 -- Création de la table Sensors
 CREATE TABLE Sensors (
@@ -136,13 +136,13 @@ CREATE TABLE Users (
 
 -- Insertion des valeurs dans la table Users
 INSERT INTO Users (username, firstname, lastname, password, role, email) VALUES
-('user1', 'John', 'Doe', 'password123', 'ADMIN', 'john.doe@example.com'),
-('user2', 'Jane', 'Smith', 'password123', 'USER', 'jane.smith@example.com'),
-('user3', 'Alice', 'Johnson', 'password123', 'SUPERUSER', 'alice.johnson@example.com'),
-('user4', 'Bob', 'Brown', 'password123', 'USER', 'bob.brown@example.com'),
-('user5', 'Charlie', 'Davis', 'password123', 'ADMIN', 'charlie.davis@example.com'),
-('user6', 'David', 'Wilson', 'password123', 'USER', 'david.wilson@example.com'),
-('user7', 'Eva', 'Martinez', 'password123', 'SUPERUSER', 'eva.martinez@example.com'),
-('user8', 'Frank', 'Taylor', 'password123', 'USER', 'frank.taylor@example.com'),
-('user9', 'Grace', 'Anderson', 'password123', 'SUPERUSER', 'grace.anderson@example.com'),
-('user10', 'Hannah', 'Thomas', 'password123', 'ADMIN', 'hannah.thomas@example.com');
+('user1', 'John', 'Doe', '$2a$10$WcXpO7sR8lJAjp2Nti6jR.Q52y3rNN2UKDTquMAhZWaH1.1qNhmfG', 'ADMIN', 'john.doe@example.com'),
+('user2', 'Jane', 'Smith', '$2a$10$WcXpO7sR8lJAjp2Nti6jR.Q52y3rNN2UKDTquMAhZWaH1.1qNhmfG', 'USER', 'jane.smith@example.com'),
+('user3', 'Alice', 'Johnson', '$2a$10$WcXpO7sR8lJAjp2Nti6jR.Q52y3rNN2UKDTquMAhZWaH1.1qNhmfG', 'SUPERUSER', 'alice.johnson@example.com'),
+('user4', 'Bob', 'Brown', '$2a$10$WcXpO7sR8lJAjp2Nti6jR.Q52y3rNN2UKDTquMAhZWaH1.1qNhmfG', 'USER', 'bob.brown@example.com'),
+('user5', 'Charlie', 'Davis', '$2a$10$WcXpO7sR8lJAjp2Nti6jR.Q52y3rNN2UKDTquMAhZWaH1.1qNhmfG', 'ADMIN', 'charlie.davis@example.com'),
+('user6', 'David', 'Wilson', '$2a$10$WcXpO7sR8lJAjp2Nti6jR.Q52y3rNN2UKDTquMAhZWaH1.1qNhmfG', 'USER', 'david.wilson@example.com'),
+('user7', 'Eva', 'Martinez', '$2a$10$WcXpO7sR8lJAjp2Nti6jR.Q52y3rNN2UKDTquMAhZWaH1.1qNhmfG', 'SUPERUSER', 'eva.martinez@example.com'),
+('user8', 'Frank', 'Taylor', '$2a$10$WcXpO7sR8lJAjp2Nti6jR.Q52y3rNN2UKDTquMAhZWaH1.1qNhmfG', 'USER', 'frank.taylor@example.com'),
+('user9', 'Grace', 'Anderson', '$2a$10$WcXpO7sR8lJAjp2Nti6jR.Q52y3rNN2UKDTquMAhZWaH1.1qNhmfG', 'SUPERUSER', 'grace.anderson@example.com'),
+('user10', 'Hannah', 'Thomas', '$2a$10$WcXpO7sR8lJAjp2Nti6jR.Q52y3rNN2UKDTquMAhZWaH1.1qNhmfG', 'ADMIN', 'hannah.thomas@example.com');

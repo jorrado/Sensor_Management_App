@@ -93,7 +93,6 @@ a:hover img, button:hover img {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
 }
 
 .modal-content {
@@ -109,7 +108,7 @@ a:hover img, button:hover img {
 
 .modal-content-delete {
     background-color: #fefefe;
-    margin: 5% auto;
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 20%;

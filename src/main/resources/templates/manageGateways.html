@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-  <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Manage Gateways</title>
   <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
   <link rel="stylesheet" type="text/css" th:href="@{/css/manageGateways.css}" />
 </head>
+
 <body>
 <div class="manageGateways-container">
   <img src="/image/mantu-logo.jpg" alt="Logo" class="mantu-logo">
+
   <table>
     <thead>
     <tr>
@@ -33,10 +35,7 @@
       <td th:text="${gateway.location}"></td>
       <td>
         <div class="button-container">
-<!--          <a th:href="@{/manage-gateways/monitoring/{id}(id=${gateway.idGateway})}">-->
-<!--            <img src="/image/monitoring-data.svg" alt="Modify" width="20">-->
-<!--          </a>-->
-          <a th:href="@{/manage-gateways/monitoring/{id}(id=${gateway.idGateway}, ip=${gateway.ipAddress})}">
+          <a th:href="@{/manage-gateways/monitoring/{id}/view(id=${gateway.idGateway}, ip=${gateway.ipAddress})}">
             <img src="/image/monitoring-data.svg" alt="Modify" width="20">
           </a>
           <a th:href="@{/manage-gateways/edit/{id}(id=${gateway.idGateway})}">
@@ -53,7 +52,8 @@
     </tr>
     </tbody>
   </table>
-  <!-- Popup de confirmation -->
+
+  <!-- Popup de confirmation suppression -->
   <div id="deleteGatewayPopup" class="modal">
     <div class="modal-content-delete">
       <h2>Confirm delete?</h2>
@@ -76,12 +76,9 @@
 <!--          <option value="true" th:selected="${gateway.status == 'true'}">Active</option>-->
 <!--          <option value="false" th:selected="${gateway.status == 'false'}">Inactive</option>-->
 <!--        </select>-->
-        <input id="batimentName" th:field="*{buildingName}" placeholder="Building" required />
+        <input id="buildingName" th:field="*{buildingName}" placeholder="Building" required />
         <input type="number" id="etage" th:field="*{floor}" placeholder="Floor" required />
-        <input id="emplacement" th:field="*{location}" placeholder="Location" />
-<!--        <select id="sensor1" th:field="*{sensorList}">-->
-<!--          <option th:each="sensor : ${sensors}" th:value="${sensor.idSensor}" th:text="${sensor.idSensor}">Select Sensor</option>-->
-<!--        </select>-->
+        <input id="location" th:field="*{location}" placeholder="Location" />
         <div class="form-buttons">
           <button type="submit">Update</button>
           <button type="button" id="closeEdit">Cancel</button>
@@ -108,9 +105,6 @@
         <input type="text" name="buildingName" placeholder="Building" required />
         <input type="number" name="floor" placeholder="Floor" required />
         <input type="text" name="location" placeholder="Location" />
-<!--        <select id="sensor2" th:field="*{sensorList}">-->
-<!--          <option th:each="sensor : ${sensors}" th:value="${sensor.idSensor}" th:text="${sensor.idSensor}">Select Sensor</option>-->
-<!--        </select>-->
         <div class="form-buttons">
           <button type="submit">Add</button>
           <button type="button" id="closeCreate">Cancel</button>

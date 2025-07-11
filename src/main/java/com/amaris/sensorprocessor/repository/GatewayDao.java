@@ -20,9 +20,10 @@ public class GatewayDao {
     }
 
     /**
-     * Récupère la liste de toutes les passerelles enregistrées dans la base de données.
+     * Récupère la liste complète des gateways triée par ID (insensible à la casse).
+     * Utilise BeanPropertyRowMapper pour convertir chaque ligne SQL en objet Gateway.
      *
-     * @return une liste d'objets {@code Gateway} représentant toutes les passerelles.
+     * @return Liste de toutes les gateways, vide si aucune trouvée
      */
     public List<Gateway> findAllGateways() {
         return jdbcTemplate.query(
@@ -31,10 +32,12 @@ public class GatewayDao {
     }
 
     /**
-     * Récupère une passerelle spécifique en fonction de son identifiant.
+     * Recherche une gateway par son ID.
+     * Exécute une requête SQL et mappe le résultat en Gateway.
+     * Renvoie un Optional vide si aucune gateway trouvée.
      *
-     * @param idGateway l'identifiant de la passerelle à rechercher.
-     * @return un objet {@code Gateway} correspondant à l'ID fourni.
+     * @param idGateway Identifiant de la gateway recherchée
+     * @return Optional contenant la gateway si trouvée, sinon vide
      */
     public Optional<Gateway> findByIdOfGateway(String idGateway) {
         List<Gateway> gateways = jdbcTemplate.query(
@@ -46,10 +49,11 @@ public class GatewayDao {
     }
 
     /**
-     * Supprime une passerelle de la base de données en fonction de son identifiant.
+     * Supprime une gateway en base via son ID.
+     * Exécute une requête DELETE SQL.
      *
-     * @param idGateway l'identifiant de la passerelle à supprimer
-     * @return le nombre de lignes affectées par la suppression (généralement 0 ou 1)
+     * @param idGateway Identifiant de la gateway à supprimer
+     * @return Nombre de lignes affectées (0 si aucune suppression)
      */
     public int deleteByIdOfGateway(String idGateway) {
         return jdbcTemplate.update(
@@ -58,38 +62,37 @@ public class GatewayDao {
     }
 
     /**
-     * Insère une nouvelle passerelle dans la base de données.
+     * Insère une nouvelle gateway en base de données.
+     * Utilise jdbcTemplate.update avec les champs de l'objet Gateway.
      *
-     * @param gateway l'objet {@link Gateway} contenant les informations de la gateway à insérer.
-     * @return le nombre de lignes affectées dans la base de données (1 si l'insertion a réussi, 0 sinon).
+     * @param gateway Objet Gateway à insérer
+     * @return Nombre de lignes insérées (1 si succès)
      */
     public int insertGateway(Gateway gateway) {
         return jdbcTemplate.update(
                 "INSERT INTO GATEWAYS (" +
-//                        "ID_GATEWAY, IP_ADDRESS, COMMISSIONING_DATE, STATUS, " + // retirer status
                         "ID_GATEWAY, IP_ADDRESS, COMMISSIONING_DATE, " +
                         "BUILDING_NAME, FLOOR, LOCATION) " +
-                        "VALUES(?, ?, ?, ?, ?, ?, ?)",
+                        "VALUES(?, ?, ?, ?, ?, ?)",
                 gateway.getIdGateway(), gateway.getIpAddress(), gateway.getCommissioningDate(),
-//                gateway.getStatus(),
                 gateway.getBuildingName(), gateway.getFloor(), gateway.getLocation()
         );
     }
 
     /**
-     * Met à jour les informations d'une passerelle dans la base de données.
+     * Met à jour les informations d'une gateway existante en base.
+     * Modifie les champs sauf l'ID qui sert de critère.
      *
-     * @param gateway l'objet {@link Gateway} contenant les nouvelles valeurs à mettre à jour.
-     * @return le nombre de lignes affectées par la mise à jour (1 si l'id existe, 0 sinon).
+     * @param gateway Objet Gateway avec les nouvelles données
+     * @return Nombre de lignes modifiées (0 si aucune correspondance)
      */
     public int updateGateway(Gateway gateway) {
         return jdbcTemplate.update(
                 "UPDATE GATEWAYS SET " +
-//                        "IP_ADDRESS = ?, COMMISSIONING_DATE = ?, STATUS = ?, BUILDING_NAME = ?, " +
                         "IP_ADDRESS = ?, COMMISSIONING_DATE = ?, BUILDING_NAME = ?, " +
                         "FLOOR = ?, LOCATION = ? " +
                         "WHERE ID_GATEWAY = ?",
-                gateway.getIpAddress(), gateway.getCommissioningDate(), // gateway.getStatus(), retirer status
+                gateway.getIpAddress(), gateway.getCommissioningDate(),
                 gateway.getBuildingName(), gateway.getFloor(), gateway.getLocation(), gateway.getIdGateway()
         );
     }

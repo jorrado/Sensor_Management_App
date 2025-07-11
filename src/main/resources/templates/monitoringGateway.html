@@ -11,21 +11,32 @@
 
 <body>
 
-    <header>Gateway Monitoring - ID: GW-001</header>
+<!--    <header>Gateway Monitoring - ID: GW-001</header>-->
+    <header>Gateway Monitoring - ID: [[${gatewayId}]]</header>
 
     <main>
         <section class="info-grid">
             <div class="card"><h4>Status</h4><p><span class="badge"><img src="/image/toggle_on.svg" alt="On" />Actif</span></p></div>
             <div class="card"><h4>Battery</h4><p><span class="badge"><img src="/image/battery.svg" alt="Battery" />95%</span></p></div>
-            <div class="card"><h4>CPU Température</h4><p><span class="badge"><img src="/image/thermostat.svg" alt="Temp" />55 °C</span></p></div>
+<!--            <div class="card"><h4>CPU Température</h4><p><span class="badge"><img src="/image/thermostat.svg" alt="Temp" />55 °C</span></p></div>-->
+            <div class="card">
+                <h4>CPU Température</h4>
+                <p><span id="cpu-temp-badge" class="badge"><img src="/image/thermostat.svg" alt="Temp" /><span id="cpu-temp">--</span></span></p>
+            </div>
             <div class="card"><h4>Number of sensors connected</h4><p><span class="badge"><img src="/image/sensor-icon.svg" alt="Sensors" />17</span></p></div>
-            <div class="card"><h4>Hostname</h4><p>raspberrypi</p></div>
-            <div class="card"><h4>Created at</h4><p>2023-11-15</p></div>
+<!--            <div class="card"><h4>Hostname</h4><p>raspberrypi</p></div>-->
+            <div class="card"><h4>Hostname</h4><p id="hostname">--</p></div>
+<!--            <div class="card"><h4>Created at</h4><p>2023-11-15</p></div>-->
+            <div class="card"><h4>Created at</h4><p id="createdAt">--</p></div>
             <div class="card"><h4>Commissioning Date</h4><p>2023-11-15</p></div>
-            <div class="card"><h4>Uptime Days</h4><p>27 days</p></div>
-            <div class="card"><h4>IP Locale</h4><p>192.168.1.100</p></div>
-            <div class="card"><h4>IP Publique</h4><p>51.75.201.24</p></div>
+<!--            <div class="card"><h4>Uptime Days</h4><p>27 days</p></div>-->
+            <div class="card"><h4>Uptime Days</h4><p id="uptimeDays">--</p></div>
+<!--            <div class="card"><h4>IP Locale</h4><p>192.168.1.100</p></div>-->
+            <div class="card"><h4>IP Locale</h4><p id="ipLocal">--</p></div>
+<!--            <div class="card"><h4>IP Publique</h4><p>51.75.201.24</p></div>-->
+            <div class="card"><h4>IP Publique</h4><p id="ipPublic">--</p></div>
             <div class="card"><h4>Location</h4><p>Bât A - Étage 2</p></div>
+            <div class="card"><h4>Hard drive</h4><p id="hardDrive">--</p></div>
         </section>
 
         <section class="chart-grid">
@@ -145,5 +156,99 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="/javascript/monitoringGateway.js"></script>
+    <script>
+        const gatewayId = /*[[${gatewayId}]]*/ 'rpi-mantu';
+        const gatewayIp = /*[[${gatewayIp}]]*/ '10.243.129.10';
+        const eventSource = new EventSource(`/manage-gateways/monitoring/${gatewayId}/stream?ip=${gatewayIp}`);
+
+
+        eventSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+
+            document.querySelector("#cpu-temp").textContent = `${data.system['cpu_temp (C)']} °C`;
+
+            const ramTotal = data.system['ram_total_gb (GB)'];
+            const ramUsed = data.system['ram_used_gb (GB)'];
+            if (ramTotal && ramUsed) {
+                const ramUsagePercent = (ramUsed / ramTotal) * 100;
+                ramChart.data.datasets[0].data.push(ramUsagePercent);
+                if (ramChart.data.datasets[0].data.length > 5) {
+                    ramChart.data.datasets[0].data.shift();
+                    ramChart.data.labels.shift();
+                }
+                const now = new Date();
+                ramChart.data.labels.push(now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0'));
+                ramChart.update();
+            }
+
+            const cpuUsage = data.system['cpu_percent (%)'];
+            if (cpuUsage !== undefined) {
+                cpuChart.data.datasets[0].data.push(cpuUsage);
+                if (cpuChart.data.datasets[0].data.length > 30) {
+                    cpuChart.data.datasets[0].data.shift();
+                    cpuChart.data.labels.shift();
+                }
+                const now = new Date();
+                cpuChart.data.labels.push(now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0'));
+                cpuChart.update();
+            }
+
+            const diskUsedPercentRaw = data.system['disk_usage_percent'];
+            const diskUsedPercent = diskUsedPercentRaw ? parseFloat(diskUsedPercentRaw.replace('%', '')) : undefined;
+            if (diskUsedPercent !== undefined) {
+                harddriveChart.data.datasets[0].data.push(diskUsedPercent);
+                if (harddriveChart.data.datasets[0].data.length > 30) {
+                    harddriveChart.data.datasets[0].data.shift();
+                    harddriveChart.data.labels.shift();
+                }
+                const now = new Date();
+                harddriveChart.data.labels.push(now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0'));
+                harddriveChart.update();
+            }
+
+
+            if (document.querySelector("#hostname").textContent === "--") {
+                document.querySelector("#hostname").textContent = data.system.hostname;
+            }
+            if (document.querySelector("#createdAt").textContent === "--" &&
+                data.ttn && data.ttn.info && data.ttn.info.created_at) {
+                    const createdAt = data.ttn.info.created_at.split('T')[0];
+                    document.querySelector("#createdAt").textContent = createdAt;
+            }
+            if (document.querySelector("#uptimeDays").textContent === "--" && data.system.uptime_days) {
+                document.querySelector("#uptimeDays").textContent = data.system.uptime_days;
+            }
+            if (document.querySelector("#ipLocal").textContent === "--" && data.system.ip_local) {
+                document.querySelector("#ipLocal").textContent = data.system.ip_local;
+            }
+            if (document.querySelector("#ipPublic").textContent === "--" && data.system.ip_public) {
+                document.querySelector("#ipPublic").textContent = data.system.ip_public;
+            }
+            if (document.querySelector("#hardDrive").textContent === "--" && data.system.disk_total) {
+                const diskTotalNumber = parseFloat(data.system.disk_total);
+                document.querySelector("#hardDrive").textContent = diskTotalNumber.toFixed(2) + ' GB';
+            }
+
+
+            const cpuTempBadge = document.querySelector("#cpu-temp-badge");
+            if (cpuTempBadge) {
+                const cpuTemp = data.system['cpu_temp (C)'];
+                if (cpuTemp <= 70) {
+                    cpuTempBadge.style.backgroundColor = 'green';
+                } else if (cpuTemp <= 80) {
+                    cpuTempBadge.style.backgroundColor = 'orange';
+                } else {
+                    cpuTempBadge.style.backgroundColor = 'red';
+                }
+            }
+
+            console.log("Data reçue :", data);
+        };
+
+        eventSource.onerror = function(error) {
+            console.error("Erreur SSE :", error);
+            eventSource.close();
+        };
+    </script>
 </body>
 </html>

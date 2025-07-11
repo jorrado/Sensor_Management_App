@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -33,7 +35,7 @@ public class GatewayController {
         try {
             gatewayService.save(gateway);
         } catch (CustomException e) {
-            redirectAttributes.addFlashAttribute("error", "Gateway already exists!");
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/manage-gateways";
         }
         redirectAttributes.addFlashAttribute("error", null);
@@ -61,13 +63,34 @@ public class GatewayController {
         return "redirect:/manage-gateways";
     }
 
-    @GetMapping("/manage-gateways/monitoring/{id}")
-    public String monitoringReading(@PathVariable String id, @RequestParam String ip, Model model) {
-//        MonitoringData monitoringData = gatewayService.getMonitoringData(id);
-        /*Object monitoringData = */
-    gatewayService.getMonitoringData(id, ip);
-//        model.addAttribute("monitoringData", monitoringData);
+    @GetMapping("/manage-gateways/monitoring/{id}/view")
+    public String monitoringView(@PathVariable String id, Model model) {
+        model.addAttribute("gatewayId", id);
         return "monitoringGateway";
+    }
+
+    /**
+     * Établit un flux SSE (Server-Sent Events) pour envoyer les données de monitoring
+     * en temps réel d’un gateway identifié par son ID et son adresse IP.
+     * Cette méthode est appelée automatiquement depuis le JavaScript de la page HTML,
+     * via une requête SSE vers l’endpoint.
+     *
+     * @param id l’identifiant du gateway
+     * @param ip l’adresse IP du gateway
+     * @return un {@link SseEmitter} qui envoie les données de monitoring en continu
+     */
+    @GetMapping("/manage-gateways/monitoring/{id}/stream")
+    public SseEmitter streamMonitoringData(@PathVariable String id, @RequestParam String ip) {
+        SseEmitter emitter = new SseEmitter(0L);
+        gatewayService.getMonitoringData(id, ip)
+                .subscribe(data -> {
+                    try {
+                        emitter.send(data);
+                    } catch (IOException e) {
+                        emitter.completeWithError(e);
+                    }
+                }, emitter::completeWithError, emitter::complete);
+        return emitter;
     }
 
 }
