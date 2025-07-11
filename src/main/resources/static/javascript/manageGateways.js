@@ -109,3 +109,8 @@ window.addEventListener('pageshow', function(event) {
         window.location.href = "/home?" + new Date().getTime();
     }
 });
+
+// Pour renvoyer les champs date sous le format YYYY-MM-DD
+flatpickr(".datepicker", {
+    dateFormat: "Y-m-d"
+});

@@ -5,6 +5,8 @@
   <title>Manage Gateways</title>
   <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
   <link rel="stylesheet" type="text/css" th:href="@{/css/manageGateways.css}" />
+  <!-- Flatpickr CSS for Date/Calendar -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -17,7 +19,6 @@
       <th>ID Gateway</th>
       <th>IP Address</th>
       <th>Date Commissioning</th>
-<!--      <th>Status</th>-->
       <th>Building</th>
       <th>Floor</th>
       <th>Location</th>
@@ -29,7 +30,6 @@
       <td th:text="${gateway.idGateway}"></td>
       <td th:text="${gateway.ipAddress}"></td>
       <td th:text="${gateway.commissioningDate}"></td>
-<!--      <td th:text="${gateway.status ? 'Active' : 'Inactive'}"></td>-->
       <td th:text="${gateway.buildingName}"></td>
       <td th:text="${gateway.floor}"></td>
       <td th:text="${gateway.location}"></td>
@@ -71,11 +71,7 @@
       <form th:action="@{/manage-gateways/edit}" th:object="${gateway}" method="post">
         <input id="idGateway" th:field="*{idGateway}" placeholder="ID Gateway" required readonly />
         <input id="ipAddress" th:field="*{ipAddress}" placeholder="IP Address" required />
-        <input id="commissioningDate" th:field="*{commissioningDate}" placeholder="Date Commissioning" required />
-<!--        <select id="status" th:field="*{status}" >-->
-<!--          <option value="true" th:selected="${gateway.status == 'true'}">Active</option>-->
-<!--          <option value="false" th:selected="${gateway.status == 'false'}">Inactive</option>-->
-<!--        </select>-->
+        <input id="commissioningDate" th:field="*{commissioningDate}" placeholder="Date Commissioning" required class="datepicker" />
         <input id="buildingName" th:field="*{buildingName}" placeholder="Building" required />
         <input type="number" id="etage" th:field="*{floor}" placeholder="Floor" required />
         <input id="location" th:field="*{location}" placeholder="Location" />
@@ -97,11 +93,7 @@
       <form th:action="@{/manage-gateways/add}" method="post">
         <input type="text" name="idGateway" placeholder="ID Gateway" required />
         <input type="text" name="ipAddress" placeholder="IP Address" required />
-        <input type="text" name="commissioningDate" placeholder="Commissioning Date" required />
-<!--        <select name="status" required>-->
-<!--          <option value="true">Active</option>-->
-<!--          <option value="false">Inactive</option>-->
-<!--        </select>-->
+        <input type="text" name="commissioningDate" placeholder="Commissioning Date" required class="datepicker" />
         <input type="text" name="buildingName" placeholder="Building" required />
         <input type="number" name="floor" placeholder="Floor" required />
         <input type="text" name="location" placeholder="Location" />
@@ -115,5 +107,7 @@
 </div>
 
 <script th:src="@{/javascript/manageGateways.js}" defer></script>
+<!-- Flatpickr JS for Date/Calendar -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 </html>
