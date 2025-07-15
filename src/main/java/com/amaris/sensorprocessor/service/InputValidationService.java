@@ -11,10 +11,8 @@ public class InputValidationService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public boolean isValidInputId(String id) {
-        if (id != null && id.matches("^[a-zA-Z0-9_-]+$")) {
-            return true;
-        } else {
+    public void isValidInputId(String id) {
+        if (id == null || !id.matches("^[a-zA-Z0-9_-]+$")) {
             logger.error("ID invalide : format non autorisé.");
             System.out.println("\u001B[31m" + "ID invalide : format non autorisé." +
                     "\u001B[0m");
@@ -22,10 +20,8 @@ public class InputValidationService {
         }
     }
 
-    public boolean isValidIp(String ip) {
-        if (ip != null && ip.matches("^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)(\\.|$)){4}$")) {
-            return true;
-        } else {
+    public void isValidIp(String ip) {
+        if (ip == null || !ip.matches("^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)(\\.|$)){4}$")) {
             logger.error("IP invalide : format non autorisé.");
             System.out.println("\u001B[31m" + "IP invalide : format non autorisé." +
                     "\u001B[0m");
@@ -33,10 +29,8 @@ public class InputValidationService {
         }
     }
 
-    public boolean isValidDate(String date) {
-        if (date != null && date.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
-            return true;
-        } else {
+    public void isValidDate(String date) {
+        if (date == null || !date.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
             logger.error("Date invalide : format non autorisé.");
             System.out.println("\u001B[31m" + "Date invalide : format non autorisé." +
                     "\u001B[0m");
@@ -44,10 +38,8 @@ public class InputValidationService {
         }
     }
 
-    public boolean isValidTextInput(String input) {
-        if (input != null && input.matches("^[\\p{L}0-9 ,:\\-_'\"]+$")) {
-            return true;
-        } else {
+    public void isValidTextInput(String input) {
+        if (input == null || !input.matches("^[\\p{L}0-9 ,:\\-_'\"]+$")) {
             logger.error("Text invalide : format non autorisé.");
             System.out.println("\u001B[31m" + "Text invalide : format non autorisé." +
                     "\u001B[0m");
@@ -55,10 +47,8 @@ public class InputValidationService {
         }
     }
 
-    public boolean isDigitsOnly(Integer input) {
-        if (input != null && String.valueOf(input).matches("^\\d+$")) {
-            return true;
-        } else {
+    public void isDigitsOnly(Integer input) {
+        if (input == null || !String.valueOf(input).matches("^\\d+$")) {
             logger.error("Nombre invalide : format non autorisé.");
             System.out.println("\u001B[31m" + "Nombre invalide : format non autorisé." +
                     "\u001B[0m");

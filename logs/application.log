@@ -1707,3 +1707,246 @@ java.net.ConnectException: Connection refused: getsockopt
 2025-07-15 11:55:02 - Graceful shutdown complete
 2025-07-15 11:55:02 - HikariPool-1 - Shutdown initiated...
 2025-07-15 11:55:02 - HikariPool-1 - Shutdown completed.
+2025-07-15 14:05:04 - Starting SensorprocessorApplication using Java 17.0.15 with PID 26700 (C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App\target\classes started by julien.orrado_sollan in C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App)
+2025-07-15 14:05:04 - No active profile set, falling back to 1 default profile: "default"
+2025-07-15 14:05:06 - Tomcat initialized with port 8080 (http)
+2025-07-15 14:05:06 - Starting service [Tomcat]
+2025-07-15 14:05:06 - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-15 14:05:07 - Initializing Spring embedded WebApplicationContext
+2025-07-15 14:05:07 - Root WebApplicationContext: initialization completed in 2220 ms
+2025-07-15 14:05:07 - HikariPool-1 - Starting...
+2025-07-15 14:05:07 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@1c297897
+2025-07-15 14:05:07 - HikariPool-1 - Start completed.
+2025-07-15 14:05:08 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-07-15 14:05:08 - 16 mappings in 'requestMappingHandlerMapping'
+2025-07-15 14:05:09 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-07-15 14:05:09 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-07-15 14:05:09 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-07-15 14:05:09 - Tomcat started on port 8080 (http) with context path '/'
+2025-07-15 14:05:10 - Started SensorprocessorApplication in 6.238 seconds (process running for 7.48)
+2025-07-15 14:05:17 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-15 14:05:17 - Initializing Servlet 'dispatcherServlet'
+2025-07-15 14:05:17 - Detected StandardServletMultipartResolver
+2025-07-15 14:05:17 - Detected AcceptHeaderLocaleResolver
+2025-07-15 14:05:17 - Detected FixedThemeResolver
+2025-07-15 14:05:17 - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@509fea8b
+2025-07-15 14:05:17 - Detected org.springframework.web.servlet.support.SessionFlashMapManager@a58bdf7
+2025-07-15 14:05:17 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-07-15 14:05:17 - Completed initialization in 3 ms
+2025-07-15 14:05:18 - GET "/", parameters={}
+2025-07-15 14:05:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:18 - Resource not found
+2025-07-15 14:05:18 - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource .]
+2025-07-15 14:05:18 - Completed 404 NOT_FOUND
+2025-07-15 14:05:18 - GET "/login", parameters={}
+2025-07-15 14:05:18 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-07-15 14:05:18 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-07-15 14:05:18 - Completed 200 OK
+2025-07-15 14:05:18 - GET "/css/styles.css", parameters={}
+2025-07-15 14:05:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:18 - GET "/image/mantu-logo.jpg", parameters={}
+2025-07-15 14:05:18 - GET "/css/login-home.css", parameters={}
+2025-07-15 14:05:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:18 - Completed 200 OK
+2025-07-15 14:05:18 - Completed 200 OK
+2025-07-15 14:05:18 - Completed 200 OK
+2025-07-15 14:05:18 - GET "/image/mantu-background.jpg", parameters={}
+2025-07-15 14:05:18 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:18 - Completed 200 OK
+2025-07-15 14:05:20 - GET "/home", parameters={}
+2025-07-15 14:05:20 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-07-15 14:05:20 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-07-15 14:05:20 - Completed 200 OK
+2025-07-15 14:05:20 - GET "/css/styles.css", parameters={}
+2025-07-15 14:05:20 - GET "/image/mantu-logo.jpg", parameters={}
+2025-07-15 14:05:20 - GET "/css/login-home.css", parameters={}
+2025-07-15 14:05:20 - GET "/image/sensor-icon.svg", parameters={}
+2025-07-15 14:05:20 - GET "/image/user-icon.svg", parameters={}
+2025-07-15 14:05:20 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:20 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:20 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:20 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:20 - GET "/image/gateway-icon.svg", parameters={}
+2025-07-15 14:05:20 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:20 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:20 - Completed 200 OK
+2025-07-15 14:05:20 - Completed 200 OK
+2025-07-15 14:05:20 - Completed 200 OK
+2025-07-15 14:05:20 - GET "/image/mantu-background.jpg", parameters={}
+2025-07-15 14:05:20 - GET "/image/manage-user-account.svg", parameters={}
+2025-07-15 14:05:20 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:20 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:20 - Completed 200 OK
+2025-07-15 14:05:20 - Completed 200 OK
+2025-07-15 14:05:20 - Completed 200 OK
+2025-07-15 14:05:20 - Completed 200 OK
+2025-07-15 14:05:20 - Completed 200 OK
+2025-07-15 14:05:21 - GET "/manage-gateways", parameters={}
+2025-07-15 14:05:21 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#manageGateways(Model)
+2025-07-15 14:05:21 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-07-15 14:05:21 - Completed 200 OK
+2025-07-15 14:05:21 - GET "/css/manageGateways.css", parameters={}
+2025-07-15 14:05:21 - GET "/css/styles.css", parameters={}
+2025-07-15 14:05:21 - GET "/image/mantu-logo.jpg", parameters={}
+2025-07-15 14:05:21 - GET "/image/edit-icon.svg", parameters={}
+2025-07-15 14:05:21 - GET "/image/monitoring-data.svg", parameters={}
+2025-07-15 14:05:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:21 - GET "/image/delete-icon.svg", parameters={}
+2025-07-15 14:05:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:21 - Completed 200 OK
+2025-07-15 14:05:21 - Completed 200 OK
+2025-07-15 14:05:21 - Completed 200 OK
+2025-07-15 14:05:21 - Completed 200 OK
+2025-07-15 14:05:21 - Completed 200 OK
+2025-07-15 14:05:21 - Completed 200 OK
+2025-07-15 14:05:21 - GET "/javascript/manageGateways.js", parameters={}
+2025-07-15 14:05:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:21 - Completed 200 OK
+2025-07-15 14:05:33 - POST "/manage-gateways/add", parameters={masked}
+2025-07-15 14:05:33 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#addGateway(Gateway, RedirectAttributes)
+2025-07-15 14:05:44 - View name [redirect:], model {}
+2025-07-15 14:05:44 - Completed 302 FOUND
+2025-07-15 14:05:44 - GET "/manage-gateways", parameters={}
+2025-07-15 14:05:44 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#manageGateways(Model)
+2025-07-15 14:05:44 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-07-15 14:05:44 - Completed 200 OK
+2025-07-15 14:05:44 - GET "/css/styles.css", parameters={}
+2025-07-15 14:05:44 - GET "/image/monitoring-data.svg", parameters={}
+2025-07-15 14:05:44 - GET "/image/mantu-logo.jpg", parameters={}
+2025-07-15 14:05:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:44 - GET "/css/manageGateways.css", parameters={}
+2025-07-15 14:05:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:44 - Completed 200 OK
+2025-07-15 14:05:44 - Completed 200 OK
+2025-07-15 14:05:44 - Completed 200 OK
+2025-07-15 14:05:44 - Completed 200 OK
+2025-07-15 14:05:44 - GET "/image/edit-icon.svg", parameters={}
+2025-07-15 14:05:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:44 - Completed 200 OK
+2025-07-15 14:05:44 - GET "/image/delete-icon.svg", parameters={}
+2025-07-15 14:05:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:44 - GET "/javascript/manageGateways.js", parameters={}
+2025-07-15 14:05:44 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:44 - Completed 200 OK
+2025-07-15 14:05:44 - Completed 200 OK
+2025-07-15 14:05:49 - GET "/manage-gateways/edit/test", parameters={}
+2025-07-15 14:05:49 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#editGateway(String, Model)
+2025-07-15 14:05:49 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-07-15 14:05:49 - GET "/css/styles.css", parameters={}
+2025-07-15 14:05:49 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:49 - Completed 200 OK
+2025-07-15 14:05:49 - Completed 200 OK
+2025-07-15 14:05:49 - GET "/css/manageGateways.css", parameters={}
+2025-07-15 14:05:49 - GET "/image/mantu-logo.jpg", parameters={}
+2025-07-15 14:05:49 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:49 - GET "/image/monitoring-data.svg", parameters={}
+2025-07-15 14:05:49 - GET "/image/edit-icon.svg", parameters={}
+2025-07-15 14:05:49 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:49 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:49 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:49 - GET "/image/delete-icon.svg", parameters={}
+2025-07-15 14:05:49 - GET "/javascript/manageGateways.js", parameters={}
+2025-07-15 14:05:49 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:49 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:05:49 - Completed 200 OK
+2025-07-15 14:05:49 - Completed 200 OK
+2025-07-15 14:05:49 - Completed 200 OK
+2025-07-15 14:05:49 - Completed 200 OK
+2025-07-15 14:05:49 - Completed 200 OK
+2025-07-15 14:05:49 - Completed 200 OK
+2025-07-15 14:06:04 - POST "/manage-gateways/edit", parameters={masked}
+2025-07-15 14:06:04 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#updateGateway(Gateway, RedirectAttributes)
+2025-07-15 14:06:06 - IP invalide : format non autorisé.
+2025-07-15 14:06:41 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m3s621ms474µs).
+2025-07-15 14:06:41 - View name [redirect:], model {}
+2025-07-15 14:06:41 - Completed 302 FOUND
+2025-07-15 14:06:41 - GET "/manage-gateways", parameters={}
+2025-07-15 14:06:41 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#manageGateways(Model)
+2025-07-15 14:06:41 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-07-15 14:06:41 - Completed 200 OK
+2025-07-15 14:06:41 - GET "/css/manageGateways.css", parameters={}
+2025-07-15 14:06:41 - GET "/css/styles.css", parameters={}
+2025-07-15 14:06:41 - GET "/image/mantu-logo.jpg", parameters={}
+2025-07-15 14:06:41 - GET "/image/monitoring-data.svg", parameters={}
+2025-07-15 14:06:41 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:41 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:41 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:41 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:41 - Completed 200 OK
+2025-07-15 14:06:41 - Completed 200 OK
+2025-07-15 14:06:41 - Completed 200 OK
+2025-07-15 14:06:41 - Completed 200 OK
+2025-07-15 14:06:41 - GET "/image/edit-icon.svg", parameters={}
+2025-07-15 14:06:41 - GET "/image/delete-icon.svg", parameters={}
+2025-07-15 14:06:41 - GET "/javascript/manageGateways.js", parameters={}
+2025-07-15 14:06:41 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:41 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:41 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:41 - Completed 200 OK
+2025-07-15 14:06:41 - Completed 200 OK
+2025-07-15 14:06:41 - Completed 200 OK
+2025-07-15 14:06:47 - GET "/manage-gateways/edit/test", parameters={}
+2025-07-15 14:06:47 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#editGateway(String, Model)
+2025-07-15 14:06:47 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-07-15 14:06:47 - Completed 200 OK
+2025-07-15 14:06:47 - GET "/css/styles.css", parameters={}
+2025-07-15 14:06:47 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:47 - Completed 200 OK
+2025-07-15 14:06:47 - GET "/css/manageGateways.css", parameters={}
+2025-07-15 14:06:47 - GET "/image/mantu-logo.jpg", parameters={}
+2025-07-15 14:06:47 - GET "/image/monitoring-data.svg", parameters={}
+2025-07-15 14:06:47 - GET "/image/edit-icon.svg", parameters={}
+2025-07-15 14:06:47 - GET "/image/delete-icon.svg", parameters={}
+2025-07-15 14:06:47 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:47 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:47 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:47 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:47 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:47 - GET "/javascript/manageGateways.js", parameters={}
+2025-07-15 14:06:47 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:06:47 - Completed 200 OK
+2025-07-15 14:06:47 - Completed 200 OK
+2025-07-15 14:06:47 - Completed 200 OK
+2025-07-15 14:06:47 - Completed 200 OK
+2025-07-15 14:06:47 - Completed 200 OK
+2025-07-15 14:06:47 - Completed 200 OK
+2025-07-15 14:06:56 - POST "/manage-gateways/edit", parameters={masked}
+2025-07-15 14:06:56 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#updateGateway(Gateway, RedirectAttributes)
+2025-07-15 14:07:05 - View name [redirect:], model {}
+2025-07-15 14:07:05 - Completed 302 FOUND
+2025-07-15 14:07:05 - GET "/manage-gateways", parameters={}
+2025-07-15 14:07:05 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#manageGateways(Model)
+2025-07-15 14:07:05 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-07-15 14:07:05 - Completed 200 OK
+2025-07-15 14:07:05 - GET "/css/styles.css", parameters={}
+2025-07-15 14:07:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:07:05 - Completed 200 OK
+2025-07-15 14:07:05 - GET "/image/monitoring-data.svg", parameters={}
+2025-07-15 14:07:05 - GET "/css/manageGateways.css", parameters={}
+2025-07-15 14:07:05 - GET "/image/mantu-logo.jpg", parameters={}
+2025-07-15 14:07:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:07:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:07:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:07:05 - Completed 200 OK
+2025-07-15 14:07:05 - Completed 200 OK
+2025-07-15 14:07:05 - Completed 200 OK
+2025-07-15 14:07:05 - GET "/image/edit-icon.svg", parameters={}
+2025-07-15 14:07:05 - GET "/image/delete-icon.svg", parameters={}
+2025-07-15 14:07:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:07:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:07:05 - GET "/javascript/manageGateways.js", parameters={}
+2025-07-15 14:07:05 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-15 14:07:05 - Completed 200 OK
+2025-07-15 14:07:05 - Completed 200 OK
+2025-07-15 14:07:05 - Completed 200 OK
+2025-07-15 14:07:09 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-15 14:07:09 - Graceful shutdown complete
+2025-07-15 14:07:09 - HikariPool-1 - Shutdown initiated...
+2025-07-15 14:07:09 - HikariPool-1 - Shutdown completed.
