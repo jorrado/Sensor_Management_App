@@ -3,6 +3,7 @@ package com.amaris.sensorprocessor.controller;
 import com.amaris.sensorprocessor.entity.Gateway;
 import com.amaris.sensorprocessor.exception.CustomException;
 import com.amaris.sensorprocessor.service.GatewayService;
+import com.amaris.sensorprocessor.service.InputValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,12 @@ import java.util.List;
 public class GatewayController {
 
     private final GatewayService gatewayService;
+    private final InputValidationService inputValidationService;
 
     @Autowired
-    public GatewayController(GatewayService gatewayService) {
+    public GatewayController(GatewayService gatewayService, InputValidationService inputValidationService) {
         this.gatewayService = gatewayService;
+        this.inputValidationService = inputValidationService;
     }
 
     @GetMapping("/manage-gateways")
@@ -32,6 +35,12 @@ public class GatewayController {
 
     @PostMapping("/manage-gateways/add")
     public String addGateway(@ModelAttribute Gateway gateway, RedirectAttributes redirectAttributes) {
+        try {
+            inputValidationService.validateGateway(gateway);
+        } catch (CustomException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/manage-gateways";
+        }
         try {
             gatewayService.save(gateway);
         } catch (CustomException e) {
@@ -59,6 +68,12 @@ public class GatewayController {
 
     @PostMapping("/manage-gateways/edit")
     public String updateGateway(@ModelAttribute Gateway gateway, RedirectAttributes redirectAttributes) {
+        try {
+            inputValidationService.validateGateway(gateway);
+        } catch (CustomException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/manage-gateways";
+        }
         gatewayService.update(gateway);
         return "redirect:/manage-gateways";
     }
