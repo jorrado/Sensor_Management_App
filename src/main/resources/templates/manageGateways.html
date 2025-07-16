@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <title>Manage Gateways</title>
@@ -13,7 +13,102 @@
 <div class="manageGateways-container">
   <img src="/image/mantu-logo.jpg" alt="Logo" class="mantu-logo">
 
-  <table>
+  <div class="filters-container" style="width: 95%; margin: 20px auto 0 auto; padding: 12px 15px; background-color: white; border: 2px solid #662179; border-radius: 8px; display: flex; gap: 15px; align-items: center; box-sizing: border-box; overflow-x: auto">
+    <!-- Date filter -->
+    <div style="position: relative; display: flex; align-items: center; width: 180px;">
+      <img src="/image/calendar-icon.svg" alt="Calendar Icon"
+           style="position: absolute; left: 10px; width: 18px; height: 18px; pointer-events: none;" />
+      <input type="text" name="dateFilter" id="dateFilter" placeholder="Filter by date" class="datepicker"
+             style="padding: 8px 30px 8px 36px; border: 1px solid #662179; border-radius: 6px; font-size: inherit; outline: none; box-shadow: none; width: 100%;" />
+      <span onclick="document.getElementById('dateFilter').value='';"
+            style="position: absolute; right: 8px; cursor: pointer; font-size: 16px; color: #000;">&#10005;</span>
+    </div>
+    <!-- Building filter -->
+    <div style="position: relative; display: flex; align-items: center; width: 200px;">
+      <select id="buildingFilter"
+              style="padding: 8px 30px 8px 12px; border: 1px solid #662179; border-radius: 6px; font-size: inherit; outline: none; box-shadow: none; width: 100%;">
+        <option value="" disabled selected>Search by building</option>
+        <option value="buildingA">Building A</option>
+        <option value="buildingB">Building B</option>
+      </select>
+      <span onclick="document.getElementById('buildingFilter').selectedIndex = 0;"
+            style="position: absolute; right: 25px; cursor: pointer; font-size: 16px; color: #000; user-select: none;">&#10005;</span>
+    </div>
+    <!-- Search input -->
+    <div style="position: relative; display: flex; align-items: center; width: 220px;">
+      <input type="text" id="searchInput" placeholder="Search by ID or IP"
+        style="
+          padding: 8px 30px 8px 36px;
+          border: 1px solid #662179;
+          font-size: inherit;
+          border-radius: 6px;
+          background: url('/image/search-icon.svg') no-repeat 10px center;
+          background-size: 18px 18px;
+          outline: none;
+          transition: border-color 0.3s ease;
+          width: 100%;
+          box-sizing: border-box;"
+        onfocus="this.style.borderColor='#440d64'"
+        onblur="this.style.borderColor='#662179'"/>
+      <span
+        onclick="document.getElementById('searchInput').value='';"
+        style="
+          position: absolute;
+          right: 8px;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+          font-size: 16px;
+          color: #000;
+          user-select: none;">
+        &#10005;
+      </span>
+    </div>
+  </div>
+
+<!--  <table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>ID Gateway</th>-->
+<!--      <th>IP Address</th>-->
+<!--      <th>Date Commissioning</th>-->
+<!--      <th>Building</th>-->
+<!--      <th>Floor</th>-->
+<!--      <th>Location</th>-->
+<!--      <th>Actions</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="gateway : ${gateways}">-->
+<!--      <td th:text="${gateway.idGateway}"></td>-->
+<!--      <td th:text="${gateway.ipAddress}"></td>-->
+<!--      <td th:text="${gateway.commissioningDate}"></td>-->
+<!--      <td th:text="${gateway.buildingName}"></td>-->
+<!--      <td th:text="${gateway.floor}"></td>-->
+<!--      <td th:text="${gateway.location}"></td>-->
+<!--      <td>-->
+<!--        <div class="button-container">-->
+<!--          <a th:href="@{/manage-gateways/monitoring/{id}/view(id=${gateway.idGateway}, ip=${gateway.ipAddress})}">-->
+<!--            <img src="/image/monitoring-data.svg" alt="Modify" width="20">-->
+<!--          </a>-->
+<!--          <a th:href="@{/manage-gateways/edit/{id}(id=${gateway.idGateway})}">-->
+<!--            <img src="/image/edit-icon.svg" alt="editModify" width="20">-->
+<!--          </a>-->
+<!--          <form th:action="@{/manage-gateways/delete/{id}(id=${gateway.idGateway})}" method="post" class="deleteForm" style="display:inline;">-->
+<!--            <input type="hidden" name="_method" value="DELETE" />-->
+<!--            <button type="submit" style="background:none; border:none;">-->
+<!--              <img src="/image/delete-icon.svg" alt="Delete" width="20">-->
+<!--            </button>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+
+
+  <!-- test table en js pur -->
+  <table id="gatewayTable">
     <thead>
     <tr>
       <th>ID Gateway</th>
@@ -25,33 +120,11 @@
       <th>Actions</th>
     </tr>
     </thead>
-    <tbody>
-    <tr th:each="gateway : ${gateways}">
-      <td th:text="${gateway.idGateway}"></td>
-      <td th:text="${gateway.ipAddress}"></td>
-      <td th:text="${gateway.commissioningDate}"></td>
-      <td th:text="${gateway.buildingName}"></td>
-      <td th:text="${gateway.floor}"></td>
-      <td th:text="${gateway.location}"></td>
-      <td>
-        <div class="button-container">
-          <a th:href="@{/manage-gateways/monitoring/{id}/view(id=${gateway.idGateway}, ip=${gateway.ipAddress})}">
-            <img src="/image/monitoring-data.svg" alt="Modify" width="20">
-          </a>
-          <a th:href="@{/manage-gateways/edit/{id}(id=${gateway.idGateway})}">
-            <img src="/image/edit-icon.svg" alt="editModify" width="20">
-          </a>
-          <form th:action="@{/manage-gateways/delete/{id}(id=${gateway.idGateway})}" method="post" class="deleteForm" style="display:inline;">
-            <input type="hidden" name="_method" value="DELETE" />
-            <button type="submit" style="background:none; border:none;">
-              <img src="/image/delete-icon.svg" alt="Delete" width="20">
-            </button>
-          </form>
-        </div>
-      </td>
-    </tr>
+    <tbody id="gatewayTableBody">
     </tbody>
   </table>
+  <!-- fin table en js pur -->
+
 
   <!-- Popup de confirmation suppression -->
   <div id="deleteGatewayPopup" class="modal">
@@ -109,5 +182,42 @@
 <script th:src="@{/javascript/manageGateways.js}" defer></script>
 <!-- Flatpickr JS for Date/Calendar -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  const gateways = [[${gateways}]];
+  /*]]>*/
+</script>
+<script>
+  const tableBody = document.getElementById('gatewayTableBody');
+
+  gateways.forEach(gw => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${gw.idGateway}</td>
+      <td>${gw.ipAddress}</td>
+      <td>${gw.commissioningDate}</td>
+      <td>${gw.buildingName}</td>
+      <td>${gw.floor}</td>
+      <td>${gw.location}</td>
+      <td>
+        <div class="button-container">
+          <a href="/manage-gateways/monitoring/${gw.idGateway}/view?ip=${gw.ipAddress}">
+            <img src="/image/monitoring-data.svg" alt="Monitor" width="20">
+          </a>
+          <a href="/manage-gateways/edit/${gw.idGateway}">
+            <img src="/image/edit-icon.svg" alt="Edit" width="20">
+          </a>
+          <form action="/manage-gateways/delete/${gw.idGateway}" method="post" class="deleteForm" style="display:inline;">
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit" style="background:none; border:none;">
+              <img src="/image/delete-icon.svg" alt="Delete" width="20">
+            </button>
+          </form>
+        </div>
+      </td>
+    `;
+    tableBody.appendChild(row);
+  });
+</script>
 </body>
 </html>
