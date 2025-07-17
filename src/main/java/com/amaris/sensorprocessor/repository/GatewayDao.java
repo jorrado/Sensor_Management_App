@@ -20,80 +20,78 @@ public class GatewayDao {
     }
 
     /**
-     * Récupère la liste complète des gateways triée par ID (insensible à la casse).
-     * Utilise BeanPropertyRowMapper pour convertir chaque ligne SQL en objet Gateway.
+     * Récupère toutes les gateways triées par ID (insensible à la casse).
      *
      * @return Liste de toutes les gateways, vide si aucune trouvée
      */
     public List<Gateway> findAllGateways() {
         return jdbcTemplate.query(
-                "SELECT * FROM GATEWAYS ORDER BY LOWER(ID_GATEWAY) ASC;",
-                new BeanPropertyRowMapper<Gateway>(Gateway.class));
+            "SELECT * FROM GATEWAYS ORDER BY LOWER(GATEWAY_ID) ASC;",
+            new BeanPropertyRowMapper<Gateway>(Gateway.class));
     }
 
     /**
-     * Recherche une gateway par son ID.
-     * Exécute une requête SQL et mappe le résultat en Gateway.
-     * Renvoie un Optional vide si aucune gateway trouvée.
+     * Recherche une gateway par son identifiant.
      *
-     * @param idGateway Identifiant de la gateway recherchée
-     * @return Optional contenant la gateway si trouvée, sinon vide
+     * @param gatewayId ID de la gateway à rechercher
+     * @return Optional contenant la gateway si trouvée, sinon Optional.empty()
      */
-    public Optional<Gateway> findByIdOfGateway(String idGateway) {
+    public Optional<Gateway> findGatewayById(String gatewayId) {
         List<Gateway> gateways = jdbcTemplate.query(
-                "SELECT * FROM GATEWAYS WHERE ID_GATEWAY=?",
-                new BeanPropertyRowMapper<>(Gateway.class),
-                idGateway);
+            "SELECT * FROM GATEWAYS WHERE GATEWAY_ID=?",
+            new BeanPropertyRowMapper<>(Gateway.class),
+            gatewayId);
 
         return gateways.isEmpty() ? Optional.empty() : Optional.of(gateways.get(0));
     }
 
     /**
-     * Supprime une gateway en base via son ID.
-     * Exécute une requête DELETE SQL.
+     * Supprime une gateway en base selon son ID.
      *
-     * @param idGateway Identifiant de la gateway à supprimer
-     * @return Nombre de lignes affectées (0 si aucune suppression)
+     * @param gatewayId ID de la gateway à supprimer
+     * @return nombre de lignes supprimées (0 si aucune)
      */
-    public int deleteByIdOfGateway(String idGateway) {
+    public int deleteGatewayById(String gatewayId) {
         return jdbcTemplate.update(
-                "DELETE FROM GATEWAYS WHERE ID_GATEWAY=?",
-                idGateway);
+            "DELETE FROM GATEWAYS WHERE GATEWAY_ID=?",
+            gatewayId);
     }
 
     /**
-     * Insère une nouvelle gateway en base de données.
-     * Utilise jdbcTemplate.update avec les champs de l'objet Gateway.
+     * Insère une nouvelle gateway en base.
      *
-     * @param gateway Objet Gateway à insérer
-     * @return Nombre de lignes insérées (1 si succès)
+     * @param gateway objet Gateway à insérer
+     * @return nombre de lignes insérées (1 si succès)
      */
     public int insertGateway(Gateway gateway) {
         return jdbcTemplate.update(
-                "INSERT INTO GATEWAYS (" +
-                        "ID_GATEWAY, IP_ADDRESS, COMMISSIONING_DATE, " +
-                        "BUILDING_NAME, FLOOR, LOCATION) " +
-                        "VALUES(?, ?, ?, ?, ?, ?)",
-                gateway.getIdGateway(), gateway.getIpAddress(), gateway.getCommissioningDate(),
-                gateway.getBuildingName(), gateway.getFloor(), gateway.getLocation()
+            "INSERT INTO GATEWAYS (" +
+                    "GATEWAY_ID, GATEWAY_EUI, IP_ADDRESS, FREQUENCY_PLAN, CREATED_AT, " +
+                    "BUILDING_NAME, FLOOR_NUMBER, LOCATION_DESCRIPTION, " +
+                    "ANTENNA_LATITUDE, ANTENNA_LONGITUDE, ANTENNA_ALTITUDE) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            gateway.getGatewayId(), gateway.getGatewayEui(), gateway.getIpAddress(), gateway.getFrequencyPlan(),
+            gateway.getCreatedAt(), gateway.getBuildingName(), gateway.getFloorNumber(), gateway.getLocationDescription(),
+            gateway.getAntennaLatitude(), gateway.getAntennaLongitude(), gateway.getAntennaAltitude()
         );
     }
 
     /**
-     * Met à jour les informations d'une gateway existante en base.
-     * Modifie les champs sauf l'ID qui sert de critère.
+     * Met à jour une gateway existante avec toutes ses données selon son ID.
      *
-     * @param gateway Objet Gateway avec les nouvelles données
-     * @return Nombre de lignes modifiées (0 si aucune correspondance)
+     * @param gateway Objet Gateway contenant les nouvelles valeurs.
+     * @return Nombre de lignes modifiées (0 si aucune correspondance).
      */
     public int updateGateway(Gateway gateway) {
         return jdbcTemplate.update(
-                "UPDATE GATEWAYS SET " +
-                        "IP_ADDRESS = ?, COMMISSIONING_DATE = ?, BUILDING_NAME = ?, " +
-                        "FLOOR = ?, LOCATION = ? " +
-                        "WHERE ID_GATEWAY = ?",
-                gateway.getIpAddress(), gateway.getCommissioningDate(),
-                gateway.getBuildingName(), gateway.getFloor(), gateway.getLocation(), gateway.getIdGateway()
+            "UPDATE GATEWAYS SET " +
+                    "IP_ADDRESS = ?, FREQUENCY_PLAN = ?, BUILDING_NAME = ?, FLOOR_NUMBER = ?, " +
+                    "LOCATION_DESCRIPTION = ?, ANTENNA_LATITUDE = ?, ANTENNA_LONGITUDE = ?, " +
+                    "ANTENNA_ALTITUDE = ? " +
+                    "WHERE GATEWAY_ID = ?",
+            gateway.getIpAddress(), gateway.getFrequencyPlan(), gateway.getBuildingName(),
+                gateway.getFloorNumber(), gateway.getLocationDescription(), gateway.getAntennaLatitude(),
+                gateway.getAntennaLongitude(), gateway.getAntennaAltitude(), gateway.getGatewayId()
         );
     }
 

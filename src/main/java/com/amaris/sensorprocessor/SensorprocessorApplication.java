@@ -67,7 +67,7 @@ public class SensorprocessorApplication implements CommandLineRunner {
 
 		// TEST GATEWAY DAO
 		System.out.println("\u001B[34m" + "all gateways -> " + gatewayDao.findAllGateways() + "\u001B[0m");
-		System.out.println("\u001B[34m" + "gateway id gateway_001 -> " + gatewayDao.findByIdOfGateway("gateway_001").orElse(null) + "\u001B[0m");
+		System.out.println("\u001B[34m" + "gateway id gateway_001 -> " + gatewayDao.findGatewayById("gateway_001").orElse(null) + "\u001B[0m");
 //		System.out.println("\u001B[34m" + "delete gateway_009 -> number of row(s) deleted -> "
 //				+ gatewayDao.deleteByIdOfGateway("gateway_009") + "\u001B[0m");
 //		System.out.println("\u001B[34m" + "inserting gateway_023 -> " + gatewayDao.insertGateway(new Gateway("gateway_023",

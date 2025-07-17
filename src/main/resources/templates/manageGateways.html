@@ -88,13 +88,13 @@
 <!--      <td th:text="${gateway.location}"></td>-->
 <!--      <td>-->
 <!--        <div class="button-container">-->
-<!--          <a th:href="@{/manage-gateways/monitoring/{id}/view(id=${gateway.idGateway}, ip=${gateway.ipAddress})}">-->
+<!--          <a th:href="@{/manage-gateways/monitoring/{id}/view(id=${gateway.gatewayId}, ip=${gateway.ipAddress})}">-->
 <!--            <img src="/image/monitoring-data.svg" alt="Modify" width="20">-->
 <!--          </a>-->
-<!--          <a th:href="@{/manage-gateways/edit/{id}(id=${gateway.idGateway})}">-->
+<!--          <a th:href="@{/manage-gateways/edit/{id}(id=${gateway.gatewayId})}">-->
 <!--            <img src="/image/edit-icon.svg" alt="editModify" width="20">-->
 <!--          </a>-->
-<!--          <form th:action="@{/manage-gateways/delete/{id}(id=${gateway.idGateway})}" method="post" class="deleteForm" style="display:inline;">-->
+<!--          <form th:action="@{/manage-gateways/delete/{id}(id=${gateway.gatewayId})}" method="post" class="deleteForm" style="display:inline;">-->
 <!--            <input type="hidden" name="_method" value="DELETE" />-->
 <!--            <button type="submit" style="background:none; border:none;">-->
 <!--              <img src="/image/delete-icon.svg" alt="Delete" width="20">-->
@@ -110,15 +110,14 @@
   <!-- test table en js pur -->
   <table id="gatewayTable">
     <thead>
-    <tr>
-      <th>ID Gateway</th>
-      <th>IP Address</th>
-      <th>Date Commissioning</th>
-      <th>Building</th>
-      <th>Floor</th>
-      <th>Location</th>
-      <th>Actions</th>
-    </tr>
+      <tr>
+        <th>Gateway ID</th>
+        <th>IP Address</th>
+        <th>Frequency Plan</th>
+        <th>Created At</th>
+        <th>Building Name</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody id="gatewayTableBody">
     </tbody>
@@ -142,12 +141,29 @@
     <div class="modal-content">
       <h2>Edit Gateway</h2>
       <form th:action="@{/manage-gateways/edit}" th:object="${gateway}" method="post">
-        <input id="idGateway" th:field="*{idGateway}" placeholder="ID Gateway" required readonly />
-        <input id="ipAddress" th:field="*{ipAddress}" placeholder="IP Address" required />
-        <input id="commissioningDate" th:field="*{commissioningDate}" placeholder="Date Commissioning" required class="datepicker" />
-        <input id="buildingName" th:field="*{buildingName}" placeholder="Building" required />
-        <input type="number" id="etage" th:field="*{floor}" placeholder="Floor" required />
-        <input id="location" th:field="*{location}" placeholder="Location" />
+        <input type="text" th:field="*{gatewayId}" placeholder="Gateway ID" required readonly />
+        <input type="text" th:field="*{ipAddress}" placeholder="IP Address" required />
+        <select th:field="*{frequencyPlan}" required>
+          <option value="" disabled>Select Frequency Plan</option>
+          <option value="NorthernEurope">Northern Europe</option>
+          <option value="WesternEurope">Western Europe</option>
+          <option value="EasternEurope">Eastern Europe</option>
+          <option value="SouthernEurope">Southern Europe</option>
+          <option value="NorthAmerica">North America</option>
+          <option value="CentralAmerica">Central America</option>
+          <option value="SouthAmerica">South America</option>
+          <option value="NorthAfrica">North Africa</option>
+          <option value="SouthAfrica">South Africa</option>
+          <option value="Asia">Asia</option>
+          <option value="MiddleEast">Middle East</option>
+          <option value="Oceania">Oceania</option>
+        </select>
+        <input type="text" th:field="*{buildingName}" placeholder="Building Name" required />
+        <input type="number" th:field="*{floorNumber}" placeholder="Floor Number" required />
+        <input type="text" th:field="*{locationDescription}" placeholder="Location Description" />
+        <input type="number" step="any" th:field="*{antennaLatitude}" placeholder="Antenna Latitude" />
+        <input type="number" step="any" th:field="*{antennaLongitude}" placeholder="Antenna Longitude" />
+        <input type="number" step="any" th:field="*{antennaAltitude}" placeholder="Antenna Altitude" />
         <div class="form-buttons">
           <button type="submit">Update</button>
           <button type="button" id="closeEdit">Cancel</button>
@@ -164,12 +180,30 @@
     <div class="modal-content">
       <h2>Add Gateway</h2>
       <form th:action="@{/manage-gateways/add}" method="post">
-        <input type="text" name="idGateway" placeholder="ID Gateway" required />
+        <input type="text" name="gatewayId" placeholder="Gateway ID" required />
+        <input type="text" name="gatewayEui" placeholder="Gateway EUI" required />
         <input type="text" name="ipAddress" placeholder="IP Address" required />
-        <input type="text" name="commissioningDate" placeholder="Commissioning Date" required class="datepicker" />
-        <input type="text" name="buildingName" placeholder="Building" required />
-        <input type="number" name="floor" placeholder="Floor" required />
-        <input type="text" name="location" placeholder="Location" />
+        <select name="frequencyPlan" required>
+          <option value="" disabled selected>Select Frequency Plan</option>
+          <option value="NorthernEurope">Northern Europe</option>
+          <option value="WesternEurope">Western Europe</option>
+          <option value="EasternEurope">Eastern Europe</option>
+          <option value="SouthernEurope">Southern Europe</option>
+          <option value="NorthAmerica">North America</option>
+          <option value="CentralAmerica">Central America</option>
+          <option value="SouthAmerica">South America</option>
+          <option value="NorthAfrica">North Africa</option>
+          <option value="SouthAfrica">South Africa</option>
+          <option value="Asia">Asia</option>
+          <option value="MiddleEast">Middle East</option>
+          <option value="Oceania">Oceania</option>
+        </select>
+        <input type="text" name="buildingName" placeholder="Building Name" required />
+        <input type="number" name="floorNumber" placeholder="Floor Number" required />
+        <input type="text" name="locationDescription" placeholder="Location Description" />
+        <input type="number" step="any" name="antennaLatitude" placeholder="Antenna Latitude" />
+        <input type="number" step="any" name="antennaLongitude" placeholder="Antenna Longitude" />
+        <input type="number" step="any" name="antennaAltitude" placeholder="Antenna Altitude" />
         <div class="form-buttons">
           <button type="submit">Add</button>
           <button type="button" id="closeCreate">Cancel</button>
@@ -193,21 +227,20 @@
   gateways.forEach(gw => {
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td>${gw.idGateway}</td>
+      <td>${gw.gatewayId}</td>
       <td>${gw.ipAddress}</td>
-      <td>${gw.commissioningDate}</td>
+      <td>${gw.frequencyPlan}</td>
+      <td>${gw.createdAt}</td>
       <td>${gw.buildingName}</td>
-      <td>${gw.floor}</td>
-      <td>${gw.location}</td>
       <td>
         <div class="button-container">
-          <a href="/manage-gateways/monitoring/${gw.idGateway}/view?ip=${gw.ipAddress}">
+          <a href="/manage-gateways/monitoring/${gw.gatewayId}/view?ip=${gw.ipAddress}">
             <img src="/image/monitoring-data.svg" alt="Monitor" width="20">
           </a>
-          <a href="/manage-gateways/edit/${gw.idGateway}">
+          <a href="/manage-gateways/edit/${gw.gatewayId}">
             <img src="/image/edit-icon.svg" alt="Edit" width="20">
           </a>
-          <form action="/manage-gateways/delete/${gw.idGateway}" method="post" class="deleteForm" style="display:inline;">
+          <form action="/manage-gateways/delete/${gw.gatewayId}" method="post" class="deleteForm" style="display:inline;">
             <input type="hidden" name="_method" value="DELETE" />
             <button type="submit" style="background:none; border:none;">
               <img src="/image/delete-icon.svg" alt="Delete" width="20">

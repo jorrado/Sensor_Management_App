@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -37,38 +39,40 @@ public class GatewayService {
             logger.error("Erreur lors de la récupération de la liste des gateways", e);
             System.out.println("\u001B[31m" + "Erreur lors de la récupération de la liste des gateways : " +
                     e.getMessage() + "\u001B[0m");
+//            throw new CustomException("Database problem");
             return Collections.emptyList();
         }
     }
 
-    public int save(Gateway gateway) {
+    public void save(Gateway gateway) {
         try {
-            if (gatewayDao.findByIdOfGateway(gateway.getIdGateway()).isPresent()) {
+            if (gatewayDao.findGatewayById(gateway.getGatewayId()).isPresent()) {
                 throw new CustomException("Gateway already exists");
             }
-            return gatewayDao.insertGateway(gateway);
+            gateway.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));// A SUPPRIMER UNIQUEMENT POUR LE TEST
+            gatewayDao.insertGateway(gateway);
         } catch (Exception e) {
             logger.error("Erreur lors de la sauvegarde de la gateway", e);
             System.out.println("\u001B[31m" + "Erreur lors de la sauvegarde de la gateway : " +
                     e.getMessage() + "\u001B[0m");
-            throw new CustomException("Database problem");
+//            throw new CustomException("Database problem");
         }
     }
 
-    public int deleteGateway(String idGateway) {
+    public void deleteGateway(String gatewayId) {
         try {
-            return gatewayDao.deleteByIdOfGateway(idGateway);
+            gatewayDao.deleteGatewayById(gatewayId);
         } catch (Exception e) {
             logger.error("Erreur lors de la suppression de la gateway", e);
             System.out.println("\u001B[31m" + "Erreur lors de la suppression de la gateway : " +
                     e.getMessage() + "\u001B[0m");
-            throw new CustomException("Database problem");
+//            throw new CustomException("Database problem");
         }
     }
 
-    public Gateway searchGatewayById(String idGateway) {
+    public Gateway searchGatewayById(String gatewayId) {
         try {
-            Optional<Gateway> gateway = gatewayDao.findByIdOfGateway(idGateway);
+            Optional<Gateway> gateway = gatewayDao.findGatewayById(gatewayId);
             if (gateway.isEmpty()) {
                 throw new CustomException("Gateway don't exists");
             }
@@ -77,45 +81,46 @@ public class GatewayService {
             logger.error("Erreur lors de la recherche de la gateway par ID", e);
             System.out.println("\u001B[31m" + "Erreur lors de la recherche de la gateway : " +
                     e.getMessage() + "\u001B[0m");
-            throw new CustomException("Database problem");
+//            throw new CustomException("Database problem");
+            return null;
         }
     }
 
-    public int update(Gateway gateway) {
+    public void update(Gateway gateway) {
         try {
-            return gatewayDao.updateGateway(gateway);
+            gatewayDao.updateGateway(gateway);
         } catch (Exception e) {
             logger.error("Erreur lors de la mise à jour de la gateway", e);
             System.out.println("\u001B[31m" + "Erreur lors de la mise à jour de la gateway : " +
                     e.getMessage() + "\u001B[0m");
-            throw new CustomException("Database problem");
+//            throw new CustomException("Database problem");
         }
     }
 
     /**
-     * Récupère un flux de données de monitoring pour une gateway donnée via SSE.
-     * Accepte un id de gateway et une IP, renvoie un Flux d'objets MonitoringGatewayData.
+     * Récupère un flux SSE (Server-Sent Events) contenant les données de monitoring
+     * en temps réel d'une gateway spécifique, à partir de son ID et de son adresse IP.
      * La méthode .bodyToFlux(MonitoringGatewayData.class) convertit directement le JSON en objets Java.
-     * Ne plante pas si la réponse est vide ou nulle.
      *
-     * @param id Identifiant de la gateway
-     * @param ip Adresse IP de la gateway
-     * @return Flux de données MonitoringGatewayData en SSE
+     * @param gatewayId  l'identifiant unique de la gateway
+     * @param ipAddress  l'adresse IP de la gateway cible
+     * @return un Flux de MonitoringGatewayData émis en continu via SSE
      */
-    public Flux<MonitoringGatewayData> getMonitoringData(String id, String ip) {
+    public Flux<MonitoringGatewayData> getMonitoringData(String gatewayId, String ipAddress) {
         return webClient.get()
-                .uri(uriBuilder -> uriBuilder
-                        .path("/api/monitoring/gateway/{id}")
-                        .queryParam("ip", ip)
-                        .build(id))
-                .accept(MediaType.TEXT_EVENT_STREAM)
-                .retrieve()
-                .bodyToFlux(MonitoringGatewayData.class)
-                .doOnError(error -> {
-                            logger.error("Erreur lors de la récupération des données de monitoring", error);
-                            System.out.println("\u001B[31m" + "Erreur lors de la récupération des données de monitoring : " +
-                                    error.getMessage() + "\u001B[0m");
-                        });
+            .uri(uriBuilder -> uriBuilder
+                .path("/api/monitoring/gateway/{id}")
+                .queryParam("ip", ipAddress)
+                .build(gatewayId))
+            .accept(MediaType.TEXT_EVENT_STREAM)
+            .retrieve()
+            .bodyToFlux(MonitoringGatewayData.class)
+            .doOnError(error -> {
+                logger.error("Erreur lors de la récupération des données de monitoring", error);
+                System.out.println("\u001B[31m" + "Erreur lors de la récupération des données de monitoring : " +
+                        error.getMessage() + "\u001B[0m");
+            }
+        );
     }
 
 }

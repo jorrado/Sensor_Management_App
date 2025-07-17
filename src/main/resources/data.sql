@@ -1,26 +1,31 @@
 -- Création de la table Gateways
 CREATE TABLE Gateways (
-    id_gateway VARCHAR(50) PRIMARY KEY NOT NULL,
+    gateway_id VARCHAR(50) PRIMARY KEY NOT NULL,
+    gateway_eui VARCHAR(50) NOT NULL,
     ip_address VARCHAR(50) NOT NULL,
-    commissioning_date DATE NOT NULL,
-    building_name VARCHAR(100) NOT NULL,
-    floor INTEGER NOT NULL,
-    location VARCHAR(50) NULL
+    frequency_plan VARCHAR(50) NOT NULL,
+    created_at DATETIME NOT NULL,
+    building_name VARCHAR(50) NOT NULL,
+    floor_number INTEGER NOT NULL,
+    location_description VARCHAR(50) NULL,
+    antenna_latitude REAL NULL,
+    antenna_longitude REAL NULL,
+    antenna_altitude REAL NULL
 );
 
 -- Insertion des valeurs dans la table Gateways
-INSERT INTO Gateways (id_gateway, ip_address, commissioning_date, building_name, floor, location) VALUES
-('gateway_001', '192.168.1.10', '2023-01-01', 'Batiment A', 1, 'Bureau 101'),
-('gateway_002', '192.168.1.11', '2023-02-01', 'Batiment B', 2, 'Bureau 202'),
-('gateway_003', '192.168.1.12', '2023-03-01', 'Batiment A', 3, 'Bureau 303'),
-('gateway_004', '192.168.1.13', '2023-04-01', 'Batiment C', 1, 'Bureau 104'),
-('gateway_005', '192.168.1.14', '2023-05-01', 'Batiment D', 2, 'Bureau 205'),
-('gateway_006', '192.168.1.15', '2023-06-01', 'Batiment A', 1, 'Bureau 103'),
-('gateway_007', '192.168.1.16', '2023-07-01', 'Batiment B', 2, 'Bureau 206'),
-('gateway_008', '192.168.1.17', '2023-08-01', 'Batiment A', 3, 'Bureau 306'),
-('gateway_009', '192.168.1.18', '2023-09-01', 'Batiment C', 1, 'Bureau 104'),
-('gateway_010', '192.168.1.19', '2023-10-01', 'Batiment A', 2, 'Bureau 215'),
-('rpi-mantu', '10.243.129.10', '2023-10-01', 'Batiment Z', 3, 'Bureau 333');
+INSERT INTO Gateways (gateway_id, gateway_eui, ip_address, frequency_plan, created_at, building_name, floor_number, location_description, antenna_latitude, antenna_longitude, antenna_altitude) VALUES
+('gateway-001', 'eui-001', '192.168.1.10', 'West Europe', '2023-01-01 00:00:00', 'Batiment A', 1, 'Open space A', NULL, NULL, NULL),
+('gateway-002', 'eui-002', '192.168.1.11', 'South Europa', '2023-02-01 00:00:00', 'Batiment B', 2, 'Bureau 202', NULL, NULL, NULL),
+('gateway-003', 'eui-003', '192.168.1.12', 'North Europe', '2023-03-01 00:00:00', 'Batiment A', 3, 'Open space F', NULL, NULL, NULL),
+('gateway-004', 'eui-004', '192.168.1.13', 'South Europa', '2023-04-01 00:00:00', 'Batiment C', 1, 'Bureau 104', NULL, NULL, NULL),
+('gateway-005', 'eui-005', '192.168.1.14', 'Asia', '2023-05-01 00:00:00', 'Batiment D', 2, 'Bureau 205', NULL, NULL, NULL),
+('gateway-006', 'eui-006', '192.168.1.15', 'South Europe', '2023-06-01 00:00:00', 'Batiment A', 1, 'Open space K', NULL, NULL, NULL),
+('gateway-007', 'eui-007', '192.168.1.16', 'Africa', '2023-07-01 00:00:00', 'Batiment B', 2, 'Bureau 206', NULL, NULL, NULL),
+('gateway-008', 'eui-008', '192.168.1.17', 'West Europe', '2023-08-01 00:00:00', 'Batiment A', 3, 'Bureau 306', NULL, NULL, NULL),
+('gateway-009', 'eui-009', '192.168.1.18', 'West Europe', '2023-09-01 00:00:00', 'Batiment C', 1, 'Open space T', NULL, NULL, NULL),
+('gateway-010', 'eui-010', '192.168.1.19', 'East Europa', '2023-10-01 00:00:00', 'Batiment A', 2, 'Open space U', NULL, NULL, NULL),
+('rpi-mantu', 'eui-rpi', '10.243.129.10', 'South Europa', '2023-10-01 00:00:00', 'Batiment Z', 3, 'Bureau 333', NULL, NULL, NULL);
 
 -- Création de la table Sensors
 CREATE TABLE Sensors (

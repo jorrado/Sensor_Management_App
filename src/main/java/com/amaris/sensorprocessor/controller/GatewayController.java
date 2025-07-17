@@ -36,7 +36,7 @@ public class GatewayController {
     @PostMapping("/manage-gateways/add")
     public String addGateway(@ModelAttribute Gateway gateway, RedirectAttributes redirectAttributes) {
         try {
-            inputValidationService.validateGateway(gateway);
+//            inputValidationService.validateGateway(gateway);
         } catch (CustomException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/manage-gateways";
@@ -51,17 +51,17 @@ public class GatewayController {
         return "redirect:/manage-gateways";
     }
 
-    @PostMapping("/manage-gateways/delete/{idGateway}")
-    public String deleteGateway(@PathVariable String idGateway) {
-        gatewayService.deleteGateway(idGateway);
+    @PostMapping("/manage-gateways/delete/{gatewayId}")
+    public String deleteGateway(@PathVariable String gatewayId) {
+        gatewayService.deleteGateway(gatewayId);
         return "redirect:/manage-gateways";
     }
 
-    @GetMapping("/manage-gateways/edit/{idGateway}")
-    public String editGateway(@PathVariable String idGateway, Model model) {
+    @GetMapping("/manage-gateways/edit/{gatewayId}")
+    public String editGateway(@PathVariable String gatewayId, Model model) {
         List<Gateway> gateways = gatewayService.getAllGateways();
         model.addAttribute("gateways", gateways);
-        Gateway gateway = gatewayService.searchGatewayById(idGateway);
+        Gateway gateway = gatewayService.searchGatewayById(gatewayId);
         model.addAttribute("gateway", gateway);
         return "manageGateways";
     }
@@ -69,7 +69,7 @@ public class GatewayController {
     @PostMapping("/manage-gateways/edit")
     public String updateGateway(@ModelAttribute Gateway gateway, RedirectAttributes redirectAttributes) {
         try {
-            inputValidationService.validateGateway(gateway);
+//            inputValidationService.validateGateway(gateway);
         } catch (CustomException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/manage-gateways";
@@ -79,8 +79,8 @@ public class GatewayController {
     }
 
     @GetMapping("/manage-gateways/monitoring/{id}/view")
-    public String monitoringView(@PathVariable String id, Model model) {
-        model.addAttribute("gatewayId", id);
+    public String monitoringView(@PathVariable String gatewayId, Model model) {
+        model.addAttribute("gatewayId", gatewayId);
         return "monitoringGateway";
     }
 
@@ -90,21 +90,21 @@ public class GatewayController {
      * Cette méthode est appelée automatiquement depuis le JavaScript de la page HTML,
      * via une requête SSE vers l’endpoint.
      *
-     * @param id l’identifiant du gateway
-     * @param ip l’adresse IP du gateway
+     * @param gatewayId l’identifiant du gateway
+     * @param ipAddress l’adresse IP du gateway
      * @return un {@link SseEmitter} qui envoie les données de monitoring en continu
      */
     @GetMapping("/manage-gateways/monitoring/{id}/stream")
-    public SseEmitter streamMonitoringData(@PathVariable String id, @RequestParam String ip) {
+    public SseEmitter streamMonitoringData(@PathVariable String gatewayId, @RequestParam String ipAddress) {
         SseEmitter emitter = new SseEmitter(0L);
-        gatewayService.getMonitoringData(id, ip)
-                .subscribe(data -> {
-                    try {
-                        emitter.send(data);
-                    } catch (IOException e) {
-                        emitter.completeWithError(e);
-                    }
-                }, emitter::completeWithError, emitter::complete);
+        gatewayService.getMonitoringData(gatewayId, ipAddress)
+            .subscribe(data -> {
+                try {
+                    emitter.send(data);
+                } catch (IOException e) {
+                    emitter.completeWithError(e);
+                }
+            }, emitter::completeWithError, emitter::complete);
         return emitter;
     }
 

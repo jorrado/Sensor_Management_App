@@ -11,33 +11,55 @@ public class Gateway {
 
     public Gateway() {}
 
-    public Gateway(String idGateway, String ipAddress, String commissioningDate,
-                   String buildingName, Integer floor, String location) {
-        this.idGateway = idGateway;
+    public Gateway(String gatewayId, String gatewayEui, String ipAddress, String frequencyPlan,
+                   String createdAt, String buildingName, Integer floorNumber, String locationDescription,
+                   Double antennaLatitude, Double antennaLongitude, Double antennaAltitude) {
+        this.gatewayId = gatewayId;
+        this.gatewayEui = gatewayEui;
         this.ipAddress = ipAddress;
-        this.commissioningDate = commissioningDate;
+        this.frequencyPlan = frequencyPlan;
+        this.createdAt = createdAt;
         this.buildingName = buildingName;
-        this.floor = floor;
-        this.location = location;
+        this.floorNumber = floorNumber;
+        this.locationDescription = locationDescription;
+        this.antennaLatitude = antennaLatitude;
+        this.antennaLongitude = antennaLongitude;
+        this.antennaAltitude = antennaAltitude;
     }
 
     @Id
-    @Column("id_gateway")
-    private String idGateway;
+    @Column("gateway_id")
+    private String gatewayId;
+
+    @Column("gateway_eui")
+    private String gatewayEui;
 
     @Column("ip_address")
     private String ipAddress;
 
-    @Column("commissioning_date")
-    private String commissioningDate;
+    @Column("frequency_plan")
+    private String frequencyPlan;
+
+    @Column("created_at")
+    private String createdAt;
 
     @Column("building_name")
     private String buildingName;
 
-    @Column("floor")
-    private Integer floor;
+    @Column("floor_number")
+    private Integer floorNumber;
 
-    @Column("location")
-    private String location;
+    @Column("location_description")
+    private String locationDescription;
+
+    @Column("antenna_latitude")
+    private Double antennaLatitude;
+
+    @Column("antenna_longitude")
+    private Double antennaLongitude;
+
+    @Column("antenna_altitude")
+    private Double antennaAltitude;
+
 
 }
