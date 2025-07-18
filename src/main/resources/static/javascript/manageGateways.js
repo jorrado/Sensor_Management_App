@@ -83,18 +83,27 @@ function resetError() {
     if (errorDiv) errorDiv.style.display = "none";
 }
 
-let currentForm;
-document.querySelectorAll(".deleteForm").forEach(form => {
-    form.addEventListener('click', (event) => {
-        event.preventDefault();
-        currentForm = form;
-        modalDelete.style.display = "block";
+//let currentForm;
+//document.querySelectorAll(".deleteForm").forEach(form => {
+//    form.addEventListener('click', (event) => {
+//        event.preventDefault();
+//        currentForm = form;
+//        modalDelete.style.display = "block";
+//    });
+//});
+document.querySelectorAll('.openDeletePopup').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const id = btn.getAttribute('data-id');
+      const form = document.getElementById('deleteForm');
+      form.action = `/manage-gateways/delete/${id}`;
+      document.getElementById('deleteGatewayPopup').style.display = 'block';
     });
 });
 
-document.getElementById('confirmDelete').addEventListener('click', () => {
-    if (currentForm) currentForm.submit();
-});
+//document.getElementById('confirmDelete').addEventListener('click', () => {
+//    if (currentForm) currentForm.submit();
+//});
 
 document.getElementById('cancelDelete').addEventListener('click', () => {
     modalDelete.style.display = 'none';

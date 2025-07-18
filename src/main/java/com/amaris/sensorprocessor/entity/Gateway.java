@@ -61,5 +61,4 @@ public class Gateway {
     @Column("antenna_altitude")
     private Double antennaAltitude;
 
-
 }
