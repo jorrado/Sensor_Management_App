@@ -53,7 +53,7 @@ public class GatewayService {
 //                throw new CustomException("Gateway ID already exists");
             }
 //            gateway.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));// A SUPPRIMER UNIQUEMENT POUR LE TEST
-            gatewayDao.insertGateway(gateway);
+            gatewayDao.insertGatewayInDatabase(gateway);
         } catch (Exception e) {
             logger.error("Database problem", e);
             System.out.println("\u001B[31m" + "Database problem : " +

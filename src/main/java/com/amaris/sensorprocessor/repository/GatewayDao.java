@@ -63,7 +63,7 @@ public class GatewayDao {
      * @param gateway objet Gateway à insérer
      * @return nombre de lignes insérées (1 si succès)
      */
-    public int insertGateway(Gateway gateway) {
+    public int insertGatewayInDatabase(Gateway gateway) {
         return jdbcTemplate.update(
             "INSERT INTO GATEWAYS (" +
                     "GATEWAY_ID, GATEWAY_EUI, IP_ADDRESS, FREQUENCY_PLAN, CREATED_AT, " +
