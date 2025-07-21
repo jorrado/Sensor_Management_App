@@ -21,10 +21,10 @@ public class InputValidationService {
      */
     public void isValidInputGatewayId(String gatewayId) {
         if (gatewayId == null || !gatewayId.matches("^(?!-)(?!.*--)[a-z0-9-]{3,36}(?<!-)$")) {
-            logger.error("gatewayId invalide : format non autorisé.");
-            System.out.println("\u001B[31m" + "gatewayId invalide : format non autorisé." +
+            logger.error("Unauthorized format : gatewayId invalid");
+            System.out.println("\u001B[31m" + "Unauthorized format : gatewayId invalid" +
                     "\u001B[0m");
-//            throw new CustomException("Unauthorized format : gatewayId field");
+//            throw new CustomException("Unauthorized format : Gateway ID field");
         }
     }
 
@@ -38,10 +38,10 @@ public class InputValidationService {
      */
     public void isValidInputGatewayEui(String gatewayEui) {
         if (gatewayEui == null || !gatewayEui.matches("^[0-9A-F]{16}$")) {
-            logger.error("gatewayEui invalide : format non autorisé.");
-            System.out.println("\u001B[31m" + "gatewayEui invalide : format non autorisé." +
+            logger.error("Unauthorized format : gatewayEui invalid");
+            System.out.println("\u001B[31m" + "Unauthorized format : gatewayEui invalid" +
                     "\u001B[0m");
-//            throw new CustomException("Unauthorized format : gatewayEui field");
+//            throw new CustomException("Unauthorized format : Gateway EUI field");
         }
     }
 
@@ -52,11 +52,11 @@ public class InputValidationService {
      * @throws CustomException si l'adresse IP est invalide ou nulle
      */
     public void isValidInputIpAddress(String ipAddress) {
-        if (ipAddress == null || !ipAddress.matches("^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)(\\.|$)){4}$")) {
-            logger.error("ipAddress invalide : format non autorisé.");
-            System.out.println("\u001B[31m" + "ipAddress invalide : format non autorisé." +
+        if (ipAddress == null || !ipAddress.matches("^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)$")) {
+            logger.error("Unauthorized format : ipAddress invalid");
+            System.out.println("\u001B[31m" + "Unauthorized format : ipAddress invalid" +
                     "\u001B[0m");
-//            throw new CustomException("Unauthorized format : ipAddress field");
+//            throw new CustomException("Unauthorized format : IP Address field");
         }
     }
 
@@ -68,9 +68,9 @@ public class InputValidationService {
      * @throws IllegalArgumentException si le format est invalide
      */
     public void isValidInputText(String str) {
-        if (str == null || !str.matches("^[a-zA-ZÀ-ÖØ-öø-ÿ0-9\\s\\-,'\"\\.]{1,50}$")) {
-            logger.error("Texte invalide : format non autorisé.");
-            System.out.println("\u001B[31m" + "Texte invalide : format non autorisé." +
+        if (str == null || !str.matches("^[a-zA-ZÀ-ÖØ-öø-ÿ0-9\\s\\-,'\".]{1,50}$")) {
+            logger.error("Unauthorized format : invalid text");
+            System.out.println("\u001B[31m" + "Unauthorized format : invalid text" +
                     "\u001B[0m");
 //            throw new CustomException("Unauthorized format : text field");
         }
@@ -78,9 +78,9 @@ public class InputValidationService {
 
     public void isValidInputFloorNumber(Integer floorNumber) {
         if (floorNumber == null || floorNumber < 0 || floorNumber > 99) {
-            logger.error("floorNumber invalide : format non autorisé.");
-            System.out.println("\u001B[31m" + "floorNumber invalide : format non autorisé." + "\u001B[0m");
-//        throw new CustomException("Unauthorized format : floorNumber field");
+            logger.error("Unauthorized format : floorNumber invalid");
+            System.out.println("\u001B[31m" + "Unauthorized format : floorNumber invalid" + "\u001B[0m");
+//        throw new CustomException("Unauthorized format : Floor Number field");
         }
     }
 
@@ -94,8 +94,8 @@ public class InputValidationService {
      */
     public void isValidInputAntenna(Double coordinate) {
         if (coordinate == null || !(String.valueOf(coordinate).matches("^\\d{1,3}(\\.\\d{1,10})?$"))) {
-            logger.error("coordinate invalide : format non autorisé.");
-            System.out.println("\u001B[31m" + "coordinate invalide : format non autorisé." +
+            logger.error("Unauthorized format : coordinate invalid");
+            System.out.println("\u001B[31m" + "Unauthorized format : coordinate invalid" +
                     "\u001B[0m");
 //            throw new CustomException("Unauthorized format : coordinate field");
         }
@@ -103,10 +103,10 @@ public class InputValidationService {
 
     public void validateGateway(Gateway gateway) {
         if (gateway == null) {
-            logger.error("La gateway est inexistante.");
-            System.out.println("\u001B[31m" + "La gateway est inexistante." +
+            logger.error("The gateway does not exist");
+            System.out.println("\u001B[31m" + "The gateway does not exist" +
                     "\u001B[0m");
-            throw new CustomException("The gateway does not exist.");
+            throw new CustomException("The gateway does not exist");
         }
         isValidInputGatewayId(gateway.getGatewayId());
         isValidInputGatewayEui(gateway.getGatewayEui());

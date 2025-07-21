@@ -36,35 +36,44 @@ public class GatewayService {
         try {
             return gatewayDao.findAllGateways();
         } catch (Exception e) {
-            logger.error("Erreur lors de la récupération de la liste des gateways", e);
-            System.out.println("\u001B[31m" + "Erreur lors de la récupération de la liste des gateways : " +
+            logger.error("Error retrieving the list of gateways", e);
+            System.out.println("\u001B[31m" + "Error retrieving the list of gateways : " +
                     e.getMessage() + "\u001B[0m");
 //            throw new CustomException("Database problem");
             return Collections.emptyList();
         }
     }
 
-    public void save(Gateway gateway) {
+    public void saveGatewayInDatabase(Gateway gateway) {
         try {
             if (gatewayDao.findGatewayById(gateway.getGatewayId()).isPresent()) {
-                throw new CustomException("Gateway already exists");
+                logger.error("Gateway ID already exists : {}", gateway.getGatewayId());
+                System.out.println("\u001B[31m" + "Gateway ID already exists : " + gateway.getGatewayId() +
+                        "\u001B[0m");
+//                throw new CustomException("Gateway ID already exists");
             }
-            gateway.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));// A SUPPRIMER UNIQUEMENT POUR LE TEST
+//            gateway.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));// A SUPPRIMER UNIQUEMENT POUR LE TEST
             gatewayDao.insertGateway(gateway);
         } catch (Exception e) {
-            logger.error("Erreur lors de la sauvegarde de la gateway", e);
-            System.out.println("\u001B[31m" + "Erreur lors de la sauvegarde de la gateway : " +
+            logger.error("Database problem", e);
+            System.out.println("\u001B[31m" + "Database problem : " +
                     e.getMessage() + "\u001B[0m");
 //            throw new CustomException("Database problem");
         }
     }
 
-    public void deleteGateway(String gatewayId) {
+    public void deleteGatewayInDatabase(String gatewayId) {
         try {
-            gatewayDao.deleteGatewayById(gatewayId);
+            int deleteLigne = gatewayDao.deleteGatewayById(gatewayId);
+            if (deleteLigne <= 0) {
+                logger.error("Deletion failed or Gateway ID not found {}", gatewayId);
+                System.out.println("\u001B[31m" + "Deletion failed or Gateway ID not found : " + gatewayId
+                        + "\u001B[0m");
+//            throw new CustomException("Deletion failed");
+            }
         } catch (Exception e) {
-            logger.error("Erreur lors de la suppression de la gateway", e);
-            System.out.println("\u001B[31m" + "Erreur lors de la suppression de la gateway : " +
+            logger.error("Database problem", e);
+            System.out.println("\u001B[31m" + "Database problem : " +
                     e.getMessage() + "\u001B[0m");
 //            throw new CustomException("Database problem");
         }

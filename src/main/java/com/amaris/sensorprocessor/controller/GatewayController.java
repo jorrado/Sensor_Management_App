@@ -2,6 +2,7 @@ package com.amaris.sensorprocessor.controller;
 
 import com.amaris.sensorprocessor.entity.Gateway;
 import com.amaris.sensorprocessor.exception.CustomException;
+import com.amaris.sensorprocessor.service.GatewayLorawanService;
 import com.amaris.sensorprocessor.service.GatewayService;
 import com.amaris.sensorprocessor.service.InputValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,15 @@ public class GatewayController {
 
     private final GatewayService gatewayService;
     private final InputValidationService inputValidationService;
+    private final GatewayLorawanService gatewayLorawanService;
 
     @Autowired
-    public GatewayController(GatewayService gatewayService, InputValidationService inputValidationService) {
+    public GatewayController(GatewayService gatewayService,
+                             InputValidationService inputValidationService,
+                             GatewayLorawanService gatewayLorawanService) {
         this.gatewayService = gatewayService;
         this.inputValidationService = inputValidationService;
+        this.gatewayLorawanService = gatewayLorawanService;
     }
 
     @GetMapping("/manage-gateways")
@@ -37,12 +42,8 @@ public class GatewayController {
     public String addGateway(@ModelAttribute Gateway gateway, RedirectAttributes redirectAttributes) {
         try {
 //            inputValidationService.validateGateway(gateway);
-        } catch (CustomException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "redirect:/manage-gateways";
-        }
-        try {
-            gatewayService.save(gateway);
+            gatewayLorawanService.saveGatewayInLorawan(gateway);
+            gatewayService.saveGatewayInDatabase(gateway);
         } catch (CustomException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/manage-gateways";
@@ -52,8 +53,15 @@ public class GatewayController {
     }
 
     @PostMapping("/manage-gateways/delete/{gatewayId}")
-    public String deleteGateway(@PathVariable String gatewayId) {
-        gatewayService.deleteGateway(gatewayId);
+    public String deleteGateway(@PathVariable String gatewayId, RedirectAttributes redirectAttributes) {
+        try {
+            gatewayLorawanService.deleteGatewayInLorawan(gatewayId);
+            gatewayService.deleteGatewayInDatabase(gatewayId);
+        } catch (CustomException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/manage-gateways";
+        }
+        redirectAttributes.addFlashAttribute("error",null);
         return "redirect:/manage-gateways";
     }
 
