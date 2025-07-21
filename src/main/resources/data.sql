@@ -15,17 +15,18 @@ CREATE TABLE Gateways (
 
 -- Insertion des valeurs dans la table Gateways
 INSERT INTO Gateways (gateway_id, gateway_eui, ip_address, frequency_plan, created_at, building_name, floor_number, location_description, antenna_latitude, antenna_longitude, antenna_altitude) VALUES
-('gateway-001', 'eui-001', '192.168.1.10', 'West Europe', '2023-01-01 00:00:00', 'Batiment A', 1, 'Open space A', NULL, NULL, NULL),
-('gateway-002', 'eui-002', '192.168.1.11', 'South Europa', '2023-02-01 00:00:00', 'Batiment B', 2, 'Bureau 202', NULL, NULL, NULL),
-('gateway-003', 'eui-003', '192.168.1.12', 'North Europe', '2023-03-01 00:00:00', 'Batiment A', 3, 'Open space F', NULL, NULL, NULL),
-('gateway-004', 'eui-004', '192.168.1.13', 'South Europa', '2023-04-01 00:00:00', 'Batiment C', 1, 'Bureau 104', NULL, NULL, NULL),
-('gateway-005', 'eui-005', '192.168.1.14', 'Asia', '2023-05-01 00:00:00', 'Batiment D', 2, 'Bureau 205', NULL, NULL, NULL),
-('gateway-006', 'eui-006', '192.168.1.15', 'South Europe', '2023-06-01 00:00:00', 'Batiment A', 1, 'Open space K', NULL, NULL, NULL),
-('gateway-007', 'eui-007', '192.168.1.16', 'Africa', '2023-07-01 00:00:00', 'Batiment B', 2, 'Bureau 206', NULL, NULL, NULL),
-('gateway-008', 'eui-008', '192.168.1.17', 'West Europe', '2023-08-01 00:00:00', 'Batiment A', 3, 'Bureau 306', NULL, NULL, NULL),
-('gateway-009', 'eui-009', '192.168.1.18', 'West Europe', '2023-09-01 00:00:00', 'Batiment C', 1, 'Open space T', NULL, NULL, NULL),
-('gateway-010', 'eui-010', '192.168.1.19', 'East Europa', '2023-10-01 00:00:00', 'Batiment A', 2, 'Open space U', NULL, NULL, NULL),
-('rpi-mantu', 'eui-rpi', '10.243.129.10', 'South Europa', '2023-10-01 00:00:00', 'Batiment Z', 3, 'Bureau 333', NULL, NULL, NULL);
+('gateway-001', '4446C001F55527AB', '192.168.1.10', 'Europe 863-870 MHz (SF9 for RX2 - recommended)', '2023-01-01 00:00:00', 'Batiment A', 1, 'Open space A', NULL, NULL, NULL),
+('gateway-002', '4254C001F75641AA', '192.168.1.11', 'Europe 863-870 MHz (SF9 for RX2 - recommended)', '2023-02-01 00:00:00', 'Batiment B', 2, 'Bureau 202', NULL, NULL, NULL),
+('gateway-003', '0016C333F98761BA', '192.168.1.12', 'Europe 863-870 MHz (SF9 for RX2 - recommended)', '2023-03-01 00:00:00', 'Batiment A', 3, 'Open space F', NULL, NULL, NULL),
+('gateway-004', '3316C001F99927AB', '192.168.1.13', 'United States 902-928 MHz, FSB 2 (used by TTN)', '2023-04-01 00:00:00', 'Batiment C', 1, 'Bureau 104', NULL, NULL, NULL),
+('gateway-005', '4416C005F16747DB', '192.168.1.14', 'Asia 920-923 MHz (used by TTN Australia)', '2023-05-01 00:00:00', 'Batiment D', 2, 'Bureau 205', NULL, NULL, NULL),
+('gateway-006', '0016C661F10333BA', '192.168.1.15', 'United States 902-928 MHz, FSB 2 (used by TTN)', '2023-06-01 00:00:00', 'Batiment A', 1, 'Open space K', NULL, NULL, NULL),
+('gateway-007', '2216C441F16727CB', '192.168.1.16', 'Australia 915-928 MHz, FSB 2 (used by TTN)', '2023-07-01 00:00:00', 'Batiment B', 2, 'Bureau 206', NULL, NULL, NULL),
+('gateway-008', '0016C441F10534BA', '192.168.1.17', 'Australia 915-928 MHz, FSB 2 (used by TTN)', '2023-08-01 00:00:00', 'Batiment A', 3, 'Bureau 306', NULL, NULL, NULL),
+('gateway-009', '0321C001F44427AA', '192.168.1.18', 'China 470-510 MHz, FSB 11 (used by TTN)', '2023-09-01 00:00:00', 'Batiment C', 1, 'Open space T', NULL, NULL, NULL),
+('gateway-010', '0016C021F10543AB', '192.168.1.19', 'Europe 863-870 MHz (SF9 for RX2 - recommended)', '2023-10-01 00:00:00', 'Batiment A', 2, 'Open space U', NULL, NULL, NULL),
+('leva-rpi-mantu', '0016C001F10527BB', '10.243.129.10', 'Europe 863-870 MHz (SF9 for RX2 - recommended)', '2025-04-14 16:01:07', 'Batiment Z', 3, 'Bureau 333', NULL, NULL, NULL),
+('rpi-mantu', '0016C001F1054209', '10.243.129.10', 'Europe 863-870 MHz (SF9 for RX2 - recommended)', '2024-07-25 16:34:34', 'Batiment Z', 3, 'Bureau 333', NULL, NULL, NULL);
 
 -- Création de la table Sensors
 CREATE TABLE Sensors (

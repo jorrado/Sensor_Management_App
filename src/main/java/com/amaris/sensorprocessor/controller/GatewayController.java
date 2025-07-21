@@ -1,5 +1,6 @@
 package com.amaris.sensorprocessor.controller;
 
+import com.amaris.sensorprocessor.constant.FrequencyPlan;
 import com.amaris.sensorprocessor.entity.Gateway;
 import com.amaris.sensorprocessor.exception.CustomException;
 import com.amaris.sensorprocessor.service.GatewayLorawanService;
@@ -35,6 +36,7 @@ public class GatewayController {
     public String manageGateways(Model model) {
         List<Gateway> gateways = gatewayService.getAllGateways();
         model.addAttribute("gateways", gateways);
+        model.addAttribute("frequencyPlans", FrequencyPlan.values());
         return "manageGateways";
     }
 
@@ -71,6 +73,7 @@ public class GatewayController {
         model.addAttribute("gateways", gateways);
         Gateway gateway = gatewayService.searchGatewayById(gatewayId);
         model.addAttribute("gateway", gateway);
+        model.addAttribute("frequencyPlans", FrequencyPlan.values());
         return "manageGateways";
     }
 

@@ -186,18 +186,9 @@
         <input type="text" name="ipAddress" placeholder="IP Address" required />
         <select name="frequencyPlan" required>
           <option value="" disabled selected>Select Frequency Plan</option>
-          <option value="EU_863_870">Northern Europe</option>
-          <option value="WesternEurope">Western Europe</option>
-          <option value="EasternEurope">Eastern Europe</option>
-          <option value="SouthernEurope">Southern Europe</option>
-          <option value="NorthAmerica">North America</option>
-          <option value="CentralAmerica">Central America</option>
-          <option value="SouthAmerica">South America</option>
-          <option value="NorthAfrica">North Africa</option>
-          <option value="SouthAfrica">South Africa</option>
-          <option value="Asia">Asia</option>
-          <option value="MiddleEast">Middle East</option>
-          <option value="Oceania">Oceania</option>
+          <th:block th:each="plan : ${frequencyPlans}">
+            <option th:value="${plan.description}" th:text="${plan}"></option>
+          </th:block>
         </select>
         <input type="text" name="buildingName" placeholder="Building Name" required />
         <input type="number" name="floorNumber" placeholder="Floor Number" required />
@@ -230,7 +221,11 @@
     row.innerHTML = `
       <td>${gw.gatewayId}</td>
       <td>${gw.ipAddress}</td>
-      <td>${gw.frequencyPlan}</td>
+      <td>${
+        gw.frequencyPlan.split(' ')[0].toLowerCase() === 'united'
+          ? gw.frequencyPlan.split(' ').slice(0, 2).join(' ')
+          : gw.frequencyPlan.split(' ')[0]
+      }</td>
       <td>${gw.createdAt}</td>
       <td>${gw.buildingName}</td>
       <td>
