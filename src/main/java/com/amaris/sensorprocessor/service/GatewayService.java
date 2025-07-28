@@ -95,7 +95,7 @@ public class GatewayService {
         }
     }
 
-    public void update(Gateway gateway) {
+    public void updateGatewayInDatabase(Gateway gateway) {
         try {
             gatewayDao.updateGateway(gateway);
         } catch (Exception e) {

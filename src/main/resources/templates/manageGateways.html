@@ -145,19 +145,10 @@
         <input type="text" th:field="*{gatewayId}" placeholder="Gateway ID" required readonly />
         <input type="text" th:field="*{ipAddress}" placeholder="IP Address" required />
         <select th:field="*{frequencyPlan}" required>
-          <option value="" disabled>Select Frequency Plan</option>
-          <option value="NorthernEurope">Northern Europe</option>
-          <option value="WesternEurope">Western Europe</option>
-          <option value="EasternEurope">Eastern Europe</option>
-          <option value="SouthernEurope">Southern Europe</option>
-          <option value="NorthAmerica">North America</option>
-          <option value="CentralAmerica">Central America</option>
-          <option value="SouthAmerica">South America</option>
-          <option value="NorthAfrica">North Africa</option>
-          <option value="SouthAfrica">South Africa</option>
-          <option value="Asia">Asia</option>
-          <option value="MiddleEast">Middle East</option>
-          <option value="Oceania">Oceania</option>
+          <option value="" disabled selected>Select Frequency Plan</option>
+          <th:block th:each="plan : ${frequencyPlans}">
+            <option th:value="${plan.description}" th:text="${plan.name()}"></option>
+          </th:block>
         </select>
         <input type="text" th:field="*{buildingName}" placeholder="Building Name" required />
         <input type="number" th:field="*{floorNumber}" placeholder="Floor Number" required />
@@ -222,10 +213,13 @@
       <td>${gw.gatewayId}</td>
       <td>${gw.ipAddress}</td>
       <td>${
-        gw.frequencyPlan.split(' ')[0].toLowerCase() === 'united'
-          ? gw.frequencyPlan.split(' ').slice(0, 2).join(' ')
-          : gw.frequencyPlan.split(' ')[0]
-      }</td>
+          gw.frequencyPlan === 'EU_863_870_TTN'
+            ? 'Europe' : gw.frequencyPlan === 'US_902_928_FSB_2'
+            ? 'United States' : gw.frequencyPlan === 'AU_915_928_FSB_2'
+            ? 'Australia' : gw.frequencyPlan === 'CN_470_510_FSB_11'
+            ? 'China' : gw.frequencyPlan === 'AS_920_923' ? 'Asia' : ''
+        }
+      </td>
       <td>${gw.createdAt}</td>
       <td>${gw.buildingName}</td>
       <td>

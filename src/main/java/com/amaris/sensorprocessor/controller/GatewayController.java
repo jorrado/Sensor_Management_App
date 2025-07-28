@@ -85,7 +85,8 @@ public class GatewayController {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/manage-gateways";
         }
-        gatewayService.update(gateway);
+        gatewayLorawanService.updateGatewayInLorawan(gateway);
+        gatewayService.updateGatewayInDatabase(gateway);
         return "redirect:/manage-gateways";
     }
 

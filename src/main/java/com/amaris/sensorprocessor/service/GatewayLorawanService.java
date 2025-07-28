@@ -2,6 +2,7 @@ package com.amaris.sensorprocessor.service;
 
 import com.amaris.sensorprocessor.entity.Gateway;
 import com.amaris.sensorprocessor.entity.LorawanGatewayData;
+import com.amaris.sensorprocessor.entity.LorawanGatewayUpdateData;
 import com.amaris.sensorprocessor.repository.GatewayLorawanDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,6 +70,11 @@ public class GatewayLorawanService {
         }
     }
 
+    public void updateGatewayInLorawan(Gateway gateway) {
+        LorawanGatewayUpdateData updateData = toLorawanGatewayUpdateData(gateway);
+        gatewayLorawanDao.updateGatewayInLorawan(updateData, gateway.getGatewayId());
+    }
+
     /**
      * Convertit un objet Gateway en LorawanGatewayData DTO adapté pour l’API LoRaWAN.
      *
@@ -91,6 +97,23 @@ public class GatewayLorawanService {
         return data;
     }
 
+    private static LorawanGatewayUpdateData toLorawanGatewayUpdateData(Gateway gateway) {
+        LorawanGatewayUpdateData updateData = new LorawanGatewayUpdateData();
+        LorawanGatewayUpdateData.GatewayPayload payload = new LorawanGatewayUpdateData.GatewayPayload();
+        LorawanGatewayUpdateData.GatewayPayload.Ids ids = new LorawanGatewayUpdateData.GatewayPayload.Ids();
+
+        ids.setGateway_id(gateway.getGatewayId());
+
+        payload.setIds(ids);
+        payload.setFrequency_plan_ids(new String[]{gateway.getFrequencyPlan()});
+
+        updateData.setGateway(payload);
+        updateData.setField_mask("frequency_plan_ids");
+
+        return updateData;
+    }
+
+
     /**
      * Extrait la valeur de "created_at" d’un JSON String et la formate au format "yyyy-MM-dd HH:mm:ss".
      * Si absente, utilise la date/heure UTC actuelle.
@@ -110,7 +133,7 @@ public class GatewayLorawanService {
             dateStr = (end == -1) ? OffsetDateTime.now().toString() : json.substring(start, end);
         }
         OffsetDateTime odt = OffsetDateTime.parse(dateStr);
-        return odt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return odt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
 }

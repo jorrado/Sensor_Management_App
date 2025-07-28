@@ -1,6 +1,7 @@
 package com.amaris.sensorprocessor.repository;
 
 import com.amaris.sensorprocessor.entity.LorawanGatewayData;
+import com.amaris.sensorprocessor.entity.LorawanGatewayUpdateData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,8 @@ public class GatewayLorawanDao {
     @Value("${lorawan.baseurlCreate}")
     private String lorawanBaseUrlCreate;
 
-    @Value("${lorawan.baseurlDelete}")
-    private String lorawanBaseUrlDelete;
+    @Value("${lorawan.baseurl}")
+    private String lorawanBaseUrl;
 
     @Value("${lorawan.token}")
     private String lorawanToken;
@@ -39,13 +40,24 @@ public class GatewayLorawanDao {
 
     public int deleteGatewayById(String gatewayId) {
         return webClientBuilder.build().delete()
-            .uri(lorawanBaseUrlDelete + "/" + gatewayId)
+            .uri(lorawanBaseUrl + "/" + gatewayId)
             .header("Authorization", "Bearer " + lorawanToken)
             .retrieve()
             .toBodilessEntity()
             .map(response -> response.getStatusCode().value())
             .blockOptional()
             .orElse(-1);
+    }
+
+    public String updateGatewayInLorawan(LorawanGatewayUpdateData updateData, String gatewayId) {
+        return webClientBuilder.build()
+            .put()
+            .uri(lorawanBaseUrl + "/" + gatewayId)
+            .header("Authorization", "Bearer " + lorawanToken)
+            .bodyValue(updateData)
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
     }
 
 }

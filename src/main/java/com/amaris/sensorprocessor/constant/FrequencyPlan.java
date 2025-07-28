@@ -1,21 +1,20 @@
 package com.amaris.sensorprocessor.constant;
 
+import lombok.Getter;
+
+@Getter
 public enum FrequencyPlan {
 
-    EUROPE("Europe 863-870 MHz (SF9 for RX2 - recommended)"),
-    UNITED_STATES("United States 902-928 MHz, FSB 2 (used by TTN)"),
-    AUSTRALIA("Australia 915-928 MHz, FSB 2 (used by TTN)"),
-    CHINA("China 470-510 MHz, FSB 11 (used by TTN)"),
-    ASIA("Asia 920-923 MHz (used by TTN Australia)");
+    EUROPE("EU_863_870_TTN"),
+    UNITED_STATES("US_902_928_FSB_2"),
+    AUSTRALIA("AU_915_928_FSB_2"),
+    CHINA("CN_470_510_FSB_11"),
+    ASIA("AS_920_923");
 
     private final String description;
 
     FrequencyPlan(String description) {
         this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
 }
