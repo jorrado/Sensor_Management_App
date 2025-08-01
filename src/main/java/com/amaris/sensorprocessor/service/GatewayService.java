@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
@@ -44,21 +45,19 @@ public class GatewayService {
         }
     }
 
-    public void saveGatewayInDatabase(Gateway gateway) {
+    public void saveGatewayInDatabase(Gateway gateway, BindingResult bindingResult) {
         try {
             if (gatewayDao.findGatewayById(gateway.getGatewayId()).isPresent()) {
                 logger.error("Gateway ID already exists : {}", gateway.getGatewayId());
-                System.out.println("\u001B[31m" + "Gateway ID already exists : " + gateway.getGatewayId() +
-                        "\u001B[0m");
-//                throw new CustomException("Gateway ID already exists");
+                System.out.println("\u001B[31m" + "Gateway ID already exists : " + gateway.getGatewayId() + "\u001B[0m");
+                bindingResult.rejectValue("gatewayId", "Invalid.gatewayId", "Gateway ID already exists");
             }
-//            gateway.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));// A SUPPRIMER UNIQUEMENT POUR LE TEST
+//            gateway.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));// A SUPPRIMER CAR UNIQUEMENT POUR LE TEST SI PROBLEME LORAWAN
             gatewayDao.insertGatewayInDatabase(gateway);
         } catch (Exception e) {
             logger.error("Database problem", e);
-            System.out.println("\u001B[31m" + "Database problem : " +
-                    e.getMessage() + "\u001B[0m");
-//            throw new CustomException("Database problem");
+            System.out.println("\u001B[31m" + "Database problem : " + e.getMessage() + "\u001B[0m");
+            bindingResult.rejectValue("DatabaseProblem", "Invalid.DatabaseProblem", "Database problem");
         }
     }
 

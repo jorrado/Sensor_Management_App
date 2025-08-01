@@ -189,3 +189,22 @@ form button:hover, .formButton:hover {
     border-radius: 5px;
     margin: 10px 0;
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.error-message {
+    background-color: #ffe0e0;
+    color: #b30000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ffcccc;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.input-error {
+    border: 2px solid #b30000;
+}

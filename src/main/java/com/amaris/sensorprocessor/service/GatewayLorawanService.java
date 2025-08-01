@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.time.OffsetDateTime;
@@ -25,7 +26,7 @@ public class GatewayLorawanService {
         this.gatewayLorawanDao = gatewayLorawanDao;
     }
 
-    public void saveGatewayInLorawan(Gateway gateway) {
+    public void saveGatewayInLorawan(Gateway gateway, BindingResult bindingResult) {
         try {
             LorawanGatewayData lorawanGatewayData = GatewayLorawanService.toLorawanGatewayData(gateway);
             String jsonResult = gatewayLorawanDao.insertGatewayInLorawan(lorawanGatewayData);
@@ -36,18 +37,17 @@ public class GatewayLorawanService {
                 logger.error("Gateway ID already exists : {}", gateway.getGatewayId(), e);
                 System.out.println("\u001B[31m" + "Gateway ID already exists : " + gateway.getGatewayId() + " " +
                         e.getMessage() + "\u001B[0m");
-//            throw new CustomException("Gateway ID already exists");
+                bindingResult.rejectValue("gatewayId", "Invalid.gatewayId", "Gateway ID already exists");
             } else if (errorBody.contains("\"code\":6") && errorBody.contains("\"name\":\"gateway_eui_taken\"")) {
                 logger.error("Gateway EUI already exists : {}", gateway.getGatewayEui(), e);
                 System.out.println("\u001B[31m" + "Gateway EUI already exists : " + gateway.getGatewayEui() + " " +
                         e.getMessage() + "\u001B[0m");
-//            throw new CustomException("Gateway EUI already exists");
+                bindingResult.rejectValue("gatewayEui", "Invalid.gatewayEui", "Gateway EUI already exists");
             }
         } catch (Exception e) {
             logger.error("Lorawan problem", e);
-            System.out.println("\u001B[31m" + "Lorawan problem : " +
-                    e.getMessage() + "\u001B[0m");
-//            throw new CustomException("Lorawan problem");
+            System.out.println("\u001B[31m" + "Lorawan problem : " + e.getMessage() + "\u001B[0m");
+            bindingResult.rejectValue("LorawanProblem", "Invalid.LorawanProblem", "Lorawan server problem");
         }
     }
 

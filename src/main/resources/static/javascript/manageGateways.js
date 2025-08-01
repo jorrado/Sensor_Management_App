@@ -20,6 +20,7 @@ var cancelDelete = document.getElementById("cancelDelete");
 // Quand l'utilisateur clique sur ouvrir la popup Create
 if (btnCreate) {
     btnCreate.addEventListener("click", () => {
+        refreshCsrfToken();
         modalCreate.style.display = "block";
     });
 }
@@ -61,11 +62,17 @@ window.onclick = function(event) {
 }
 
 // Si l'erreur est levée alors ouvrir la popup Create, sinon fermer les popups
+//document.addEventListener("DOMContentLoaded", function () {
+//    if (modalCreate) modalCreate.style.display = "none";
+//    if (modalDelete) modalDelete.style.display = "none";
+//    if (document.querySelector(".alert-danger")) {
+//        modalCreate.style.display = "block";
+//    }
+//});
 document.addEventListener("DOMContentLoaded", function () {
-    if (modalCreate) modalCreate.style.display = "none";
-    if (modalDelete) modalDelete.style.display = "none";
-    if (document.querySelector(".alert-danger")) {
-        modalCreate.style.display = "block";
+    const errorDiv = document.querySelector('.error-message');
+    if (errorDiv) {
+      modalCreate.style.display = "block";
     }
 });
 
@@ -81,6 +88,8 @@ function resetModalFields() {
 function resetError() {
     const errorDiv = modalCreate.querySelector(".alert-danger");
     if (errorDiv) errorDiv.style.display = "none";
+    const errorInputs = modalCreate.querySelectorAll(".input-error");
+    errorInputs.forEach(input => input.classList.remove("input-error"));
 }
 
 //let currentForm;
@@ -109,6 +118,11 @@ document.getElementById('cancelDelete').addEventListener('click', () => {
     modalDelete.style.display = 'none';
 });
 
+// Pour renvoyer les champs date sous le format YYYY-MM-DD
+flatpickr(".datepicker", {
+    dateFormat: "Y-m-d"
+});
+
 // === Navigation back reload ===
 window.addEventListener('pageshow', function(event) {
     if (event.persisted) {
@@ -119,7 +133,13 @@ window.addEventListener('pageshow', function(event) {
     }
 });
 
-// Pour renvoyer les champs date sous le format YYYY-MM-DD
-flatpickr(".datepicker", {
-    dateFormat: "Y-m-d"
-});
+function refreshCsrfToken() {
+    fetch('/csrf-token')
+    .then(response => response.json())
+    .then(data => {
+        const input = document.querySelector('form#myForm input[name="' + data.parameterName + '"]');
+        if (input) {
+            input.value = data.token;
+        }
+    });
+}

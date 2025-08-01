@@ -7,14 +7,17 @@ import com.amaris.sensorprocessor.service.GatewayLorawanService;
 import com.amaris.sensorprocessor.service.GatewayService;
 import com.amaris.sensorprocessor.service.InputValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class GatewayController {
@@ -22,6 +25,9 @@ public class GatewayController {
     private final GatewayService gatewayService;
     private final InputValidationService inputValidationService;
     private final GatewayLorawanService gatewayLorawanService;
+
+    private static final String ERROR_ADD = "errorAdd";
+    private static final String GATEWAY_ADD = "gatewayAdd";
 
     @Autowired
     public GatewayController(GatewayService gatewayService,
@@ -34,23 +40,47 @@ public class GatewayController {
 
     @GetMapping("/manage-gateways")
     public String manageGateways(Model model) {
-        List<Gateway> gateways = gatewayService.getAllGateways();
-        model.addAttribute("gateways", gateways);
-        model.addAttribute("frequencyPlans", FrequencyPlan.values());
+        prepareModel(model);
+        if (!model.containsAttribute(GATEWAY_ADD)) {
+            model.addAttribute(GATEWAY_ADD, new Gateway());
+        }
         return "manageGateways";
     }
 
     @PostMapping("/manage-gateways/add")
-    public String addGateway(@ModelAttribute Gateway gateway, RedirectAttributes redirectAttributes) {
-        try {
-//            inputValidationService.validateGateway(gateway);
-            gatewayLorawanService.saveGatewayInLorawan(gateway);
-            gatewayService.saveGatewayInDatabase(gateway);
-        } catch (CustomException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "redirect:/manage-gateways";
+    public String addGateway(@ModelAttribute(GATEWAY_ADD) Gateway gateway,BindingResult bindingResult, Model model) {
+        model.addAttribute(GATEWAY_ADD, gateway);
+        inputValidationService.validateGateway(gateway, bindingResult);
+        if (bindingResult.hasErrors()) {
+            prepareModel(model);
+            model.addAttribute("org.springframework.validation.BindingResult.gatewayAdd", bindingResult);
+            model.addAttribute(ERROR_ADD, "Input error in the form");
+            return "manageGateways";
         }
-        redirectAttributes.addFlashAttribute("error", null);
+        gatewayLorawanService.saveGatewayInLorawan(gateway, bindingResult);
+        if (bindingResult.hasErrors()) {
+            prepareModel(model);
+            if (bindingResult.hasFieldErrors("gatewayId")) {
+                model.addAttribute(ERROR_ADD, "Gateway ID already exists");
+            } else if (bindingResult.hasFieldErrors("gatewayEui")) {
+                model.addAttribute(ERROR_ADD, "Gateway EUI already exists");
+            } else {
+                model.addAttribute(ERROR_ADD, "Lorawan server problem");
+            }
+            model.addAttribute("org.springframework.validation.BindingResult.gatewayAdd", bindingResult);
+            return "manageGateways";
+        }
+        gatewayService.saveGatewayInDatabase(gateway, bindingResult);
+        if (bindingResult.hasErrors()) {
+            prepareModel(model);
+            if (bindingResult.hasFieldErrors("gatewayId")) {
+                model.addAttribute(ERROR_ADD, "Gateway ID already exists");
+            } else {
+                model.addAttribute(ERROR_ADD, "Database problem");
+            }
+            return "manageGateways";
+        }
+        model.addAttribute(ERROR_ADD, null);
         return "redirect:/manage-gateways";
     }
 
@@ -118,6 +148,21 @@ public class GatewayController {
                 }
             }, emitter::completeWithError, emitter::complete);
         return emitter;
+    }
+
+    @GetMapping("/csrf-token")
+    @ResponseBody
+    public Map<String, String> csrfToken(CsrfToken token) {
+        return Map.of(
+                "parameterName", token.getParameterName(),
+                "token", token.getToken()
+        );
+    }
+
+    private void prepareModel(Model model) {
+        model.addAttribute("frequencyPlans", FrequencyPlan.values());
+        List<Gateway> gateways = gatewayService.getAllGateways();
+        model.addAttribute("gateways", gateways);
     }
 
 }
