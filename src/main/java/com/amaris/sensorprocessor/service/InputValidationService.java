@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 
 import java.util.Arrays;
 
+import static com.amaris.sensorprocessor.util.LoggerUtil.logInvalidateFormatError;
+
 @Service
 public class InputValidationService {
 
@@ -25,8 +27,7 @@ public class InputValidationService {
      */
     public void isValidInputGatewayId(String gatewayId, BindingResult bindingResult) {
         if (gatewayId == null || !gatewayId.matches("^(?!-)(?!.*--)[a-z0-9-]{3,36}(?<!-)$")) {
-            logger.error("Unauthorized format : gatewayId invalid");
-            System.out.println("\u001B[31m" + "Unauthorized format : gatewayId invalid" + "\u001B[0m");
+            logInvalidateFormatError("gatewayId invalid");
             bindingResult.rejectValue("gatewayId", "Invalid.gatewayId", "Gateway ID format is invalid");
         }
     }
@@ -41,8 +42,7 @@ public class InputValidationService {
      */
     public void isValidInputGatewayEui(String gatewayEui, BindingResult bindingResult) {
         if (gatewayEui == null || !gatewayEui.matches("^[0-9A-F]{16}$")) {
-            logger.error("Unauthorized format : gatewayEui invalid");
-            System.out.println("\u001B[31m" + "Unauthorized format : gatewayEui invalid" + "\u001B[0m");
+            logInvalidateFormatError("gatewayEui invalid");
             bindingResult.rejectValue("gatewayEui", "Invalid.gatewayEui", "Gateway EUI format is invalid");
         }
     }
@@ -55,8 +55,7 @@ public class InputValidationService {
      */
     public void isValidInputIpAddress(String ipAddress, BindingResult bindingResult) {
         if (ipAddress == null || !ipAddress.matches("^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)$")) {
-            logger.error("Unauthorized format : ipAddress invalid");
-            System.out.println("\u001B[31m" + "Unauthorized format : ipAddress invalid" + "\u001B[0m");
+            logInvalidateFormatError("ipAddress invalid");
             bindingResult.rejectValue("ipAddress", "Invalid.ipAddress", "IP Address format is invalid");
         }
     }
@@ -75,8 +74,7 @@ public class InputValidationService {
                             .equals(gateway.getFrequencyPlan()));
             if (!exists) {
                 gateway.setFrequencyPlan(null);
-                logger.error("Unauthorized format : frequencyPlan invalid");
-                System.out.println("\u001B[31m" + "Unauthorized format : frequencyPlan invalid" + "\u001B[0m");
+                logInvalidateFormatError("frequencyPlan invalid");
                 bindingResult.rejectValue("frequencyPlan", "Invalid.frequencyPlan", "Frequency Plan format is invalid");
             }
         }
@@ -91,8 +89,7 @@ public class InputValidationService {
      */
     public void isValidInputBuildingName(String buildingName, BindingResult bindingResult) {
         if (buildingName == null || !buildingName.matches("^[a-zA-ZÀ-ÖØ-öø-ÿ0-9\\s\\-,'\".]{1,50}$")) {
-            logger.error("Unauthorized format : invalid text of Building Name");
-            System.out.println("\u001B[31m" + "Unauthorized format : Building Name" + "\u001B[0m");
+            logInvalidateFormatError("invalid text of Building Name");
             bindingResult.rejectValue("buildingName", "Invalid.buildingName", "Text format of Building Name is invalid");
         }
     }
@@ -106,8 +103,7 @@ public class InputValidationService {
      */
     public void isValidInputFloorNumber(Integer floorNumber, BindingResult bindingResult) {
         if (floorNumber == null || floorNumber < -10 || floorNumber > 99) {
-            logger.error("Unauthorized format : floorNumber invalid");
-            System.out.println("\u001B[31m" + "Unauthorized format : floorNumber invalid" + "\u001B[0m");
+            logInvalidateFormatError("floorNumber invalid");
             bindingResult.rejectValue("floorNumber", "Invalid.floorNumber", "Text format of Floor Number is invalid");
         }
     }
@@ -121,8 +117,7 @@ public class InputValidationService {
      */
     public void isValidInputLocationDescription(String locationDescription, BindingResult bindingResult) {
         if (locationDescription == null || !locationDescription.matches("^[a-zA-ZÀ-ÖØ-öø-ÿ0-9\\s\\-,'\".]{1,50}$")) {
-            logger.error("Unauthorized format : invalid text of Location Description");
-            System.out.println("\u001B[31m" + "Unauthorized format : Location Description" + "\u001B[0m");
+            logInvalidateFormatError("invalid text of Location Description");
             bindingResult.rejectValue("locationDescription", "Invalid.locationDescription", "Text format of Location Description is invalid");
         }
     }

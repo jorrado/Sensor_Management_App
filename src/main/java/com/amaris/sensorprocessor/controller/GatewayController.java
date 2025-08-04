@@ -41,9 +41,6 @@ public class GatewayController {
     @GetMapping("/manage-gateways")
     public String manageGateways(Model model) {
         prepareModel(model);
-        if (!model.containsAttribute(GATEWAY_ADD)) {
-            model.addAttribute(GATEWAY_ADD, new Gateway());
-        }
         return "manageGateways";
     }
 
@@ -99,11 +96,9 @@ public class GatewayController {
 
     @GetMapping("/manage-gateways/edit/{gatewayId}")
     public String editGateway(@PathVariable String gatewayId, Model model) {
-        List<Gateway> gateways = gatewayService.getAllGateways();
-        model.addAttribute("gateways", gateways);
+        prepareModel(model);
         Gateway gateway = gatewayService.searchGatewayById(gatewayId);
         model.addAttribute("gateway", gateway);
-        model.addAttribute("frequencyPlans", FrequencyPlan.values());
         return "manageGateways";
     }
 
@@ -163,6 +158,9 @@ public class GatewayController {
         model.addAttribute("frequencyPlans", FrequencyPlan.values());
         List<Gateway> gateways = gatewayService.getAllGateways();
         model.addAttribute("gateways", gateways);
+        if (!model.containsAttribute(GATEWAY_ADD)) {
+            model.addAttribute(GATEWAY_ADD, new Gateway());
+        }
     }
 
 }
