@@ -70,9 +70,29 @@ public class GatewayLorawanService {
         }
     }
 
-    public void updateGatewayInLorawan(Gateway gateway) {
+    public void updateGatewayInLorawan(Gateway gateway, BindingResult bindingResult) {
         LorawanGatewayUpdateData updateData = toLorawanGatewayUpdateData(gateway);
-        gatewayLorawanDao.updateGatewayInLorawan(updateData, gateway.getGatewayId());
+        try {
+            gatewayLorawanDao.updateGatewayInLorawan(updateData, gateway.getGatewayId());
+        } catch (WebClientResponseException e) {
+            int status = e.getStatusCode().value();
+            String errorBody = e.getResponseBodyAsString();
+            if (status == 403 && errorBody.contains("\"code\":7")) {
+                if (errorBody.contains("\"name\":\"insufficient_gateway_rights\"")) {
+                    logger.error("Update failed because permission user denied : {}", gateway.getGatewayId());
+                    System.out.println("\u001B[31m" + "Update failed because permission user denied : " + gateway.getGatewayId() + "\u001B[0m");
+                    bindingResult.reject("permissionDenied", "Permission user denied");
+                } else {
+                    logger.error("Update failed because Gateway ID not found : {}", gateway.getGatewayId());
+                    System.out.println("\u001B[31m" + "Update failed because Gateway ID not found : " + gateway.getGatewayId() + "\u001B[0m");
+                    bindingResult.rejectValue("gatewayId", "Invalid.gatewayId", "Gateway ID not found");
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Lorawan problem", e);
+            System.out.println("\u001B[31m" + "Lorawan problem : " + e.getMessage() + "\u001B[0m");
+            bindingResult.rejectValue("LorawanProblem", "Invalid.LorawanProblem", "Lorawan server problem");
+        }
     }
 
     /**
@@ -97,6 +117,13 @@ public class GatewayLorawanService {
         return data;
     }
 
+    /**
+     * Convertit un objet {@link Gateway} en {@link LorawanGatewayUpdateData}
+     * pour mettre à jour uniquement le plan de fréquence sur le serveur LoRaWAN.
+     *
+     * @param gateway l’objet Gateway à convertir
+     * @return l’objet LorawanGatewayUpdateData prêt pour la mise à jour
+     */
     private static LorawanGatewayUpdateData toLorawanGatewayUpdateData(Gateway gateway) {
         LorawanGatewayUpdateData updateData = new LorawanGatewayUpdateData();
         LorawanGatewayUpdateData.GatewayPayload payload = new LorawanGatewayUpdateData.GatewayPayload();
@@ -112,7 +139,6 @@ public class GatewayLorawanService {
 
         return updateData;
     }
-
 
     /**
      * Extrait la valeur de "created_at" d’un JSON String et la formate au format "yyyy-MM-dd HH:mm:ss".

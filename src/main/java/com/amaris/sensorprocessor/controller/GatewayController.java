@@ -28,6 +28,8 @@ public class GatewayController {
 
     private static final String ERROR_ADD = "errorAdd";
     private static final String GATEWAY_ADD = "gatewayAdd";
+    private static final String ERROR_EDIT = "errorEdit";
+    private static final String GATEWAY_EDIT = "gatewayEdit";
 
     @Autowired
     public GatewayController(GatewayService gatewayService,
@@ -47,7 +49,7 @@ public class GatewayController {
     @PostMapping("/manage-gateways/add")
     public String addGateway(@ModelAttribute(GATEWAY_ADD) Gateway gateway,BindingResult bindingResult, Model model) {
         model.addAttribute(GATEWAY_ADD, gateway);
-        inputValidationService.validateGateway(gateway, bindingResult);
+        inputValidationService.validateGatewayForCreateForm(gateway, bindingResult);
         if (bindingResult.hasErrors()) {
             prepareModel(model);
             model.addAttribute("org.springframework.validation.BindingResult.gatewayAdd", bindingResult);
@@ -97,21 +99,54 @@ public class GatewayController {
     @GetMapping("/manage-gateways/edit/{gatewayId}")
     public String editGateway(@PathVariable String gatewayId, Model model) {
         prepareModel(model);
-        Gateway gateway = gatewayService.searchGatewayById(gatewayId);
-        model.addAttribute("gateway", gateway);
+        Gateway gateway;
+        try {
+            gateway = gatewayService.searchGatewayById(gatewayId);
+            model.addAttribute(GATEWAY_EDIT, gateway);
+            if (gateway == null) {
+                model.addAttribute(ERROR_EDIT, "Gateway don't exists");
+            }
+        } catch (Exception e) {
+            model.addAttribute(ERROR_EDIT, "Database problem");
+            model.addAttribute(GATEWAY_EDIT, new Gateway());
+        }
         return "manageGateways";
     }
 
     @PostMapping("/manage-gateways/edit")
-    public String updateGateway(@ModelAttribute Gateway gateway, RedirectAttributes redirectAttributes) {
-        try {
-//            inputValidationService.validateGateway(gateway);
-        } catch (CustomException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "redirect:/manage-gateways";
+    public String updateGateway(@ModelAttribute(GATEWAY_EDIT) Gateway gateway,BindingResult bindingResult, Model model) {
+        model.addAttribute(GATEWAY_EDIT, gateway);
+        inputValidationService.validateGatewayForUpdateForm(gateway, bindingResult);
+        if (bindingResult.hasErrors()) {
+            prepareModel(model);
+            model.addAttribute("org.springframework.validation.BindingResult.gatewayEdit", bindingResult);
+            model.addAttribute(ERROR_EDIT, "Input error in the form");
+            return "manageGateways";
         }
-        gatewayLorawanService.updateGatewayInLorawan(gateway);
-        gatewayService.updateGatewayInDatabase(gateway);
+        gatewayLorawanService.updateGatewayInLorawan(gateway, bindingResult);
+        if (bindingResult.hasErrors()) {
+            prepareModel(model);
+            if (bindingResult.hasFieldErrors("gatewayId")) {
+                model.addAttribute(ERROR_EDIT, "Gateway ID not found");
+            } else if (bindingResult.getGlobalError() != null && "permissionDenied".equals(bindingResult.getGlobalError().getCode())) {
+                model.addAttribute(ERROR_EDIT, "Permission user denied");
+            } else {
+                model.addAttribute(ERROR_EDIT, "Lorawan server problem");
+            }
+            model.addAttribute("org.springframework.validation.BindingResult.gatewayEdit", bindingResult);
+            return "manageGateways";
+        }
+        gatewayService.updateGatewayInDatabase(gateway, bindingResult);
+        if (bindingResult.hasErrors()) {
+            prepareModel(model);
+            if (bindingResult.hasFieldErrors("gatewayId")) {
+                model.addAttribute(ERROR_EDIT, "Gateway ID not found");
+            } else {
+                model.addAttribute(ERROR_EDIT, "Database problem");
+            }
+            return "manageGateways";
+        }
+        model.addAttribute(ERROR_EDIT, null);
         return "redirect:/manage-gateways";
     }
 

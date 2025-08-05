@@ -138,21 +138,31 @@
   </div>
 
   <!-- Formulaire pour modifier une gateway -->
-  <div id="editGatewayPopup" class="modal" th:if="${gateway != null}">
+  <div id="editGatewayPopup" class="modal" th:if="${gatewayEdit != null}">
     <div class="modal-content">
       <h2>Edit Gateway</h2>
-      <form th:action="@{/manage-gateways/edit}" th:object="${gateway}" method="post">
-        <input type="text" th:field="*{gatewayId}" placeholder="Gateway ID" required readonly />
-        <input type="text" th:field="*{ipAddress}" placeholder="IP Address" required />
-        <select th:field="*{frequencyPlan}" required>
+      <div th:if="${errorEdit}" class="error-message-edit alert-danger">
+        <p th:text="${errorEdit}"></p>
+      </div>
+      <form th:action="@{/manage-gateways/edit}" th:object="${gatewayEdit}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="text" th:field="*{gatewayId}" placeholder="Gateway ID" required readonly
+               th:classappend="${#fields.hasErrors('gatewayId')} ? 'input-error' : ''" />
+        <input type="text" th:field="*{ipAddress}" placeholder="IP Address" required
+               th:classappend="${#fields.hasErrors('ipAddress')} ? 'input-error' : ''" />
+        <select th:field="*{frequencyPlan}" required
+                th:classappend="${#fields.hasErrors('frequencyPlan')} ? 'input-error' : ''">
           <option value="" disabled selected>Frequency Plan</option>
           <th:block th:each="plan : ${frequencyPlans}">
-            <option th:value="${plan.description}" th:text="${plan.name()}"></option>
+            <option th:value="${plan.description}" th:text="${plan}">Frequency Plan</option>
           </th:block>
         </select>
-        <input type="text" th:field="*{buildingName}" placeholder="Building Name" required />
-        <input type="number" th:field="*{floorNumber}" placeholder="Floor Number" required />
-        <input type="text" th:field="*{locationDescription}" placeholder="Location Description" />
+        <input type="text" th:field="*{buildingName}" placeholder="Building Name" required
+               th:classappend="${#fields.hasErrors('buildingName')} ? 'input-error' : ''" />
+        <input type="number" th:field="*{floorNumber}" placeholder="Floor Number" required
+               th:classappend="${#fields.hasErrors('floorNumber')} ? 'input-error' : ''" />
+        <input type="text" th:field="*{locationDescription}" placeholder="Location Description"
+               th:classappend="${#fields.hasErrors('locationDescription')} ? 'input-error' : ''" />
 <!--        <input type="number" step="any" th:field="*{antennaLatitude}" placeholder="Antenna Latitude" />-->
 <!--        <input type="number" step="any" th:field="*{antennaLongitude}" placeholder="Antenna Longitude" />-->
 <!--        <input type="number" step="any" th:field="*{antennaAltitude}" placeholder="Antenna Altitude" />-->
@@ -171,7 +181,7 @@
   <div id="createGatewayPopup" class="modal modalCreate" style="display:none;">
     <div class="modal-content">
       <h2>Add Gateway</h2>
-      <div th:if="${errorAdd}" class="error-message alert-danger">
+      <div th:if="${errorAdd}" class="error-message-create alert-danger">
         <p th:text="${errorAdd}"></p>
       </div>
       <form id="myForm" th:action="@{/manage-gateways/add}" th:object="${gatewayAdd}" method="post">
@@ -193,7 +203,7 @@
                th:classappend="${#fields.hasErrors('buildingName')} ? 'input-error' : ''" />
         <input type="number" th:field="*{floorNumber}" placeholder="Floor Number" required
                th:classappend="${#fields.hasErrors('floorNumber')} ? 'input-error' : ''" />
-        <input type="text" th:field="*{locationDescription}" placeholder="Location Description" required
+        <input type="text" th:field="*{locationDescription}" placeholder="Location Description"
                th:classappend="${#fields.hasErrors('locationDescription')} ? 'input-error' : ''" />
 <!--        <input type="number" step="any" name="antennaLatitude" placeholder="Antenna Latitude" />-->
 <!--        <input type="number" step="any" name="antennaLongitude" placeholder="Antenna Longitude" />-->

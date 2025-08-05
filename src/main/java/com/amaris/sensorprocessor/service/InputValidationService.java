@@ -139,7 +139,7 @@ public class InputValidationService {
         }
     }
 
-    public void validateGateway(Gateway gateway, BindingResult bindingResult) {
+    public void validateGatewayForCreateForm(Gateway gateway, BindingResult bindingResult) {
         isValidInputGatewayId(gateway.getGatewayId(), bindingResult);
         isValidInputGatewayEui(gateway.getGatewayEui(), bindingResult);
         isValidInputIpAddress(gateway.getIpAddress(), bindingResult);
@@ -156,6 +156,15 @@ public class InputValidationService {
 //        if (gateway.getAntennaAltitude() != null) {
 //            isValidInputAntenna(gateway.getAntennaAltitude());
 //        }
+    }
+
+    public void validateGatewayForUpdateForm(Gateway gateway, BindingResult bindingResult) {
+        isValidInputGatewayId(gateway.getGatewayId(), bindingResult);
+        isValidInputIpAddress(gateway.getIpAddress(), bindingResult);
+        isValidDropDownMenuFrequencyPlan(gateway, bindingResult);
+        isValidInputBuildingName(gateway.getBuildingName(), bindingResult);
+        isValidInputFloorNumber(gateway.getFloorNumber(), bindingResult);
+        isValidInputLocationDescription(gateway.getLocationDescription(), bindingResult);
     }
 
 }

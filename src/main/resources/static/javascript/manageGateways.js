@@ -69,12 +69,24 @@ window.onclick = function(event) {
 //        modalCreate.style.display = "block";
 //    }
 //});
+//document.addEventListener("DOMContentLoaded", function () {
+//    const errorDiv = document.querySelector('.error-message-create');
+//    if (errorDiv) {
+//      modalCreate.style.display = "block";
+//    }
+//});
 document.addEventListener("DOMContentLoaded", function () {
-    const errorDiv = document.querySelector('.error-message');
-    if (errorDiv) {
-      modalCreate.style.display = "block";
-    }
+  const modalCreate = document.getElementById('createGatewayPopup');
+  const modalEdit = document.getElementById('editGatewayPopup');
+
+  if (document.querySelector('.error-message-create') && modalCreate) {
+    modalCreate.style.display = "block";
+  }
+  if (document.querySelector('.error-message-edit') && modalEdit) {
+    modalEdit.style.display = "block";
+  }
 });
+
 
 // Fonction pour réinitialiser les champs du formulaire Create
 function resetModalFields() {
