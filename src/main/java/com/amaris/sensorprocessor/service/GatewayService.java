@@ -4,7 +4,6 @@ import com.amaris.sensorprocessor.entity.Gateway;
 import com.amaris.sensorprocessor.entity.MonitoringGatewayData;
 import com.amaris.sensorprocessor.exception.CustomException;
 import com.amaris.sensorprocessor.repository.GatewayDao;
-//import com.amaris.sensorprocessor.util.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static com.amaris.sensorprocessor.util.LoggerUtil.logDatabaseError;
 
@@ -41,9 +39,7 @@ public class GatewayService {
             return gatewayDao.findAllGateways();
         } catch (Exception e) {
             logger.error("Error retrieving the list of gateways", e);
-            System.out.println("\u001B[31m" + "Error retrieving the list of gateways : " +
-                    e.getMessage() + "\u001B[0m");
-//            throw new CustomException("Database problem");
+            System.out.println("\u001B[31m" + "Error retrieving the list of gateways : " + e.getMessage() + "\u001B[0m");
             return Collections.emptyList();
         }
     }
@@ -55,7 +51,7 @@ public class GatewayService {
                 System.out.println("\u001B[31m" + "Gateway ID already exists : " + gateway.getGatewayId() + "\u001B[0m");
                 bindingResult.rejectValue("gatewayId", "Invalid.gatewayId", "Gateway ID already exists");
             }
-//            gateway.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))); // UNIQUEMENT POUR LES TESTS SANS LORAWAN
+//            gateway.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); // UNIQUEMENT POUR LES TESTS SANS LORAWAN
             gatewayDao.insertGatewayInDatabase(gateway);
         } catch (Exception e) {
             logger.error("Database problem", e);
@@ -64,20 +60,18 @@ public class GatewayService {
         }
     }
 
-    public void deleteGatewayInDatabase(String gatewayId) {
+    public void deleteGatewayInDatabase(String gatewayId, BindingResult bindingResult) {
         try {
             int deleteLigne = gatewayDao.deleteGatewayById(gatewayId);
-            if (deleteLigne <= 0) {
+            if (deleteLigne == 0) {
                 logger.error("Deletion failed or Gateway ID not found {}", gatewayId);
-                System.out.println("\u001B[31m" + "Deletion failed or Gateway ID not found : " + gatewayId
-                        + "\u001B[0m");
-//            throw new CustomException("Deletion failed");
+                System.out.println("\u001B[31m" + "Deletion failed or Gateway ID not found : " + gatewayId + "\u001B[0m");
+                bindingResult.rejectValue("gatewayId", "Gateway ID not found");
             }
         } catch (Exception e) {
             logger.error("Database problem", e);
-            System.out.println("\u001B[31m" + "Database problem : " +
-                    e.getMessage() + "\u001B[0m");
-//            throw new CustomException("Database problem");
+            System.out.println("\u001B[31m" + "Database problem : " + e.getMessage() + "\u001B[0m");
+            bindingResult.rejectValue("DatabaseProblem", "Database problem");
         }
     }
 
@@ -92,7 +86,7 @@ public class GatewayService {
 
     public void updateGatewayInDatabase(Gateway gateway, BindingResult bindingResult) {
         try {
-            int rowsUpdated = gatewayDao.updateGateway(gateway);
+            int rowsUpdated = gatewayDao.updateGatewayInDatabase(gateway);
             if (rowsUpdated == 0) {
                 logger.error("Update in Database => Gateway ID not found : {}", gateway.getGatewayId());
                 System.out.println("\u001B[31m" + "Update in Database => Gateway ID not found : " + gateway.getGatewayId() + "\u001B[0m");

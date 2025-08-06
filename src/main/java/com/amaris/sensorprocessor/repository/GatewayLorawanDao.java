@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 @Repository
 public class GatewayLorawanDao {
@@ -38,25 +37,24 @@ public class GatewayLorawanDao {
             .block();
     }
 
-    public int deleteGatewayById(String gatewayId) {
-        return webClientBuilder.build().delete()
+    public void deleteGatewayInLorawan(String gatewayId) {
+        webClientBuilder.build()
+            .delete()
             .uri(lorawanBaseUrl + "/" + gatewayId)
             .header("Authorization", "Bearer " + lorawanToken)
             .retrieve()
             .toBodilessEntity()
-            .map(response -> response.getStatusCode().value())
-            .blockOptional()
-            .orElse(-1);
+            .block();
     }
 
-    public String updateGatewayInLorawan(LorawanGatewayUpdateData updateData, String gatewayId) {
-        return webClientBuilder.build()
+    public void updateGatewayInLorawan(LorawanGatewayUpdateData updateData, String gatewayId) {
+        webClientBuilder.build()
             .put()
             .uri(lorawanBaseUrl + "/" + gatewayId)
             .header("Authorization", "Bearer " + lorawanToken)
             .bodyValue(updateData)
             .retrieve()
-            .bodyToMono(String.class)
+            .toBodilessEntity()
             .block();
     }
 

@@ -2,7 +2,6 @@ package com.amaris.sensorprocessor.controller;
 
 import com.amaris.sensorprocessor.constant.FrequencyPlan;
 import com.amaris.sensorprocessor.entity.Gateway;
-import com.amaris.sensorprocessor.exception.CustomException;
 import com.amaris.sensorprocessor.service.GatewayLorawanService;
 import com.amaris.sensorprocessor.service.GatewayService;
 import com.amaris.sensorprocessor.service.InputValidationService;
@@ -10,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,6 +29,7 @@ public class GatewayController {
     private static final String GATEWAY_ADD = "gatewayAdd";
     private static final String ERROR_EDIT = "errorEdit";
     private static final String GATEWAY_EDIT = "gatewayEdit";
+    private static final String ERROR_DELETE = "errorDelete";
 
     @Autowired
     public GatewayController(GatewayService gatewayService,
@@ -84,15 +84,33 @@ public class GatewayController {
     }
 
     @PostMapping("/manage-gateways/delete/{gatewayId}")
-    public String deleteGateway(@PathVariable String gatewayId, RedirectAttributes redirectAttributes) {
-        try {
-            gatewayLorawanService.deleteGatewayInLorawan(gatewayId);
-            gatewayService.deleteGatewayInDatabase(gatewayId);
-        } catch (CustomException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "redirect:/manage-gateways";
+    public String deleteGateway(@PathVariable String gatewayId, Model model) {
+        BindingResult bindingResult = new BeanPropertyBindingResult(new Gateway(), "deleteGateway");
+        gatewayLorawanService.deleteGatewayInLorawan(gatewayId, bindingResult);
+        if (bindingResult.getGlobalError() != null) {
+            prepareModel(model);
+            if ("gatewayId".equals(bindingResult.getGlobalError().getCode())) {
+                model.addAttribute(ERROR_DELETE, "Gateway ID not found");
+            } else if ("permissionDenied".equals(bindingResult.getGlobalError().getCode())) {
+                model.addAttribute(ERROR_DELETE, "Permission user denied");
+            } else if ("gatewayProblem".equals(bindingResult.getGlobalError().getCode())) {
+                model.addAttribute(ERROR_DELETE, "Problem with this gateway");
+            } else {
+                model.addAttribute(ERROR_DELETE, "Lorawan server problem");
+            }
+            return "manageGateways";
         }
-        redirectAttributes.addFlashAttribute("error",null);
+        gatewayService.deleteGatewayInDatabase(gatewayId, bindingResult);
+        if (bindingResult.getGlobalError() != null) {
+            prepareModel(model);
+            if ("gatewayId".equals(bindingResult.getGlobalError().getCode())) {
+                model.addAttribute(ERROR_DELETE, "Gateway ID not found");
+            } else {
+                model.addAttribute(ERROR_DELETE, "Database problem");
+            }
+            return "manageGateways";
+        }
+        model.addAttribute(ERROR_DELETE, null);
         return "redirect:/manage-gateways";
     }
 

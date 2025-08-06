@@ -61,10 +61,9 @@ public class GatewayDao {
      * Insère une nouvelle gateway en base.
      *
      * @param gateway objet Gateway à insérer
-     * @return nombre de lignes insérées (1 si succès)
      */
-    public int insertGatewayInDatabase(Gateway gateway) {
-        return jdbcTemplate.update(
+    public void insertGatewayInDatabase(Gateway gateway) {
+        jdbcTemplate.update(
             "INSERT INTO GATEWAYS (" +
                     "GATEWAY_ID, GATEWAY_EUI, IP_ADDRESS, FREQUENCY_PLAN, CREATED_AT, " +
                     "BUILDING_NAME, FLOOR_NUMBER, LOCATION_DESCRIPTION, " +
@@ -82,7 +81,7 @@ public class GatewayDao {
      * @param gateway Objet Gateway contenant les nouvelles valeurs.
      * @return Nombre de lignes modifiées (0 si aucune correspondance).
      */
-    public int updateGateway(Gateway gateway) {
+    public int updateGatewayInDatabase(Gateway gateway) {
         return jdbcTemplate.update(
             "UPDATE GATEWAYS SET " +
                     "IP_ADDRESS = ?, FREQUENCY_PLAN = ?, BUILDING_NAME = ?, FLOOR_NUMBER = ?, " +

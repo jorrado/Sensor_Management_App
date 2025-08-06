@@ -1,23 +1,17 @@
-// Récupérer les popups
+// Popups
 var modalCreate = document.getElementById("createGatewayPopup");
 var modalEdit = document.getElementById("editGatewayPopup");
 var modalDelete = document.getElementById("deleteGatewayPopup");
 
-// Récupérer le bouton qui ouvre la popup Create
+// Bouton ouvrir Create
 var btnCreate = document.getElementById("openCreateBtn");
 
-// Récupérer les éléments qui ferment les popups
+// Éléments fermeture popups
 var exitCreate = document.getElementById("closeCreate");
 var exitEdit = document.getElementById("closeEdit");
-if (document.getElementById("closeEdit")) {
-    var exitEdit = document.getElementById("closeEdit");
-    exitEdit.addEventListener("click", () => {
-        modalEdit.style.display = "none";
-    });
-}
-var cancelDelete = document.getElementById("cancelDelete");
+var exitDelete = document.getElementById("closeDelete");
 
-// Quand l'utilisateur clique sur ouvrir la popup Create
+// Ouvrir la popup Create
 if (btnCreate) {
     btnCreate.addEventListener("click", () => {
         refreshCsrfToken();
@@ -25,109 +19,120 @@ if (btnCreate) {
     });
 }
 
-// Quand l'utilisateur clique sur Exit, fermer la popup Create
+// Fermer la popup Create
 if (exitCreate) {
     exitCreate.addEventListener("click", () => {
+        resetCreateModalFields();
+        resetCreateError();
         modalCreate.style.display = "none";
-        resetModalFields();
-        resetError();
     });
 }
 
-// Fermer Edit
-//if (exitEdit) {
-//    exitEdit.addEventListener("click", () => {
-//        modalEdit.style.display = "none";
-//    });
-//}
+// Fermer la popup Edit
+if (document.getElementById("closeEdit")) {
+    var exitEdit = document.getElementById("closeEdit");
+    exitEdit.addEventListener("click", () => {
+        resetEditModalFields();
+        resetEditError();
+        modalEdit.style.display = "none";
+    });
+}
 
-// Fermer Delete
-if (cancelDelete) {
-    cancelDelete.addEventListener("click", () => {
+// Fermer la popup Delete
+if (exitDelete) {
+    exitDelete.addEventListener("click", () => {
+        resetDeleteError();
         modalDelete.style.display = "none";
     });
 }
 
-// Quand l'utilisateur clique en dehors d'une popup, la fermer
+// Fermer popup au clic extérieur
 window.onclick = function(event) {
     [modalCreate, modalEdit, modalDelete].forEach(modal => {
         if (modal && event.target === modal) {
             modal.style.display = "none";
             if (modal === modalCreate) {
-                resetModalFields();
-                resetError();
+                resetCreateModalFields();
+                resetCreateError();
+            }else if (modal === modalEdit) {
+                resetEditModalFields();
+                resetEditError();
+            }else if (modal === modalDelete) {
+                resetDeleteError();
             }
         }
     });
 }
 
-// Si l'erreur est levée alors ouvrir la popup Create, sinon fermer les popups
-//document.addEventListener("DOMContentLoaded", function () {
-//    if (modalCreate) modalCreate.style.display = "none";
-//    if (modalDelete) modalDelete.style.display = "none";
-//    if (document.querySelector(".alert-danger")) {
-//        modalCreate.style.display = "block";
-//    }
-//});
-//document.addEventListener("DOMContentLoaded", function () {
-//    const errorDiv = document.querySelector('.error-message-create');
-//    if (errorDiv) {
-//      modalCreate.style.display = "block";
-//    }
-//});
+// Ouvre la popup si erreur détectée
 document.addEventListener("DOMContentLoaded", function () {
-  const modalCreate = document.getElementById('createGatewayPopup');
-  const modalEdit = document.getElementById('editGatewayPopup');
-
-  if (document.querySelector('.error-message-create') && modalCreate) {
-    modalCreate.style.display = "block";
-  }
-  if (document.querySelector('.error-message-edit') && modalEdit) {
-    modalEdit.style.display = "block";
-  }
+    if (document.querySelector('.error-message-create') && modalCreate) {
+        modalCreate.style.display = "block";
+    }
+    if (document.querySelector('.error-message-edit') && modalEdit) {
+        modalEdit.style.display = "block";
+    }
+    if (document.querySelector('.error-message-delete') && modalDelete) {
+        modalDelete.style.display = "block";
+        const deleteBtn = modalDelete.querySelector('button[type="submit"]');
+        if (deleteBtn) deleteBtn.style.display = 'none';
+    }
 });
 
-
-// Fonction pour réinitialiser les champs du formulaire Create
-function resetModalFields() {
+// Réinitialiser les champs du formulaire Create
+function resetCreateModalFields() {
     const inputs = modalCreate.querySelectorAll("input");
     inputs.forEach(input => input.value = "");
     const select = modalCreate.querySelector("select");
     if (select) select.value = "true";
 }
 
-// Fonction pour réinitialiser l'affichage de l'erreur
-function resetError() {
+// Réinitialiser l'affichage de l'erreur dans Create
+function resetCreateError() {
     const errorDiv = modalCreate.querySelector(".alert-danger");
     if (errorDiv) errorDiv.style.display = "none";
     const errorInputs = modalCreate.querySelectorAll(".input-error");
     errorInputs.forEach(input => input.classList.remove("input-error"));
 }
 
-//let currentForm;
-//document.querySelectorAll(".deleteForm").forEach(form => {
-//    form.addEventListener('click', (event) => {
-//        event.preventDefault();
-//        currentForm = form;
-//        modalDelete.style.display = "block";
-//    });
-//});
+// Réinitialiser les champs du formulaire Edit
+function resetEditModalFields() {
+    const inputs = modalEdit.querySelectorAll("input");
+    inputs.forEach(input => {
+        input.value = "";
+    });
+    const select = modalEdit.querySelector("select");
+    if (select) select.value = "";
+}
+
+// Réinitialiser l'affichage de l'erreur dans Edit
+function resetEditError() {
+    const errorDiv = modalEdit.querySelector(".alert-danger");
+    if (errorDiv) errorDiv.style.display = "none";
+    const errorInputs = modalEdit.querySelectorAll(".input-error");
+    errorInputs.forEach(input => input.classList.remove("input-error"));
+}
+
+// Réinitialiser l'affichage de l'erreur dans Delete
+function resetDeleteError() {
+    const errorDiv = document.querySelector('.error-message-delete');
+    if (errorDiv) {
+        errorDiv.style.display = 'none';
+        errorDiv.textContent = '';
+    }
+    const deleteBtn = modalDelete.querySelector('button[type="submit"]');
+    if (deleteBtn) deleteBtn.style.display = 'inline-block';
+}
+
+// Ouvre la popup delete et met à jour le formulaire
 document.querySelectorAll('.openDeletePopup').forEach(btn => {
     btn.addEventListener('click', e => {
-      e.preventDefault();
-      const id = btn.getAttribute('data-id');
-      const form = document.getElementById('deleteForm');
-      form.action = `/manage-gateways/delete/${id}`;
-      document.getElementById('deleteGatewayPopup').style.display = 'block';
+        e.preventDefault();
+        const id = btn.getAttribute('data-id');
+        const form = document.getElementById('deleteForm');
+        form.action = `/manage-gateways/delete/${id}`;
+        document.getElementById('deleteGatewayPopup').style.display = 'block';
     });
-});
-
-//document.getElementById('confirmDelete').addEventListener('click', () => {
-//    if (currentForm) currentForm.submit();
-//});
-
-document.getElementById('cancelDelete').addEventListener('click', () => {
-    modalDelete.style.display = 'none';
 });
 
 // Pour renvoyer les champs date sous le format YYYY-MM-DD

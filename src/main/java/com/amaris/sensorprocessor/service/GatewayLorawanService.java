@@ -53,22 +53,31 @@ public class GatewayLorawanService {
         }
     }
 
-    public void deleteGatewayInLorawan(String gatewayId) {
+    public void deleteGatewayInLorawan(String gatewayId, BindingResult bindingResult) {
         try {
-            gatewayLorawanDao.deleteGatewayById(gatewayId);
+            gatewayLorawanDao.deleteGatewayInLorawan(gatewayId);
         } catch (WebClientResponseException e) {
             int status = e.getStatusCode().value();
-            if (status == 403 || status == 404) {
-                logger.error("Deletion failed because Gateway ID not found : {}", gatewayId);
-                System.out.println("\u001B[31m" + "Deletion failed because Gateway ID not found : " + gatewayId
-                        + "\u001B[0m");
-                // throw new CustomException("Deletion failed");
+            String errorBody = e.getResponseBodyAsString();
+            if (status == 403 && errorBody.contains("\"code\":7")) {
+                if (errorBody.contains("\"name\":\"no_gateway_rights\"")) {
+                    logger.error("Deletion failed because Gateway ID not found : {}", gatewayId);
+                    System.out.println("\u001B[31m" + "Deletion failed because Gateway ID not found : " + gatewayId + "\u001B[0m");
+                    bindingResult.reject("gatewayId", "Gateway ID not found");
+                } else if (errorBody.contains("\"name\":\"insufficient_gateway_rights\"")) {
+                    logger.error("delete failed because permission user denied : {}", gatewayId);
+                    System.out.println("\u001B[31m" + "delete failed because permission user denied : " + gatewayId + "\u001B[0m");
+                    bindingResult.reject("permissionDenied", "Permission user denied");
+                } else {
+                    logger.error("delete failed for this gateway : {}", gatewayId);
+                    System.out.println("\u001B[31m" + "delete failed for this gateway : " + gatewayId + "\u001B[0m");
+                    bindingResult.reject("gatewayProblem", "Problem with this gateway");
+                }
             }
         } catch (Exception e) {
             logger.error("Lorawan problem", e);
-            System.out.println("\u001B[31m" + "Lorawan problem : " +
-                    e.getMessage() + "\u001B[0m");
-//            throw new CustomException("Lorawan problem");
+            System.out.println("\u001B[31m" + "Lorawan problem : " + e.getMessage() + "\u001B[0m");
+            bindingResult.rejectValue("LorawanProblem", "Lorawan server problem");
         }
     }
 
@@ -143,11 +152,11 @@ public class GatewayLorawanService {
     }
 
     /**
-     * Extrait la valeur de "created_at" d’un JSON String et la formate au format "yyyy-MM-dd HH:mm:ss".
+     * Extrait la valeur de "created_at" d’un JSON String et la formate au format "yyyy-MM-dd".
      * Si absente, utilise la date/heure UTC actuelle.
      *
      * @param json le JSON en tant que chaîne
-     * @return la date formatée "yyyy-MM-dd HH:mm:ss"
+     * @return la date formatée "yyyy-MM-dd"
      */
     public String extractAndFormatCreatedAt(String json) {
         String key = "\"created_at\":\"";
