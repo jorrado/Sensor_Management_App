@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
@@ -158,8 +160,10 @@ public class GatewayLorawanService {
             int end = json.indexOf("\"", start);
             dateStr = (end == -1) ? OffsetDateTime.now().toString() : json.substring(start, end);
         }
-        OffsetDateTime odt = OffsetDateTime.parse(dateStr);
-        return odt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        ZoneId systemZone = ZoneId.systemDefault();
+        ZonedDateTime zdt = ZonedDateTime.parse(dateStr);
+        ZonedDateTime localTime = zdt.withZoneSameInstant(systemZone);
+        return localTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
 }
