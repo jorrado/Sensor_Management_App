@@ -168,26 +168,32 @@ public class GatewayController {
         return "redirect:/manage-gateways";
     }
 
+    /**
+     * Affiche la page de monitoring en injectant l'ID de la gateway et son IP.
+     *
+     * @param id ID de la gateway à monitorer
+     * @param ip Adresse IP de la gateway
+     * @param model Modèle pour passer les données à la vue Thymeleaf
+     * @return Nom de la vue Thymeleaf "monitoringGateway"
+     */
     @GetMapping("/manage-gateways/monitoring/{id}/view")
-    public String monitoringView(@PathVariable String gatewayId, Model model) {
-        model.addAttribute("gatewayId", gatewayId);
+    public String monitoringView(@PathVariable("id") String id, @RequestParam String ip, Model model) {
+        model.addAttribute("gatewayId", id);
+        model.addAttribute("ipAddress", ip);
         return "monitoringGateway";
     }
 
     /**
-     * Établit un flux SSE (Server-Sent Events) pour envoyer les données de monitoring
-     * en temps réel d’un gateway identifié par son ID et son adresse IP.
-     * Cette méthode est appelée automatiquement depuis le JavaScript de la page HTML,
-     * via une requête SSE vers l’endpoint.
+     * Stream en temps réel les données de monitoring d'une gateway via SSE.
      *
-     * @param gatewayId l’identifiant du gateway
-     * @param ipAddress l’adresse IP du gateway
-     * @return un {@link SseEmitter} qui envoie les données de monitoring en continu
+     * @param id ID de la gateway
+     * @param ip Adresse IP de la gateway
+     * @return SseEmitter pour transmettre les données en continu au client
      */
     @GetMapping("/manage-gateways/monitoring/{id}/stream")
-    public SseEmitter streamMonitoringData(@PathVariable String gatewayId, @RequestParam String ipAddress) {
+    public SseEmitter streamMonitoringData(@PathVariable("id") String id, @RequestParam("ip") String ip) {
         SseEmitter emitter = new SseEmitter(0L);
-        gatewayService.getMonitoringData(gatewayId, ipAddress)
+        gatewayService.getMonitoringData(id, ip)
             .subscribe(data -> {
                 try {
                     emitter.send(data);
