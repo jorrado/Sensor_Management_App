@@ -20,8 +20,10 @@ jobs:
       - name: Build project
         run: ./mvnw clean package -DskipTests
 
-      - name: Build Docker image
-        run: docker build --platform linux/arm64 --no-cache -t sensorprocessor .
+      - name: Build and tag Docker image
+        run: |
+          docker build --platform linux/arm64 --no-cache -t sensorprocessor .
+          docker tag sensorprocessor localhost:5000/sensorprocessor:latest
 
       - name: Install OpenVPN 2.5.7
         run: |
@@ -67,12 +69,12 @@ jobs:
       - name: Stop and remove existing Docker container and image
         run: |
           sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker stop sensorprocessor || true && echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rm sensorprocessor || true'
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rmi localhost:5000/sensorprocessor:latest || true'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rmi sensorprocessor  || true'
 
       - name: Copy Docker image to Raspberry Pi
         run: |
           echo "Starting Docker save"
-          docker save localhost:5000/sensorprocessor:latest -o image.tar
+          docker save sensorprocessor -o image.tar
           echo "Docker save completed"
           echo "Compressing image"
           gzip image.tar
