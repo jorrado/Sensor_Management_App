@@ -86,6 +86,6 @@ jobs:
           sshpass -p "${{ secrets.RASPBERRY_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S bash -c "gunzip -f /tmp/image.tar.gz && docker load -i /tmp/image.tar"'
           echo "SSH and Docker load completed"
 
-      - name: Run Docker container on Raspberry Pi
+      - name: Run Docker Compose on Raspberry Pi
         run: |
-          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker run -d -e DB_PATH=/opt/app -v /opt/app:/opt/app -p 9090:8080 --name sensorprocessor sensorprocessor'
+          sshpass -p ${{ secrets.RASPBERRY_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_USER }}@${{ secrets.RASPBERRY_HOST }} 'echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker-compose -f /opt/app/docker-compose.yml up -d'
