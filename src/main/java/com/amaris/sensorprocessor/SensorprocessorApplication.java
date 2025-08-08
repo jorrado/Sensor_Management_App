@@ -36,9 +36,9 @@ public class SensorprocessorApplication implements CommandLineRunner {
 	public void run(String... args) {
 		// TEST SENSOR DAO
 //		logger.info("all sensors -> {}", sensorDao.findAllSensors());
-		System.out.println("\u001B[34m" + "all sensors -> " + sensorDao.findAllSensors() + "\u001B[0m");
+//		System.out.println("\u001B[34m" + "all sensors -> " + sensorDao.findAllSensors() + "\u001B[0m");
 //		logger.info("sensor id dev_eui_001 -> {}", sensorDao.findByIdOfSensor("dev_eui_001"));
-		System.out.println("\u001B[34m" + "sensor id dev_eui_001 -> " + sensorDao.findByIdOfSensor("dev_eui_001") + "\u001B[0m");
+//		System.out.println("\u001B[34m" + "sensor id dev_eui_001 -> " + sensorDao.findByIdOfSensor("dev_eui_001") + "\u001B[0m");
 //		logger.info("delete dev_eui_009 -> number of row(s) deleted - {}", sensorDao.deleteByIdOfSensor("dev_eui_009"));
 //		System.out.println("\u001B[34m" + "delete dev_eui_009 -> number of row(s) deleted -> " + sensorDao.deleteByIdOfSensor("dev_eui_009") + "\u001B[0m");
 //		logger.info("inserting dev_eui_022 -> {}", sensorDao.insertSensor(new Sensor("dev_eui_022", "device_005",
@@ -54,8 +54,8 @@ public class SensorprocessorApplication implements CommandLineRunner {
 //				"Batiment Z", 10, "Bureau 110 000", "gateway_010")) + "\u001B[0m");
 
 		// TEST USER DAO
-		System.out.println("\u001B[34m" + "all users -> " + userDao.findAllUsers() + "\u001B[0m");
-		System.out.println("\u001B[34m" + "user id 1 -> " + userDao.findByUsername("user1").orElse(null) + "\u001B[0m");
+//		System.out.println("\u001B[34m" + "all users -> " + userDao.findAllUsers() + "\u001B[0m");
+//		System.out.println("\u001B[34m" + "user id 1 -> " + userDao.findByUsername("user1").orElse(null) + "\u001B[0m");
 //		System.out.println("\u001B[34m" + "delete user9 -> number of row(s) deleted -> "
 //				+ userDao.deleteByIdOfUser("user9") + "\u001B[0m");
 //		System.out.println("\u001B[34m" + "inserting 22 -> " + userDao.insertUser(new User(
@@ -66,8 +66,8 @@ public class SensorprocessorApplication implements CommandLineRunner {
 //				"jannette.smith@example.com")) + "\u001B[0m");
 
 		// TEST GATEWAY DAO
-		System.out.println("\u001B[34m" + "all gateways -> " + gatewayDao.findAllGateways() + "\u001B[0m");
-		System.out.println("\u001B[34m" + "gateway id gateway_001 -> " + gatewayDao.findGatewayById("gateway_001").orElse(null) + "\u001B[0m");
+//		System.out.println("\u001B[34m" + "all gateways -> " + gatewayDao.findAllGateways() + "\u001B[0m");
+//		System.out.println("\u001B[34m" + "gateway id gateway_001 -> " + gatewayDao.findGatewayById("gateway_001").orElse(null) + "\u001B[0m");
 //		System.out.println("\u001B[34m" + "delete gateway_009 -> number of row(s) deleted -> "
 //				+ gatewayDao.deleteByIdOfGateway("gateway_009") + "\u001B[0m");
 //		System.out.println("\u001B[34m" + "inserting gateway_023 -> " + gatewayDao.insertGateway(new Gateway("gateway_023",
