@@ -41,7 +41,7 @@ jobs:
           echo "${{ secrets.OVPN_CONFIG }}" | base64 --decode | sudo tee ./tmp/config > /dev/null
           sudo chmod 777 ./tmp/config
 
-      - name: Connect to VPN
+      - name: Connect to VPN 
         uses: kota65535/github-openvpn-connect-action@v2
         with:
           config_file: ./tmp/config
@@ -73,7 +73,7 @@ jobs:
             echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rmi localhost:5000/sensorprocessor:latest || true && \
             echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker image prune -f
             '
-      
+
       - name: Copy Docker image to Raspberry Pi
         run: |
           echo "Starting Docker save"
