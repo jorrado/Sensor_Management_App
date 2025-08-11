@@ -73,7 +73,7 @@ jobs:
             echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker rmi localhost:5000/sensorprocessor:latest || true && \
             echo ${{ secrets.RASPBERRY_PASSWORD }} | sudo -S docker image prune -f
             '
-
+      
       - name: Copy Docker image to Raspberry Pi
         run: |
           echo "Starting Docker save"
