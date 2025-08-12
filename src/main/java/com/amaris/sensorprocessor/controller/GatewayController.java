@@ -46,6 +46,20 @@ public class GatewayController {
         return "manageGateways";
     }
 
+    /**
+     * Gère les requêtes POST sur /manage-gateways pour éviter l’erreur 405
+     * en cas de navigation arrière/avant ou de rafraîchissement.
+     * La méthode redirige systématiquement vers la liste des gateways
+     * avec un horodatage pour forcer le rafraîchissement et éviter le cache.
+     *
+     * @param model modèle MVC pour la vue (non utilisé ici mais nécessaire pour la signature)
+     * @return redirection vers la liste des gateways avec horodatage
+     */
+    @PostMapping("/manage-gateways")
+    public String handleManageGatewaysPost(Model model) {
+        return "redirect:/manage-gateways?_=" + System.currentTimeMillis();
+    }
+
     @PostMapping("/manage-gateways/add")
     public String addGateway(@ModelAttribute(GATEWAY_ADD) Gateway gateway,BindingResult bindingResult, Model model) {
         model.addAttribute(GATEWAY_ADD, gateway);
@@ -80,7 +94,21 @@ public class GatewayController {
             return "manageGateways";
         }
         model.addAttribute(ERROR_ADD, null);
-        return "redirect:/manage-gateways";
+        return "redirect:/manage-gateways?_=" + System.currentTimeMillis();
+    }
+
+    /**
+     * Gère les requêtes GET sur /manage-gateways/add pour éviter l’erreur 405
+     * en cas de navigation arrière/avant ou de rafraîchissement.
+     * La route attend normalement des requêtes POST pour la soumission du formulaire.
+     * Cette méthode redirige systématiquement vers la liste des gateways,
+     * empêchant ainsi les erreurs liées aux requêtes GET non gérées.
+     *
+     * @return redirection vers la liste des gateways avec horodatage pour éviter le cache
+     */
+    @GetMapping("/manage-gateways/add")
+    public String handleAddGet() {
+        return "redirect:/manage-gateways?_=" + System.currentTimeMillis();
     }
 
     @PostMapping("/manage-gateways/delete/{gatewayId}")
@@ -111,7 +139,7 @@ public class GatewayController {
             return "manageGateways";
         }
         model.addAttribute(ERROR_DELETE, null);
-        return "redirect:/manage-gateways";
+        return "redirect:/manage-gateways?_=" + System.currentTimeMillis();
     }
 
     @GetMapping("/manage-gateways/edit/{gatewayId}")
@@ -165,7 +193,27 @@ public class GatewayController {
             return "manageGateways";
         }
         model.addAttribute(ERROR_EDIT, null);
-        return "redirect:/manage-gateways";
+        return "redirect:/manage-gateways?_=" + System.currentTimeMillis();
+    }
+
+    /**
+     * Gère les requêtes GET sur /manage-gateways/edit pour éviter l’erreur 405
+     * en cas de navigation arrière/avant ou de rafraîchissement.
+     * La route attend normalement des requêtes POST pour la soumission du formulaire.
+     * Si un GET sans gatewayId est reçu (ex : rafraîchissement ou navigation),
+     * la méthode redirige vers la liste des gateways pour éviter l’erreur.
+     * Si gatewayId est présent, elle affiche le formulaire d’édition via editGateway().
+     *
+     * @param gatewayId identifiant optionnel du gateway à éditer
+     * @param model modèle MVC pour la vue
+     * @return vue à afficher ou redirection vers la liste des gateways avec horodatage pour éviter le cache
+     */
+    @GetMapping("/manage-gateways/edit")
+    public String handleEditGet(@RequestParam(required = false) String gatewayId, Model model) {
+        if (gatewayId == null) {
+            return "redirect:/manage-gateways?_=" + System.currentTimeMillis();
+        }
+        return editGateway(gatewayId, model);
     }
 
     /**

@@ -140,15 +140,45 @@ flatpickr(".datepicker", {
     dateFormat: "Y-m-d"
 });
 
-// === Navigation back reload ===
+// === Navigation back/reload ===
 window.addEventListener('pageshow', function(event) {
-    if (event.persisted) {
-        if (modalEdit) modalEdit.style.display = "none";
-        modalCreate.style.display = "none";
-        modalDelete.style.display = "none";
-        window.location.href = "/home?" + new Date().getTime();
+    const navType = performance.getEntriesByType('navigation')[0]?.type;
+    if (document.querySelector('.error-message-create')
+      || document.querySelector('.error-message-edit')
+      || document.querySelector('.error-message-delete')) {
+        history.replaceState(null, null, window.location.href);
+    }
+    if (event.persisted || navType === 'back_forward' || navType === 'reload') {
+        ['#deleteGatewayPopup', '#editGatewayPopup', '#createGatewayPopup'].forEach(sel => {
+            document.querySelectorAll(sel).forEach(el => el.style.display = 'none');
+        });
+        ['.error-message-create', '.error-message-edit', '.error-message-delete'].forEach(sel => {
+            document.querySelectorAll(sel).forEach(el => el.remove());
+        });
     }
 });
+//window.addEventListener('load', () => {
+//    const navType = performance.getEntriesByType('navigation')[0]?.type;
+//    if (navType === 'back_forward') {
+//        ['#deleteGatewayPopup', '#editGatewayPopup', '#createGatewayPopup'].forEach(sel => {
+//            const modal = document.querySelector(sel);
+//            if (modal) modal.style.display = 'none';
+//        });
+//    }
+//});
+//window.addEventListener('beforeunload', () => {
+//    // couper le thread ici
+//});
+//window.onload = function() {
+//    if (event.persisted) {
+//        ['.error-message-create', '.error-message-edit', '.error-message-delete'].forEach(sel => {
+//            document.querySelectorAll(sel).forEach(el => el.remove());
+//        });
+//        ['#deleteGatewayPopup', '#editGatewayPopup', '#createGatewayPopup'].forEach(sel => {
+//            document.querySelectorAll(sel).forEach(el => el.style.display = 'none');
+//        });
+//    }
+//};
 
 function refreshCsrfToken() {
     fetch('/csrf-token')
