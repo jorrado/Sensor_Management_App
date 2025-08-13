@@ -240,17 +240,34 @@ public class GatewayController {
      */
     @GetMapping("/manage-gateways/monitoring/{id}/stream")
     public SseEmitter streamMonitoringData(@PathVariable("id") String id, @RequestParam("ip") String ip) {
-        SseEmitter emitter = new SseEmitter(0L);
-        gatewayService.getMonitoringData(id, ip)
-            .subscribe(data -> {
-                try {
-                    emitter.send(data);
-                } catch (IOException e) {
-                    emitter.completeWithError(e);
-                }
-            }, emitter::completeWithError, emitter::complete);
+        SseEmitter emitter = new SseEmitter(3600000L);
+
+        emitter.onCompletion(() -> {
+            System.out.println("\u001B[31m" + "Client disconnected, cancelling subscription" + "\u001B[0m");
+            gatewayService.stopMonitoring(id);
+        });
+
+        emitter.onTimeout(() -> {
+            System.out.println("\u001B[31m" + "SSE timeout, cancelling subscription" + "\u001B[0m");
+            gatewayService.stopMonitoring(id);
+            emitter.complete();
+        });
+
+        var subscription = gatewayService.getMonitoringData(id, ip)
+                .subscribe(data -> {
+                    try {
+                        emitter.send(data);
+                    } catch (IOException e) {
+                        emitter.completeWithError(e);
+                    }
+                }, emitter::completeWithError, emitter::complete);
+
+        emitter.onCompletion(subscription::dispose);
+        emitter.onTimeout(subscription::dispose);
+
         return emitter;
     }
+
 
     @GetMapping("/csrf-token")
     @ResponseBody

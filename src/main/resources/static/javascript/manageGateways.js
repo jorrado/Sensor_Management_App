@@ -157,28 +157,6 @@ window.addEventListener('pageshow', function(event) {
         });
     }
 });
-//window.addEventListener('load', () => {
-//    const navType = performance.getEntriesByType('navigation')[0]?.type;
-//    if (navType === 'back_forward') {
-//        ['#deleteGatewayPopup', '#editGatewayPopup', '#createGatewayPopup'].forEach(sel => {
-//            const modal = document.querySelector(sel);
-//            if (modal) modal.style.display = 'none';
-//        });
-//    }
-//});
-//window.addEventListener('beforeunload', () => {
-//    // couper le thread ici
-//});
-//window.onload = function() {
-//    if (event.persisted) {
-//        ['.error-message-create', '.error-message-edit', '.error-message-delete'].forEach(sel => {
-//            document.querySelectorAll(sel).forEach(el => el.remove());
-//        });
-//        ['#deleteGatewayPopup', '#editGatewayPopup', '#createGatewayPopup'].forEach(sel => {
-//            document.querySelectorAll(sel).forEach(el => el.style.display = 'none');
-//        });
-//    }
-//};
 
 function refreshCsrfToken() {
     fetch('/csrf-token')

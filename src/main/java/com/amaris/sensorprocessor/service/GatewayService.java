@@ -125,4 +125,14 @@ public class GatewayService {
         );
     }
 
+    public void stopMonitoring(String gatewayId) {
+        webClient.get()
+            .uri("/api/monitoring/gateway/stop/{id}", gatewayId)
+            .retrieve()
+            .toBodilessEntity()
+            .doOnSuccess(response -> logger.info("Monitoring stopped for gateway {}", gatewayId))
+            .doOnError(error -> logger.error("Erreur lors de l'arrêt du monitoring pour gateway " + gatewayId, error))
+            .subscribe();
+    }
+
 }
