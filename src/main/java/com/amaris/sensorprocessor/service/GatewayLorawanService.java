@@ -1,11 +1,11 @@
 package com.amaris.sensorprocessor.service;
 
+import com.amaris.sensorprocessor.constant.Constants;
 import com.amaris.sensorprocessor.entity.Gateway;
 import com.amaris.sensorprocessor.entity.LorawanGatewayData;
 import com.amaris.sensorprocessor.entity.LorawanGatewayUpdateData;
 import com.amaris.sensorprocessor.repository.GatewayLorawanDao;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.amaris.sensorprocessor.util.LoggerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -18,8 +18,6 @@ import java.time.format.DateTimeFormatter;
 
 @Service
 public class GatewayLorawanService {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final GatewayLorawanDao gatewayLorawanDao;
 
@@ -36,20 +34,12 @@ public class GatewayLorawanService {
         } catch (WebClientResponseException e) {
             String errorBody = e.getResponseBodyAsString();
             if (errorBody.contains("\"code\":6") && errorBody.contains("\"name\":\"id_taken\"")) {
-                logger.error("Gateway ID already exists : {}", gateway.getGatewayId(), e);
-                System.out.println("\u001B[31m" + "Gateway ID already exists : " + gateway.getGatewayId() + " " +
-                        e.getMessage() + "\u001B[0m");
-                bindingResult.rejectValue("gatewayId", "Invalid.gatewayId", "Gateway ID already exists");
+                LoggerUtil.logWithBindingObjectError(bindingResult, e, Constants.GATEWAY_ID_EXISTS, gateway.getGatewayId(), Constants.BINDING_GATEWAY_ID);
             } else if (errorBody.contains("\"code\":6") && errorBody.contains("\"name\":\"gateway_eui_taken\"")) {
-                logger.error("Gateway EUI already exists : {}", gateway.getGatewayEui(), e);
-                System.out.println("\u001B[31m" + "Gateway EUI already exists : " + gateway.getGatewayEui() + " " +
-                        e.getMessage() + "\u001B[0m");
-                bindingResult.rejectValue("gatewayEui", "Invalid.gatewayEui", "Gateway EUI already exists");
+                LoggerUtil.logWithBindingObjectError(bindingResult, e, Constants.GATEWAY_EUI_EXISTS, gateway.getGatewayEui(), Constants.BINDING_GATEWAY_EUI);
             }
         } catch (Exception e) {
-            logger.error("Lorawan problem", e);
-            System.out.println("\u001B[31m" + "Lorawan problem : " + e.getMessage() + "\u001B[0m");
-            bindingResult.rejectValue("LorawanProblem", "Invalid.LorawanProblem", "Lorawan server problem");
+            LoggerUtil.logWithBindingObjectError(bindingResult, e, Constants.LORAWAN_PROBLEM, null, Constants.BINDING_LORAWAN_PROBLEM);
         }
     }
 
@@ -61,23 +51,15 @@ public class GatewayLorawanService {
             String errorBody = e.getResponseBodyAsString();
             if (status == 403 && errorBody.contains("\"code\":7")) {
                 if (errorBody.contains("\"name\":\"no_gateway_rights\"")) {
-                    logger.error("Deletion failed because Gateway ID not found : {}", gatewayId);
-                    System.out.println("\u001B[31m" + "Deletion failed because Gateway ID not found : " + gatewayId + "\u001B[0m");
-                    bindingResult.reject("gatewayId", "Gateway ID not found");
+                    LoggerUtil.logWithBindingError(bindingResult, e, Constants.GATEWAY_NOT_FOUND, gatewayId, Constants.BINDING_GATEWAY_ID);
                 } else if (errorBody.contains("\"name\":\"insufficient_gateway_rights\"")) {
-                    logger.error("delete failed because permission user denied : {}", gatewayId);
-                    System.out.println("\u001B[31m" + "delete failed because permission user denied : " + gatewayId + "\u001B[0m");
-                    bindingResult.reject("permissionDenied", "Permission user denied");
+                    LoggerUtil.logWithBindingError(bindingResult, e, Constants.PERMISSION_DENIED, gatewayId, Constants.BINDING_PERMISSION_DENIED);
                 } else {
-                    logger.error("delete failed for this gateway : {}", gatewayId);
-                    System.out.println("\u001B[31m" + "delete failed for this gateway : " + gatewayId + "\u001B[0m");
-                    bindingResult.reject("gatewayProblem", "Problem with this gateway");
+                    LoggerUtil.logWithBindingError(bindingResult, e, Constants.GATEWAY_PROBLEM, gatewayId, Constants.BINDING_GATEWAY_PROBLEM);
                 }
             }
         } catch (Exception e) {
-            logger.error("Lorawan problem", e);
-            System.out.println("\u001B[31m" + "Lorawan problem : " + e.getMessage() + "\u001B[0m");
-            bindingResult.rejectValue("LorawanProblem", "Lorawan server problem");
+            LoggerUtil.logWithBindingError(bindingResult, e, Constants.LORAWAN_PROBLEM, null, Constants.BINDING_LORAWAN_PROBLEM);
         }
     }
 
@@ -90,19 +72,13 @@ public class GatewayLorawanService {
             String errorBody = e.getResponseBodyAsString();
             if (status == 403 && errorBody.contains("\"code\":7")) {
                 if (errorBody.contains("\"name\":\"insufficient_gateway_rights\"")) {
-                    logger.error("Update failed because permission user denied : {}", gateway.getGatewayId());
-                    System.out.println("\u001B[31m" + "Update failed because permission user denied : " + gateway.getGatewayId() + "\u001B[0m");
-                    bindingResult.reject("permissionDenied", "Permission user denied");
+                    LoggerUtil.logWithBindingError(bindingResult, e, Constants.PERMISSION_DENIED, gateway.getGatewayId(), Constants.BINDING_PERMISSION_DENIED);
                 } else {
-                    logger.error("Update failed because Gateway ID not found : {}", gateway.getGatewayId());
-                    System.out.println("\u001B[31m" + "Update failed because Gateway ID not found : " + gateway.getGatewayId() + "\u001B[0m");
-                    bindingResult.rejectValue("gatewayId", "Invalid.gatewayId", "Gateway ID not found");
+                    LoggerUtil.logWithBindingObjectError(bindingResult, e, Constants.GATEWAY_NOT_FOUND, gateway.getGatewayId(), Constants.BINDING_GATEWAY_ID);
                 }
             }
         } catch (Exception e) {
-            logger.error("Lorawan problem", e);
-            System.out.println("\u001B[31m" + "Lorawan problem : " + e.getMessage() + "\u001B[0m");
-            bindingResult.rejectValue("LorawanProblem", "Invalid.LorawanProblem", "Lorawan server problem");
+            LoggerUtil.logWithBindingObjectError(bindingResult, e, Constants.LORAWAN_PROBLEM, null, Constants.BINDING_LORAWAN_PROBLEM);
         }
     }
 

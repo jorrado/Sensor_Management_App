@@ -1,9 +1,11 @@
 package com.amaris.sensorprocessor.service;
 
+import com.amaris.sensorprocessor.constant.Constants;
 import com.amaris.sensorprocessor.entity.Gateway;
 import com.amaris.sensorprocessor.entity.MonitoringGatewayData;
 import com.amaris.sensorprocessor.exception.CustomException;
 import com.amaris.sensorprocessor.repository.GatewayDao;
+import com.amaris.sensorprocessor.util.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
-
-import static com.amaris.sensorprocessor.util.LoggerUtil.logDatabaseError;
 
 @Service
 public class GatewayService {
@@ -38,8 +38,7 @@ public class GatewayService {
         try {
             return gatewayDao.findAllGateways();
         } catch (Exception e) {
-            logger.error("Error retrieving the list of gateways", e);
-            System.out.println("\u001B[31m" + "Error retrieving the list of gateways : " + e.getMessage() + "\u001B[0m");
+            LoggerUtil.logError(e, null);
             return Collections.emptyList();
         }
     }
@@ -47,16 +46,12 @@ public class GatewayService {
     public void saveGatewayInDatabase(Gateway gateway, BindingResult bindingResult) {
         try {
             if (gatewayDao.findGatewayById(gateway.getGatewayId()).isPresent()) {
-                logger.error("Gateway ID already exists : {}", gateway.getGatewayId());
-                System.out.println("\u001B[31m" + "Gateway ID already exists : " + gateway.getGatewayId() + "\u001B[0m");
-                bindingResult.rejectValue("gatewayId", "Invalid.gatewayId", "Gateway ID already exists");
+                LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_ID_EXISTS, gateway.getGatewayId(), Constants.BINDING_GATEWAY_ID);
             }
 //            gateway.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); // UNIQUEMENT POUR LES TESTS SANS LORAWAN
             gatewayDao.insertGatewayInDatabase(gateway);
         } catch (Exception e) {
-            logger.error("Database problem", e);
-            System.out.println("\u001B[31m" + "Database problem : " + e.getMessage() + "\u001B[0m");
-            bindingResult.rejectValue("DatabaseProblem", "Invalid.DatabaseProblem", "Database problem");
+            LoggerUtil.logWithBindingObjectError(bindingResult, e, Constants.DATABASE_PROBLEM, null, Constants.BINDING_DATABASE_PROBLEM);
         }
     }
 
@@ -64,14 +59,10 @@ public class GatewayService {
         try {
             int deleteLigne = gatewayDao.deleteGatewayById(gatewayId);
             if (deleteLigne == 0) {
-                logger.error("Deletion failed or Gateway ID not found {}", gatewayId);
-                System.out.println("\u001B[31m" + "Deletion failed or Gateway ID not found : " + gatewayId + "\u001B[0m");
-                bindingResult.rejectValue("gatewayId", "Gateway ID not found");
+                LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_NOT_FOUND, gatewayId, Constants.BINDING_GATEWAY_ID);
             }
         } catch (Exception e) {
-            logger.error("Database problem", e);
-            System.out.println("\u001B[31m" + "Database problem : " + e.getMessage() + "\u001B[0m");
-            bindingResult.rejectValue("DatabaseProblem", "Database problem");
+            LoggerUtil.logWithBindingObjectError(bindingResult, e, Constants.DATABASE_PROBLEM, null, Constants.BINDING_DATABASE_PROBLEM);
         }
     }
 
@@ -79,7 +70,7 @@ public class GatewayService {
         try {
             return gatewayDao.findGatewayById(gatewayId).orElse(null);
         } catch (Exception e) {
-            logDatabaseError(e);
+            LoggerUtil.logError(e, gatewayId);
             throw new CustomException("database Problem");
         }
     }
@@ -88,14 +79,10 @@ public class GatewayService {
         try {
             int rowsUpdated = gatewayDao.updateGatewayInDatabase(gateway);
             if (rowsUpdated == 0) {
-                logger.error("Update in Database => Gateway ID not found : {}", gateway.getGatewayId());
-                System.out.println("\u001B[31m" + "Update in Database => Gateway ID not found : " + gateway.getGatewayId() + "\u001B[0m");
-                bindingResult.rejectValue("gatewayId", "Invalid.gatewayId", "Gateway ID not found");
+                LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_NOT_FOUND, gateway.getGatewayId(), Constants.BINDING_GATEWAY_ID);
             }
         } catch (Exception e) {
-            logger.error("Database problem", e);
-            System.out.println("\u001B[31m" + "Database problem : " + e.getMessage() + "\u001B[0m");
-            bindingResult.rejectValue("LorawanProblem", "Invalid.LorawanProblem", "Database problem");
+            LoggerUtil.logWithBindingObjectError(bindingResult, e, Constants.DATABASE_PROBLEM, null, Constants.BINDING_LORAWAN_PROBLEM);
         }
     }
 
@@ -119,8 +106,7 @@ public class GatewayService {
             .bodyToFlux(MonitoringGatewayData.class)
             .doOnError(error -> {
                 logger.error("Erreur lors de la récupération des données de monitoring", error);
-                System.out.println("\u001B[31m" + "Erreur lors de la récupération des données de monitoring : " +
-                        error.getMessage() + "\u001B[0m");
+                System.out.println("\u001B[31m" + "Erreur lors de la récupération des données de monitoring : " + error.getMessage() + "\u001B[0m");
             }
         );
     }

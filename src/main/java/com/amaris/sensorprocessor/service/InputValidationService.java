@@ -1,16 +1,16 @@
 package com.amaris.sensorprocessor.service;
 
+import com.amaris.sensorprocessor.constant.Constants;
 import com.amaris.sensorprocessor.constant.FrequencyPlan;
 import com.amaris.sensorprocessor.entity.Gateway;
 import com.amaris.sensorprocessor.exception.CustomException;
+import com.amaris.sensorprocessor.util.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import java.util.Arrays;
-
-import static com.amaris.sensorprocessor.util.LoggerUtil.logInvalidateFormatError;
 
 @Service
 public class InputValidationService {
@@ -27,8 +27,7 @@ public class InputValidationService {
      */
     public void isValidInputGatewayId(String gatewayId, BindingResult bindingResult) {
         if (gatewayId == null || !gatewayId.matches("^(?!-)(?!.*--)[a-z0-9-]{3,36}(?<!-)$")) {
-            logInvalidateFormatError("gatewayId invalid");
-            bindingResult.rejectValue("gatewayId", "Invalid.gatewayId", "Gateway ID format is invalid");
+            LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_ID_INVALID, gatewayId, Constants.BINDING_GATEWAY_ID);
         }
     }
 
@@ -42,8 +41,7 @@ public class InputValidationService {
      */
     public void isValidInputGatewayEui(String gatewayEui, BindingResult bindingResult) {
         if (gatewayEui == null || !gatewayEui.matches("^[0-9A-F]{16}$")) {
-            logInvalidateFormatError("gatewayEui invalid");
-            bindingResult.rejectValue("gatewayEui", "Invalid.gatewayEui", "Gateway EUI format is invalid");
+            LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_EUI_INVALID, gatewayEui, Constants.BINDING_GATEWAY_EUI);
         }
     }
 
@@ -55,8 +53,7 @@ public class InputValidationService {
      */
     public void isValidInputIpAddress(String ipAddress, BindingResult bindingResult) {
         if (ipAddress == null || !ipAddress.matches("^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)$")) {
-            logInvalidateFormatError("ipAddress invalid");
-            bindingResult.rejectValue("ipAddress", "Invalid.ipAddress", "IP Address format is invalid");
+            LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_IP_INVALID, ipAddress, Constants.BINDING_IP_ADDRESS);
         }
     }
 
@@ -70,12 +67,11 @@ public class InputValidationService {
     public void isValidDropDownMenuFrequencyPlan(Gateway gateway, BindingResult bindingResult) {
         if (gateway.getFrequencyPlan() != null) {
             boolean exists = Arrays.stream(FrequencyPlan.values())
-                    .anyMatch(value -> value.getDescription()
-                            .equals(gateway.getFrequencyPlan()));
+                .anyMatch(value -> value.getDescription()
+                        .equals(gateway.getFrequencyPlan()));
             if (!exists) {
                 gateway.setFrequencyPlan(null);
-                logInvalidateFormatError("frequencyPlan invalid");
-                bindingResult.rejectValue("frequencyPlan", "Invalid.frequencyPlan", "Frequency Plan format is invalid");
+                LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_FREQUENCY_PLAN_INVALID, gateway.getFrequencyPlan(), Constants.BINDING_FREQUENCY_PLAN);
             }
         }
     }
@@ -89,8 +85,7 @@ public class InputValidationService {
      */
     public void isValidInputBuildingName(String buildingName, BindingResult bindingResult) {
         if (buildingName == null || !buildingName.matches("^[a-zA-ZÀ-ÖØ-öø-ÿ0-9\\s\\-,'\".]{1,50}$")) {
-            logInvalidateFormatError("invalid text of Building Name");
-            bindingResult.rejectValue("buildingName", "Invalid.buildingName", "Text format of Building Name is invalid");
+            LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_BUILDING_NAME_INVALID, buildingName, Constants.BINDING_BUILDING_NAME);
         }
     }
 
@@ -103,8 +98,8 @@ public class InputValidationService {
      */
     public void isValidInputFloorNumber(Integer floorNumber, BindingResult bindingResult) {
         if (floorNumber == null || floorNumber < -10 || floorNumber > 99) {
-            logInvalidateFormatError("floorNumber invalid");
-            bindingResult.rejectValue("floorNumber", "Invalid.floorNumber", "Text format of Floor Number is invalid");
+            String gatewayValue = "Floor number : " + String.valueOf(floorNumber);
+            LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_FLOOR_NUMBER_INVALID, gatewayValue, Constants.BINDING_FLOOR_NUMBER);
         }
     }
 
@@ -117,8 +112,7 @@ public class InputValidationService {
      */
     public void isValidInputLocationDescription(String locationDescription, BindingResult bindingResult) {
         if (locationDescription == null || !locationDescription.matches("^[a-zA-ZÀ-ÖØ-öø-ÿ0-9\\s\\-,'\".]{1,50}$")) {
-            logInvalidateFormatError("invalid text of Location Description");
-            bindingResult.rejectValue("locationDescription", "Invalid.locationDescription", "Text format of Location Description is invalid");
+            LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_LOCATION_INVALID, locationDescription, Constants.BINDING_LOCATION);
         }
     }
 
