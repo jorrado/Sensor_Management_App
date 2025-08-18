@@ -172,6 +172,7 @@ a {
         gap: 5px;
     }
     a {
+        margin: -4px;
         width: 1.5em;
         height: 1.2em;
     }
