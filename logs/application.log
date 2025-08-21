@@ -53,3 +53,423 @@
 2025-08-21 11:35:29 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
 2025-08-21 11:35:29 - Started SensorprocessorApplicationTests in 4.383 seconds (process running for 5.156)
 2025-08-21 11:35:30 - Closing org.springframework.web.context.support.GenericWebApplicationContext@39ab59f8, started on Thu Aug 21 11:35:25 CEST 2025
+2025-08-21 13:17:58 - Starting SensorprocessorApplication using Java 17.0.15 with PID 9996 (C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App\target\classes started by julien.orrado_sollan in C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App)
+2025-08-21 13:17:58 - No active profile set, falling back to 1 default profile: "default"
+2025-08-21 13:18:01 - Tomcat initialized with port 8080 (http)
+2025-08-21 13:18:01 - Starting service [Tomcat]
+2025-08-21 13:18:01 - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-21 13:18:01 - Initializing Spring embedded WebApplicationContext
+2025-08-21 13:18:01 - Root WebApplicationContext: initialization completed in 3099 ms
+2025-08-21 13:18:02 - HikariPool-1 - Starting...
+2025-08-21 13:18:02 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@61191222
+2025-08-21 13:18:02 - HikariPool-1 - Start completed.
+2025-08-21 13:18:03 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-08-21 13:18:03 - 20 mappings in 'requestMappingHandlerMapping'
+2025-08-21 13:18:03 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-21 13:18:03 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-21 13:18:03 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-21 13:18:04 - Tomcat started on port 8080 (http) with context path '/'
+2025-08-21 13:18:04 - Started SensorprocessorApplication in 7.243 seconds (process running for 7.91)
+2025-08-21 13:18:08 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-21 13:18:08 - Initializing Servlet 'dispatcherServlet'
+2025-08-21 13:18:08 - Detected StandardServletMultipartResolver
+2025-08-21 13:18:08 - Detected AcceptHeaderLocaleResolver
+2025-08-21 13:18:08 - Detected FixedThemeResolver
+2025-08-21 13:18:08 - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@508a9204
+2025-08-21 13:18:08 - Detected org.springframework.web.servlet.support.SessionFlashMapManager@69a68c11
+2025-08-21 13:18:08 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-21 13:18:08 - Completed initialization in 9 ms
+2025-08-21 13:18:08 - GET "/", parameters={}
+2025-08-21 13:18:08 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:08 - Resource not found
+2025-08-21 13:18:08 - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource .]
+2025-08-21 13:18:08 - Completed 404 NOT_FOUND
+2025-08-21 13:18:08 - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [144] milliseconds.
+2025-08-21 13:18:08 - GET "/login", parameters={}
+2025-08-21 13:18:08 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
+2025-08-21 13:18:08 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-08-21 13:18:09 - Completed 200 OK
+2025-08-21 13:18:09 - GET "/css/login-home.css", parameters={}
+2025-08-21 13:18:09 - GET "/css/styles.css", parameters={}
+2025-08-21 13:18:09 - GET "/image/mantu-logo.jpg", parameters={}
+2025-08-21 13:18:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:09 - Completed 200 OK
+2025-08-21 13:18:09 - Completed 200 OK
+2025-08-21 13:18:09 - Completed 200 OK
+2025-08-21 13:18:09 - GET "/image/mantu-background.jpg", parameters={}
+2025-08-21 13:18:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:09 - Completed 200 OK
+2025-08-21 13:18:11 - GET "/home", parameters={}
+2025-08-21 13:18:11 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
+2025-08-21 13:18:11 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-08-21 13:18:11 - Completed 200 OK
+2025-08-21 13:18:11 - GET "/css/styles.css", parameters={}
+2025-08-21 13:18:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:11 - GET "/image/user-icon.svg", parameters={}
+2025-08-21 13:18:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:11 - GET "/css/login-home.css", parameters={}
+2025-08-21 13:18:11 - GET "/image/sensor-icon.svg", parameters={}
+2025-08-21 13:18:11 - GET "/image/gateway-icon.svg", parameters={}
+2025-08-21 13:18:11 - Completed 200 OK
+2025-08-21 13:18:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:11 - GET "/image/mantu-logo.jpg", parameters={}
+2025-08-21 13:18:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:11 - GET "/image/manage-user-account.svg", parameters={}
+2025-08-21 13:18:11 - Completed 200 OK
+2025-08-21 13:18:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:11 - Completed 200 OK
+2025-08-21 13:18:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:11 - Completed 200 OK
+2025-08-21 13:18:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:11 - Completed 200 OK
+2025-08-21 13:18:11 - Completed 200 OK
+2025-08-21 13:18:11 - GET "/image/mantu-background.jpg", parameters={}
+2025-08-21 13:18:11 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:11 - Completed 200 OK
+2025-08-21 13:18:11 - Completed 200 OK
+2025-08-21 13:18:12 - GET "/manage-gateways", parameters={}
+2025-08-21 13:18:12 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#manageGateways(Model)
+2025-08-21 13:18:12 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-08-21 13:18:12 - Completed 200 OK
+2025-08-21 13:18:12 - GET "/css/manageGateways.css", parameters={}
+2025-08-21 13:18:12 - GET "/image/calendar-icon.svg", parameters={}
+2025-08-21 13:18:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:12 - GET "/javascript/manageGateways.js", parameters={}
+2025-08-21 13:18:12 - GET "/image/mantu-logo.jpg", parameters={}
+2025-08-21 13:18:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:12 - GET "/css/styles.css", parameters={}
+2025-08-21 13:18:12 - Completed 200 OK
+2025-08-21 13:18:12 - Completed 200 OK
+2025-08-21 13:18:12 - Completed 200 OK
+2025-08-21 13:18:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:12 - Completed 200 OK
+2025-08-21 13:18:12 - Completed 200 OK
+2025-08-21 13:18:12 - GET "/image/search-icon.svg", parameters={}
+2025-08-21 13:18:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:12 - Completed 200 OK
+2025-08-21 13:18:12 - GET "/image/monitoring-data.svg", parameters={}
+2025-08-21 13:18:12 - GET "/image/delete-icon.svg", parameters={}
+2025-08-21 13:18:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:12 - GET "/image/edit-icon.svg", parameters={}
+2025-08-21 13:18:12 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:12 - Completed 200 OK
+2025-08-21 13:18:12 - Completed 200 OK
+2025-08-21 13:18:12 - Completed 200 OK
+2025-08-21 13:18:21 - GET "/manage-gateways/monitoring/gateway-001/view?ip=192.168.1.10", parameters={masked}
+2025-08-21 13:18:21 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#monitoringView(String, String, Model)
+2025-08-21 13:18:21 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-08-21 13:18:21 - Completed 200 OK
+2025-08-21 13:18:21 - GET "/css/monitoringGateway.css", parameters={}
+2025-08-21 13:18:21 - GET "/css/styles.css", parameters={}
+2025-08-21 13:18:21 - GET "/image/toggle_on.svg", parameters={}
+2025-08-21 13:18:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:21 - GET "/image/battery.svg", parameters={}
+2025-08-21 13:18:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:21 - Completed 200 OK
+2025-08-21 13:18:21 - Completed 200 OK
+2025-08-21 13:18:21 - Completed 200 OK
+2025-08-21 13:18:21 - Completed 200 OK
+2025-08-21 13:18:21 - GET "/image/thermostat.svg", parameters={}
+2025-08-21 13:18:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:21 - GET "/image/sensor-icon.svg", parameters={}
+2025-08-21 13:18:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:21 - Completed 200 OK
+2025-08-21 13:18:21 - Completed 200 OK
+2025-08-21 13:18:21 - GET "/image/toggle_off.svg", parameters={}
+2025-08-21 13:18:21 - GET "/image/toggle_on.svg", parameters={}
+2025-08-21 13:18:21 - GET "/javascript/monitoringGateway.js", parameters={}
+2025-08-21 13:18:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:21 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-08-21 13:18:21 - Completed 200 OK
+2025-08-21 13:18:21 - Completed 200 OK
+2025-08-21 13:18:21 - Completed 200 OK
+2025-08-21 13:18:21 - GET "/manage-gateways/monitoring/rpi-mantu/stream?ip=10.243.129.10", parameters={masked}
+2025-08-21 13:18:21 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#streamMonitoringData(String, String)
+2025-08-21 13:18:22 - [1172a7e5] HTTP GET http://localhost:8081/api/monitoring/gateway/rpi-mantu?ip=10.243.129.10
+2025-08-21 13:18:22 - Started async request for "/manage-gateways/monitoring/rpi-mantu/stream"
+2025-08-21 13:18:22 - Exiting but response remains open for further handling
+2025-08-21 13:18:25 - [1172a7e5] [787126e6-1] Response 200 OK
+2025-08-21 13:18:25 - [1172a7e5] [787126e6-1] Decoded [MonitoringGatewayData(timestamp=2025-08-21T11:18:25, system=MonitoringGatewayData.SystemInfo(hostnam (truncated)...]
+2025-08-21 13:18:35 - [1172a7e5] [787126e6-1] Decoded [MonitoringGatewayData(timestamp=2025-08-21T11:18:35, system=MonitoringGatewayData.SystemInfo(hostnam (truncated)...]
+2025-08-21 13:18:46 - [1172a7e5] [787126e6-1] Decoded [MonitoringGatewayData(timestamp=2025-08-21T11:18:46, system=MonitoringGatewayData.SystemInfo(hostnam (truncated)...]
+2025-08-21 13:18:48 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-21 13:18:52 - Erreur lors de la récupération des données de monitoring
+org.springframework.web.reactive.function.client.WebClientResponseException: 200 OK from GET http://localhost:8081/api/monitoring/gateway/rpi-mantu, but response failed with cause: java.net.SocketException: Connection reset
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:337)
+	at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:214)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106)
+	at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onError(FluxOnErrorReturn.java:199)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onError(FluxDefaultIfEmpty.java:156)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onError(FluxOnAssembly.java:544)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onError(FluxMapFuseable.java:142)
+	at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onError(FluxMapFuseable.java:340)
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onError(FluxFilterFuseable.java:382)
+	at reactor.core.publisher.MonoCollect$CollectSubscriber.onError(MonoCollect.java:135)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onError(FluxMap.java:134)
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onError(FluxMap.java:134)
+	at reactor.core.publisher.Operators.error(Operators.java:198)
+	at reactor.netty.channel.FluxReceive.startReceiver(FluxReceive.java:175)
+	at reactor.netty.channel.FluxReceive.subscribe(FluxReceive.java:145)
+	at reactor.core.publisher.InternalFluxOperator.subscribe(InternalFluxOperator.java:68)
+	at reactor.netty.ByteBufFlux.subscribe(ByteBufFlux.java:340)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onError(FluxOnAssembly.java:544)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.maybeOnError(FluxConcatMapNoPrefetch.java:327)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onError(FluxConcatMapNoPrefetch.java:221)
+	at reactor.core.publisher.FluxBufferPredicate$BufferPredicateSubscriber.onError(FluxBufferPredicate.java:346)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableConditionalSubscriber.onError(FluxPeekFuseable.java:553)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onError(FluxMapFuseable.java:340)
+	at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121)
+	at reactor.core.publisher.FluxDoFinally$DoFinallySubscriber.onError(FluxDoFinally.java:119)
+	at reactor.core.publisher.FluxConcatArray$ConcatArraySubscriber.onError(FluxConcatArray.java:186)
+	at reactor.core.publisher.FluxFlattenIterable$FlattenIterableSubscriber.drainAsync(FluxFlattenIterable.java:351)
+	at reactor.core.publisher.FluxFlattenIterable$FlattenIterableSubscriber.drain(FluxFlattenIterable.java:724)
+	at reactor.core.publisher.FluxFlattenIterable$FlattenIterableSubscriber.onError(FluxFlattenIterable.java:263)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onError(FluxMap.java:134)
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onError(FluxMap.java:134)
+	at reactor.netty.channel.FluxReceive.terminateReceiver(FluxReceive.java:478)
+	at reactor.netty.channel.FluxReceive.drainReceiver(FluxReceive.java:273)
+	at reactor.netty.channel.FluxReceive.onInboundError(FluxReceive.java:466)
+	at reactor.netty.channel.ChannelOperations.onInboundError(ChannelOperations.java:526)
+	at reactor.netty.channel.ChannelOperationsHandler.exceptionCaught(ChannelOperationsHandler.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:346)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:325)
+	at io.netty.channel.AbstractChannelHandlerContext.fireExceptionCaught(AbstractChannelHandlerContext.java:317)
+	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireExceptionCaught(CombinedChannelDuplexHandler.java:424)
+	at io.netty.channel.ChannelHandlerAdapter.exceptionCaught(ChannelHandlerAdapter.java:92)
+	at io.netty.channel.CombinedChannelDuplexHandler$1.fireExceptionCaught(CombinedChannelDuplexHandler.java:145)
+	at io.netty.channel.ChannelInboundHandlerAdapter.exceptionCaught(ChannelInboundHandlerAdapter.java:143)
+	at io.netty.channel.CombinedChannelDuplexHandler.exceptionCaught(CombinedChannelDuplexHandler.java:231)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:346)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:325)
+	at io.netty.channel.AbstractChannelHandlerContext.fireExceptionCaught(AbstractChannelHandlerContext.java:317)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.exceptionCaught(DefaultChannelPipeline.java:1324)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:346)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:325)
+	at io.netty.channel.DefaultChannelPipeline.fireExceptionCaught(DefaultChannelPipeline.java:856)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.handleReadException(AbstractNioByteChannel.java:125)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:177)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:796)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ Body from GET http://localhost:8081/api/monitoring/gateway/rpi-mantu?ip=10.243.129.10 [DefaultClientResponse]
+	*__checkpoint ⇢ Body from GET http://localhost:8081/api/monitoring/gateway/rpi-mantu?ip=10.243.129.10 [DefaultClientResponse]
+Original Stack Trace:
+		at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394)
+		at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:426)
+		at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:255)
+		at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132)
+		at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:356)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:796)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:840)
+2025-08-21 13:18:52 - Async result set for "/manage-gateways/monitoring/rpi-mantu/stream"
+2025-08-21 13:18:52 - Performing async dispatch for "/manage-gateways/monitoring/rpi-mantu/stream"
+2025-08-21 13:18:52 - "ASYNC" dispatch for GET "/manage-gateways/monitoring/rpi-mantu/stream?ip=10.243.129.10", parameters={masked}
+2025-08-21 13:18:52 - Resume with async result [org.springframework.web.reactive.function.client.WebClientResponseException: 200 OK from GET http:// (truncated)...]
+2025-08-21 13:18:52 - Unresolved failure from "ASYNC" dispatch: org.springframework.web.reactive.function.client.WebClientResponseException: 200 OK from GET http://localhost:8081/api/monitoring/gateway/rpi-mantu, but response failed with cause: java.net.SocketException: Connection reset
+2025-08-21 13:18:52 - "INCLUDE" dispatch for GET "/error?ip=10.243.129.10", parameters={masked}
+2025-08-21 13:18:52 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-08-21 13:18:52 - Found 'Content-Type:text/event-stream' in response
+2025-08-21 13:18:52 - Ignoring exception, response committed already: org.springframework.http.converter.HttpMessageNotWritableException: No converter for [class java.util.LinkedHashMap] with preset Content-Type 'text/event-stream'
+2025-08-21 13:18:52 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: No converter for [class java.util.LinkedHashMap] with preset Content-Type 'text/event-stream']
+2025-08-21 13:18:52 - Exiting from "INCLUDE" dispatch, status 200
+2025-08-21 13:18:52 - Servlet container error notification for "/manage-gateways/monitoring/rpi-mantu/stream"
+2025-08-21 13:18:52 - [3a07b710] HTTP GET http://localhost:8081/api/monitoring/gateway/stop/rpi-mantu
+2025-08-21 13:18:52 - Erreur lors de l'arrêt du monitoring pour gateway rpi-mantu
+org.springframework.web.reactive.function.client.WebClientRequestException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:137)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ Request to GET http://localhost:8081/api/monitoring/gateway/stop/rpi-mantu [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:137)
+		at reactor.core.publisher.MonoErrorSupplied.subscribe(MonoErrorSupplied.java:55)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93)
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:205)
+		at reactor.core.publisher.SerializedSubscriber.onError(SerializedSubscriber.java:124)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.whenError(FluxRetryWhen.java:229)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenOtherSubscriber.onError(FluxRetryWhen.java:279)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121)
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.maybeOnError(FluxConcatMapNoPrefetch.java:327)
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onNext(FluxConcatMapNoPrefetch.java:212)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107)
+		at reactor.core.publisher.SinkManyEmitterProcessor.drain(SinkManyEmitterProcessor.java:476)
+		at reactor.core.publisher.SinkManyEmitterProcessor$EmitterInner.drainParent(SinkManyEmitterProcessor.java:620)
+		at reactor.core.publisher.FluxPublish$PubSubInner.request(FluxPublish.java:874)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136)
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:337)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136)
+		at reactor.core.publisher.Operators$DeferredSubscription.request(Operators.java:1742)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.onError(FluxRetryWhen.java:196)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205)
+		at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect$ClientTransportSubscriber.onError(HttpClientConnect.java:325)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205)
+		at reactor.netty.resources.DefaultPooledConnectionProvider$DisposableAcquire.onError(DefaultPooledConnectionProvider.java:174)
+		at reactor.netty.internal.shaded.reactor.pool.AbstractPool$Borrower.fail(AbstractPool.java:479)
+		at reactor.netty.internal.shaded.reactor.pool.SimpleDequePool.lambda$drainLoop$9(SimpleDequePool.java:443)
+		at reactor.core.publisher.FluxDoOnEach$DoOnEachSubscriber.onError(FluxDoOnEach.java:186)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205)
+		at reactor.netty.resources.DefaultPooledConnectionProvider$PooledConnectionAllocator$PooledConnectionInitializer.onError(DefaultPooledConnectionProvider.java:593)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241)
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106)
+		at org.springframework.security.config.annotation.web.configuration.SecurityReactorContextConfiguration$SecurityReactorContextSubscriber.onError(SecurityReactorContextConfiguration.java:191)
+		at reactor.core.publisher.Operators.error(Operators.java:198)
+		at reactor.core.publisher.MonoError.subscribe(MonoError.java:53)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.tryFailure(TransportConnector.java:600)
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.setFailure(TransportConnector.java:546)
+		at reactor.netty.transport.TransportConnector.lambda$doConnect$7(TransportConnector.java:262)
+		at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:603)
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:596)
+		at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:572)
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:505)
+		at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:649)
+		at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:642)
+		at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:131)
+		at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.fulfillConnectPromise(AbstractNioChannel.java:326)
+		at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:342)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:784)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:336)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:784)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-08-21 13:18:52 - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: org.springframework.web.reactive.function.client.WebClientRequestException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+Caused by: org.springframework.web.reactive.function.client.WebClientRequestException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:137)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ Request to GET http://localhost:8081/api/monitoring/gateway/stop/rpi-mantu [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:137)
+		at reactor.core.publisher.MonoErrorSupplied.subscribe(MonoErrorSupplied.java:55)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222)
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93)
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:205)
+		at reactor.core.publisher.SerializedSubscriber.onError(SerializedSubscriber.java:124)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.whenError(FluxRetryWhen.java:229)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenOtherSubscriber.onError(FluxRetryWhen.java:279)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121)
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.maybeOnError(FluxConcatMapNoPrefetch.java:327)
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onNext(FluxConcatMapNoPrefetch.java:212)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107)
+		at reactor.core.publisher.SinkManyEmitterProcessor.drain(SinkManyEmitterProcessor.java:476)
+		at reactor.core.publisher.SinkManyEmitterProcessor$EmitterInner.drainParent(SinkManyEmitterProcessor.java:620)
+		at reactor.core.publisher.FluxPublish$PubSubInner.request(FluxPublish.java:874)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136)
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:337)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136)
+		at reactor.core.publisher.Operators$DeferredSubscription.request(Operators.java:1742)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.onError(FluxRetryWhen.java:196)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205)
+		at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect$ClientTransportSubscriber.onError(HttpClientConnect.java:325)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205)
+		at reactor.netty.resources.DefaultPooledConnectionProvider$DisposableAcquire.onError(DefaultPooledConnectionProvider.java:174)
+		at reactor.netty.internal.shaded.reactor.pool.AbstractPool$Borrower.fail(AbstractPool.java:479)
+		at reactor.netty.internal.shaded.reactor.pool.SimpleDequePool.lambda$drainLoop$9(SimpleDequePool.java:443)
+		at reactor.core.publisher.FluxDoOnEach$DoOnEachSubscriber.onError(FluxDoOnEach.java:186)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205)
+		at reactor.netty.resources.DefaultPooledConnectionProvider$PooledConnectionAllocator$PooledConnectionInitializer.onError(DefaultPooledConnectionProvider.java:593)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241)
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106)
+		at org.springframework.security.config.annotation.web.configuration.SecurityReactorContextConfiguration$SecurityReactorContextSubscriber.onError(SecurityReactorContextConfiguration.java:191)
+		at reactor.core.publisher.Operators.error(Operators.java:198)
+		at reactor.core.publisher.MonoError.subscribe(MonoError.java:53)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.tryFailure(TransportConnector.java:600)
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.setFailure(TransportConnector.java:546)
+		at reactor.netty.transport.TransportConnector.lambda$doConnect$7(TransportConnector.java:262)
+		at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:603)
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:596)
+		at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:572)
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:505)
+		at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:649)
+		at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:642)
+		at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:131)
+		at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.fulfillConnectPromise(AbstractNioChannel.java:326)
+		at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:342)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:784)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:336)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:784)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-08-21 13:18:52 - Graceful shutdown complete
+2025-08-21 13:18:54 - HikariPool-1 - Shutdown initiated...
+2025-08-21 13:18:54 - HikariPool-1 - Shutdown completed.
