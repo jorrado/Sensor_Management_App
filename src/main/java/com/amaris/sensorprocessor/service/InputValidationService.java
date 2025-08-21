@@ -98,7 +98,7 @@ public class InputValidationService {
      */
     public void isValidInputFloorNumber(Integer floorNumber, BindingResult bindingResult) {
         if (floorNumber == null || floorNumber < -10 || floorNumber > 99) {
-            String gatewayValue = "Floor number : " + String.valueOf(floorNumber);
+            String gatewayValue = "Floor number : " + floorNumber;
             LoggerUtil.logWithBindingObject(bindingResult, Constants.GATEWAY_FLOOR_NUMBER_INVALID, gatewayValue, Constants.BINDING_FLOOR_NUMBER);
         }
     }

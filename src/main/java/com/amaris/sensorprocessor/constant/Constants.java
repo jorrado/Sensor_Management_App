@@ -2,6 +2,8 @@ package com.amaris.sensorprocessor.constant;
 
 public final class Constants {
 
+    private Constants() {}
+
     /**
      * Label d'erreur qui s'affichera dans la popup
      */
@@ -36,5 +38,17 @@ public final class Constants {
     public static final String BINDING_BUILDING_NAME = "buildingName";
     public static final String BINDING_FLOOR_NUMBER = "floorNumber";
     public static final String BINDING_LOCATION = "locationDescription";
+
+    /**
+     * Noms de l'objet BindingResult correspondant au formulaire en question
+     */
+    public static final String BINDING_GATEWAY_ADD = "org.springframework.validation.BindingResult.gatewayAdd";
+    public static final String BINDING_GATEWAY_EDIT = "org.springframework.validation.BindingResult.gatewayEdit";
+
+    /**
+     * Noms des pages html
+     */
+    public static final String PAGE_MANAGE_GATEWAYS = "manageGateways";
+    public static final String PAGE_MONITORING_GATEWAYS = "monitoringGateway";
 
 }

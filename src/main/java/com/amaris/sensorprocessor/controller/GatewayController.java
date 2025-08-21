@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -44,7 +45,7 @@ public class GatewayController {
     @GetMapping("/manage-gateways")
     public String manageGateways(Model model) {
         prepareModel(model);
-        return "manageGateways";
+        return Constants.PAGE_MANAGE_GATEWAYS;
     }
 
     /**
@@ -67,32 +68,32 @@ public class GatewayController {
         inputValidationService.validateGatewayForCreateForm(gateway, bindingResult);
         if (bindingResult.hasErrors()) {
             prepareModel(model);
-            model.addAttribute("org.springframework.validation.BindingResult.gatewayAdd", bindingResult);
+            model.addAttribute(Constants.BINDING_GATEWAY_ADD, bindingResult);
             model.addAttribute(ERROR_ADD, Constants.INPUT_ERROR);
-            return "manageGateways";
+            return Constants.PAGE_MANAGE_GATEWAYS;
         }
         gatewayLorawanService.saveGatewayInLorawan(gateway, bindingResult);
         if (bindingResult.hasErrors()) {
             prepareModel(model);
-            if (bindingResult.hasFieldErrors("gatewayId")) {
+            if (bindingResult.hasFieldErrors(Constants.BINDING_GATEWAY_ID)) {
                 model.addAttribute(ERROR_ADD, Constants.GATEWAY_ID_EXISTS);
-            } else if (bindingResult.hasFieldErrors("gatewayEui")) {
+            } else if (bindingResult.hasFieldErrors(Constants.BINDING_GATEWAY_EUI)) {
                 model.addAttribute(ERROR_ADD, Constants.GATEWAY_EUI_EXISTS);
             } else {
                 model.addAttribute(ERROR_ADD, Constants.LORAWAN_PROBLEM);
             }
-            model.addAttribute("org.springframework.validation.BindingResult.gatewayAdd", bindingResult);
-            return "manageGateways";
+            model.addAttribute(Constants.BINDING_GATEWAY_ADD, bindingResult);
+            return Constants.PAGE_MANAGE_GATEWAYS;
         }
         gatewayService.saveGatewayInDatabase(gateway, bindingResult);
         if (bindingResult.hasErrors()) {
             prepareModel(model);
-            if (bindingResult.hasFieldErrors("gatewayId")) {
+            if (bindingResult.hasFieldErrors(Constants.BINDING_GATEWAY_ID)) {
                 model.addAttribute(ERROR_ADD, Constants.GATEWAY_ID_EXISTS);
             } else {
                 model.addAttribute(ERROR_ADD, Constants.DATABASE_PROBLEM);
             }
-            return "manageGateways";
+            return Constants.PAGE_MANAGE_GATEWAYS;
         }
         model.addAttribute(ERROR_ADD, null);
         return redirectWithTimestamp();
@@ -116,28 +117,30 @@ public class GatewayController {
     public String deleteGateway(@PathVariable String gatewayId, Model model) {
         BindingResult bindingResult = new BeanPropertyBindingResult(new Gateway(), "deleteGateway");
         gatewayLorawanService.deleteGatewayInLorawan(gatewayId, bindingResult);
-        if (bindingResult.getGlobalError() != null) {
+        ObjectError globalError = bindingResult.getGlobalError();
+        if (globalError != null) {
             prepareModel(model);
-            if ("gatewayId".equals(bindingResult.getGlobalError().getCode())) {
+            if (Constants.BINDING_GATEWAY_ID.equals(globalError.getCode())) {
                 model.addAttribute(ERROR_DELETE, Constants.GATEWAY_NOT_FOUND);
-            } else if ("permissionDenied".equals(bindingResult.getGlobalError().getCode())) {
+            } else if ("permissionDenied".equals(globalError.getCode())) {
                 model.addAttribute(ERROR_DELETE, Constants.PERMISSION_DENIED);
-            } else if ("gatewayProblem".equals(bindingResult.getGlobalError().getCode())) {
+            } else if ("gatewayProblem".equals(globalError.getCode())) {
                 model.addAttribute(ERROR_DELETE, Constants.GATEWAY_PROBLEM);
             } else {
                 model.addAttribute(ERROR_DELETE, Constants.LORAWAN_PROBLEM);
             }
-            return "manageGateways";
+            return Constants.PAGE_MANAGE_GATEWAYS;
         }
         gatewayService.deleteGatewayInDatabase(gatewayId, bindingResult);
-        if (bindingResult.getGlobalError() != null) {
+        globalError = bindingResult.getGlobalError();
+        if (globalError != null) {
             prepareModel(model);
-            if ("gatewayId".equals(bindingResult.getGlobalError().getCode())) {
+            if (Constants.BINDING_GATEWAY_ID.equals(globalError.getCode())) {
                 model.addAttribute(ERROR_DELETE, Constants.GATEWAY_NOT_FOUND);
             } else {
                 model.addAttribute(ERROR_DELETE, Constants.DATABASE_PROBLEM);
             }
-            return "manageGateways";
+            return Constants.PAGE_MANAGE_GATEWAYS;
         }
         model.addAttribute(ERROR_DELETE, null);
         return redirectWithTimestamp();
@@ -157,7 +160,7 @@ public class GatewayController {
             model.addAttribute(ERROR_EDIT, Constants.DATABASE_PROBLEM);
             model.addAttribute(GATEWAY_EDIT, new Gateway());
         }
-        return "manageGateways";
+        return Constants.PAGE_MANAGE_GATEWAYS;
     }
 
     @PostMapping("/manage-gateways/edit")
@@ -166,32 +169,33 @@ public class GatewayController {
         inputValidationService.validateGatewayForUpdateForm(gateway, bindingResult);
         if (bindingResult.hasErrors()) {
             prepareModel(model);
-            model.addAttribute("org.springframework.validation.BindingResult.gatewayEdit", bindingResult);
+            model.addAttribute(Constants.BINDING_GATEWAY_EDIT, bindingResult);
             model.addAttribute(ERROR_EDIT, Constants.INPUT_ERROR);
-            return "manageGateways";
+            return Constants.PAGE_MANAGE_GATEWAYS;
         }
         gatewayLorawanService.updateGatewayInLorawan(gateway, bindingResult);
         if (bindingResult.hasErrors()) {
             prepareModel(model);
-            if (bindingResult.hasFieldErrors("gatewayId")) {
+            ObjectError globalError = bindingResult.getGlobalError();
+            if (bindingResult.hasFieldErrors(Constants.BINDING_GATEWAY_ID)) {
                 model.addAttribute(ERROR_EDIT, Constants.GATEWAY_NOT_FOUND);
-            } else if (bindingResult.getGlobalError() != null && "permissionDenied".equals(bindingResult.getGlobalError().getCode())) {
+            } else if (globalError != null && "permissionDenied".equals(globalError.getCode())) {
                 model.addAttribute(ERROR_EDIT, Constants.PERMISSION_DENIED);
             } else {
                 model.addAttribute(ERROR_EDIT, Constants.LORAWAN_PROBLEM);
             }
-            model.addAttribute("org.springframework.validation.BindingResult.gatewayEdit", bindingResult);
-            return "manageGateways";
+            model.addAttribute(Constants.BINDING_GATEWAY_EDIT, bindingResult);
+            return Constants.PAGE_MANAGE_GATEWAYS;
         }
         gatewayService.updateGatewayInDatabase(gateway, bindingResult);
         if (bindingResult.hasErrors()) {
             prepareModel(model);
-            if (bindingResult.hasFieldErrors("gatewayId")) {
+            if (bindingResult.hasFieldErrors(Constants.BINDING_GATEWAY_ID)) {
                 model.addAttribute(ERROR_EDIT, Constants.GATEWAY_NOT_FOUND);
             } else {
                 model.addAttribute(ERROR_EDIT, Constants.DATABASE_PROBLEM);
             }
-            return "manageGateways";
+            return Constants.PAGE_MANAGE_GATEWAYS;
         }
         model.addAttribute(ERROR_EDIT, null);
         return redirectWithTimestamp();
@@ -227,9 +231,9 @@ public class GatewayController {
      */
     @GetMapping("/manage-gateways/monitoring/{id}/view")
     public String monitoringView(@PathVariable("id") String id, @RequestParam("ip") String ip, Model model) {
-        model.addAttribute("gatewayId", id);
+        model.addAttribute(Constants.BINDING_GATEWAY_ID, id);
         model.addAttribute("ipAddress", ip);
-        return "monitoringGateway";
+        return Constants.PAGE_MONITORING_GATEWAYS;
     }
 
     /**

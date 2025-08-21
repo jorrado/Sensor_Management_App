@@ -21,6 +21,9 @@ public class GatewayLorawanDao {
 
     private final WebClient.Builder webClientBuilder;
 
+    private static final String AUTHORIZATION = "Authorization";
+    private static final String BEARER = "Bearer";
+
     @Autowired
     public GatewayLorawanDao(WebClient.Builder webClientBuilder) {
         this.webClientBuilder = webClientBuilder;
@@ -30,7 +33,7 @@ public class GatewayLorawanDao {
         return webClientBuilder.build()
             .post()
             .uri(lorawanBaseUrlCreate)
-            .header("Authorization", "Bearer " + lorawanToken)
+            .header(AUTHORIZATION, BEARER + " " + lorawanToken)
             .bodyValue(lorawanGatewayData)
             .retrieve()
             .bodyToMono(String.class)
@@ -41,7 +44,7 @@ public class GatewayLorawanDao {
         webClientBuilder.build()
             .delete()
             .uri(lorawanBaseUrl + "/" + gatewayId)
-            .header("Authorization", "Bearer " + lorawanToken)
+            .header(AUTHORIZATION, BEARER + " " + lorawanToken)
             .retrieve()
             .toBodilessEntity()
             .block();
@@ -51,7 +54,7 @@ public class GatewayLorawanDao {
         webClientBuilder.build()
             .put()
             .uri(lorawanBaseUrl + "/" + gatewayId)
-            .header("Authorization", "Bearer " + lorawanToken)
+            .header(AUTHORIZATION, BEARER + " " + lorawanToken)
             .bodyValue(updateData)
             .retrieve()
             .toBodilessEntity()

@@ -1,136 +1,55 @@
-2025-08-18 08:44:43 - Starting SensorprocessorApplication using Java 17.0.15 with PID 18536 (C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App\target\classes started by julien.orrado_sollan in C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App)
-2025-08-18 08:44:43 - No active profile set, falling back to 1 default profile: "default"
-2025-08-18 08:44:45 - Tomcat initialized with port 8080 (http)
-2025-08-18 08:44:45 - Starting service [Tomcat]
-2025-08-18 08:44:45 - Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-08-18 08:44:45 - Initializing Spring embedded WebApplicationContext
-2025-08-18 08:44:45 - Root WebApplicationContext: initialization completed in 1387 ms
-2025-08-18 08:44:45 - HikariPool-1 - Starting...
-2025-08-18 08:44:45 - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@7741771e
-2025-08-18 08:44:45 - HikariPool-1 - Start completed.
-2025-08-18 08:44:46 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-2025-08-18 08:44:46 - 20 mappings in 'requestMappingHandlerMapping'
-2025-08-18 08:44:46 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2025-08-18 08:44:46 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-08-18 08:44:47 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-08-18 08:44:47 - Tomcat started on port 8080 (http) with context path '/'
-2025-08-18 08:44:47 - Started SensorprocessorApplication in 4.27 seconds (process running for 4.699)
-2025-08-18 08:44:59 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-08-18 08:44:59 - Initializing Servlet 'dispatcherServlet'
-2025-08-18 08:44:59 - Detected StandardServletMultipartResolver
-2025-08-18 08:44:59 - Detected AcceptHeaderLocaleResolver
-2025-08-18 08:44:59 - Detected FixedThemeResolver
-2025-08-18 08:44:59 - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@759e98e7
-2025-08-18 08:44:59 - Detected org.springframework.web.servlet.support.SessionFlashMapManager@7776b14c
-2025-08-18 08:44:59 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2025-08-18 08:44:59 - Completed initialization in 2 ms
-2025-08-18 08:44:59 - GET "/", parameters={}
-2025-08-18 08:44:59 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:44:59 - Resource not found
-2025-08-18 08:44:59 - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource .]
-2025-08-18 08:44:59 - Completed 404 NOT_FOUND
-2025-08-18 08:44:59 - GET "/login", parameters={}
-2025-08-18 08:44:59 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
-2025-08-18 08:44:59 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
-2025-08-18 08:44:59 - Completed 200 OK
-2025-08-18 08:44:59 - GET "/css/styles.css", parameters={}
-2025-08-18 08:44:59 - GET "/css/login-home.css", parameters={}
-2025-08-18 08:44:59 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:44:59 - GET "/image/mantu-logo.jpg", parameters={}
-2025-08-18 08:44:59 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:44:59 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:44:59 - Completed 200 OK
-2025-08-18 08:44:59 - Completed 200 OK
-2025-08-18 08:44:59 - Completed 200 OK
-2025-08-18 08:44:59 - GET "/image/mantu-background.jpg", parameters={}
-2025-08-18 08:44:59 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:44:59 - Completed 200 OK
-2025-08-18 08:45:02 - GET "/login", parameters={}
-2025-08-18 08:45:02 - Mapped to com.amaris.sensorprocessor.controller.HomeController#loginPage()
-2025-08-18 08:45:02 - Selected '*/*' given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8]
-2025-08-18 08:45:02 - Completed 200 OK
-2025-08-18 08:45:03 - GET "/home", parameters={}
-2025-08-18 08:45:03 - Mapped to com.amaris.sensorprocessor.controller.HomeController#homePage()
-2025-08-18 08:45:03 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
-2025-08-18 08:45:03 - Completed 200 OK
-2025-08-18 08:45:03 - GET "/css/styles.css", parameters={}
-2025-08-18 08:45:03 - GET "/css/login-home.css", parameters={}
-2025-08-18 08:45:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:03 - GET "/image/sensor-icon.svg", parameters={}
-2025-08-18 08:45:03 - GET "/image/user-icon.svg", parameters={}
-2025-08-18 08:45:03 - GET "/image/mantu-logo.jpg", parameters={}
-2025-08-18 08:45:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:03 - GET "/image/gateway-icon.svg", parameters={}
-2025-08-18 08:45:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:03 - Completed 200 OK
-2025-08-18 08:45:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:03 - Completed 200 OK
-2025-08-18 08:45:03 - GET "/image/manage-user-account.svg", parameters={}
-2025-08-18 08:45:03 - Completed 200 OK
-2025-08-18 08:45:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:03 - GET "/image/mantu-background.jpg", parameters={}
-2025-08-18 08:45:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:03 - Completed 200 OK
-2025-08-18 08:45:03 - Completed 200 OK
-2025-08-18 08:45:03 - Completed 200 OK
-2025-08-18 08:45:03 - Completed 200 OK
-2025-08-18 08:45:03 - Completed 200 OK
-2025-08-18 08:45:03 - GET "/favicon.ico", parameters={}
-2025-08-18 08:45:03 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:03 - Resource not found
-2025-08-18 08:45:03 - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
-2025-08-18 08:45:03 - Completed 404 NOT_FOUND
-2025-08-18 08:45:03 - "ERROR" dispatch for GET "/error", parameters={}
-2025-08-18 08:45:03 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2025-08-18 08:45:03 - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/cbor]
-2025-08-18 08:45:03 - Writing [{timestamp=Mon Aug 18 08:45:03 CEST 2025, status=404, error=Not Found, path=/favicon.ico}]
-2025-08-18 08:45:03 - Exiting from "ERROR" dispatch, status 404
-2025-08-18 08:45:09 - GET "/manage-gateways", parameters={}
-2025-08-18 08:45:09 - Mapped to com.amaris.sensorprocessor.controller.GatewayController#manageGateways(Model)
-2025-08-18 08:45:09 - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
-2025-08-18 08:45:09 - Completed 200 OK
-2025-08-18 08:45:09 - GET "/javascript/manageGateways.js", parameters={}
-2025-08-18 08:45:09 - GET "/css/manageGateways.css", parameters={}
-2025-08-18 08:45:09 - GET "/image/mantu-logo.jpg", parameters={}
-2025-08-18 08:45:09 - GET "/image/calendar-icon.svg", parameters={}
-2025-08-18 08:45:09 - GET "/css/styles.css", parameters={}
-2025-08-18 08:45:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:09 - Completed 200 OK
-2025-08-18 08:45:09 - Completed 200 OK
-2025-08-18 08:45:09 - Completed 200 OK
-2025-08-18 08:45:09 - Completed 200 OK
-2025-08-18 08:45:09 - Completed 200 OK
-2025-08-18 08:45:09 - GET "/image/search-icon.svg", parameters={}
-2025-08-18 08:45:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:09 - Completed 200 OK
-2025-08-18 08:45:09 - GET "/image/edit-icon.svg", parameters={}
-2025-08-18 08:45:09 - GET "/image/delete-icon.svg", parameters={}
-2025-08-18 08:45:09 - GET "/image/monitoring-data.svg", parameters={}
-2025-08-18 08:45:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:09 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:45:09 - Completed 200 OK
-2025-08-18 08:45:09 - Completed 200 OK
-2025-08-18 08:45:09 - Completed 200 OK
-2025-08-18 08:46:10 - GET "/css/styles.css", parameters={}
-2025-08-18 08:46:10 - GET "/css/manageGateways.css", parameters={}
-2025-08-18 08:46:10 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:46:10 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:46:10 - GET "/.well-known/appspecific/com.chrome.devtools.json", parameters={}
-2025-08-18 08:46:10 - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-08-18 08:46:10 - Resource not found
-2025-08-18 08:46:10 - Completed 200 OK
-2025-08-18 08:46:10 - Completed 200 OK
-2025-08-18 08:46:10 - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource .well-known/appspecific/com.chrome.devtools.json.]
-2025-08-18 08:46:10 - Completed 404 NOT_FOUND
-2025-08-18 08:46:10 - "ERROR" dispatch for GET "/error", parameters={}
-2025-08-18 08:46:10 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
-2025-08-18 08:46:10 - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/cbor]
-2025-08-18 08:46:10 - Writing [{timestamp=Mon Aug 18 08:46:10 CEST 2025, status=404, error=Not Found, path=/.well-known/appspecific (truncated)...]
-2025-08-18 08:46:10 - Exiting from "ERROR" dispatch, status 404
+2025-08-21 10:01:28 - Starting SensorprocessorApplicationTests using Java 17.0.15 with PID 16080 (started by julien.orrado_sollan in C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App)
+2025-08-21 10:01:28 - No active profile set, falling back to 1 default profile: "default"
+2025-08-21 10:01:28 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@31611954
+2025-08-21 10:01:30 - HikariPool-1 - Starting...
+2025-08-21 10:01:32 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-08-21 10:01:32 - 20 mappings in 'requestMappingHandlerMapping'
+2025-08-21 10:01:32 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-21 10:01:33 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-21 10:01:33 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-21 10:01:33 - Started SensorprocessorApplicationTests in 4.943 seconds (process running for 6.578)
+2025-08-21 10:01:34 - Closing org.springframework.web.context.support.GenericWebApplicationContext@31611954, started on Thu Aug 21 10:01:28 CEST 2025
+2025-08-21 10:30:07 - Starting SensorprocessorApplicationTests using Java 17.0.15 with PID 4972 (started by julien.orrado_sollan in C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App)
+2025-08-21 10:30:07 - No active profile set, falling back to 1 default profile: "default"
+2025-08-21 10:30:07 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@31611954
+2025-08-21 10:30:09 - HikariPool-1 - Starting...
+2025-08-21 10:30:11 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-08-21 10:30:11 - 20 mappings in 'requestMappingHandlerMapping'
+2025-08-21 10:30:11 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-21 10:30:12 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-21 10:30:12 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-21 10:30:13 - Started SensorprocessorApplicationTests in 6.484 seconds (process running for 8.187)
+2025-08-21 10:30:14 - Closing org.springframework.web.context.support.GenericWebApplicationContext@31611954, started on Thu Aug 21 10:30:07 CEST 2025
+2025-08-21 10:52:31 - Starting SensorprocessorApplicationTests using Java 17.0.15 with PID 10432 (started by julien.orrado_sollan in C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App)
+2025-08-21 10:52:31 - No active profile set, falling back to 1 default profile: "default"
+2025-08-21 10:52:31 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6b85300e
+2025-08-21 10:52:32 - HikariPool-1 - Starting...
+2025-08-21 10:52:33 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-08-21 10:52:33 - 20 mappings in 'requestMappingHandlerMapping'
+2025-08-21 10:52:33 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-21 10:52:34 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-21 10:52:34 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-21 10:52:34 - Started SensorprocessorApplicationTests in 3.716 seconds (process running for 4.831)
+2025-08-21 10:52:35 - Closing org.springframework.web.context.support.GenericWebApplicationContext@6b85300e, started on Thu Aug 21 10:52:31 CEST 2025
+2025-08-21 11:15:22 - Starting SensorprocessorApplicationTests using Java 17.0.15 with PID 2752 (started by julien.orrado_sollan in C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App)
+2025-08-21 11:15:22 - No active profile set, falling back to 1 default profile: "default"
+2025-08-21 11:15:22 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@39ab59f8
+2025-08-21 11:15:24 - HikariPool-1 - Starting...
+2025-08-21 11:15:25 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-08-21 11:15:26 - 20 mappings in 'requestMappingHandlerMapping'
+2025-08-21 11:15:26 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-21 11:15:27 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-21 11:15:27 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-21 11:15:27 - Started SensorprocessorApplicationTests in 5.596 seconds (process running for 7.011)
+2025-08-21 11:15:29 - Closing org.springframework.web.context.support.GenericWebApplicationContext@39ab59f8, started on Thu Aug 21 11:15:22 CEST 2025
+2025-08-21 11:35:25 - Starting SensorprocessorApplicationTests using Java 17.0.15 with PID 20600 (started by julien.orrado_sollan in C:\Users\julien.orrado_sollan\GitHub\Sensor_Management_App)
+2025-08-21 11:35:25 - No active profile set, falling back to 1 default profile: "default"
+2025-08-21 11:35:25 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@39ab59f8
+2025-08-21 11:35:26 - HikariPool-1 - Starting...
+2025-08-21 11:35:27 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-08-21 11:35:28 - 20 mappings in 'requestMappingHandlerMapping'
+2025-08-21 11:35:28 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-21 11:35:28 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-21 11:35:29 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-21 11:35:29 - Started SensorprocessorApplicationTests in 4.383 seconds (process running for 5.156)
+2025-08-21 11:35:30 - Closing org.springframework.web.context.support.GenericWebApplicationContext@39ab59f8, started on Thu Aug 21 11:35:25 CEST 2025
