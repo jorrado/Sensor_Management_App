@@ -6,6 +6,7 @@ import com.amaris.sensorprocessor.entity.Gateway;
 import com.amaris.sensorprocessor.service.GatewayLorawanService;
 import com.amaris.sensorprocessor.service.GatewayService;
 import com.amaris.sensorprocessor.service.InputValidationService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
@@ -241,24 +242,26 @@ public class GatewayController {
      *
      * @param id ID de la gateway
      * @param ip Adresse IP de la gateway
-     * @return SseEmitter pour transmettre les données en continu au client
+     * @param httpSession la session utilisateur
+     * @return SseEmitter pour transmettre les données en continue au client
      */
     @GetMapping("/manage-gateways/monitoring/{id}/stream")
-    public SseEmitter streamMonitoringData(@PathVariable("id") String id, @RequestParam("ip") String ip) {
+    public SseEmitter streamMonitoringData(@PathVariable("id") String id, @RequestParam("ip") String ip, HttpSession httpSession) {
         SseEmitter emitter = new SseEmitter(3600000L);
+        String sessionKey = id + "-" + httpSession.getId();
 
         emitter.onCompletion(() -> {
             System.out.println("\u001B[31m" + "Client disconnected, cancelling subscription" + "\u001B[0m");
-            gatewayService.stopMonitoring(id);
+            gatewayService.stopMonitoring(id, sessionKey);
         });
 
         emitter.onTimeout(() -> {
             System.out.println("\u001B[31m" + "SSE timeout, cancelling subscription" + "\u001B[0m");
-            gatewayService.stopMonitoring(id);
+            gatewayService.stopMonitoring(id, sessionKey);
             emitter.complete();
         });
 
-        var subscription = gatewayService.getMonitoringData(id, ip)
+        var subscription = gatewayService.getMonitoringData(id, ip, sessionKey)
                 .subscribe(data -> {
                     try {
                         emitter.send(data);

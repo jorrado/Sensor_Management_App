@@ -91,15 +91,17 @@ public class GatewayService {
      * en temps réel d'une gateway spécifique, à partir de son ID et de son adresse IP.
      * La méthode .bodyToFlux(MonitoringGatewayData.class) convertit directement le JSON en objets Java.
      *
-     * @param gatewayId  l'identifiant unique de la gateway
-     * @param ipAddress  l'adresse IP de la gateway cible
+     * @param gatewayId l'identifiant unique de la gateway
+     * @param ipAddress l'adresse IP de la gateway cible
+     * @param threadId l'id du thread à créer dans l'API REST
      * @return un Flux de MonitoringGatewayData émis en continu via SSE
      */
-    public Flux<MonitoringGatewayData> getMonitoringData(String gatewayId, String ipAddress) {
+    public Flux<MonitoringGatewayData> getMonitoringData(String gatewayId, String ipAddress, String threadId) {
         return webClient.get()
             .uri(uriBuilder -> uriBuilder
                 .path("/api/monitoring/gateway/{id}")
                 .queryParam("ip", ipAddress)
+                .queryParam("threadId", threadId)
                 .build(gatewayId))
             .accept(MediaType.TEXT_EVENT_STREAM)
             .retrieve()
@@ -111,13 +113,16 @@ public class GatewayService {
         );
     }
 
-    public void stopMonitoring(String gatewayId) {
+    public void stopMonitoring(String gatewayId, String threadId) {
         webClient.get()
-            .uri("/api/monitoring/gateway/stop/{id}", gatewayId)
+            .uri(uriBuilder -> uriBuilder
+                .path("/api/monitoring/gateway/stop/{id}")
+                .queryParam("threadId", threadId)
+                .build(gatewayId))
             .retrieve()
             .toBodilessEntity()
-            .doOnSuccess(response -> logger.info("Monitoring stopped for gateway {}", gatewayId))
-            .doOnError(error -> logger.error("Erreur lors de l'arrêt du monitoring pour gateway " + gatewayId, error))
+            .doOnSuccess(response -> logger.info("Monitoring stopped for gateway {}", threadId))
+            .doOnError(error -> logger.error("Erreur lors de l'arrêt du monitoring pour gateway {}", threadId, error))
             .subscribe();
     }
 
