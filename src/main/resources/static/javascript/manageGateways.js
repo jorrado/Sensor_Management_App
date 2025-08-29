@@ -16,6 +16,8 @@ if (btnCreate) {
     btnCreate.addEventListener("click", () => {
         refreshCsrfToken();
         modalCreate.style.display = "block";
+        const select = modalCreate.querySelector("select[name='frequencyPlan']");
+        if (select) select.value = "";
     });
 }
 
@@ -84,7 +86,7 @@ function resetCreateModalFields() {
     const inputs = modalCreate.querySelectorAll("input");
     inputs.forEach(input => input.value = "");
     const select = modalCreate.querySelector("select");
-    if (select) select.value = "true";
+    if (select) select.value = "";
 }
 
 // Réinitialiser l'affichage de l'erreur dans Create
