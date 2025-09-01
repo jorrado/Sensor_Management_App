@@ -233,3 +233,13 @@ form button:hover, .formButton:hover {
 .input-error {
     border: 2px solid #b30000;
 }
+
+/* Placeholder gris uniquement quand aucune valeur n'est choisie */
+#buildingFilter.empty {
+    color: #757575;
+}
+
+/* Les options du menu déroulant sont toujours noires */
+#buildingFilter option {
+    color: #000;
+}

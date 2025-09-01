@@ -19,7 +19,9 @@
         <div style="position: relative; display: flex; align-items: center; width: 180px;">
             <img src="/image/calendar-icon.svg" alt="Calendar Icon"
                  style="position: absolute; left: 10px; width: 18px; height: 18px; pointer-events: none;"/>
-            <input type="text" name="dateFilter" id="dateFilter" placeholder="Filter by date" class="datepicker"
+            <input type="text" name="dateFilter" id="dateFilter"
+                   title="Select a date to filter gateways created from this date" placeholder="Filter by date"
+                   class="datepicker"
                    style="padding: 8px 30px 8px 36px; border: 1px solid #662179; border-radius: 6px; font-size: inherit; outline: none; box-shadow: none; width: 100%;"/>
             <span onclick="document.getElementById('dateFilter').value='';"
                   style="position: absolute; right: 8px; cursor: pointer; font-size: 16px; color: #000;">&#10005;</span>
@@ -27,9 +29,10 @@
         <!-- Building filter -->
         <div style="position: relative; display: flex; align-items: center; width: 200px;">
             <div style="position: relative; display: flex; align-items: center; width: 200px;">
-                <select id="buildingFilter"
+                <select id="buildingFilter" title="Select a building to filter gateways by building name"
+                        aria-label="Filter by building"
                         style="padding: 8px 30px 8px 12px; border: 1px solid #662179; border-radius: 6px; font-size: inherit; outline: none; box-shadow: none; width: 100%;">
-                    <option value="">All buildings</option>
+                    <option value="" disabled selected hidden>Building (all)</option>
                 </select>
                 <span id="clearBuilding"
                       style="position: absolute; right: 25px; cursor: pointer; font-size: 16px; color: #000; user-select: none;">&#10005;</span>
@@ -37,7 +40,8 @@
         </div>
         <!-- Search input -->
         <div style="position: relative; display: flex; align-items: center; width: 220px;">
-            <input type="text" id="searchInput" placeholder="Search by ID or IP"
+            <input type="text" id="searchInput" title="Enter a Gateway ID or IP address to filter the results"
+                   placeholder="Search by ID or IP"
                    style="
           padding: 8px 30px 8px 36px;
           border: 1px solid #662179;
@@ -219,143 +223,13 @@
         </div>
     </div>
 </div>
-
-<script th:src="@{/javascript/manageGateways.js}" defer></script>
 <!-- Flatpickr JS for Date/Calendar -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    const gateways = [[${gateways}]];
+      window.GATEWAYS = [[${gateways}]];
     /*]]>*/
 </script>
-<script>
-    const tableBody = document.getElementById('gatewayTableBody');
-    const buildingFilter = document.getElementById('buildingFilter');
-    const searchInput = document.getElementById('searchInput');
-    const dateInput = document.getElementById('dateFilter');
-
-    // Convertit une syntaxe SQL LIKE (avec %) en RegExp JS
-    function sqlLikeToRegex(pattern) {
-      let escaped = pattern.replace(/[.+^${}()|[\]\\]/g, '\\$&');
-      escaped = escaped.replace(/%/g, '.*');
-      return new RegExp('^' + escaped + '$', 'i');
-    }
-
-    // Vérifie si une valeur matche avec un "LIKE %" ou contient la recherche
-    function matchesLikeOrIncludes(value, query) {
-      if (!query) return true;
-      const v = String(value ?? '');
-      if (query.includes('%')) {
-        return sqlLikeToRegex(query).test(v);
-      }
-      return v.toLowerCase().startsWith(query.toLowerCase());
-    }
-
-    // Remplit le select "Building"
-    (function populateBuildings() {
-      const uniques = Array.from(new Set(
-        (gateways || []).map(g => (g.buildingName || '').trim()).filter(Boolean)
-      )).sort();
-
-      for (const b of uniques) {
-        const opt = document.createElement('option');
-        opt.value = b;
-        opt.textContent = b;
-        buildingFilter.appendChild(opt);
-      }
-    })();
-
-    // Construit les lignes HTML du tableau à partir d’une liste de gateways
-    function renderRows(rows) {
-      tableBody.innerHTML = '';
-      rows.forEach(gw => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${gw.gatewayId ?? ''}</td>
-          <td>${gw.ipAddress ?? ''}</td>
-          <td>${
-            gw.frequencyPlan === 'EU_863_870_TTN' ? 'Europe' :
-            gw.frequencyPlan === 'US_902_928_FSB_2' ? 'United States' :
-            gw.frequencyPlan === 'AU_915_928_FSB_2' ? 'Australia' :
-            gw.frequencyPlan === 'CN_470_510_FSB_11' ? 'China' :
-            gw.frequencyPlan === 'AS_920_923' ? 'Asia' : (gw.frequencyPlan ?? '')
-          }</td>
-          <td>${gw.createdAt ?? ''}</td>
-          <td>${gw.buildingName ?? ''}</td>
-          <td>
-            <div class="button-container">
-              <a href="/manage-gateways/monitoring/${gw.gatewayId}/view?ip=${gw.ipAddress}">
-                <img src="/image/monitoring-data.svg" alt="Monitor">
-              </a>
-              <a href="/manage-gateways/edit/${gw.gatewayId}">
-                <img src="/image/edit-icon.svg" alt="Edit">
-              </a>
-              <a href="#" class="openDeletePopup" data-id="${gw.gatewayId}">
-                <img src="/image/delete-icon.svg" alt="Delete">
-              </a>
-            </div>
-          </td>
-        `;
-        tableBody.appendChild(row);
-      });
-    }
-
-    // Applique tous les filtres (building, recherche texte, date >=)
-    function applyFilters() {
-      const b = buildingFilter.value;
-      const q = (searchInput.value || '');
-      const d = dateInput.value.trim();
-
-      let rows = (gateways || []).slice();
-
-      // filtre par bâtiment (exact match)
-      if (b) {
-        rows = rows.filter(g => (g.buildingName || '') === b);
-      }
-
-      // filtre texte (gatewayId ou ipAddress)
-      if (q) {
-        rows = rows.filter(g =>
-          matchesLikeOrIncludes(g.gatewayId, q) ||
-          matchesLikeOrIncludes(g.ipAddress, q)
-        );
-      }
-
-      // filtre date >= (compare createdAt avec la date choisie)
-      if (d) {
-        const dDate = new Date(d);
-        rows = rows.filter(g => {
-          if (!g.createdAt) return false;
-          const gDate = new Date(g.createdAt);
-          return gDate >= dDate;
-        });
-      }
-
-      renderRows(rows);
-    }
-
-    buildingFilter.addEventListener('change', applyFilters);
-    searchInput.addEventListener('input', applyFilters);
-    dateInput.addEventListener('input', applyFilters);
-
-    // Boutons reset (clear croix à droite)
-    document.getElementById('clearBuilding').addEventListener('click', () => {
-      buildingFilter.value = '';
-      applyFilters();
-    });
-
-    document.querySelector('#searchInput + span').addEventListener('click', () => {
-      searchInput.value = '';
-      applyFilters();
-    });
-
-    document.querySelector('#dateFilter + span').addEventListener('click', () => {
-      dateInput.value = '';
-      applyFilters();
-    });
-
-    // Affiche la table complète au chargement
-    renderRows(gateways || []);
-</script>
+<script th:src="@{/javascript/manageGateways.js}" defer></script>
 </body>
 </html>

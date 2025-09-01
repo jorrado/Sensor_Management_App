@@ -170,3 +170,176 @@ function refreshCsrfToken() {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const gateways = Array.isArray(window.GATEWAYS) ? window.GATEWAYS : [];
+
+  const tableBody = document.getElementById('gatewayTableBody');
+  const buildingFilter = document.getElementById('buildingFilter');
+  const searchInput = document.getElementById('searchInput');
+  const dateInput = document.getElementById('dateFilter');
+
+// Ajoute/enlève la classe "empty" selon la valeur
+function updateBuildingPlaceholderStyle() {
+  if (!buildingFilter) return;
+  const isEmpty = !buildingFilter.value;
+  buildingFilter.classList.toggle('empty', isEmpty);
+}
+  updateBuildingPlaceholderStyle();
+
+  // Focus/blur border sur search (remplace les attributs inline)
+  if (searchInput) {
+    searchInput.addEventListener('focus', () => searchInput.style.borderColor = '#440d64');
+    searchInput.addEventListener('blur', () => searchInput.style.borderColor = '#662179');
+  }
+
+  // Convertit une syntaxe SQL LIKE (avec %) en RegExp JS
+  function sqlLikeToRegex(pattern) {
+    let escaped = pattern.replace(/[.+^${}()|[\]\\]/g, '\\$&');
+    escaped = escaped.replace(/%/g, '.*');
+    return new RegExp('^' + escaped + '$', 'i');
+  }
+
+  // Vérifie si une valeur matche avec "LIKE %" ou commence par la recherche
+  function matchesLikeOrIncludes(value, query) {
+    if (!query) return true;
+    const v = String(value ?? '');
+    if (query.includes('%')) {
+      return sqlLikeToRegex(query).test(v);
+    }
+    return v.toLowerCase().startsWith(query.toLowerCase());
+  }
+
+  // Remplit le select "Building"
+  function populateBuildings() {
+    if (!buildingFilter) return;
+    const uniques = Array.from(new Set(
+      (gateways || []).map(g => (g.buildingName || '').trim()).filter(Boolean)
+    )).sort();
+
+    // Nettoie d'abord tout sauf le placeholder
+    buildingFilter.querySelectorAll('option:not([value=""])').forEach(o => o.remove());
+
+    for (const b of uniques) {
+      const opt = document.createElement('option');
+      opt.value = b;
+      opt.textContent = b;
+      buildingFilter.appendChild(opt);
+    }
+    updateBuildingPlaceholderStyle();
+  }
+
+  // Construit les lignes HTML
+  function renderRows(rows) {
+    if (!tableBody) return;
+    tableBody.innerHTML = '';
+    rows.forEach(gw => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${gw.gatewayId ?? ''}</td>
+        <td>${gw.ipAddress ?? ''}</td>
+        <td>${
+          gw.frequencyPlan === 'EU_863_870_TTN' ? 'Europe' :
+          gw.frequencyPlan === 'US_902_928_FSB_2' ? 'United States' :
+          gw.frequencyPlan === 'AU_915_928_FSB_2' ? 'Australia' :
+          gw.frequencyPlan === 'CN_470_510_FSB_11' ? 'China' :
+          gw.frequencyPlan === 'AS_920_923' ? 'Asia' : (gw.frequencyPlan ?? '')
+        }</td>
+        <td>${gw.createdAt ?? ''}</td>
+        <td>${gw.buildingName ?? ''}</td>
+        <td>
+          <div class="button-container">
+            <a href="/manage-gateways/monitoring/${gw.gatewayId}/view?ip=${gw.ipAddress}">
+              <img src="/image/monitoring-data.svg" alt="Monitor">
+            </a>
+            <a href="/manage-gateways/edit/${gw.gatewayId}">
+              <img src="/image/edit-icon.svg" alt="Edit">
+            </a>
+            <a href="#" class="openDeletePopup" data-id="${gw.gatewayId}">
+              <img src="/image/delete-icon.svg" alt="Delete">
+            </a>
+          </div>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    // Re-binde les boutons "delete" ajoutés dynamiquement
+    tableBody.querySelectorAll('.openDeletePopup').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const id = btn.getAttribute('data-id');
+        const form = document.getElementById('deleteForm');
+        form.action = `/manage-gateways/delete/${id}`;
+        document.getElementById('deleteGatewayPopup').style.display = 'block';
+      });
+    });
+  }
+
+  // Applique tous les filtres
+  function applyFilters() {
+    const b = buildingFilter?.value || '';
+    const q = searchInput?.value || '';
+    const d = (dateInput?.value || '').trim();
+
+    let rows = (gateways || []).slice();
+
+    // filtre par building (exact)
+    if (b) rows = rows.filter(g => (g.buildingName || '') === b);
+
+    // filtre texte (gatewayId ou ipAddress)
+    if (q) {
+      rows = rows.filter(g =>
+        matchesLikeOrIncludes(g.gatewayId, q) ||
+        matchesLikeOrIncludes(g.ipAddress, q)
+      );
+    }
+
+    // filtre date >=
+    if (d) {
+      const dDate = new Date(d);
+      rows = rows.filter(g => {
+        if (!g.createdAt) return false;
+        const gDate = new Date(g.createdAt);
+        return gDate >= dDate;
+      });
+    }
+
+    renderRows(rows);
+  }
+
+  // Écouteurs
+  buildingFilter?.addEventListener('change', () => {
+    updateBuildingPlaceholderStyle();
+    applyFilters();
+  });
+  searchInput?.addEventListener('input', applyFilters);
+  dateInput?.addEventListener('input', applyFilters);
+
+  // Boutons clear (croix)
+  document.getElementById('clearBuilding')?.addEventListener('click', () => {
+    if (!buildingFilter) return;
+    buildingFilter.value = '';
+    updateBuildingPlaceholderStyle();
+    applyFilters();
+  });
+
+  const clearSearch = document.querySelector('#searchInput + span');
+  clearSearch?.addEventListener('click', () => {
+    if (!searchInput) return;
+    searchInput.value = '';
+    applyFilters();
+  });
+
+  const clearDate = document.querySelector('#dateFilter + span');
+  clearDate?.addEventListener('click', () => {
+    if (!dateInput) return;
+    dateInput.value = '';
+    applyFilters();
+  });
+
+  // Init
+  populateBuildings();
+  renderRows(gateways || []);
+  applyFilters();
+});
