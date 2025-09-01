@@ -178,13 +178,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const buildingFilter = document.getElementById('buildingFilter');
   const searchInput = document.getElementById('searchInput');
   const dateInput = document.getElementById('dateFilter');
+  const paginationEl = document.getElementById('pagination');
 
-// Ajoute/enlève la classe "empty" selon la valeur
-function updateBuildingPlaceholderStyle() {
-  if (!buildingFilter) return;
-  const isEmpty = !buildingFilter.value;
-  buildingFilter.classList.toggle('empty', isEmpty);
-}
+  // === Pagination state ===
+  const PAGE_SIZE = 6;
+  let currentPage = 1;
+  let filteredRows = [];
+
+  // Ajoute/enlève la classe "empty" selon la valeur
+  function updateBuildingPlaceholderStyle() {
+    if (!buildingFilter) return;
+    const isEmpty = !buildingFilter.value;
+    buildingFilter.classList.toggle('empty', isEmpty);
+  }
   updateBuildingPlaceholderStyle();
 
   // Focus/blur border sur search (remplace les attributs inline)
@@ -229,7 +235,7 @@ function updateBuildingPlaceholderStyle() {
     updateBuildingPlaceholderStyle();
   }
 
-  // Construit les lignes HTML
+  // Construit les lignes HTML (rendu brut, sans pagination)
   function renderRows(rows) {
     if (!tableBody) return;
     tableBody.innerHTML = '';
@@ -276,7 +282,64 @@ function updateBuildingPlaceholderStyle() {
     });
   }
 
-  // Applique tous les filtres
+  // Rendu d’une page de la liste filtrée
+  function renderRowsPaginated() {
+    const total = filteredRows.length;
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const pageRows = filteredRows.slice(start, start + PAGE_SIZE);
+    renderRows(pageRows);
+    renderPagination(total);
+  }
+
+  // Contrôles de pagination
+  function renderPagination(totalCount) {
+    if (!paginationEl) return;
+
+    const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
+    currentPage = Math.min(currentPage, totalPages);
+
+    // Si peu d’items, on masque la pagination
+    if (totalPages <= 1) {
+      paginationEl.innerHTML = '';
+      return;
+    }
+
+    const btn = (label, page, disabled = false, active = false, ariaLabel) => {
+      const b = document.createElement('button');
+      b.className = 'page-btn' + (active ? ' active' : '');
+      b.textContent = label;
+      if (ariaLabel) b.setAttribute('aria-label', ariaLabel);
+      if (disabled) b.setAttribute('disabled', 'disabled');
+      b.addEventListener('click', () => {
+        if (!disabled && currentPage !== page) {
+          currentPage = page;
+          renderRowsPaginated();
+        }
+      });
+      return b;
+    };
+
+    // fenêtre de pages (max 5 numéros)
+    const totalPagesToShow = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(totalPagesToShow / 2));
+    let endPage = Math.min(totalPages, startPage + totalPagesToShow - 1);
+    if (endPage - startPage + 1 < totalPagesToShow) {
+      startPage = Math.max(1, endPage - totalPagesToShow + 1);
+    }
+
+    paginationEl.innerHTML = '';
+    paginationEl.appendChild(btn('«', 1, currentPage === 1, false, 'First page'));
+    paginationEl.appendChild(btn('‹', currentPage - 1, currentPage === 1, false, 'Previous page'));
+
+    for (let p = startPage; p <= endPage; p++) {
+      paginationEl.appendChild(btn(String(p), p, false, p === currentPage));
+    }
+
+    paginationEl.appendChild(btn('›', currentPage + 1, currentPage === totalPages, false, 'Next page'));
+    paginationEl.appendChild(btn('»', totalPages, currentPage === totalPages, false, 'Last page'));
+  }
+
+  // Applique tous les filtres puis réinitialise la pagination à la page 1
   function applyFilters() {
     const b = buildingFilter?.value || '';
     const q = searchInput?.value || '';
@@ -305,7 +368,10 @@ function updateBuildingPlaceholderStyle() {
       });
     }
 
-    renderRows(rows);
+    // maj dataset filtré + retour à la page 1
+    filteredRows = rows;
+    currentPage = 1;
+    renderRowsPaginated();
   }
 
   // Écouteurs
@@ -340,6 +406,7 @@ function updateBuildingPlaceholderStyle() {
 
   // Init
   populateBuildings();
-  renderRows(gateways || []);
+  filteredRows = gateways || [];
+  renderRowsPaginated();
   applyFilters();
 });
