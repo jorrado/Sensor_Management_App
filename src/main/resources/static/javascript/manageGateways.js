@@ -16,6 +16,8 @@ if (btnCreate) {
     btnCreate.addEventListener("click", () => {
         refreshCsrfToken();
         modalCreate.style.display = "block";
+        const select = modalCreate.querySelector("select[name='frequencyPlan']");
+        if (select) select.value = "";
     });
 }
 
@@ -84,7 +86,7 @@ function resetCreateModalFields() {
     const inputs = modalCreate.querySelectorAll("input");
     inputs.forEach(input => input.value = "");
     const select = modalCreate.querySelector("select");
-    if (select) select.value = "true";
+    if (select) select.value = "";
 }
 
 // Réinitialiser l'affichage de l'erreur dans Create
@@ -168,3 +170,243 @@ function refreshCsrfToken() {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const gateways = Array.isArray(window.GATEWAYS) ? window.GATEWAYS : [];
+
+  const tableBody = document.getElementById('gatewayTableBody');
+  const buildingFilter = document.getElementById('buildingFilter');
+  const searchInput = document.getElementById('searchInput');
+  const dateInput = document.getElementById('dateFilter');
+  const paginationEl = document.getElementById('pagination');
+
+  // === Pagination state ===
+  const PAGE_SIZE = 10;
+  let currentPage = 1;
+  let filteredRows = [];
+
+  // Ajoute/enlève la classe "empty" selon la valeur
+  function updateBuildingPlaceholderStyle() {
+    if (!buildingFilter) return;
+    const isEmpty = !buildingFilter.value;
+    buildingFilter.classList.toggle('empty', isEmpty);
+  }
+  updateBuildingPlaceholderStyle();
+
+  // Focus/blur border sur search (remplace les attributs inline)
+  if (searchInput) {
+    searchInput.addEventListener('focus', () => searchInput.style.borderColor = '#440d64');
+    searchInput.addEventListener('blur', () => searchInput.style.borderColor = '#662179');
+  }
+
+  // Convertit une syntaxe SQL LIKE (avec %) en RegExp JS
+  function sqlLikeToRegex(pattern) {
+    let escaped = pattern.replace(/[.+^${}()|[\]\\]/g, '\\$&');
+    escaped = escaped.replace(/%/g, '.*');
+    return new RegExp('^' + escaped + '$', 'i');
+  }
+
+  // Vérifie si une valeur matche avec "LIKE %" ou commence par la recherche
+  function matchesLikeOrIncludes(value, query) {
+    if (!query) return true;
+    const v = String(value ?? '');
+    if (query.includes('%')) {
+      return sqlLikeToRegex(query).test(v);
+    }
+    return v.toLowerCase().startsWith(query.toLowerCase());
+  }
+
+  // Remplit le select "Building"
+  function populateBuildings() {
+    if (!buildingFilter) return;
+    const uniques = Array.from(new Set(
+      (gateways || []).map(g => (g.buildingName || '').trim()).filter(Boolean)
+    )).sort();
+
+    // Nettoie d'abord tout sauf le placeholder
+    buildingFilter.querySelectorAll('option:not([value=""])').forEach(o => o.remove());
+
+    for (const b of uniques) {
+      const opt = document.createElement('option');
+      opt.value = b;
+      opt.textContent = b;
+      buildingFilter.appendChild(opt);
+    }
+    updateBuildingPlaceholderStyle();
+  }
+
+  // Construit les lignes HTML (rendu brut, sans pagination)
+  function renderRows(rows) {
+    if (!tableBody) return;
+    tableBody.innerHTML = '';
+    rows.forEach(gw => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${gw.gatewayId ?? ''}</td>
+        <td>${gw.ipAddress ?? ''}</td>
+        <td>${
+          gw.frequencyPlan === 'EU_863_870_TTN' ? 'Europe' :
+          gw.frequencyPlan === 'US_902_928_FSB_2' ? 'United States' :
+          gw.frequencyPlan === 'AU_915_928_FSB_2' ? 'Australia' :
+          gw.frequencyPlan === 'CN_470_510_FSB_11' ? 'China' :
+          gw.frequencyPlan === 'AS_920_923' ? 'Asia' : (gw.frequencyPlan ?? '')
+        }</td>
+        <td>${gw.createdAt ?? ''}</td>
+        <td>${gw.buildingName ?? ''}</td>
+        <td>
+          <div class="button-container">
+            <a href="/manage-gateways/monitoring/${gw.gatewayId}/view?ip=${gw.ipAddress}">
+              <img src="/image/monitoring-data.svg" alt="Monitor">
+            </a>
+            <a href="/manage-gateways/edit/${gw.gatewayId}">
+              <img src="/image/edit-icon.svg" alt="Edit">
+            </a>
+            <a href="#" class="openDeletePopup" data-id="${gw.gatewayId}">
+              <img src="/image/delete-icon.svg" alt="Delete">
+            </a>
+          </div>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    // Re-binde les boutons "delete" ajoutés dynamiquement
+    tableBody.querySelectorAll('.openDeletePopup').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const id = btn.getAttribute('data-id');
+        const form = document.getElementById('deleteForm');
+        form.action = `/manage-gateways/delete/${id}`;
+        document.getElementById('deleteGatewayPopup').style.display = 'block';
+      });
+    });
+  }
+
+  // Rendu d’une page de la liste filtrée
+  function renderRowsPaginated() {
+    const total = filteredRows.length;
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const pageRows = filteredRows.slice(start, start + PAGE_SIZE);
+    renderRows(pageRows);
+    renderPagination(total);
+  }
+
+  // Contrôles de pagination
+  function renderPagination(totalCount) {
+    if (!paginationEl) return;
+
+    const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
+    currentPage = Math.min(currentPage, totalPages);
+
+    // Si peu d’items, on masque la pagination
+    if (totalPages <= 1) {
+      paginationEl.innerHTML = '';
+      return;
+    }
+
+    const btn = (label, page, disabled = false, active = false, ariaLabel) => {
+      const b = document.createElement('button');
+      b.className = 'page-btn' + (active ? ' active' : '');
+      b.textContent = label;
+      if (ariaLabel) b.setAttribute('aria-label', ariaLabel);
+      if (disabled) b.setAttribute('disabled', 'disabled');
+      b.addEventListener('click', () => {
+        if (!disabled && currentPage !== page) {
+          currentPage = page;
+          renderRowsPaginated();
+        }
+      });
+      return b;
+    };
+
+    // fenêtre de pages (max 5 numéros)
+    const totalPagesToShow = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(totalPagesToShow / 2));
+    let endPage = Math.min(totalPages, startPage + totalPagesToShow - 1);
+    if (endPage - startPage + 1 < totalPagesToShow) {
+      startPage = Math.max(1, endPage - totalPagesToShow + 1);
+    }
+
+    paginationEl.innerHTML = '';
+    paginationEl.appendChild(btn('«', 1, currentPage === 1, false, 'First page'));
+    paginationEl.appendChild(btn('‹', currentPage - 1, currentPage === 1, false, 'Previous page'));
+
+    for (let p = startPage; p <= endPage; p++) {
+      paginationEl.appendChild(btn(String(p), p, false, p === currentPage));
+    }
+
+    paginationEl.appendChild(btn('›', currentPage + 1, currentPage === totalPages, false, 'Next page'));
+    paginationEl.appendChild(btn('»', totalPages, currentPage === totalPages, false, 'Last page'));
+  }
+
+  // Applique tous les filtres puis réinitialise la pagination à la page 1
+  function applyFilters() {
+    const b = buildingFilter?.value || '';
+    const q = searchInput?.value || '';
+    const d = (dateInput?.value || '').trim();
+
+    let rows = (gateways || []).slice();
+
+    // filtre par building (exact)
+    if (b) rows = rows.filter(g => (g.buildingName || '') === b);
+
+    // filtre texte (gatewayId ou ipAddress)
+    if (q) {
+      rows = rows.filter(g =>
+        matchesLikeOrIncludes(g.gatewayId, q) ||
+        matchesLikeOrIncludes(g.ipAddress, q)
+      );
+    }
+
+    // filtre date >=
+    if (d) {
+      const dDate = new Date(d);
+      rows = rows.filter(g => {
+        if (!g.createdAt) return false;
+        const gDate = new Date(g.createdAt);
+        return gDate >= dDate;
+      });
+    }
+
+    // maj dataset filtré + retour à la page 1
+    filteredRows = rows;
+    currentPage = 1;
+    renderRowsPaginated();
+  }
+
+  // Écouteurs
+  buildingFilter?.addEventListener('change', () => {
+    updateBuildingPlaceholderStyle();
+    applyFilters();
+  });
+  searchInput?.addEventListener('input', applyFilters);
+  dateInput?.addEventListener('input', applyFilters);
+
+  // Boutons clear (croix)
+  document.getElementById('clearBuilding')?.addEventListener('click', () => {
+    if (!buildingFilter) return;
+    buildingFilter.value = '';
+    updateBuildingPlaceholderStyle();
+    applyFilters();
+  });
+
+  const clearSearch = document.querySelector('#searchInput + span');
+  clearSearch?.addEventListener('click', () => {
+    if (!searchInput) return;
+    searchInput.value = '';
+    applyFilters();
+  });
+
+  const clearDate = document.querySelector('#dateFilter + span');
+  clearDate?.addEventListener('click', () => {
+    if (!dateInput) return;
+    dateInput.value = '';
+    applyFilters();
+  });
+
+  // Init
+  populateBuildings();
+  filteredRows = gateways || [];
+  renderRowsPaginated();
+  applyFilters();
+});
