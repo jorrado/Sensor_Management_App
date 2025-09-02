@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const paginationEl = document.getElementById('pagination');
 
   // === Pagination state ===
-  const PAGE_SIZE = 6;
+  const PAGE_SIZE = 10;
   let currentPage = 1;
   let filteredRows = [];
 
