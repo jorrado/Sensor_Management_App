@@ -11,31 +11,33 @@
 
 <body>
 
-<!--    <header>Gateway Monitoring - ID: GW-001</header>-->
     <header>Gateway Monitoring - ID: [[${gatewayId}]]</header>
 
     <main>
         <section class="info-grid">
-            <div class="card"><h4>Status</h4><p><span class="badge"><img src="/image/toggle_on.svg" alt="On" />Actif</span></p></div>
+<!--            <div class="card"><h4>Status</h4><p><span class="badge"><img src="/image/toggle_on.svg" alt="On" />&#45;&#45;</span></p></div>-->
+            <div class="card"><h4>Status</h4><p><span id="gateway-status-badge" class="badge"><img src="/image/toggle_on.svg" alt="Status" />--</span></p></div>
             <div class="card"><h4>Battery</h4><p><span class="badge"><img src="/image/battery.svg" alt="Battery" />95%</span></p></div>
 <!--            <div class="card"><h4>CPU Température</h4><p><span class="badge"><img src="/image/thermostat.svg" alt="Temp" />55 °C</span></p></div>-->
             <div class="card">
                 <h4>CPU Température</h4>
                 <p><span id="cpu-temp-badge" class="badge"><img src="/image/thermostat.svg" alt="Temp" /><span id="cpu-temp">--</span></span></p>
             </div>
-            <div class="card"><h4>Number of sensors connected</h4><p><span class="badge"><img src="/image/sensor-icon.svg" alt="Sensors" />17</span></p></div>
-<!--            <div class="card"><h4>Hostname</h4><p>raspberrypi</p></div>-->
+<!--            <div class="card"><h4>Number of sensors connected</h4><p><span class="badge"><img src="/image/sensor-icon.svg" alt="Sensors" />17</span></p></div>-->
+            <div class="card"><h4>Number of sensors connected</h4><p><span id="num-sensors-badge" class="badge"><img src="/image/sensor-icon.svg" alt="Sensors" />--</span></p></div>
+            <!--            <div class="card"><h4>Hostname</h4><p>raspberrypi</p></div>-->
             <div class="card"><h4>Hostname</h4><p id="hostname">--</p></div>
 <!--            <div class="card"><h4>Created at</h4><p>2023-11-15</p></div>-->
             <div class="card"><h4>Created at</h4><p id="createdAt">--</p></div>
-            <div class="card"><h4>Commissioning Date</h4><p>2023-11-15</p></div>
+<!--            <div class="card"><h4>Commissioning Date</h4><p>2023-11-15</p></div>-->
 <!--            <div class="card"><h4>Uptime Days</h4><p>27 days</p></div>-->
             <div class="card"><h4>Uptime Days</h4><p id="uptimeDays">--</p></div>
 <!--            <div class="card"><h4>IP Locale</h4><p>192.168.1.100</p></div>-->
             <div class="card"><h4>IP Locale</h4><p id="ipLocal">--</p></div>
 <!--            <div class="card"><h4>IP Publique</h4><p>51.75.201.24</p></div>-->
             <div class="card"><h4>IP Publique</h4><p id="ipPublic">--</p></div>
-            <div class="card"><h4>Location</h4><p>Bât A - Étage 2</p></div>
+<!--            <div class="card"><h4>Location</h4><p>Bât A - Étage 2</p></div>-->
+            <div class="card"><h4>Location</h4><p id="gateway-location">--</p></div>
             <div class="card"><h4>Hard drive</h4><p id="hardDrive">--</p></div>
         </section>
 
@@ -63,83 +65,12 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Type</th>
+                                <th>Application</th>
                                 <th>Status</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <!-- Exemple de ligne -->
-                            <tr>
-                                <td>sensor001</td>
-                                <td>Temperature</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor002</td>
-                                <td>Humidity</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_off.svg" alt="Off" />Inactive</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor001</td>
-                                <td>Temperature</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor001</td>
-                                <td>Temperature</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor001</td>
-                                <td>Temperature</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor002</td>
-                                <td>Humidity</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_off.svg" alt="Off" />Inactive</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor001</td>
-                                <td>Temperature</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor001</td>
-                                <td>Temperature</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor001</td>
-                                <td>Temperature</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor001</td>
-                                <td>Temperature</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor001</td>
-                                <td>Temperature</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor002</td>
-                                <td>Humidity</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_off.svg" alt="Off" />Inactive</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor001</td>
-                                <td>Temperature</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_on.svg" alt="On" />Active</span></td>
-                            </tr>
-                            <tr>
-                                <td>sensor002</td>
-                                <td>Humidity</td>
-                                <td><span class="badge badge-small"><img src="/image/toggle_off.svg" alt="Off" />Inactive</span></td>
-                            </tr>
-                            <!-- À remplacer dynamiquement avec tes données -->
+                            <tbody id="sensors-tbody">
+                            <!-- tableau dynamique de capteurs -->
                             </tbody>
                         </table>
                     </div>
@@ -165,7 +96,37 @@
         eventSource.onmessage = function(event) {
             const data = JSON.parse(event.data);
 
+            const statusBadge = document.querySelector("#gateway-status-badge");
+            if (statusBadge && data.system.gateway_status) {
+                statusBadge.textContent = data.system.gateway_status.charAt(0).toUpperCase() + data.system.gateway_status.slice(1);
+
+                let imgSrc = "/image/toggle_off.svg";
+                let bgColor = "red";
+                if (data.system.gateway_status.toLowerCase() === "activating" || data.system.gateway_status.toLowerCase() === "active") {
+                    imgSrc = "/image/toggle_on.svg";
+                    bgColor = "green";
+                }
+                statusBadge.innerHTML = `<img src="${imgSrc}" alt="Status" /> ${statusBadge.textContent}`;
+                statusBadge.style.backgroundColor = bgColor;
+            }
+
             document.querySelector("#cpu-temp").textContent = `${data.system['cpu_temp (C)']} °C`;
+
+            const sensorsBadge = document.querySelector("#num-sensors-badge");
+            if (sensorsBadge && data.devices) {
+                const count = data.devices.length;
+                sensorsBadge.innerHTML = `<img src="/image/sensor-icon.svg" alt="Sensors" />${count}`;
+                if (count > 0) {
+                    sensorsBadge.style.backgroundColor = 'green';
+                } else {
+                    sensorsBadge.style.backgroundColor = 'gray';
+                }
+            }
+
+            const locationElem = document.querySelector("#gateway-location");
+            if (locationElem && data.database && data.database.location) {
+                locationElem.textContent = data.database.location;
+            }
 
             const ramTotal = data.system['ram_total_gb (GB)'];
             const ramUsed = data.system['ram_used_gb (GB)'];
@@ -206,7 +167,6 @@
                 harddriveChart.update();
             }
 
-
             if (document.querySelector("#hostname").textContent === "--") {
                 document.querySelector("#hostname").textContent = data.system.hostname;
             }
@@ -229,7 +189,6 @@
                 document.querySelector("#hardDrive").textContent = diskTotalNumber.toFixed(2) + ' GB';
             }
 
-
             const cpuTempBadge = document.querySelector("#cpu-temp-badge");
             if (cpuTempBadge) {
                 const cpuTemp = data.system['cpu_temp (C)'];
@@ -240,6 +199,26 @@
                 } else {
                     cpuTempBadge.style.backgroundColor = 'red';
                 }
+            }
+
+            const tbody = document.querySelector("#sensors-tbody");
+            if (tbody && data.devices) {
+                tbody.innerHTML = ""; // vide l'existant
+                data.devices.forEach(device => {
+                    const statusOn = true; // si tu as un champ status, remplace true/false par la valeur réelle
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${device.device_id}</td>
+                        <td>${device.application_id}</td>
+                        <td>
+                            <span class="badge badge-small" style="background-color:${statusOn ? 'green' : 'red'}">
+                                <img src="/image/${statusOn ? 'toggle_on' : 'toggle_off'}.svg" alt="${statusOn ? 'On' : 'Off'}" />
+                                ${statusOn ? 'Active' : 'Inactive'}
+                            </span>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
             }
 
             console.log("Data reçue :", data);
