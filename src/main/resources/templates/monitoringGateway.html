@@ -34,8 +34,8 @@
 <!--            <div class="card"><h4>IP Publique</h4><p>51.75.201.24</p></div>-->
             <div class="card"><h4>IP Publique</h4><p id="ipPublic">--</p></div>
 <!--            <div class="card"><h4>Location</h4><p>Bât A - Étage 2</p></div>-->
-            <div class="card"><h4>Location</h4><p id="gateway-location">--</p></div>
-            <div class="card"><h4>Hard drive</h4><p id="hardDrive">--</p></div>
+<!--            <div class="card"><h4>Location</h4><p id="gateway-location">&#45;&#45;</p></div>-->
+<!--            <div class="card"><h4>Hard drive</h4><p id="hardDrive">&#45;&#45;</p></div>-->
         </section>
 
         <section class="chart-grid">
@@ -48,7 +48,11 @@
                 <canvas id="cpuChart"></canvas>
             </div>
             <div class="card">
-                <h4>Hard drive Usage</h4>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h4>Hard drive Usage</h4>
+                    <h4 id="hardDrive" style="font-weight:normal;">--</h4>
+                </div>
+                <br>
                 <canvas id="harddriveChart"></canvas>
             </div>
         </section>
@@ -74,9 +78,14 @@
                 </div>
             </div>
             <div class="card" id="mapContainer" style="flex: 1; padding: 10px;">
-                <h4>Gateway Location</h4>
-                <div id="map" style="min-height: 300px; height: 50vh; width: 100%; border-radius: 10px;"></div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h4>Gateway Location</h4>
+                    <h4 id="gateway-location" style="font-weight:normal;">--</h4>
+                </div>
+                <br>
+                <div id="map" style="min-height:300px; height:50vh; width:100%; border-radius:10px;"></div>
             </div>
+
 
         </section>
     </main>
