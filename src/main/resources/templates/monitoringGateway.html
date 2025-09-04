@@ -19,10 +19,7 @@
             <div class="card"><h4>Status</h4><p><span id="gateway-status-badge" class="badge"><img src="/image/toggle_on.svg" alt="Status" />--</span></p></div>
             <div class="card"><h4>Battery</h4><p><span class="badge"><img src="/image/battery.svg" alt="Battery" />95%</span></p></div>
 <!--            <div class="card"><h4>CPU Température</h4><p><span class="badge"><img src="/image/thermostat.svg" alt="Temp" />55 °C</span></p></div>-->
-            <div class="card">
-                <h4>CPU Température</h4>
-                <p><span id="cpu-temp-badge" class="badge"><img src="/image/thermostat.svg" alt="Temp" /><span id="cpu-temp">--</span></span></p>
-            </div>
+            <div class="card"><h4>CPU Température</h4><p><span id="cpu-temp-badge" class="badge"><img src="/image/thermostat.svg" alt="Temp" /><span id="cpu-temp">--</span></span></p></div>
 <!--            <div class="card"><h4>Number of sensors connected</h4><p><span class="badge"><img src="/image/sensor-icon.svg" alt="Sensors" />17</span></p></div>-->
             <div class="card"><h4>Number of sensors connected</h4><p><span id="num-sensors-badge" class="badge"><img src="/image/sensor-icon.svg" alt="Sensors" />--</span></p></div>
             <!--            <div class="card"><h4>Hostname</h4><p>raspberrypi</p></div>-->
@@ -192,9 +189,9 @@
             const cpuTempBadge = document.querySelector("#cpu-temp-badge");
             if (cpuTempBadge) {
                 const cpuTemp = data.system['cpu_temp (C)'];
-                if (cpuTemp <= 70) {
+                if (cpuTemp <= 75) {
                     cpuTempBadge.style.backgroundColor = 'green';
-                } else if (cpuTemp <= 80) {
+                } else if (cpuTemp <= 85) {
                     cpuTempBadge.style.backgroundColor = 'orange';
                 } else {
                     cpuTempBadge.style.backgroundColor = 'red';
