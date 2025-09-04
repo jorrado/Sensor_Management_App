@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class MonitoringGatewayData {
@@ -13,8 +14,14 @@ public class MonitoringGatewayData {
     @JsonProperty("system")
     private SystemInfo system;
 
+    @JsonProperty("devices")
+    private List<DeviceInfo> devices;
+
     @JsonProperty("ttn")
     private TtnInfo ttn;
+
+    @JsonProperty("database")
+    private DatabaseInfo database;
 
     @Data
     public static class SystemInfo {
@@ -52,6 +59,18 @@ public class MonitoringGatewayData {
 
         @JsonProperty("uptime_days")
         private String uptimeDays;
+
+        @JsonProperty("gateway_status")
+        private String gatewayStatus;
+    }
+
+    @Data
+    public static class DeviceInfo {
+        @JsonProperty("device_id")
+        private String deviceId;
+
+        @JsonProperty("application_id")
+        private String applicationId;
     }
 
     @Data
@@ -64,4 +83,10 @@ public class MonitoringGatewayData {
             private LocalDateTime createdAt;
         }
     }
+
+    @Data
+    public static class DatabaseInfo {
+        private String location;
+    }
+
 }
