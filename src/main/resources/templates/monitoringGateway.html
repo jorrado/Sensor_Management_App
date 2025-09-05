@@ -89,7 +89,6 @@
         const gatewayIp = /*[[${gatewayIp}]]*/ '10.243.129.10';
         const eventSource = new EventSource(`/manage-gateways/monitoring/${gatewayId}/stream?ip=${gatewayIp}`);
 
-
         eventSource.onmessage = function(event) {
             const data = JSON.parse(event.data);
 
@@ -168,8 +167,8 @@
                 document.querySelector("#hostname").textContent = data.system.hostname;
             }
             if (document.querySelector("#createdAt").textContent === "--" &&
-                data.ttn && data.ttn.info && data.ttn.info.created_at) {
-                    const createdAt = data.ttn.info.created_at.split('T')[0];
+                data && data.gateway_info && data.gateway_info.created_at) {
+                    const createdAt = data.gateway_info.created_at.split('T')[0];
                     document.querySelector("#createdAt").textContent = createdAt;
             }
             if (document.querySelector("#uptimeDays").textContent === "--" && data.system.uptime_days) {
@@ -216,6 +215,13 @@
                     `;
                     tbody.appendChild(tr);
                 });
+            }
+
+            if (data.gateway_info && data.gateway_info.location) {
+                const lat = data.gateway_info.location.latitude;
+                const lon = data.gateway_info.location.longitude;
+                gatewayMarker.setLatLng([lat, lon]);
+                map.setView([lat, lon], 13);
             }
 
             console.log("Data reçue :", data);
