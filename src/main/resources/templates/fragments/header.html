@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body><th:block th:fragment="appHeader">
+    <header class="app-header">
+        <a th:href="@{/home}" class="home-logo" aria-label="Home">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 width="22" height="22" aria-hidden="true"
+                 class="icon-home">
+                <path fill="#662179"
+                      d="M12 3.172 2.293 12.88a1 1 0 1 0 1.414 1.414L5 13.001V20a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-5h2v5a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-6.999l1.293 1.293a1 1 0 0 0 1.414-1.414L12 3.172z"/>
+            </svg>
+        </a>
+    </header>
+    <style>
+        .app-header {
+          position: static;
+          top: 0;
+          left: 0;
+          z-index: 1000;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          padding: 10px 16px;
+          background: #fff;
+          border-bottom: 1px solid #eee;
+        }
+        .home-logo svg {
+          width: 28px;
+          height: 28px;
+          display: block;
+        }
+    </style>
+</th:block>
+</body>
+</html>
+
+<div th:replace="fragments/header :: appHeader(pageTitle='Manage Users', homeUrl=@{/})"></div>
