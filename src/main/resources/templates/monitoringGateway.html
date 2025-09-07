@@ -11,8 +11,7 @@
 
 <body>
 
-<header>Gateway Monitoring - ID: [[${gatewayId}]]</header>
-
+<header th:inline="text">Gateway Monitoring - ID: [[${gatewayId}]]</header>
 <main>
     <section class="info-grid">
         <!--            <div class="card"><h4>Status</h4><p><span class="badge"><img src="/image/toggle_on.svg" alt="On" />&#45;&#45;</span></p></div>-->
@@ -105,156 +104,150 @@
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="/javascript/monitoringGateway.js"></script>
-<script>
+<script th:inline="javascript">
     const gatewayId = /*[[${gatewayId}]]*/ null;
     const gatewayIp = /*[[${ipAddress}]]*/ null;
 
-      const eventSource = new EventSource(
-          `/manage-gateways/monitoring/${encodeURIComponent(gatewayId)}/stream?ip=${encodeURIComponent(gatewayIp)}&t=${Date.now()}`
-      );
+    const eventSource = new EventSource(
+        `/manage-gateways/monitoring/${encodeURIComponent(gatewayId)}/stream?ip=${encodeURIComponent(gatewayIp)}&t=${Date.now()}`
+    );
 
-      eventSource.onmessage = function(event) {
-          const data = JSON.parse(event.data);
+    eventSource.onmessage = function(event) {
+        const data = JSON.parse(event.data);
 
-              const statusBadge = document.querySelector("#gateway-status-badge");
-              if (statusBadge && data.system.gateway_status) {
-                  statusBadge.textContent = data.system.gateway_status.charAt(0).toUpperCase() + data.system.gateway_status.slice(1);
+        const statusBadge = document.querySelector("#gateway-status-badge");
+        if (statusBadge && data.system.gateway_status) {
+            statusBadge.textContent = data.system.gateway_status.charAt(0).toUpperCase() + data.system.gateway_status.slice(1);
 
-                  let imgSrc = "/image/toggle_off.svg";
-                  let bgColor = "red";
-                  if (data.system.gateway_status.toLowerCase() === "activating" || data.system.gateway_status.toLowerCase() === "active") {
-                      imgSrc = "/image/toggle_on.svg";
-                      bgColor = "green";
-                  }
-                  statusBadge.innerHTML = `<img src="${imgSrc}" alt="Status" /> ${statusBadge.textContent}`;
-                  statusBadge.style.backgroundColor = bgColor;
-              }
+            let imgSrc = "/image/toggle_off.svg";
+            let bgColor = "red";
+            if (data.system.gateway_status.toLowerCase() === "activating" || data.system.gateway_status.toLowerCase() === "active") {
+                imgSrc = "/image/toggle_on.svg";
+                bgColor = "green";
+            }
+            statusBadge.innerHTML = `<img src="${imgSrc}" alt="Status" /> ${statusBadge.textContent}`;
+            statusBadge.style.backgroundColor = bgColor;
+        }
 
-              document.querySelector("#cpu-temp").textContent = `${data.system['cpu_temp (C)']} °C`;
+        document.querySelector("#cpu-temp").textContent = `${data.system['cpu_temp (C)']} °C`;
 
-              const sensorsBadge = document.querySelector("#num-sensors-badge");
-              if (sensorsBadge && data.devices) {
-                  const count = data.devices.length;
-                  sensorsBadge.innerHTML = `<img src="/image/sensor-icon.svg" alt="Sensors" />${count}`;
-                  if (count > 0) {
-                      sensorsBadge.style.backgroundColor = 'green';
-                  } else {
-                      sensorsBadge.style.backgroundColor = 'gray';
-                  }
-              }
+        const sensorsBadge = document.querySelector("#num-sensors-badge");
+        if (sensorsBadge && data.devices) {
+            const count = data.devices.length;
+            sensorsBadge.innerHTML = `<img src="/image/sensor-icon.svg" alt="Sensors" />${count}`;
+            sensorsBadge.style.backgroundColor = count > 0 ? 'green' : 'gray';
+        }
 
-              const locationElem = document.querySelector("#gateway-location");
-              if (locationElem && data.database && data.database.location) {
-                  locationElem.textContent = data.database.location;
-              }
+        const locationElem = document.querySelector("#gateway-location");
+        if (locationElem && data.database && data.database.location) {
+            locationElem.textContent = data.database.location;
+        }
 
-              const ramTotal = data.system['ram_total_gb (GB)'];
-              const ramUsed = data.system['ram_used_gb (GB)'];
-              if (ramTotal && ramUsed) {
-                  const ramUsagePercent = (ramUsed / ramTotal) * 100;
-                  ramChart.data.datasets[0].data.push(ramUsagePercent);
-                  if (ramChart.data.datasets[0].data.length > 5) {
-                      ramChart.data.datasets[0].data.shift();
-                      ramChart.data.labels.shift();
-                  }
-                  const now = new Date();
-                  ramChart.data.labels.push(now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0'));
-                  ramChart.update();
-              }
+        const ramTotal = data.system['ram_total_gb (GB)'];
+        const ramUsed = data.system['ram_used_gb (GB)'];
+        if (ramTotal && ramUsed) {
+            const ramUsagePercent = (ramUsed / ramTotal) * 100;
+            ramChart.data.datasets[0].data.push(ramUsagePercent);
+            if (ramChart.data.datasets[0].data.length > 5) {
+                ramChart.data.datasets[0].data.shift();
+                ramChart.data.labels.shift();
+            }
+            const now = new Date();
+            ramChart.data.labels.push(now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0'));
+            ramChart.update();
+        }
 
-              const cpuUsage = data.system['cpu_percent (%)'];
-              if (cpuUsage !== undefined) {
-                  cpuChart.data.datasets[0].data.push(cpuUsage);
-                  if (cpuChart.data.datasets[0].data.length > 30) {
-                      cpuChart.data.datasets[0].data.shift();
-                      cpuChart.data.labels.shift();
-                  }
-                  const now = new Date();
-                  cpuChart.data.labels.push(now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0'));
-                  cpuChart.update();
-              }
+        const cpuUsage = data.system['cpu_percent (%)'];
+        if (cpuUsage !== undefined) {
+            cpuChart.data.datasets[0].data.push(cpuUsage);
+            if (cpuChart.data.datasets[0].data.length > 30) {
+                cpuChart.data.datasets[0].data.shift();
+                cpuChart.data.labels.shift();
+            }
+            const now = new Date();
+            cpuChart.data.labels.push(now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0'));
+            cpuChart.update();
+        }
 
-              const diskUsedPercentRaw = data.system['disk_usage_percent'];
-              const diskUsedPercent = diskUsedPercentRaw ? parseFloat(diskUsedPercentRaw.replace('%', '')) : undefined;
-              if (diskUsedPercent !== undefined) {
-                  harddriveChart.data.datasets[0].data.push(diskUsedPercent);
-                  if (harddriveChart.data.datasets[0].data.length > 30) {
-                      harddriveChart.data.datasets[0].data.shift();
-                      harddriveChart.data.labels.shift();
-                  }
-                  const now = new Date();
-                  harddriveChart.data.labels.push(now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0'));
-                  harddriveChart.update();
-              }
+        const diskUsedPercentRaw = data.system['disk_usage_percent'];
+        const diskUsedPercent = diskUsedPercentRaw ? parseFloat(diskUsedPercentRaw.replace('%', '')) : undefined;
+        if (diskUsedPercent !== undefined) {
+            harddriveChart.data.datasets[0].data.push(diskUsedPercent);
+            if (harddriveChart.data.datasets[0].data.length > 30) {
+                harddriveChart.data.datasets[0].data.shift();
+                harddriveChart.data.labels.shift();
+            }
+            const now = new Date();
+            harddriveChart.data.labels.push(now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0'));
+            harddriveChart.update();
+        }
 
-              if (document.querySelector("#hostname").textContent === "--") {
-                  document.querySelector("#hostname").textContent = data.system.hostname;
-              }
-              if (document.querySelector("#createdAt").textContent === "--" &&
-                  data && data.gateway_info && data.gateway_info.created_at) {
-                      const createdAt = data.gateway_info.created_at.split('T')[0];
-                      document.querySelector("#createdAt").textContent = createdAt;
-              }
-              if (document.querySelector("#uptimeDays").textContent === "--" && data.system.uptime_days) {
-                  document.querySelector("#uptimeDays").textContent = data.system.uptime_days;
-              }
-              if (document.querySelector("#ipLocal").textContent === "--" && data.system.ip_local) {
-                  document.querySelector("#ipLocal").textContent = data.system.ip_local;
-              }
-              if (document.querySelector("#ipPublic").textContent === "--" && data.system.ip_public) {
-                  document.querySelector("#ipPublic").textContent = data.system.ip_public;
-              }
-              if (document.querySelector("#hardDrive").textContent === "--" && data.system.disk_total) {
-                  const diskTotalNumber = parseFloat(data.system.disk_total);
-                  document.querySelector("#hardDrive").textContent = diskTotalNumber.toFixed(2) + ' GB';
-              }
+        if (document.querySelector("#hostname").textContent === "--") {
+            document.querySelector("#hostname").textContent = data.system.hostname;
+        }
+        if (document.querySelector("#createdAt").textContent === "--" &&
+            data && data.gateway_info && data.gateway_info.created_at) {
+            const createdAt = data.gateway_info.created_at.split('T')[0];
+            document.querySelector("#createdAt").textContent = createdAt;
+        }
+        if (document.querySelector("#uptimeDays").textContent === "--" && data.system.uptime_days) {
+            document.querySelector("#uptimeDays").textContent = data.system.uptime_days;
+        }
+        if (document.querySelector("#ipLocal").textContent === "--" && data.system.ip_local) {
+            document.querySelector("#ipLocal").textContent = data.system.ip_local;
+        }
+        if (document.querySelector("#ipPublic").textContent === "--" && data.system.ip_public) {
+            document.querySelector("#ipPublic").textContent = data.system.ip_public;
+        }
+        if (document.querySelector("#hardDrive").textContent === "--" && data.system.disk_total) {
+            const diskTotalNumber = parseFloat(data.system.disk_total);
+            document.querySelector("#hardDrive").textContent = diskTotalNumber.toFixed(2) + ' GB';
+        }
 
-              const cpuTempBadge = document.querySelector("#cpu-temp-badge");
-              if (cpuTempBadge) {
-                  const cpuTemp = data.system['cpu_temp (C)'];
-                  if (cpuTemp <= 75) {
-                      cpuTempBadge.style.backgroundColor = 'green';
-                  } else if (cpuTemp <= 85) {
-                      cpuTempBadge.style.backgroundColor = 'orange';
-                  } else {
-                      cpuTempBadge.style.backgroundColor = 'red';
-                  }
-              }
+        const cpuTempBadge = document.querySelector("#cpu-temp-badge");
+        if (cpuTempBadge) {
+            const cpuTemp = data.system['cpu_temp (C)'];
+            cpuTempBadge.style.backgroundColor =
+                cpuTemp <= 75 ? 'green' : (cpuTemp <= 85 ? 'orange' : 'red');
+        }
 
-              const tbody = document.querySelector("#sensors-tbody");
-              if (tbody && data.devices) {
-                  tbody.innerHTML = ""; // vide l'existant
-                  data.devices.forEach(device => {
-                      const statusOn = true; // si tu as un champ status, remplace true/false par la valeur réelle
-                      const tr = document.createElement("tr");
-                      tr.innerHTML = `
-                          <td>${device.device_id}</td>
-                          <td>${device.application_id}</td>
-                          <td>
-                              <span class="badge badge-small" style="background-color:${statusOn ? 'green' : 'red'}">
-                                  <img src="/image/${statusOn ? 'toggle_on' : 'toggle_off'}.svg" alt="${statusOn ? 'On' : 'Off'}" />
-                                  ${statusOn ? 'Active' : 'Inactive'}
-                              </span>
-                          </td>
-                      `;
-                      tbody.appendChild(tr);
-                  });
-              }
+        const tbody = document.querySelector("#sensors-tbody");
+        if (tbody && data.devices) {
+            tbody.innerHTML = "";
+            data.devices.forEach(device => {
+                const statusOn = true; // à remplacer si tu as un vrai champ status
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${device.device_id}</td>
+                    <td>${device.application_id}</td>
+                    <td>
+                        <span class="badge badge-small" style="background-color:${statusOn ? 'green' : 'red'}">
+                            <img src="/image/${statusOn ? 'toggle_on' : 'toggle_off'}.svg" alt="${statusOn ? 'On' : 'Off'}" />
+                            ${statusOn ? 'Active' : 'Inactive'}
+                        </span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
 
-              if (data.gateway_info && data.gateway_info.location) {
-                  const lat = data.gateway_info.location.latitude;
-                  const lon = data.gateway_info.location.longitude;
-                  gatewayMarker.setLatLng([lat, lon]);
-                  map.setView([lat, lon], 13);
-              }
+        if (data.gateway_info && data.gateway_info.location && typeof gatewayMarker !== 'undefined') {
+            const lat = data.gateway_info.location.latitude;
+            const lon = data.gateway_info.location.longitude;
+            gatewayMarker.setLatLng([lat, lon]);
+            if (typeof map !== 'undefined') {
+                map.setView([lat, lon], 13);
+            }
+        }
 
-              console.log("Data reçue :", data);
-          };
+        console.log("Data reçue :", data);
+    };
 
-          eventSource.onerror = function(error) {
-              console.error("Erreur SSE :", error);
-              eventSource.close();
-          };
+    eventSource.onerror = function(error) {
+        console.error("Erreur SSE :", error);
+        eventSource.close();
+    };
 </script>
+
 </body>
 </html>
