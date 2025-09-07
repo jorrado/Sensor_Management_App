@@ -100,9 +100,9 @@ const ctxRam = document.getElementById('ramChart').getContext('2d');
         }
     });
 
-const map = L.map('map').setView([48.8933175, 2.2775922], 13);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-    L.marker([48.8933175, 2.2775922]).addTo(map);
+const map = L.map('map').setView([0, 0], 13);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+let gatewayMarker = L.marker([0, 0]).addTo(map);

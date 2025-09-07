@@ -9,19 +9,16 @@ import java.util.List;
 @Data
 public class MonitoringGatewayData {
 
-    private LocalDateTime timestamp;
-
-    @JsonProperty("system")
+    private String timestamp;
     private SystemInfo system;
+
+    @JsonProperty("gateway_info")
+    private GatewayInfo gatewayInfo;
+
+    private DatabaseInfo database;
 
     @JsonProperty("devices")
     private List<DeviceInfo> devices;
-
-    @JsonProperty("ttn")
-    private TtnInfo ttn;
-
-    @JsonProperty("database")
-    private DatabaseInfo database;
 
     @Data
     public static class SystemInfo {
@@ -65,28 +62,32 @@ public class MonitoringGatewayData {
     }
 
     @Data
-    public static class DeviceInfo {
-        @JsonProperty("device_id")
-        private String deviceId;
-
-        @JsonProperty("application_id")
-        private String applicationId;
-    }
-
-    @Data
-    public static class TtnInfo {
-        private Info info;
+    public static class GatewayInfo {
+        @JsonProperty("created_at")
+        private String createdAt;
+        private Location location;
 
         @Data
-        public static class Info {
-            @JsonProperty("created_at")
-            private LocalDateTime createdAt;
+        public static class Location {
+            private double latitude;
+            private double longitude;
+            private int altitude;
+            private String source;
         }
     }
 
     @Data
     public static class DatabaseInfo {
         private String location;
+    }
+
+    @Data
+    public static class DeviceInfo {
+        @JsonProperty("device_id")
+        private String deviceId;
+
+        @JsonProperty("application_id")
+        private String applicationId;
     }
 
 }

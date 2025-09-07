@@ -248,7 +248,8 @@ public class GatewayController {
     @GetMapping("/manage-gateways/monitoring/{id}/stream")
     public SseEmitter streamMonitoringData(@PathVariable("id") String id, @RequestParam("ip") String ip, HttpSession httpSession) {
         SseEmitter emitter = new SseEmitter(3600000L);
-        String sessionKey = id + "-" + httpSession.getId();
+//        String sessionKey = id + "-" + httpSession.getId();
+        String sessionKey = id + "-" + httpSession.getId() + "-" + System.currentTimeMillis();
 
         emitter.onCompletion(() -> {
             System.out.println("\u001B[31m" + "Client disconnected, cancelling subscription" + "\u001B[0m");
@@ -262,13 +263,13 @@ public class GatewayController {
         });
 
         var subscription = gatewayService.getMonitoringData(id, ip, sessionKey)
-                .subscribe(data -> {
-                    try {
-                        emitter.send(data);
-                    } catch (IOException e) {
-                        emitter.completeWithError(e);
-                    }
-                }, emitter::completeWithError, emitter::complete);
+            .subscribe(data -> {
+                try {
+                    emitter.send(data);
+                } catch (IOException e) {
+                    emitter.completeWithError(e);
+                }
+            }, emitter::completeWithError, emitter::complete);
 
         emitter.onCompletion(subscription::dispose);
         emitter.onTimeout(subscription::dispose);
