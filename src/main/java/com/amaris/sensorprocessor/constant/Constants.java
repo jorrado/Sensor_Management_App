@@ -50,5 +50,6 @@ public final class Constants {
      */
     public static final String PAGE_MANAGE_GATEWAYS = "manageGateways";
     public static final String PAGE_MONITORING_GATEWAYS = "monitoringGateway";
+    public static final String PAGE_MANAGE_SENSORS = "manageSensors";
 
 }
