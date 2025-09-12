@@ -70,15 +70,14 @@
     <table id="sensorTable">
         <thead>
         <tr>
-            <th>#</th>
             <th>Sensor ID</th>
             <th>Device Type</th>
             <th>Commissioning Date</th>
             <th>Status</th>
             <th>Building</th>
-            <th>Floor</th>
             <th>Location</th>
             <th>Gateway ID</th>
+            <th>Actions</th>
         </tr>
         </thead>
 
@@ -88,6 +87,23 @@
 
     <!-- Pagination -->
     <div id="pagination" class="pagination"></div>
+
+    <!-- ✅ NEW: Popup de confirmation suppression (même logique que gateways) -->
+    <div id="deleteSensorPopup" class="modal" style="display:none;">
+        <div class="modal-content-delete">
+            <h2>Confirm delete?</h2>
+            <div th:if="${errorDelete}" class="error-message-delete alert-danger">
+                <p th:text="${errorDelete}"></p>
+            </div>
+            <form th:action="@{/manage-sensors/delete/__id__}" method="post" id="deleteForm">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <div class="form-buttons-delete">
+                    <button type="submit">Delete</button>
+                    <button type="button" id="closeDelete">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <!-- Flatpickr -->

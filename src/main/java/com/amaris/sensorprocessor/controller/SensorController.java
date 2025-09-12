@@ -39,12 +39,25 @@ public class SensorController {
     /* ====================== PRIVÉS ====================== */
 
     private void prepareModel(Model model) {
-        List<Sensor> sensors = sensorService.getAllSensors();
+        List<Sensor> sensors = sensorService.findAll();
         model.addAttribute("sensors", sensors);
 
         if (!model.containsAttribute(SENSOR_ADD)) {
             model.addAttribute(SENSOR_ADD, new Sensor());
         }
+    }
+
+    // === Delete (depuis la popup) ===
+    @PostMapping("/manage-sensors/delete/{idSensor}")
+    public String deleteSensor(@org.springframework.web.bind.annotation.PathVariable String idSensor,
+                               org.springframework.web.servlet.mvc.support.RedirectAttributes ra) {
+        try {
+            sensorService.delete(idSensor);
+            ra.addFlashAttribute("successDelete", "Sensor deleted: " + idSensor);
+        } catch (Exception ex) {
+            ra.addFlashAttribute("errorDelete", ex.getMessage());
+        }
+        return redirectWithTimestamp();
     }
 
     private String redirectWithTimestamp() {
