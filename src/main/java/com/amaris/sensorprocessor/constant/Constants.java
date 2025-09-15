@@ -39,6 +39,9 @@ public final class Constants {
     public static final String BINDING_FLOOR_NUMBER = "floorNumber";
     public static final String BINDING_LOCATION = "locationDescription";
 
+    public static final String BINDING_SENSOR_ID = "sensorId";
+
+
     /**
      * Noms de l'objet BindingResult correspondant au formulaire en question
      */
@@ -50,5 +53,6 @@ public final class Constants {
      */
     public static final String PAGE_MANAGE_GATEWAYS = "manageGateways";
     public static final String PAGE_MONITORING_GATEWAYS = "monitoringGateway";
+    public static final String PAGE_MANAGE_SENSORS = "manageSensors";
 
 }

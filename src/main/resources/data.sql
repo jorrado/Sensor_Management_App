@@ -25,8 +25,9 @@ INSERT INTO Gateways (gateway_id, gateway_eui, ip_address, frequency_plan, creat
 --('gateway-008', '0016C441F10534BA', '192.168.1.17', 'AU_915_928_FSB_2', '2023-08-01', 'Batiment A', 3, 'Bureau 306', NULL, NULL, NULL),
 --('gateway-009', '0321C001F44427AA', '192.168.1.18', 'CN_470_510_FSB_11', '2023-09-01', 'Batiment C', 1, 'Open space T', NULL, NULL, NULL),
 --('gateway-010', '0016C021F10543AB', '192.168.1.19', 'EU_863_870_TTN', '2023-10-01', 'Batiment A', 2, 'Open space U', NULL, NULL, NULL),
-('leva-rpi-mantu', '0016C001F10527BB', '10.243.129.10', 'EU_863_870_TTN', '2025-04-14', 'Batiment Z', 3, 'Bureau 333', NULL, NULL, NULL),
-('rpi-mantu', '0016C001F1054209', '10.243.129.10', 'EU_863_870_TTN', '2024-07-25', 'Batiment Z', 3, 'Bureau 333', NULL, NULL, NULL);
+('lil-rpi-mantu', '1122334455667789', '10.243.127.5', 'EU_863_870_TTN', '2025-09-02', 'Lille', 4, 'Open space U', NULL, NULL, NULL),
+('leva-rpi-mantu', '0016C001F10527BB', '10.243.128.3', 'EU_863_870_TTN', '2025-04-14', 'Levallois', 3, 'Bureau 333', NULL, NULL, NULL),
+('rpi-mantu', '0016C001F1054209', '10.243.129.10', 'EU_863_870_TTN', '2024-07-25', 'Châteaudun', 3, 'Bureau 333', NULL, NULL, NULL);
 
 -- Création de la table Sensors
 CREATE TABLE Sensors (
