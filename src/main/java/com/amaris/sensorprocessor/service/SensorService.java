@@ -38,23 +38,38 @@ public class SensorService {
         if (sensorDao.findByIdOfSensor(toCreate.getIdSensor()).isPresent())
             throw new IllegalStateException("idSensor already exists: " + toCreate.getIdSensor());
 
-        if (toCreate.getCommissioningDate() == null)
-            toCreate.setCommissioningDate(String.valueOf(Instant.now()));
+        if (toCreate.getCommissioningDate() == null || toCreate.getCommissioningDate().isBlank())
+            toCreate.setCommissioningDate(Instant.now().toString());
 
         if (toCreate.getStatus() == null) toCreate.setStatus(Boolean.TRUE);
-
+        // 1) Insert BDD (transactionnel)
         int rows = sensorDao.insertSensor(toCreate);
         if (rows != 1) throw new IllegalStateException("DB insert failed for sensor " + toCreate.getIdSensor());
         log.info("[Sensor] DB created idSensor={}", toCreate.getIdSensor());
 
-        LorawanSensorData lorawan = lorawanService.toLorawanCreate(toCreate);
-        lorawanService.createDevice(lorawan);
-        log.info("[Sensor] TTN created device {}", toCreate.getIdSensor());
+        // 2) Création TTN
+        try {
+            if (toCreate.getIdGateway() == null || toCreate.getIdGateway().isBlank()) {
+                log.warn("[Sensor] No idGateway provided for {} → skipping TTN create", toCreate.getIdSensor());
+            } else {
+                LorawanSensorData lorawan = lorawanService.toLorawanCreate(toCreate);
+                lorawanService.createDevice(toCreate.getIdGateway(), lorawan);
+                log.info("[Sensor] TTN created device {} (app={}-app)", toCreate.getIdSensor(), toCreate.getIdGateway());
+            }
+        } catch (WebClientResponseException e) {
+            if (e.getStatusCode().value() == 409) {
+                log.warn("[Sensor] TTN device {} already exists (409). Continue.", toCreate.getIdSensor());
+            } else {
+                log.error("[Sensor] TTN create failed for {}: {}", toCreate.getIdSensor(), e.getMessage(), e);
+            }
+        } catch (Exception e) {
+            log.error("[Sensor] TTN create unexpected error for {}: {}", toCreate.getIdSensor(), e.getMessage(), e);
+        }
 
         return sensorDao.findByIdOfSensor(toCreate.getIdSensor()).orElse(toCreate);
     }
 
-    /* UPDATE (sans rename d'idSensor) */
+    /* UPDATE */
     @Transactional
     public Sensor update(String idSensor, Sensor patch) {
         Sensor existing = getOrThrow(idSensor);
@@ -78,19 +93,17 @@ public class SensorService {
 
         // TTN update
         LorawanSensorUpdateData updateDto = lorawanService.toLorawanUpdate(existing);
-        lorawanService.updateDevice(idSensor, updateDto);
+        lorawanService.updateDevice(existing.getIdGateway(), idSensor, updateDto);
         log.info("[Sensor] TTN updated device {}", idSensor);
 
         return existing;
     }
 
-    /* DELETE — appelle TTN avec application = {idGateway}-app puis supprime en DB */
+    /* DELETE  */
     @Transactional
     public void delete(String idSensor) {
-        // 0) On vérifie qu'il existe en BDD (sinon rien à faire)
         Sensor existing = getOrThrow(idSensor);
 
-        // 1) Tentative de suppression TTN — on N'EMPÊCHE PAS la suite si ça échoue
         try {
             lorawanService.deleteDevice(existing.getIdGateway(), idSensor);
             log.info("[Sensor] TTN deleted device {} (app={}-app)", idSensor, existing.getIdGateway());
@@ -100,16 +113,13 @@ public class SensorService {
                 log.warn("[Sensor] TTN device {} not found in app {}-app (already deleted?)",
                         idSensor, existing.getIdGateway());
             } else {
-                // Autre erreur TTN : on log et on CONTINUE la suppression BDD
                 log.error("[Sensor] TTN delete failed for {} (app={}-app): {}",
                         idSensor, existing.getIdGateway(), e.getMessage());
             }
         } catch (Exception e) {
-            // Toute autre erreur réseau/runtime → on continue quand même
             log.error("[Sensor] TTN delete unexpected error for {}: {}", idSensor, e.getMessage(), e);
         }
 
-        // 2) Suppression en base — toujours exécutée
         int rows = sensorDao.deleteByIdOfSensor(idSensor);
         if (rows == 0) throw new IllegalArgumentException("Sensor not found: " + idSensor);
 

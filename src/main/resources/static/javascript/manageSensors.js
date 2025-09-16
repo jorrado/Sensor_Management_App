@@ -9,12 +9,22 @@ var exitDelete  = document.getElementById("closeDelete");
 document.addEventListener('DOMContentLoaded', () => {
   const sensors = Array.isArray(window.SENSORS) ? window.SENSORS : [];
 
-  const tableBody     = document.getElementById('sensorTableBody');
+  const tableBody      = document.getElementById('sensorTableBody');
   const buildingFilter = document.getElementById('buildingFilter');
   const statusFilter   = document.getElementById('statusFilter');
   const searchInput    = document.getElementById('searchInput');
   const dateInput      = document.getElementById('dateFilter');
   const paginationEl   = document.getElementById('pagination');
+
+  // Champs du formulaire Add
+  const modalCreateEl       = document.getElementById('createSensorPopup');
+  const openCreateBtn       = document.getElementById('openCreateBtn');
+  const closeCreateBtn      = document.getElementById('closeCreateSensor') || document.getElementById('closeCreate');
+  const gatewaySelect       = document.getElementById('gatewaySelect');
+  const frequencyPlanInput  = document.getElementById('frequencyPlanInput');
+  const devEuiInput         = document.getElementById('devEuiInput');
+  const joinEuiInput        = document.getElementById('joinEuiInput');
+  const appKeyInput         = document.getElementById('appKeyInput');
 
   const PAGE_SIZE = 10;
   let currentPage = 1;
@@ -62,61 +72,110 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSelectPlaceholderStyle(buildingFilter);
   }
 
-function renderRows(rows) {
-  if (!tableBody) return;
-  tableBody.innerHTML = '';
-  rows.forEach((s) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${s.idSensor ?? ''}</td>
-      <td>${s.deviceType ?? ''}</td>
-      <td>${s.commissioningDate ?? ''}</td>
-      <td>
-        <span class="${s.status ? 'badge badge--ok' : 'badge badge--off'}">
-          ${s.status ? 'Active' : 'Inactive'}
-        </span>
-      </td>
-      <td>${s.buildingName ?? ''}</td>
-      <td>${s.location ?? ''}</td>
-      <td>${s.idGateway ?? ''}</td>
-      <td>
-        <div class="button-container">
-          <a href="/manage-sensors/monitoring/${s.idSensor}">
-            <img src="/image/monitoring-data.svg" alt="Monitor">
-          </a>
-          <a href="/manage-sensors/edit/${s.idSensor}">
-            <img src="/image/edit-icon.svg" alt="Edit">
-          </a>
-          <a href="#" class="openDeletePopup" data-id="${s.idSensor}">
-            <img src="/image/delete-icon.svg" alt="Delete">
-          </a>
-        </div>
-      </td>
-    `;
-    tableBody.appendChild(row);
-  });
-
-  if (rows.length === 0) {
-    const emptyRow = document.createElement('tr');
-    emptyRow.innerHTML = `
-      <td colspan="7" style="text-align:center; font-style:italic; padding:16px;">
-        No sensors found.
-      </td>
-    `;
-    tableBody.appendChild(emptyRow);
+  // === Create Sensor modal ===
+  if (openCreateBtn && modalCreateEl) {
+    openCreateBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modalCreateEl.style.display = 'block';
+    });
   }
 
-  // Re-bind des boutons Delete
-  tableBody.querySelectorAll('.openDeletePopup').forEach(btn => {
-    btn.addEventListener('click', e => {
+  if (closeCreateBtn && modalCreateEl) {
+    closeCreateBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      const id = btn.getAttribute('data-id');
-      const form = document.getElementById('deleteForm');
-      form.action = `/manage-sensors/delete/${id}`;
-      document.getElementById('deleteSensorPopup').style.display = 'block';
+      modalCreateEl.style.display = 'none';
     });
+  }
+
+  // Fermer en cliquant hors du contenu
+  window.addEventListener('click', (e) => {
+    if (modalCreateEl && e.target === modalCreateEl) {
+      modalCreateEl.style.display = 'none';
+    }
   });
-}
+
+  // Fermer avec Échap
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalCreateEl && modalCreateEl.style.display === 'block') {
+      modalCreateEl.style.display = 'none';
+    }
+  });
+
+  // ----- Liaison Gateway -> Frequency Plan -----
+  gatewaySelect?.addEventListener('change', () => {
+    const opt  = gatewaySelect.selectedOptions[0];
+    const freq = opt ? opt.getAttribute('data-freq') : '';
+    if (frequencyPlanInput) frequencyPlanInput.value = freq || '';
+  });
+
+  // ----- Nettoyage/formatage des champs hex -----
+  function keepHexAndUpper(s) { return (s || '').replace(/[^0-9a-fA-F]/g, '').toUpperCase(); }
+
+  devEuiInput?.addEventListener('input', () => {
+    devEuiInput.value = keepHexAndUpper(devEuiInput.value).slice(0, 16);
+  });
+  joinEuiInput?.addEventListener('input', () => {
+    joinEuiInput.value = keepHexAndUpper(joinEuiInput.value).slice(0, 16);
+  });
+  appKeyInput?.addEventListener('input', () => {
+    appKeyInput.value = keepHexAndUpper(appKeyInput.value).slice(0, 32);
+  });
+
+  function renderRows(rows) {
+    if (!tableBody) return;
+    tableBody.innerHTML = '';
+    rows.forEach((s) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${s.idSensor ?? ''}</td>
+        <td>${s.deviceType ?? ''}</td>
+        <td>${s.commissioningDate ?? ''}</td>
+        <td>
+          <span class="${s.status ? 'badge badge--ok' : 'badge badge--off'}">
+            ${s.status ? 'Active' : 'Inactive'}
+          </span>
+        </td>
+        <td>${s.buildingName ?? ''}</td>
+        <td>${s.location ?? ''}</td>
+        <td>${s.idGateway ?? ''}</td>
+        <td>
+          <div class="button-container">
+            <a href="/manage-sensors/monitoring/${s.idSensor}">
+              <img src="/image/monitoring-data.svg" alt="Monitor">
+            </a>
+            <a href="/manage-sensors/edit/${s.idSensor}">
+              <img src="/image/edit-icon.svg" alt="Edit">
+            </a>
+            <a href="#" class="openDeletePopup" data-id="${s.idSensor}">
+              <img src="/image/delete-icon.svg" alt="Delete">
+            </a>
+          </div>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    if (rows.length === 0) {
+      const emptyRow = document.createElement('tr');
+      emptyRow.innerHTML = `
+        <td colspan="8" style="text-align:center; font-style:italic; padding:16px;">
+          No sensors found.
+        </td>
+      `;
+      tableBody.appendChild(emptyRow);
+    }
+
+    // Re-bind des boutons Delete
+    tableBody.querySelectorAll('.openDeletePopup').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const id = btn.getAttribute('data-id');
+        const form = document.getElementById('deleteForm');
+        form.action = `/manage-sensors/delete/${id}`;
+        document.getElementById('deleteSensorPopup').style.display = 'block';
+      });
+    });
+  }
 
   // Pagination
   function renderPagination(totalCount) {
@@ -179,9 +238,7 @@ function renderRows(rows) {
 
     // Filter by sensorId (like startsWith)
     if (q) {
-      rows = rows.filter(x =>
-        matchesLikeOrIncludes(x.idSensor, q)
-      );
+      rows = rows.filter(x => matchesLikeOrIncludes(x.idSensor, q));
     }
 
     // Filter by commissioningDate >= selected
@@ -272,12 +329,11 @@ function renderRows(rows) {
     }
   });
 
-
   // Init
   populateBuildings();
   filteredRows = sensors || [];
   renderRowsPaginated();
 });
 
-/* Flatpickr init */
+// Flatpickr (format simple compatible colonne DATE)
 flatpickr(".datepicker", { dateFormat: "Y-m-d" });

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Sensors</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <link rel="stylesheet" th:href="@{/css/manageSensors.css}" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" th:href="@{/css/manageSensors.css}"/>
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
@@ -49,12 +49,14 @@
                     style="padding: 8px 30px 8px 12px; border: 1px solid #662179; border-radius: 6px; font-size: inherit; outline: none; box-shadow: none; width: 100%;">
                 <option value="" disabled selected hidden>Building (all)</option>
                 <option th:each="b : ${buildings}"
-                        th:value="${b.id}"
-                        th:text="${b.label}">Building</option>
+                        th:value="${b}"
+                        th:text="${b}">Building
+                </option>
             </select>
             <span id="clearBuilding"
                   style="position: absolute; right: 25px; cursor: pointer; font-size: 16px; color: #000; user-select: none;">&#10005;</span>
         </div>
+
 
         <!-- Search input (Sensor ID) -->
         <div style="position: relative; display: flex; align-items: center; width: 220px;">
@@ -85,8 +87,115 @@
         </tbody>
     </table>
 
-    <!-- Pagination -->
     <div id="pagination" class="pagination"></div>
+
+    <button id="openCreateBtn">Add Sensor</button>
+
+    <!-- Formulaire pour ajouter un Sensor -->
+    <div id="createSensorPopup" class="modal modalCreate" style="display:none;">
+        <div class="modal-content">
+            <h2>Add Sensor</h2>
+
+            <!-- Affichage d'une erreur serveur éventuelle -->
+            <div th:if="${errorAdd}" class="error-message-create alert-danger">
+                <p th:text="${errorAdd}"></p>
+            </div>
+
+            <form th:action="@{/manage-sensors/add}" th:object="${sensorAdd}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+                <!-- Sensor ID -->
+                <!-- Sensor ID -->
+                <input type="text"
+                       th:field="*{idSensor}"
+                       placeholder="Sensor ID"
+                       required
+                       pattern="^[a-z0-9](?:[-]?[a-z0-9]){2,}$"
+                       oninput="this.value=this.value.toLowerCase()"
+                       th:classappend="${#fields.hasErrors('idSensor')} ? 'input-error' : ''"/>
+                <div class="field-error" th:if="${#fields.hasErrors('idSensor')}" th:errors="*{idSensor}"></div>
+
+                <!-- Device Type -->
+                <input type="text" th:field="*{deviceType}" placeholder="Device Type" required
+                       th:classappend="${#fields.hasErrors('deviceType')} ? 'input-error' : ''"/>
+                <div class="field-error" th:if="${#fields.hasErrors('deviceType')}" th:errors="*{deviceType}"></div>
+
+                <!-- Commissioning Date (optionnel, défaut côté service) -->
+                <input type="text" id="commissioningDateInput" th:field="*{commissioningDate}"
+                       placeholder="Commissioning Date (optional)" class="datepicker"
+                       th:classappend="${#fields.hasErrors('commissioningDate')} ? 'input-error' : ''"/>
+                <div class="field-error" th:if="${#fields.hasErrors('commissioningDate')}" th:errors="*{commissioningDate}"></div>
+
+                <!-- Status (optionnel, défaut = true côté service si vide) -->
+                <select th:field="*{status}" th:classappend="${#fields.hasErrors('status')} ? 'input-error' : ''">
+                    <option value="" selected>Status (optional)</option>
+                    <option th:value="true">Active</option>
+                    <option th:value="false">Inactive</option>
+                </select>
+                <div class="field-error" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div>
+
+                <!-- Building Name -->
+                <input type="text" th:field="*{buildingName}" placeholder="Building Name" list="buildingsOptions" required
+                       th:classappend="${#fields.hasErrors('buildingName')} ? 'input-error' : ''"/>
+                <div class="field-error" th:if="${#fields.hasErrors('buildingName')}" th:errors="*{buildingName}"></div>
+
+                <datalist id="buildingsOptions">
+                    <option th:each="b : ${buildings}" th:value="${b}" th:text="${b}">Building</option>
+                </datalist>
+
+                <!-- Floor -->
+                <input type="number" th:field="*{floor}" placeholder="Floor" required
+                       th:classappend="${#fields.hasErrors('floor')} ? 'input-error' : ''"/>
+                <div class="field-error" th:if="${#fields.hasErrors('floor')}" th:errors="*{floor}"></div>
+
+                <!-- Location (optionnel) -->
+                <input type="text" th:field="*{location}" placeholder="Location"
+                       th:classappend="${#fields.hasErrors('location')} ? 'input-error' : ''"/>
+                <div class="field-error" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></div>
+
+                <!-- Gateway ID -->
+                <select id="gatewaySelect" th:field="*{idGateway}" required
+                        th:classappend="${#fields.hasErrors('idGateway')} ? 'input-error' : ''">
+                    <option value="" disabled selected>Select a Gateway</option>
+                    <option th:each="g : ${gateways}"
+                            th:value="${g.gatewayId}"
+                            th:text="${g.gatewayId}"
+                            th:attr="data-freq=${g.frequencyPlan}">
+                        GATEWAY_ID
+                    </option>
+                </select>
+                <div class="field-error" th:if="${#fields.hasErrors('idGateway')}" th:errors="*{idGateway}"></div>
+
+                <!-- Frequency Plan (auto depuis gateway, éditable) -->
+                <input type="text" id="frequencyPlanInput" th:field="*{frequencyPlan}" placeholder="Frequency Plan"
+                       th:classappend="${#fields.hasErrors('frequencyPlan')} ? 'input-error' : ''"/>
+                <div class="field-error" th:if="${#fields.hasErrors('frequencyPlan')}" th:errors="*{frequencyPlan}"></div>
+
+                <!-- DevEUI -->
+                <input type="text" id="devEuiInput" th:field="*{devEui}" placeholder="DevEUI" required
+                       pattern="^[A-Fa-f0-9]{16}$" title="16 hex characters (0-9, A-F)"
+                       th:classappend="${#fields.hasErrors('devEui')} ? 'input-error' : ''"/>
+                <div class="field-error" th:if="${#fields.hasErrors('devEui')}" th:errors="*{devEui}"></div>
+
+                <!-- JoinEUI -->
+                <input type="text" id="joinEuiInput" th:field="*{joinEui}" placeholder="JoinEUI" required
+                       pattern="^[A-Fa-f0-9]{16}$" title="16 hex characters (0-9, A-F)"
+                       th:classappend="${#fields.hasErrors('joinEui')} ? 'input-error' : ''"/>
+                <div class="field-error" th:if="${#fields.hasErrors('joinEui')}" th:errors="*{joinEui}"></div>
+
+                <!-- AppKey -->
+                <input type="password" id="appKeyInput" th:field="*{appKey}" placeholder="AppKey" required
+                       pattern="^[A-Fa-f0-9]{32}$" title="32 hex characters (0-9, A-F)"
+                       th:classappend="${#fields.hasErrors('appKey')} ? 'input-error' : ''"/>
+                <div class="field-error" th:if="${#fields.hasErrors('appKey')}" th:errors="*{appKey}"></div>
+
+                <div class="form-buttons">
+                    <button type="submit">Add</button>
+                    <button type="button" id="closeCreateSensor">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- ✅ NEW: Popup de confirmation suppression (même logique que gateways) -->
     <div id="deleteSensorPopup" class="modal" style="display:none;">
@@ -109,10 +218,10 @@
 <!-- Flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-<!-- Injection des données côté serveur -->
 <script th:inline="javascript">
     /*<![CDATA[*/
-      window.SENSORS = [[${sensors}]];
+    window.SENSORS  = [[${sensors}]];
+    window.GATEWAYS = [[${gateways}]];
     /*]]>*/
 </script>
 
