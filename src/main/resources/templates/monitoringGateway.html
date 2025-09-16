@@ -11,39 +11,34 @@
 
 <body>
 
-<header th:inline="text">Gateway Monitoring - ID: [[${gatewayId}]]</header>
+<header th:inline="text">--[[${gatewayName}]]</header>
 <main>
     <section class="info-grid">
-        <!--            <div class="card"><h4>Status</h4><p><span class="badge"><img src="/image/toggle_on.svg" alt="On" />&#45;&#45;</span></p></div>-->
-        <div class="card"><h4>Status</h4>
+        <div class="card">
+            <h4>Status</h4>
             <p><span id="gateway-status-badge" class="badge"><img src="/image/toggle_on.svg" alt="Status"/>--</span></p>
         </div>
-        <div class="card"><h4>Battery</h4>
-            <p><span class="badge"><img src="/image/battery.svg" alt="Battery"/>95%</span></p></div>
-        <!--            <div class="card"><h4>CPU Température</h4><p><span class="badge"><img src="/image/thermostat.svg" alt="Temp" />55 °C</span></p></div>-->
         <div class="card"><h4>CPU Température</h4>
-            <p><span id="cpu-temp-badge" class="badge"><img src="/image/thermostat.svg" alt="Temp"/><span id="cpu-temp">--</span></span>
-            </p></div>
-        <!--            <div class="card"><h4>Number of sensors connected</h4><p><span class="badge"><img src="/image/sensor-icon.svg" alt="Sensors" />17</span></p></div>-->
+            <p><span id="cpu-temp-badge" class="badge"><img src="/image/thermostat.svg" alt="Temp"/><span id="cpu-temp">--</span></span></p>
+        </div>
         <div class="card"><h4>Number of sensors connected</h4>
             <p><span id="num-sensors-badge" class="badge"><img src="/image/sensor-icon.svg" alt="Sensors"/>--</span></p>
         </div>
-        <!--            <div class="card"><h4>Hostname</h4><p>raspberrypi</p></div>-->
-        <div class="card"><h4>Hostname</h4>
-            <p id="hostname">--</p></div>
-        <!--            <div class="card"><h4>Created at</h4><p>2023-11-15</p></div>-->
+        <div class="card"><h4>Gateway ID</h4>
+            <p id="gateway-id">--</p>
+        </div>
         <div class="card"><h4>Created at</h4>
-            <p id="createdAt">--</p></div>
-        <!--            <div class="card"><h4>Commissioning Date</h4><p>2023-11-15</p></div>-->
-        <!--            <div class="card"><h4>Uptime Days</h4><p>27 days</p></div>-->
+            <p id="createdAt">--</p>
+        </div>
         <div class="card"><h4>Uptime Days</h4>
-            <p id="uptimeDays">--</p></div>
-        <!--            <div class="card"><h4>IP Locale</h4><p>192.168.1.100</p></div>-->
+            <p id="uptimeDays">--</p>
+        </div>
         <div class="card"><h4>IP Locale</h4>
-            <p id="ipLocal">--</p></div>
-        <!--            <div class="card"><h4>IP Publique</h4><p>51.75.201.24</p></div>-->
+            <p id="ipLocal">--</p>
+        </div>
         <div class="card"><h4>IP Publique</h4>
-            <p id="ipPublic">--</p></div>
+            <p id="ipPublic">--</p>
+        </div>
         <!--            <div class="card"><h4>Location</h4><p>Bât A - Étage 2</p></div>-->
         <!--            <div class="card"><h4>Location</h4><p id="gateway-location">&#45;&#45;</p></div>-->
         <!--            <div class="card"><h4>Hard drive</h4><p id="hardDrive">&#45;&#45;</p></div>-->
@@ -115,6 +110,10 @@
     eventSource.onmessage = function(event) {
         const data = JSON.parse(event.data);
 
+        if (data.gateway_info && data.gateway_info.name) {
+            document.querySelector("header").textContent = data.gateway_info.name;
+        }
+
         const statusBadge = document.querySelector("#gateway-status-badge");
         if (statusBadge && data.system.gateway_status) {
             statusBadge.textContent = data.system.gateway_status.charAt(0).toUpperCase() + data.system.gateway_status.slice(1);
@@ -136,6 +135,28 @@
             const count = data.devices.length;
             sensorsBadge.innerHTML = `<img src="/image/sensor-icon.svg" alt="Sensors" />${count}`;
             sensorsBadge.style.backgroundColor = count > 0 ? 'green' : 'gray';
+        }
+
+        if (document.querySelector("#gateway-id").textContent === "--") {
+            document.querySelector("#gateway-id").textContent = gatewayId;
+        }
+
+        if (document.querySelector("#createdAt").textContent === "--" &&
+            data && data.gateway_info && data.gateway_info.created_at) {
+            const createdAt = data.gateway_info.created_at.split('T')[0];
+            document.querySelector("#createdAt").textContent = createdAt;
+        }
+
+        if (document.querySelector("#uptimeDays").textContent === "--" && data.system.uptime_days) {
+            document.querySelector("#uptimeDays").textContent = data.system.uptime_days;
+        }
+
+        if (document.querySelector("#ipLocal").textContent === "--" && data.system.ip_local) {
+            document.querySelector("#ipLocal").textContent = data.system.ip_local;
+        }
+
+        if (document.querySelector("#ipPublic").textContent === "--" && data.system.ip_public) {
+            document.querySelector("#ipPublic").textContent = data.system.ip_public;
         }
 
         const locationElem = document.querySelector("#gateway-location");
@@ -182,23 +203,6 @@
             harddriveChart.update();
         }
 
-        if (document.querySelector("#hostname").textContent === "--") {
-            document.querySelector("#hostname").textContent = data.system.hostname;
-        }
-        if (document.querySelector("#createdAt").textContent === "--" &&
-            data && data.gateway_info && data.gateway_info.created_at) {
-            const createdAt = data.gateway_info.created_at.split('T')[0];
-            document.querySelector("#createdAt").textContent = createdAt;
-        }
-        if (document.querySelector("#uptimeDays").textContent === "--" && data.system.uptime_days) {
-            document.querySelector("#uptimeDays").textContent = data.system.uptime_days;
-        }
-        if (document.querySelector("#ipLocal").textContent === "--" && data.system.ip_local) {
-            document.querySelector("#ipLocal").textContent = data.system.ip_local;
-        }
-        if (document.querySelector("#ipPublic").textContent === "--" && data.system.ip_public) {
-            document.querySelector("#ipPublic").textContent = data.system.ip_public;
-        }
         if (document.querySelector("#hardDrive").textContent === "--" && data.system.disk_total) {
             const diskTotalNumber = parseFloat(data.system.disk_total);
             document.querySelector("#hardDrive").textContent = diskTotalNumber.toFixed(2) + ' GB';
