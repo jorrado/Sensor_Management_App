@@ -13,7 +13,7 @@ public class SensorLorawanDao {
     @Value("${lorawan.baseurlCreate}")
     private String lorawanBaseUrlCreate;
 
-    @Value("${lorawan.baseurl1}")
+    @Value("${lorawan.baseurl}")
     private String lorawanBaseUrl;
 
     @Value("${lorawan.token}")
@@ -44,7 +44,7 @@ public class SensorLorawanDao {
     /* DELETE — nouvelle signature avec applicationId */
     public void deleteSensorInLorawan(String applicationId, String sensorId) {
         WebClient client = webClientBuilder
-                .baseUrl(lorawanBaseUrl)
+                .baseUrl(lorawanBaseUrl + "/applications")
                 .build();
 
         client.delete()
@@ -62,7 +62,7 @@ public class SensorLorawanDao {
     public void updateSensorInLorawan(LorawanSensorUpdateData updateData, String sensorId) {
         webClientBuilder.build()
                 .put()
-                .uri(lorawanBaseUrl + "/" + sensorId)
+                .uri(lorawanBaseUrl + "/applications/" + sensorId)
                 .header(AUTHORIZATION, BEARER + " " + lorawanToken)
                 .bodyValue(updateData)
                 .retrieve()
