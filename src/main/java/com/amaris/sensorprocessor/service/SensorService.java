@@ -1,7 +1,6 @@
 package com.amaris.sensorprocessor.service;
 
 import com.amaris.sensorprocessor.entity.LorawanSensorData;
-import com.amaris.sensorprocessor.entity.LorawanSensorUpdateData;
 import com.amaris.sensorprocessor.entity.Sensor;
 import com.amaris.sensorprocessor.repository.SensorDao;
 import lombok.RequiredArgsConstructor;
@@ -74,30 +73,26 @@ public class SensorService {
     public Sensor update(String idSensor, Sensor patch) {
         Sensor existing = getOrThrow(idSensor);
 
+        // Pas de renommage d'ID
         if (patch.getIdSensor() != null && !patch.getIdSensor().isBlank()
                 && !patch.getIdSensor().equals(existing.getIdSensor())) {
             throw new IllegalArgumentException("Renaming idSensor is not supported by current DAO");
         }
 
-        if (patch.getDeviceType() != null) existing.setDeviceType(patch.getDeviceType());
+        // ⚠️ On n’édite QUE ces champs (DB-only)
+        if (patch.getDeviceType() != null)        existing.setDeviceType(patch.getDeviceType());
         if (patch.getCommissioningDate() != null) existing.setCommissioningDate(patch.getCommissioningDate());
-        if (patch.getStatus() != null) existing.setStatus(patch.getStatus());
-        if (patch.getBuildingName() != null) existing.setBuildingName(patch.getBuildingName());
-        if (patch.getFloor() != null) existing.setFloor(patch.getFloor());
-        if (patch.getLocation() != null) existing.setLocation(patch.getLocation());
-        if (patch.getIdGateway() != null) existing.setIdGateway(patch.getIdGateway());
+        if (patch.getFloor() != null)             existing.setFloor(patch.getFloor());
+        if (patch.getLocation() != null)          existing.setLocation(patch.getLocation());
+
+        // ❌ NE PAS toucher à : idGateway, frequencyPlan, buildingName, devEui, joinEui, appKey, status
 
         int rows = sensorDao.updateSensor(existing);
         if (rows != 1) throw new IllegalStateException("DB update failed for sensor " + idSensor);
-        log.info("[Sensor] DB updated idSensor={}", idSensor);
-
-        // TTN update
-        LorawanSensorUpdateData updateDto = lorawanService.toLorawanUpdate(existing);
-        lorawanService.updateDevice(existing.getIdGateway(), idSensor, updateDto);
-        log.info("[Sensor] TTN updated device {}", idSensor);
-
+        log.info("[Sensor] DB updated idSensor={} (DB-only, no TTN update)", idSensor);
         return existing;
     }
+
 
     /* DELETE  */
     @Transactional

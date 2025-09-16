@@ -174,43 +174,6 @@ public class SensorController {
                                Model model) {
         model.addAttribute(SENSOR_EDIT, sensor);
 
-        // Pas de renommage + validations principales
-        if (isBlank(sensor.getIdSensor())) {
-            bindingResult.addError(new FieldError(SENSOR_EDIT, "idSensor", "Sensor ID is required"));
-        } else if (!DEVICE_ID_PATTERN.matcher(sensor.getIdSensor()).matches()) {
-            bindingResult.addError(new FieldError(SENSOR_EDIT, "idSensor",
-                    "Use lowercase a-z, 0-9 and single '-' (min 3 chars, no leading/trailing '-')"));
-        }
-        if (isBlank(sensor.getDeviceType())) {
-            bindingResult.addError(new FieldError(SENSOR_EDIT, "deviceType", "Device Type is required"));
-        }
-        if (isBlank(sensor.getBuildingName())) {
-            bindingResult.addError(new FieldError(SENSOR_EDIT, "buildingName", "Building Name is required"));
-        }
-        if (sensor.getFloor() == null) {
-            bindingResult.addError(new FieldError(SENSOR_EDIT, "floor", "Floor is required"));
-        }
-        if (isBlank(sensor.getIdGateway())) {
-            bindingResult.addError(new FieldError(SENSOR_EDIT, "idGateway", "Gateway is required"));
-        }
-
-        // DevEUI/JoinEUI/AppKey si présents (on autorise vide = pas de changement SI ton UI les propose en edit non obligatoires)
-        if (!isBlank(sensor.getDevEui()) && !HEX16.matcher(sensor.getDevEui()).matches()) {
-            bindingResult.addError(new FieldError(SENSOR_EDIT, "devEui", "DevEUI must be 16 hex characters"));
-        }
-        if (!isBlank(sensor.getJoinEui()) && !HEX16.matcher(sensor.getJoinEui()).matches()) {
-            bindingResult.addError(new FieldError(SENSOR_EDIT, "joinEui", "JoinEUI must be 16 hex characters"));
-        }
-        if (!isBlank(sensor.getAppKey()) && !HEX32.matcher(sensor.getAppKey()).matches()) {
-            bindingResult.addError(new FieldError(SENSOR_EDIT, "appKey", "AppKey must be 32 hex characters"));
-        }
-
-        // Frequency plan auto via gateway si manquante
-        if (isBlank(sensor.getFrequencyPlan()) && !isBlank(sensor.getIdGateway())) {
-            Optional<Gateway> gw = gatewayService.findById(sensor.getIdGateway());
-            gw.ifPresent(g -> sensor.setFrequencyPlan(g.getFrequencyPlan()));
-        }
-
         if (bindingResult.hasErrors()) {
             prepareModel(model);
             model.addAttribute(Constants.BINDING_SENSOR_EDIT, bindingResult);
@@ -220,13 +183,7 @@ public class SensorController {
 
         try {
             sensorService.update(sensor.getIdSensor(), sensor);
-        } catch (IllegalArgumentException e) {
-            bindingResult.addError(new FieldError(SENSOR_EDIT, "idSensor", e.getMessage()));
-            prepareModel(model);
-            model.addAttribute(Constants.BINDING_SENSOR_EDIT, bindingResult);
-            model.addAttribute(ERROR_EDIT, e.getMessage());
-            return Constants.PAGE_MANAGE_SENSORS;
-        } catch (IllegalStateException e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             prepareModel(model);
             model.addAttribute(ERROR_EDIT, e.getMessage());
             return Constants.PAGE_MANAGE_SENSORS;
@@ -241,7 +198,7 @@ public class SensorController {
         return redirectWithTimestamp();
     }
 
-    /* ===================== DELETE ===================== */
+        /* ===================== DELETE ===================== */
 
     @PostMapping("/manage-sensors/delete/{idSensor}")
     public String deleteSensor(@PathVariable String idSensor, Model model) {
