@@ -1,13 +1,11 @@
 package com.amaris.sensorprocessor.service;
 
 import com.amaris.sensorprocessor.entity.LorawanSensorData;
-import com.amaris.sensorprocessor.entity.LorawanSensorUpdateData;
 import com.amaris.sensorprocessor.entity.Sensor;
 import com.amaris.sensorprocessor.repository.SensorLorawanDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -15,47 +13,56 @@ public class SensorLorawanService {
 
     private final SensorLorawanDao sensorLorawanDao;
 
-    /* ===== CREATE ===== */
-    public void createDevice(LorawanSensorData data) {
-        String resp = sensorLorawanDao.insertSensorInLorawan(data);
-        log.info("[LoRaWAN] created end-device: {}", resp);
+    private static final String CLUSTER = "eu1.cloud.thethings.network";
+    private static final String LORAWAN_VERSION = "1.0.3";
+    private static final String LORAWAN_PHY_VERSION = "1.0.3-a";
+
+    public void createDevice(String idGateway, LorawanSensorData body) {
+        String applicationId = idGateway + "-appli";
+        sensorLorawanDao.insertSensorInLorawan(applicationId, body);
+        log.info("[LoRaWAN] created end-device in application {}", applicationId);
     }
 
-    /* ===== UPDATE (PUT /{sensorId}) ===== */
-    public void updateDevice(String sensorId, LorawanSensorUpdateData data) {
-        sensorLorawanDao.updateSensorInLorawan(data, sensorId);
-        log.info("[LoRaWAN] updated end-device {}", sensorId);
-    }
-
-    /* ===== DELETE (DELETE /application/{applicationId}/devices/{sensorId}) ===== */
     public void deleteDevice(String idGateway, String sensorId) {
-        String applicationId = idGateway + "-app";
+        String applicationId = idGateway + "-appli";
         sensorLorawanDao.deleteSensorInLorawan(applicationId, sensorId);
         log.info("[LoRaWAN] deleted end-device {} in application {}", sensorId, applicationId);
     }
 
-    /* ===== MAPPERS ===== */
     public LorawanSensorData toLorawanCreate(Sensor s) {
-        LorawanSensorData d = new LorawanSensorData();
-        // Mappe ici ce dont ton API a besoin (ids, join_eui/app_eui/dev_eui, name, attributes, etc.)
-        return d;
+        if (isBlank(s.getIdSensor())) throw new IllegalArgumentException("idSensor is required");
+        if (isBlank(s.getDevEui()))   throw new IllegalArgumentException("devEui is required");
+        if (isBlank(s.getJoinEui()))  throw new IllegalArgumentException("joinEui is required");
+        if (isBlank(s.getAppKey()))   throw new IllegalArgumentException("appKey is required");
+
+        LorawanSensorData.Ids ids = new LorawanSensorData.Ids();
+        ids.setDeviceId(s.getIdSensor());
+        ids.setDevEui(s.getDevEui());
+        ids.setJoinEui(s.getJoinEui());
+
+        LorawanSensorData.Key appKeyObj = new LorawanSensorData.Key();
+        appKeyObj.setKey(s.getAppKey());
+
+        LorawanSensorData.RootKeys rootKeys = new LorawanSensorData.RootKeys();
+        rootKeys.setAppKey(appKeyObj);
+
+        LorawanSensorData.EndDevice ed = new LorawanSensorData.EndDevice();
+        ed.setIds(ids);
+        ed.setSupportsJoin(true);
+        ed.setNetworkServerAddress(CLUSTER);
+        ed.setApplicationServerAddress(CLUSTER);
+        ed.setJoinServerAddress(CLUSTER);
+        ed.setLorawanVersion(LORAWAN_VERSION);
+        ed.setLorawanPhyVersion(LORAWAN_PHY_VERSION);
+        ed.setRootKeys(rootKeys);
+        ed.setName(s.getIdSensor());
+
+        LorawanSensorData dto = new LorawanSensorData();
+        dto.setEndDevice(ed);
+        return dto;
     }
 
-    /** Construit un payload d'update conforme à LorawanSensorUpdateData (snake_case) */
-    public LorawanSensorUpdateData toLorawanUpdate(Sensor s) {
-        LorawanSensorUpdateData upd = new LorawanSensorUpdateData();
-
-        LorawanSensorUpdateData.SensorPayload.Ids ids = new LorawanSensorUpdateData.SensorPayload.Ids();
-        ids.setSensor_id(s.getIdSensor());
-
-        LorawanSensorUpdateData.SensorPayload payload = new LorawanSensorUpdateData.SensorPayload();
-        payload.setIds(ids);
-
-        upd.setSensor(payload);
-
-        // Ajuste selon le field mask attendu par ton endpoint
-        upd.setField_mask("ids");
-
-        return upd;
+    private static boolean isBlank(String v) {
+        return v == null || v.trim().isEmpty();
     }
 }

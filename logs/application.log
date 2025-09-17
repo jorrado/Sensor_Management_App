@@ -4500,3 +4500,36 @@ Caused by: java.net.ConnectException: Connection refused: getsockopt
 2025-09-16 11:30:58 - Completed 200 OK
 2025-09-16 11:30:58 - Completed 200 OK
 2025-09-16 11:31:02 - Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-16 14:44:49 - Starting SensorprocessorApplicationTests using Java 17.0.16 with PID 19616 (started by yannis.lanista_solla in C:\Users\yannis.lanista_solla\Documents\Projets GitLab\SensorManagement\Sensor_Management_App)
+2025-09-16 14:44:49 - No active profile set, falling back to 1 default profile: "default"
+2025-09-16 14:44:49 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@4beddc56
+2025-09-16 14:44:51 - HikariPool-1 - Starting...
+2025-09-16 14:44:53 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-09-16 14:44:53 - 28 mappings in 'requestMappingHandlerMapping'
+2025-09-16 14:44:53 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-09-16 14:44:53 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-09-16 14:44:54 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-09-16 14:44:54 - Started SensorprocessorApplicationTests in 5.724 seconds (process running for 7.572)
+2025-09-16 14:44:55 - Closing org.springframework.web.context.support.GenericWebApplicationContext@4beddc56, started on Tue Sep 16 14:44:49 CEST 2025
+2025-09-16 23:00:56 - Starting SensorprocessorApplicationTests using Java 17.0.16 with PID 11944 (started by yannis.lanista_solla in C:\Users\yannis.lanista_solla\Documents\Projets GitLab\SensorManagement\Sensor_Management_App)
+2025-09-16 23:00:56 - No active profile set, falling back to 1 default profile: "default"
+2025-09-16 23:00:56 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@4beddc56
+2025-09-16 23:00:59 - HikariPool-1 - Starting...
+2025-09-16 23:01:02 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-09-16 23:01:02 - 28 mappings in 'requestMappingHandlerMapping'
+2025-09-16 23:01:02 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-09-16 23:01:03 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-09-16 23:01:03 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-09-16 23:01:03 - Started SensorprocessorApplicationTests in 7.522 seconds (process running for 10.142)
+2025-09-16 23:01:05 - Closing org.springframework.web.context.support.GenericWebApplicationContext@4beddc56, started on Tue Sep 16 23:00:56 CEST 2025
+2025-09-16 23:07:39 - Starting SensorprocessorApplicationTests using Java 17.0.16 with PID 18248 (started by yannis.lanista_solla in C:\Users\yannis.lanista_solla\Documents\Projets GitLab\SensorManagement\Sensor_Management_App)
+2025-09-16 23:07:39 - No active profile set, falling back to 1 default profile: "default"
+2025-09-16 23:07:39 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@4beddc56
+2025-09-16 23:07:42 - HikariPool-1 - Starting...
+2025-09-16 23:07:44 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-09-16 23:07:44 - 28 mappings in 'requestMappingHandlerMapping'
+2025-09-16 23:07:44 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-09-16 23:07:45 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-09-16 23:07:45 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-09-16 23:07:46 - Started SensorprocessorApplicationTests in 7.485 seconds (process running for 9.781)
+2025-09-16 23:07:49 - Closing org.springframework.web.context.support.GenericWebApplicationContext@4beddc56, started on Tue Sep 16 23:07:39 CEST 2025
