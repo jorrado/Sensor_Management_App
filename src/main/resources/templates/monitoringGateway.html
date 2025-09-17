@@ -46,7 +46,10 @@
 
     <section class="chart-grid">
         <div class="card">
-            <h4>RAM Usage</h4>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h4>RAM Usage</h4>
+                <h4 id="ramTotal" style="font-weight:normal;">--</h4>
+            </div>
             <canvas id="ramChart"></canvas>
         </div>
         <div class="card">
@@ -58,13 +61,12 @@
                 <h4>Hard drive Usage</h4>
                 <h4 id="hardDrive" style="font-weight:normal;">--</h4>
             </div>
-            <br>
             <canvas id="harddriveChart"></canvas>
         </div>
     </section>
 
     <section id="dashboard" style="display: flex; gap: 20px;">
-        <div id="sensorsTable" class="card" style="flex: 1; padding: 10px;">
+        <div id="sensorsTable" style="flex: 1;">
             <div class="card">
                 <h4>Connected Sensors</h4>
                 <div class="table-container">
@@ -91,8 +93,6 @@
             <br>
             <div id="map" style="min-height:300px; height:50vh; width:100%; border-radius:10px;"></div>
         </div>
-
-
     </section>
 
     <div style="margin-top:20px;">
@@ -165,7 +165,7 @@
 
         const locationElem = document.querySelector("#gateway-location");
         if (locationElem && data.database && data.database.location) {
-            locationElem.textContent = data.database.location;
+            locationElem.innerHTML = `<strong style="font-family: inherit; font-weight: bold;">${data.database.location}</strong>`;
         }
 
         const ramTotal = data.system['ram_total_gb (GB)'];
@@ -207,9 +207,14 @@
             harddriveChart.update();
         }
 
+        if (document.querySelector("#ramTotal").textContent === "--" && data.system['ram_total_gb (GB)']) {
+            const ramTotalNumber = parseFloat(data.system['ram_total_gb (GB)']);
+            document.querySelector("#ramTotal").innerHTML = `<strong style="font-family: inherit; font-weight: bold;">${ramTotalNumber.toFixed(2)} GB</strong>`;
+        }
+
         if (document.querySelector("#hardDrive").textContent === "--" && data.system.disk_total) {
             const diskTotalNumber = parseFloat(data.system.disk_total);
-            document.querySelector("#hardDrive").textContent = diskTotalNumber.toFixed(2) + ' GB';
+            document.querySelector("#hardDrive").innerHTML = `<strong style="font-family: inherit; font-weight: bold;">${diskTotalNumber.toFixed(2)} GB</strong>`;
         }
 
         const cpuTempBadge = document.querySelector("#cpu-temp-badge");
