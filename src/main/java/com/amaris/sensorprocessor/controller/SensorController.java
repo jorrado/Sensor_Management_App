@@ -142,6 +142,25 @@ public class SensorController {
         return redirectWithTimestamp();
     }
 
+    @GetMapping("/manage-sensors/monitoring/{idSensor}")
+    public String monitorSensor(@PathVariable String idSensor, Model model) {
+        Sensor s = sensorService.getOrThrow(idSensor);
+        model.addAttribute("sensor", s);
+
+        gatewayService.findById(s.getIdGateway()).ifPresent(gw -> {
+            // Label par défaut = gatewayId ; tu peux le rendre plus parlant si tu as un buildingName
+            String label = (gw.getBuildingName() != null && !gw.getBuildingName().isBlank())
+                    ? gw.getBuildingName() + " (" + gw.getGatewayId() + ")"
+                    : gw.getGatewayId();
+
+            model.addAttribute("gatewayName", label);          // <-- remplace l'ancien getGatewayName()
+            model.addAttribute("gatewayIp", gw.getIpAddress()); // <-- remplace ipLocal/ipPublic
+        });
+
+        return "monitoringSensor"; // ou ta constante si tu en as une
+    }
+
+
     @GetMapping("/manage-sensors/add")
     public String handleAddGet() {
         return redirectWithTimestamp();
