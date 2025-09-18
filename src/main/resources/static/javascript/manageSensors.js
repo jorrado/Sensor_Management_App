@@ -1,8 +1,4 @@
-// =======================
-// Manage Sensors (JS)
-// =======================
-
-// Références globales (certains éléments peuvent ne pas exister selon la page)
+// Références globales
 const modalCreate = document.getElementById("createSensorPopup");
 const modalDelete = document.getElementById("deleteSensorPopup");
 const modalEdit   = document.getElementById("editSensorPopup");
@@ -64,16 +60,55 @@ document.addEventListener('DOMContentLoaded', () => {
   const joinEuiInput       = document.getElementById('joinEuiInput');
   const appKeyInput        = document.getElementById('appKeyInput');
 
-  // Champs Edit
-  const closeEditBtn           = document.getElementById('closeEditSensor');
-  const gatewaySelectEdit      = document.getElementById('gatewaySelectEdit');       // disabled (info)
-  const frequencyPlanInputEdit = document.getElementById('frequencyPlanInputEdit');  // readonly
-  const buildingNameInputEdit  = document.getElementById('buildingNameInputEdit');   // readonly
+  // Forms (pour sauvegarder l'état avant submit)
+  const createForm = document.querySelector('#createSensorPopup form');
+  const editForm   = document.querySelector('#editSensorPopup form');
+  const deleteForm = document.getElementById('deleteForm');
 
   // État pagination
   const PAGE_SIZE = 10;
   let currentPage = 1;
   let filteredRows = [];
+
+  // ---------- Mémorisation/restauration d’état ----------
+  const STATE_KEY = 'manageSensors.state';
+
+  function saveListState() {
+    try {
+      const state = {
+        page: currentPage,
+        building: buildingFilter?.value || '',
+        status:   statusFilter?.value   || '',
+        search:   searchInput?.value    || '',
+        date:     dateInput?.value      || ''
+      };
+      sessionStorage.setItem(STATE_KEY, JSON.stringify(state));
+    } catch (_) {}
+  }
+
+  function restoreListState() {
+    const raw = sessionStorage.getItem(STATE_KEY);
+    if (!raw) return;
+    try {
+      const s = JSON.parse(raw);
+      if (buildingFilter) buildingFilter.value = s.building || '';
+      if (statusFilter)   statusFilter.value   = s.status   || '';
+      if (searchInput)    searchInput.value    = s.search   || '';
+      if (dateInput)      dateInput.value      = s.date     || '';
+
+      updateSelectPlaceholderStyle(buildingFilter);
+      updateSelectPlaceholderStyle(statusFilter);
+
+      // recalcul selon filtres (remet page=1), puis force la page
+      applyFilters();
+      currentPage = s.page || 1;
+      renderRowsPaginated();
+    } catch (_) {
+      // no-op
+    }
+    // consommer l’état (one-shot)
+    sessionStorage.removeItem(STATE_KEY);
+  }
 
   // Placeholders sur selects
   if (buildingFilter) updateSelectPlaceholderStyle(buildingFilter);
@@ -181,6 +216,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // Intercepter les clics sur Edit / Monitoring pour mémoriser l’état avant navigation
+  tableBody?.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    if (a.matches('a[href^="/manage-sensors/edit/"], a[href^="/manage-sensors/monitoring/"]')) {
+      saveListState();
+      // laisser la navigation se faire
+    }
+  });
 
   // ----- Pagination -----
   function renderPagination(totalCount) {
@@ -320,12 +365,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Sauvegarder l’état avant submit (create/edit/delete)
+  createForm?.addEventListener('submit', saveListState);
+  editForm?.addEventListener('submit',   saveListState);
+  deleteForm?.addEventListener('submit', saveListState);
+
   // EDIT — si le modal existe (retour de /manage-sensors/edit/{id}), on l’ouvre automatiquement
   if (modalEdit) {
     modalEdit.style.display = 'block';
   }
-  if (closeEditBtn && modalEdit) {
-    closeEditBtn.addEventListener('click', (e) => {
+  if (document.getElementById('closeEditSensor') && modalEdit) {
+    document.getElementById('closeEditSensor').addEventListener('click', (e) => {
       e.preventDefault();
       modalEdit.style.display = 'none';
     });
@@ -372,7 +422,10 @@ document.addEventListener('DOMContentLoaded', () => {
   filteredRows = SENSORS || [];
   renderRowsPaginated();
 
-  // Si une gateway est présélectionnée dans le Create form (ex: validation côté serveur), pousser les hints
+  // Restaure page + filtres si on revient d’un Edit/Monitoring/Delete
+  restoreListState();
+
+  // Si une gateway est présélectionnée dans le Create form, pousser les hints
   applyGatewayHintsCreate();
 });
 
